@@ -1,8 +1,8 @@
 import 'package:d_bam/constants.dart';
+import 'package:d_bam/screens/form_gangguan_screen.dart';
 import 'package:d_bam/widgets/option_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-
 
 class ChooseScreen extends StatelessWidget {
   const ChooseScreen({Key? key}) : super(key: key);
@@ -13,20 +13,25 @@ class ChooseScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: kBgColour,
       appBar: buildAppBar(context),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(kPadding),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: kHorPadding,
+          vertical: 24,
+        ),
+        child: Center(
           child: Column(
             children: [
-              Text(
-                'Please Select One',
-                style: kTextStyle24
-              ),
+              Text('Please Select One', style: kTextStyle24),
               SizedBox(
                 height: kPadding,
               ),
-              OptionCard(
-                svgPicture: SvgPicture.asset('assets/images/img_psb.svg'),
+              Expanded(
+                child: InkWell(
+                  onTap: () {},
+                  child: OptionCard(
+                    svgPicture: SvgPicture.asset('assets/images/img_psb.svg'),
+                  ),
+                ),
               ),
               SizedBox(
                 height: kPadding,
@@ -38,8 +43,15 @@ class ChooseScreen extends StatelessWidget {
               SizedBox(
                 height: kPadding,
               ),
-              OptionCard(
-                svgPicture: SvgPicture.asset('assets/images/img_ggn.svg'),
+              Expanded(
+                child: InkWell(
+                  onTap: () {
+                    Navigator.pushNamed(context, FormGangguan.id);
+                  },
+                  child: OptionCard(
+                    svgPicture: SvgPicture.asset('assets/images/img_ggn.svg'),
+                  ),
+                ),
               ),
               SizedBox(
                 height: kPadding,
@@ -57,6 +69,7 @@ class ChooseScreen extends StatelessWidget {
 
   AppBar buildAppBar(BuildContext context) {
     return AppBar(
+      toolbarHeight: 64,
       backgroundColor: kBgColour,
       leading: Padding(
         padding: const EdgeInsets.all(8),
@@ -70,17 +83,17 @@ class ChooseScreen extends StatelessWidget {
           ),
         ),
       ),
-      // centerTitle: true,
-      // title: Text('Please select one', style: kTextStyle20Bold,),
       actions: [
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: kHorPadding),
           child: CircleAvatar(
-            backgroundColor: Colors.white,
-            child: Icon(
-              Icons.person,
-              color: kIcColour,
+            foregroundColor: Colors.red,
+            backgroundColor: kBgColour,
+            child: Image.asset(
+              'assets/images/logo1.png',
+              fit: BoxFit.contain,
             ),
+            radius: 24,
           ),
         ),
       ],

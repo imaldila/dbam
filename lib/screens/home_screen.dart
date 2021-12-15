@@ -30,11 +30,15 @@ class HomeScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   SvgPicture.asset(
-                    ('assets/icons/ic_menu.svg'),
+                    'assets/icons/ic_menu.svg',
                   ),
                   CircleAvatar(
-                    backgroundColor: Colors.white,
-                    child: Icon(Icons.person),
+                    backgroundColor: kBgColour,
+                    child: Image.asset(
+                      'assets/images/logo1.png',
+                      fit: BoxFit.cover,
+                    ),
+                    radius: 24,
                   ),
                 ],
               ),
