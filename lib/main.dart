@@ -1,6 +1,4 @@
 import 'package:d_bam/constants.dart';
-import 'package:d_bam/screens/choose_screen.dart';
-import 'package:d_bam/screens/form_gangguan_screen.dart';
 import 'package:d_bam/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -14,16 +12,37 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          elevatedButtonTheme:
-              ElevatedButtonThemeData(style: kElevatedBtnStyle),
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: kElevatedBtnStyle,
         ),
-        home: HomeScreen(),
-        routes: {
-          HomeScreen.id: (context) => HomeScreen(),
-          ChooseScreen.id: (context) => ChooseScreen(),
-          FormGangguan.id: (context) => FormGangguan()
-        });
+      ),
+      home: HomeScreen(),
+    );
   }
 }
+
+// onGenerateRoute: (settings) {
+      //   switch (settings.name) {
+      //     case HomeScreen.id:
+      //       return PageTransition(
+      //           child: HomeScreen(), type: PageTransitionType.rightToLeft);
+      //     case ChooseScreen.id:
+      //       return PageTransition(
+      //           child: ChooseScreen(), type: PageTransitionType.rightToLeft);
+      //     case FormGangguan.id:
+      //       return PageTransition(
+      //           child: FormGangguan(),
+      //           type: PageTransitionType.leftToRight,
+      //           settings: settings);
+
+      //     default:
+      //       return null;
+      //   }
+      // },
+      // routes: {
+      //   HomeScreen.id: (context) => HomeScreen(),
+      //   ChooseScreen.id: (context) => ChooseScreen(),
+      //   FormGangguan.id: (context) => FormGangguan()
+      // },

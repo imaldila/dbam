@@ -1,9 +1,10 @@
 import 'dart:ui';
 
 import 'package:d_bam/screens/choose_screen.dart';
-import 'package:d_bam/widgets/button_rounded.dart';
+import 'package:d_bam/widgets/my_button_rounded.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:page_transition/page_transition.dart';
 
 import '../constants.dart';
 
@@ -62,7 +63,12 @@ class HomeScreen extends StatelessWidget {
             BottonRounded(
               title: 'Create BA',
               onPressed: () {
-                Navigator.pushNamed(context, ChooseScreen.id);
+                Navigator.push(
+                  context,
+                  PageTransition(
+                      child: ChooseScreen(),
+                      type: PageTransitionType.rightToLeft),
+                );
               },
             ),
           ],

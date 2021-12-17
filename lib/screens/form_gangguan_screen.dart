@@ -1,6 +1,10 @@
 import 'package:d_bam/constants.dart';
+import 'package:d_bam/widgets/my_button_rounded.dart';
+import 'package:d_bam/widgets/my_text_form.dart';
+import 'package:d_bam/widgets/my_text_title.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:page_transition/page_transition.dart';
 
 class FormGangguan extends StatefulWidget {
   FormGangguan({Key? key}) : super(key: key);
@@ -12,50 +16,72 @@ class FormGangguan extends StatefulWidget {
 }
 
 class _FormGangguanState extends State<FormGangguan> {
+  final packageController = TextEditingController();
+
+  final _formKey = GlobalKey<FormState>();
+
+  @override
+  void dispose() {
+    packageController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: kBgColour,
       appBar: buildAppBar(context),
-      body: Padding(
+      body: ListView(
         padding: EdgeInsets.symmetric(
           vertical: 24,
           horizontal: kHorPadding,
         ),
-        child: Column(
-          children: [
-            Stack(
-              children: [
-                Material(
-                  elevation: 8,
-                  borderRadius: BorderRadius.circular(16),
-                  shadowColor: Colors.white,
-                  child: Container(
-                    height: size.height / 15.5,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                  ),
-                ),
-                TextFormField(
-                  decoration: InputDecoration(
-                    counterText: '',
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(16),
-                      borderSide: BorderSide(color: Colors.transparent),
-                    ),
-                    border:  OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(16),
-                      borderSide: BorderSide(color: Colors.transparent),
-                    ),
-                  ),
-                ),
-              ],
-            )
-          ],
-        ),
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              MyTextTitle(title: 'Package'),
+              MyTextForm(
+                formkey: _formKey,
+                controller: packageController,
+              ),
+              MyTextTitle(title: 'Date'),
+              MyTextForm(
+                controller: packageController,
+              ),
+              MyTextTitle(title: 'SC / Ticket / AO'),
+              MyTextForm(
+                controller: packageController,
+                counterText: 'Ex: SC12345 / IN12345 / 1-1234',
+              ),
+              MyTextTitle(title: 'Inet / Tlp / SID'),
+              MyTextForm(
+                controller: packageController,
+              ),
+              MyTextTitle(title: 'Customer Name'),
+              MyTextForm(
+                controller: packageController,
+              ),
+              MyTextTitle(title: 'Customer Phone'),
+              MyTextForm(
+                controller: packageController,
+              ),
+              MyTextTitle(title: 'Address'),
+              MyTextForm(
+                controller: packageController,
+              ),
+              const SizedBox(height: kPadding,),
+              BottonRounded(
+                title: 'Next',
+                onPressed: () {
+                  _formKey.currentState!.validate()
+                      ? print(packageController.text)
+                      : print('Error');
+                },
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }

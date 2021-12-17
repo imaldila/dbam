@@ -10,11 +10,10 @@ const kDarkColour = Color(0xFF2F2E41);
 const kBgColour = Color(0xFFF6F6F6);
 const kIcColour = Color(0xFF2E3A59);
 
-
 final kElevatedBtnStyle = ElevatedButton.styleFrom(
   padding: EdgeInsets.all(16),
   primary: kBtnColour,
-  elevation: 16,
+  elevation: kPadding,
 );
 
 final kBtnTextStyle22 = GoogleFonts.poppins(
@@ -28,6 +27,14 @@ final kTextStyle20 = GoogleFonts.poppins(
   textStyle: TextStyle(
     fontSize: 20,
     color: kDarkColour,
+  ),
+);
+
+final kTextStyle16 = GoogleFonts.poppins(
+  textStyle: TextStyle(
+    fontSize: 16,
+    color: kDarkColour,
+    fontWeight: FontWeight.w600
   ),
 );
 
@@ -45,4 +52,14 @@ final kTextStyle20Bold = GoogleFonts.poppins(
     color: kDarkColour,
     fontWeight: FontWeight.bold,
   ),
+);
+
+OutlineInputBorder kStyleBorder = OutlineInputBorder(
+  borderRadius: BorderRadius.circular(16),
+  borderSide: BorderSide(color: Colors.transparent),
+);
+
+BoxDecoration kStyleBoxDecoration = BoxDecoration(
+  color: Colors.white,
+  borderRadius: BorderRadius.circular(16),
 );

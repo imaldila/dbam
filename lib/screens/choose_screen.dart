@@ -1,8 +1,10 @@
 import 'package:d_bam/constants.dart';
 import 'package:d_bam/screens/form_gangguan_screen.dart';
-import 'package:d_bam/widgets/option_card.dart';
+import 'package:d_bam/widgets/my_option_card.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:page_transition/page_transition.dart';
 
 class ChooseScreen extends StatelessWidget {
   const ChooseScreen({Key? key}) : super(key: key);
@@ -46,7 +48,12 @@ class ChooseScreen extends StatelessWidget {
               Expanded(
                 child: InkWell(
                   onTap: () {
-                    Navigator.pushNamed(context, FormGangguan.id);
+                    Navigator.push(
+                      context,
+                      PageTransition(
+                          child: FormGangguan(),
+                          type: PageTransitionType.rightToLeft),
+                    );
                   },
                   child: OptionCard(
                     svgPicture: SvgPicture.asset('assets/images/img_ggn.svg'),
