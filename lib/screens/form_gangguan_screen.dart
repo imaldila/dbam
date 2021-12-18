@@ -1,5 +1,8 @@
 import 'package:d_bam/constants.dart';
+import 'package:d_bam/models/package.dart';
+import 'package:d_bam/models/package_data.dart';
 import 'package:d_bam/widgets/my_button_rounded.dart';
+import 'package:d_bam/widgets/my_dropdown_list.dart';
 import 'package:d_bam/widgets/my_text_form.dart';
 import 'package:d_bam/widgets/my_text_title.dart';
 import 'package:flutter/material.dart';
@@ -26,6 +29,10 @@ class _FormGangguanState extends State<FormGangguan> {
     super.dispose();
   }
 
+  String? valueDrop;
+  PackageData packageData = PackageData();
+  List<PackageData> newPackages = [];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,8 +46,10 @@ class _FormGangguanState extends State<FormGangguan> {
         children: [
           Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               MyTextTitle(title: 'Package'),
+              MyDropDownList(),
               MyTextForm(
                 formkey: _formKey,
                 controller: packageController,
@@ -70,13 +79,16 @@ class _FormGangguanState extends State<FormGangguan> {
               MyTextForm(
                 controller: packageController,
               ),
-              const SizedBox(height: kPadding,),
+              const SizedBox(
+                height: kPadding,
+              ),
               BottonRounded(
                 title: 'Next',
                 onPressed: () {
-                  _formKey.currentState!.validate()
-                      ? print(packageController.text)
-                      : print('Error');
+                  // _formKey.currentState!.validate()
+                  //     ? print(packageController.text)
+                  //     : print('Error');
+                 print(packageData.packages[1].name);
                 },
               ),
             ],
