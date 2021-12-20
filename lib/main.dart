@@ -1,6 +1,8 @@
 import 'package:d_bam/constants.dart';
+import 'package:d_bam/models/package_data.dart';
 import 'package:d_bam/screens/home_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,14 +13,21 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: kElevatedBtnStyle,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<PackageData>(create: (BuildContext context) {
+          return PackageData();
+        })
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          elevatedButtonTheme: ElevatedButtonThemeData(
+            style: kElevatedBtnStyle,
+          ),
         ),
+        home: HomeScreen(),
       ),
-      home: HomeScreen(),
     );
   }
 }

@@ -8,6 +8,7 @@ import 'package:d_bam/widgets/my_text_title.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 
 class FormGangguan extends StatefulWidget {
   FormGangguan({Key? key}) : super(key: key);
@@ -30,70 +31,70 @@ class _FormGangguanState extends State<FormGangguan> {
   }
 
   String? valueDrop;
-  PackageData packageData = PackageData();
-  List<PackageData> newPackages = [];
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: kBgColour,
-      appBar: buildAppBar(context),
-      body: ListView(
-        padding: EdgeInsets.symmetric(
-          vertical: 24,
-          horizontal: kHorPadding,
-        ),
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              MyTextTitle(title: 'Package'),
-              MyDropDownList(),
-              MyTextForm(
-                formkey: _formKey,
-                controller: packageController,
-              ),
-              MyTextTitle(title: 'Date'),
-              MyTextForm(
-                controller: packageController,
-              ),
-              MyTextTitle(title: 'SC / Ticket / AO'),
-              MyTextForm(
-                controller: packageController,
-                counterText: 'Ex: SC12345 / IN12345 / 1-1234',
-              ),
-              MyTextTitle(title: 'Inet / Tlp / SID'),
-              MyTextForm(
-                controller: packageController,
-              ),
-              MyTextTitle(title: 'Customer Name'),
-              MyTextForm(
-                controller: packageController,
-              ),
-              MyTextTitle(title: 'Customer Phone'),
-              MyTextForm(
-                controller: packageController,
-              ),
-              MyTextTitle(title: 'Address'),
-              MyTextForm(
-                controller: packageController,
-              ),
-              const SizedBox(
-                height: kPadding,
-              ),
-              BottonRounded(
-                title: 'Next',
-                onPressed: () {
-                  // _formKey.currentState!.validate()
-                  //     ? print(packageController.text)
-                  //     : print('Error');
-                 print(packageData.packages[1].name);
-                },
-              ),
-            ],
+    return Consumer<PackageData>(
+      builder: (context, packageData, child) => Scaffold(
+        backgroundColor: kBgColour,
+        appBar: buildAppBar(context),
+        body: ListView(
+          padding: EdgeInsets.symmetric(
+            vertical: 24,
+            horizontal: kHorPadding,
           ),
-        ],
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                MyTextTitle(title: 'Package'),
+                MyDropDownList(),
+                MyTextForm(
+                  formkey: _formKey,
+                  controller: packageController,
+                ),
+                MyTextTitle(title: 'Date'),
+                MyTextForm(
+                  controller: packageController,
+                ),
+                MyTextTitle(title: 'SC / Ticket / AO'),
+                MyTextForm(
+                  controller: packageController,
+                  counterText: 'Ex: SC12345 / IN12345 / 1-1234',
+                ),
+                MyTextTitle(title: 'Inet / Tlp / SID'),
+                MyTextForm(
+                  controller: packageController,
+                ),
+                MyTextTitle(title: 'Customer Name'),
+                MyTextForm(
+                  controller: packageController,
+                ),
+                MyTextTitle(title: 'Customer Phone'),
+                MyTextForm(
+                  controller: packageController,
+                ),
+                MyTextTitle(title: 'Address'),
+                MyTextForm(
+                  controller: packageController,
+                ),
+                const SizedBox(
+                  height: kPadding,
+                ),
+                BottonRounded(
+                  title: 'Next',
+                  onPressed: () {
+                    // _formKey.currentState!.validate()
+                    //     ? print(packageController.text)
+                    //     : print('Error');
+                    print(packageData.selected);
+                  },
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

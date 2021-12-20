@@ -1,32 +1,40 @@
 import 'dart:collection';
 
 import 'package:d_bam/models/package.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 
 class PackageData extends ChangeNotifier {
-  final List<Package> _packages = <Package>[
-    Package(name: '1P'),
-    Package(name: '2P'),
-    Package(name: '3P'),
-    Package(name: 'VPNIP'),
-    Package(name: 'ASTINET'),
-    Package(name: 'METRO-E'),
-    Package(name: 'SIP-TRUNK'),
-    Package(name: 'OTHERS'),
+  final List<String> _packages = <String>[
+    '1P',
+    '2P',
+    '3P',
+    'VPNIP',
+    'ASTINET',
+    'METRO-E',
+    'SIP-TRUNK'
+        'OTHERS',
+    // Package('1P'),
+    // Package('2P'),
+    // Package('3P'),
+    // Package('VPNIP'),
+    // Package('ASTINET'),
+    // Package('METRO-E'),
+    // Package('SIP-TRUNK'),
+    // Package('OTHERS'),
   ];
 
-  int get packageCount {
-    return _packages.length;
-  }
+  String? _selectedPackage;
 
-  UnmodifiableListView<Package> get packages {
+  UnmodifiableListView<String> get packages {
     return UnmodifiableListView(_packages);
   }
 
-  void getPackages() {
-    for (var getPackages in _packages) {
-      print(getPackages);
-    }
+  String? get selected {
+    return _selectedPackage;
+  }
+
+  set selected(final String? package) {
+    _selectedPackage = package;
+    notifyListeners();
   }
 }
