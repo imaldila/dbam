@@ -1,4 +1,3 @@
-import 'package:d_bam/models/package.dart';
 import 'package:d_bam/models/package_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';

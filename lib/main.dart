@@ -1,5 +1,5 @@
 import 'package:d_bam/constants.dart';
-import 'package:d_bam/models/my_datepicker.dart';
+import 'package:d_bam/models/datepicker.dart';
 import 'package:d_bam/models/package_data.dart';
 import 'package:d_bam/screens/home_screen.dart';
 import 'package:flutter/material.dart';
@@ -19,8 +19,8 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<PackageData>(create: (BuildContext context) {
           return PackageData();
         }),
-        ChangeNotifierProvider<MyDatePicker>(create: (BuildContext context) {
-          return MyDatePicker();
+        ChangeNotifierProvider<DatePicker>(create: (BuildContext context) {
+          return DatePicker();
         }),
       ],
       child: MaterialApp(

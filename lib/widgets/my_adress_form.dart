@@ -2,25 +2,13 @@ import 'package:flutter/material.dart';
 
 import '../constants.dart';
 
-class MyTextForm extends StatelessWidget {
-  MyTextForm({
-    Key? key,
-    this.onChanged,
-    this.controller,
-    this.formkey,
-    this.counterText,
-    this.textInputAction,
-    this.keyboardType,
-    this.textCapitalization = TextCapitalization.none
-  }) : super(key: key);
+class MyAddressForm extends StatelessWidget {
+  MyAddressForm({Key? key, this.controller, this.formkey, this.counterText})
+      : super(key: key);
 
-  final Function(String)? onChanged;
   final TextEditingController? controller;
   final GlobalKey? formkey;
   final String? counterText;
-  final TextInputAction? textInputAction;
-  final TextInputType? keyboardType;
-  final TextCapitalization? textCapitalization;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +25,7 @@ class MyTextForm extends StatelessWidget {
               borderRadius: BorderRadius.circular(16),
               shadowColor: Colors.white,
               child: Container(
-                height: size.height / 15.5,
+                height: size.height / 7.3,
                 decoration: kStyleBoxDecoration,
               ),
             ),
@@ -48,10 +36,10 @@ class MyTextForm extends StatelessWidget {
                 }
                 return null;
               },
+              maxLines: 5,
               controller: controller,
-              textCapitalization: textCapitalization!,
-              textInputAction: textInputAction,
-              keyboardType: keyboardType,
+              textInputAction: TextInputAction.done,
+              textCapitalization: TextCapitalization.characters,
               decoration: InputDecoration(
                 counterText: counterText,
                 enabledBorder: kStyleBorder,

@@ -1,14 +1,14 @@
 import 'dart:async';
-import 'dart:collection';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-class MyDatePicker extends ChangeNotifier {
+class DatePicker extends ChangeNotifier {
   final dateController = TextEditingController();
 
   Future<void> selectDate(BuildContext context) async {
+    // ignore: unused_local_variable
     final DateTime? selectDate = await showDatePicker(
       context: context,
       initialDate: DateTime.now(),

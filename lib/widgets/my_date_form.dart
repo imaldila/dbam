@@ -1,4 +1,4 @@
-import 'package:d_bam/models/my_datepicker.dart';
+import 'package:d_bam/models/datepicker.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -13,7 +13,7 @@ class MyDateForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Consumer<MyDatePicker>(
+    return Consumer<DatePicker>(
       builder: (context, datePicker, child) => Padding(
         padding: const EdgeInsets.only(top: kPadding / 2, bottom: kPadding),
         child: Form(

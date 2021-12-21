@@ -1,7 +1,9 @@
 import 'package:d_bam/constants.dart';
-import 'package:d_bam/models/my_datepicker.dart';
-import 'package:d_bam/models/package.dart';
+import 'package:d_bam/models/datepicker.dart';
+
 import 'package:d_bam/models/package_data.dart';
+import 'package:d_bam/models/val_key.dart';
+import 'package:d_bam/widgets/my_adress_form.dart';
 import 'package:d_bam/widgets/my_button_rounded.dart';
 import 'package:d_bam/widgets/my_date_form.dart';
 import 'package:d_bam/widgets/my_dropdown_list.dart';
@@ -22,21 +24,26 @@ class FormGangguan extends StatefulWidget {
 }
 
 class _FormGangguanState extends State<FormGangguan> {
-  final packageController = TextEditingController();
-
-  final _formKey = GlobalKey<FormState>();
-  final _listKey = GlobalKey<FormState>();
+  final orderController = TextEditingController();
+  final serviceController = TextEditingController();
+  final nameController = TextEditingController();
+  final phoneController = TextEditingController();
+  final addressController = TextEditingController();
 
   @override
   void dispose() {
-    packageController.dispose();
-    PackageData;
+    orderController.dispose();
+    serviceController.dispose();
+    nameController.dispose();
+    phoneController.dispose();
+    addressController.dispose();
+
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Consumer2<PackageData, MyDatePicker>(
+    return Consumer2<PackageData, DatePicker>(
       builder: (context, packageData, datePicker, child) => Scaffold(
         backgroundColor: kBgColour,
         appBar: buildAppBar(context),
@@ -52,30 +59,47 @@ class _FormGangguanState extends State<FormGangguan> {
               children: [
                 MyTextTitle(title: 'Package'),
                 MyDropDownList(
-                  formKey: _listKey,
+                  formKey: ValKey.listKey,
                 ),
                 MyTextTitle(title: 'Date'),
-                MyDateForm(),
-                MyTextTitle(title: 'SC / Ticket / AO'),
+                MyDateForm(
+                  formkey: ValKey.dateKey,
+                ),
+                MyTextTitle(title: 'No Order'),
                 MyTextForm(
-                  controller: packageController,
+                  formkey: ValKey.orderKey,
+                  controller: orderController,
+                  textInputAction: TextInputAction.next,
+                  textCapitalization: TextCapitalization.characters,
                   counterText: 'Ex: SC12345 / IN12345 / 1-1234',
                 ),
-                MyTextTitle(title: 'Inet / Tlp / SID'),
+                MyTextTitle(title: 'Service ID'),
                 MyTextForm(
-                  controller: packageController,
+                  formkey: ValKey.serviceKey,
+                  controller: serviceController,
+                  textInputAction: TextInputAction.next,
+                  keyboardType: TextInputType.number,
+                  counterText: 'Ex: 0221234 / 13110234 / 456789-8910',
                 ),
                 MyTextTitle(title: 'Customer Name'),
                 MyTextForm(
-                  controller: packageController,
+                  formkey: ValKey.nameKey,
+                  controller: nameController,
+                  textInputAction: TextInputAction.next,
+                  textCapitalization: TextCapitalization.words,
                 ),
-                MyTextTitle(title: 'Customer Phone'),
+                MyTextTitle(title: 'Contact Phone'),
                 MyTextForm(
-                  controller: packageController,
+                  formkey: ValKey.phoneKey,
+                  controller: phoneController,
+                  textInputAction: TextInputAction.next,
+                  keyboardType: TextInputType.number,
                 ),
                 MyTextTitle(title: 'Address'),
-                MyTextForm(
-                  controller: packageController,
+                MyAddressForm(
+                  formkey: ValKey.addressKey,
+                  controller: addressController,
+                  
                 ),
                 const SizedBox(
                   height: kPadding,
@@ -83,14 +107,20 @@ class _FormGangguanState extends State<FormGangguan> {
                 BottonRounded(
                   title: 'Next',
                   onPressed: () {
-                    // _formKey.currentState!.validate()
-                    //     ? print(packageController.text)
-                    //     : print('Error');
+                    ValKey.listKey.currentState!.validate();
+                    ValKey.dateKey.currentState!.validate();
+                    ValKey.orderKey.currentState!.validate();
+                    ValKey.serviceKey.currentState!.validate();
+                    ValKey.nameKey.currentState!.validate();
+                    ValKey.phoneKey.currentState!.validate();
+                    ValKey.addressKey.currentState!.validate();
+
                     // _listKey.currentState!.validate()
                     //     ? print(packageData.selected)
                     //     : print('Error');
+                    // _dateKey.currentState!.validate();
 
-                        print(datePicker.selected);
+                    print(datePicker.selected);
                   },
                 ),
               ],
