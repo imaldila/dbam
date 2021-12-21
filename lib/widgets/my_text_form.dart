@@ -18,11 +18,13 @@ class MyTextForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
     Size size = MediaQuery.of(context).size;
     return Padding(
       padding: const EdgeInsets.only(top: kPadding / 2, bottom: kPadding),
       child: Form(
         key: formkey,
+        autovalidateMode: AutovalidateMode.onUserInteraction,
         child: Stack(
           children: [
             Material(

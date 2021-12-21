@@ -1,7 +1,9 @@
 import 'package:d_bam/constants.dart';
+import 'package:d_bam/models/my_datepicker.dart';
 import 'package:d_bam/models/package.dart';
 import 'package:d_bam/models/package_data.dart';
 import 'package:d_bam/widgets/my_button_rounded.dart';
+import 'package:d_bam/widgets/my_date_form.dart';
 import 'package:d_bam/widgets/my_dropdown_list.dart';
 import 'package:d_bam/widgets/my_text_form.dart';
 import 'package:d_bam/widgets/my_text_title.dart';
@@ -23,19 +25,19 @@ class _FormGangguanState extends State<FormGangguan> {
   final packageController = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
+  final _listKey = GlobalKey<FormState>();
 
   @override
   void dispose() {
     packageController.dispose();
+    PackageData;
     super.dispose();
   }
 
-  String? valueDrop;
-
   @override
   Widget build(BuildContext context) {
-    return Consumer<PackageData>(
-      builder: (context, packageData, child) => Scaffold(
+    return Consumer2<PackageData, MyDatePicker>(
+      builder: (context, packageData, datePicker, child) => Scaffold(
         backgroundColor: kBgColour,
         appBar: buildAppBar(context),
         body: ListView(
@@ -49,15 +51,11 @@ class _FormGangguanState extends State<FormGangguan> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 MyTextTitle(title: 'Package'),
-                MyDropDownList(),
-                MyTextForm(
-                  formkey: _formKey,
-                  controller: packageController,
+                MyDropDownList(
+                  formKey: _listKey,
                 ),
                 MyTextTitle(title: 'Date'),
-                MyTextForm(
-                  controller: packageController,
-                ),
+                MyDateForm(),
                 MyTextTitle(title: 'SC / Ticket / AO'),
                 MyTextForm(
                   controller: packageController,
@@ -88,7 +86,11 @@ class _FormGangguanState extends State<FormGangguan> {
                     // _formKey.currentState!.validate()
                     //     ? print(packageController.text)
                     //     : print('Error');
-                    print(packageData.selected);
+                    // _listKey.currentState!.validate()
+                    //     ? print(packageData.selected)
+                    //     : print('Error');
+
+                        print(datePicker.selected);
                   },
                 ),
               ],

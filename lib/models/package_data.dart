@@ -1,6 +1,5 @@
 import 'dart:collection';
 
-import 'package:d_bam/models/package.dart';
 import 'package:flutter/foundation.dart';
 
 class PackageData extends ChangeNotifier {
@@ -11,16 +10,16 @@ class PackageData extends ChangeNotifier {
     'VPNIP',
     'ASTINET',
     'METRO-E',
-    'SIP-TRUNK'
-        'OTHERS',
-    // Package('1P'),
-    // Package('2P'),
-    // Package('3P'),
-    // Package('VPNIP'),
-    // Package('ASTINET'),
-    // Package('METRO-E'),
-    // Package('SIP-TRUNK'),
-    // Package('OTHERS'),
+    'SIP-TRUNK',
+    'OTHERS',
+    // Package(name: '1P'),
+    // Package(name:'2P'),
+    // Package(name:'3P'),
+    // Package(name:'VPNIP'),
+    // Package(name:'ASTINET'),
+    // Package(name:'METRO-E'),
+    // Package(name:'SIP-TRUNK'),
+    // Package(name:'OTHERS'),
   ];
 
   String? _selectedPackage;

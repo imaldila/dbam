@@ -16,7 +16,7 @@ class MyTextTitle extends StatelessWidget {
       padding: const EdgeInsets.only(left: kPadding),
       child: Text(
         title,
-        style: kTextStyle16,
+        style: kTextStyle16Bold,
       ),
     );
   }

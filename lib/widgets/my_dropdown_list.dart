@@ -8,10 +8,13 @@ import '../constants.dart';
 
 class MyDropDownList extends StatelessWidget {
   MyDropDownList({
-    Key? key, this.listTitle,
+    Key? key,
+    this.listTitle,
+    this.formKey,
   }) : super(key: key);
 
   final String? listTitle;
+  final GlobalKey? formKey;
 
   @override
   Widget build(BuildContext context) {
@@ -20,44 +23,54 @@ class MyDropDownList extends StatelessWidget {
     return Consumer<PackageData>(
       builder: (context, packageData, child) => Padding(
         padding: const EdgeInsets.only(top: kPadding / 2, bottom: kPadding),
-        child: Stack(
-          children: [
-            Material(
-              elevation: 8,
-              borderRadius: BorderRadius.circular(16),
-              shadowColor: Colors.white,
-              child: Container(
-                alignment: Alignment.center,
-                height: size.height / 15.5,
-                decoration: kStyleBoxDecoration,
+        child: Form(
+          key: formKey,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+          child: Stack(
+            children: [
+              Material(
+                elevation: 8,
+                borderRadius: BorderRadius.circular(16),
+                shadowColor: Colors.white,
+                child: Container(
+                  alignment: Alignment.center,
+                  height: size.height / 14,
+                  decoration: kStyleBoxDecoration,
+                ),
               ),
-            ),
-            DropdownButtonFormField<String>(
-              style: TextStyle(height: 0.5, color: Colors.black),
-              decoration: InputDecoration(
-                enabledBorder: kStyleBorder,
-                border: kStyleBorder,
-              ),
-              isDense: true,
-              value: packageData.selected,
-              onChanged: (newValue) {
-                packageData.selected = newValue;
-              },
-              items: packageData.packages.map<DropdownMenuItem<String>>(
-                (String value) {
-                  return DropdownMenuItem<String>(
-                    value: value.toString(),
-                    child: Text(value),
-                  );
+              DropdownButtonFormField<String>(
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter some text';
+                  }
+                  return null;
                 },
-              ).toList(),
-              icon: SvgPicture.asset(
-                'assets/icons/ic_down.svg',
-                color: kIcColour,
-                // height: 0.1,
+                style: kTextStyle14,
+                decoration: InputDecoration(
+                  enabledBorder: kStyleBorder,
+                  border: kStyleBorder,
+                ),
+                isDense: true,
+                value: packageData.selected,
+                onChanged: (newValue) {
+                  packageData.selected = newValue;
+                },
+                items: packageData.packages.map<DropdownMenuItem<String>>(
+                  (String value) {
+                    return DropdownMenuItem<String>(
+                      value: value.toString(),
+                      child: Text(value),
+                    );
+                  },
+                ).toList(),
+                icon: SvgPicture.asset(
+                  'assets/icons/ic_down.svg',
+                  color: kIcColour,
+                  // height: 0.1,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
