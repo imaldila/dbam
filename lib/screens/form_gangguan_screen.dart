@@ -3,6 +3,7 @@ import 'package:d_bam/models/datepicker.dart';
 
 import 'package:d_bam/models/package_data.dart';
 import 'package:d_bam/models/val_key.dart';
+import 'package:d_bam/screens/form_material_screen.dart';
 import 'package:d_bam/widgets/my_adrdess_form.dart';
 import 'package:d_bam/widgets/my_button_rounded.dart';
 import 'package:d_bam/widgets/my_date_form.dart';
@@ -99,7 +100,6 @@ class _FormGangguanState extends State<FormGangguan> {
                 MyAddressForm(
                   formkey: ValKey.addressKey,
                   controller: addressController,
-                  
                 ),
                 const SizedBox(
                   height: kPadding,
@@ -107,18 +107,7 @@ class _FormGangguanState extends State<FormGangguan> {
                 BottonRounded(
                   title: 'Next',
                   onPressed: () {
-                    ValKey.listKey.currentState!.validate();
-                    ValKey.dateKey.currentState!.validate();
-                    ValKey.orderKey.currentState!.validate();
-                    ValKey.serviceKey.currentState!.validate();
-                    ValKey.nameKey.currentState!.validate();
-                    ValKey.phoneKey.currentState!.validate();
-                    ValKey.addressKey.currentState!.validate();
-
-                    // _listKey.currentState!.validate()
-                    //     ? print(packageData.selected)
-                    //     : print('Error');
-                    // _dateKey.currentState!.validate();
+                    _sendDataToNextScreen(context);
 
                     print(datePicker.selected);
                   },
@@ -168,5 +157,28 @@ class _FormGangguanState extends State<FormGangguan> {
       ],
       shadowColor: kBgColour,
     );
+  }
+
+  void _sendDataToNextScreen(BuildContext context) {
+    if (ValKey.listKey.currentState!.validate() &&
+        ValKey.dateKey.currentState!.validate() &&
+        ValKey.orderKey.currentState!.validate() &&
+        ValKey.serviceKey.currentState!.validate() &&
+        ValKey.nameKey.currentState!.validate() &&
+        ValKey.phoneKey.currentState!.validate() &&
+        ValKey.addressKey.currentState!.validate()) {
+      ValKey.listKey.currentState!.save();
+      ValKey.dateKey.currentState!.save();
+      ValKey.orderKey.currentState!.save();
+      ValKey.serviceKey.currentState!.save();
+      ValKey.nameKey.currentState!.save();
+      ValKey.phoneKey.currentState!.save();
+      ValKey.addressKey.currentState!.save();
+      Navigator.push(
+        context,
+        PageTransition(
+            child: FormMaterial(), type: PageTransitionType.rightToLeft),
+      );
+    }
   }
 }

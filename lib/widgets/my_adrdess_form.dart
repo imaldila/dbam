@@ -39,7 +39,7 @@ class MyAddressForm extends StatelessWidget {
               maxLines: 5,
               controller: controller,
               textInputAction: TextInputAction.done,
-              textCapitalization: TextCapitalization.characters,
+              textCapitalization: TextCapitalization.words,
               decoration: InputDecoration(
                 counterText: counterText,
                 enabledBorder: kStyleBorder,

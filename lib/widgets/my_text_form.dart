@@ -3,16 +3,16 @@ import 'package:flutter/material.dart';
 import '../constants.dart';
 
 class MyTextForm extends StatelessWidget {
-  MyTextForm({
-    Key? key,
-    this.onChanged,
-    this.controller,
-    this.formkey,
-    this.counterText,
-    this.textInputAction,
-    this.keyboardType,
-    this.textCapitalization = TextCapitalization.none
-  }) : super(key: key);
+  MyTextForm(
+      {Key? key,
+      this.onChanged,
+      this.controller,
+      this.formkey,
+      this.counterText,
+      this.textInputAction,
+      this.keyboardType,
+      this.textCapitalization = TextCapitalization.none})
+      : super(key: key);
 
   final Function(String)? onChanged;
   final TextEditingController? controller;
