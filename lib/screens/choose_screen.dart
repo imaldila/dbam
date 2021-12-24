@@ -1,5 +1,6 @@
 import 'package:d_bam/constants.dart';
 import 'package:d_bam/screens/form_gangguan_screen.dart';
+import 'package:d_bam/screens/form_material_screen.dart';
 import 'package:d_bam/widgets/my_option_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +30,14 @@ class ChooseScreen extends StatelessWidget {
               ),
               Expanded(
                 child: InkWell(
-                  onTap: () {},
+                  onTap: () {
+                     Navigator.push(
+                      context,
+                      PageTransition(
+                          child: FormMaterial(),
+                          type: PageTransitionType.rightToLeft),
+                    );
+                  },
                   child: OptionCard(
                     svgPicture: SvgPicture.asset('assets/images/img_psb.svg'),
                   ),

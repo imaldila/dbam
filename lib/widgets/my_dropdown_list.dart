@@ -8,11 +8,9 @@ import '../constants.dart';
 class MyDropDownList extends StatelessWidget {
   MyDropDownList({
     Key? key,
-    this.listTitle,
     this.formKey,
   }) : super(key: key);
 
-  final String? listTitle;
   final GlobalKey? formKey;
 
   @override

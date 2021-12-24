@@ -1,7 +1,5 @@
 import 'package:d_bam/constants.dart';
-import 'package:d_bam/models/datepicker.dart';
 
-import 'package:d_bam/models/package_data.dart';
 import 'package:d_bam/models/val_key.dart';
 import 'package:d_bam/screens/form_material_screen.dart';
 import 'package:d_bam/widgets/my_adrdess_form.dart';
@@ -13,7 +11,6 @@ import 'package:d_bam/widgets/my_text_title.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:provider/provider.dart';
 
 class FormGangguan extends StatefulWidget {
   FormGangguan({Key? key}) : super(key: key);
@@ -44,78 +41,76 @@ class _FormGangguanState extends State<FormGangguan> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer2<PackageData, DatePicker>(
-      builder: (context, packageData, datePicker, child) => Scaffold(
-        backgroundColor: kBgColour,
-        appBar: buildAppBar(context),
-        body: ListView(
-          padding: EdgeInsets.symmetric(
-            vertical: 24,
-            horizontal: kHorPadding,
-          ),
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                MyTextTitle(title: 'Package'),
-                MyDropDownList(
-                  formKey: ValKey.listKey,
-                ),
-                MyTextTitle(title: 'Date'),
-                MyDateForm(
-                  formkey: ValKey.dateKey,
-                ),
-                MyTextTitle(title: 'No Order'),
-                MyTextForm(
-                  formkey: ValKey.orderKey,
-                  controller: orderController,
-                  textInputAction: TextInputAction.next,
-                  textCapitalization: TextCapitalization.characters,
-                  counterText: 'Ex: SC12345 / IN12345 / 1-1234',
-                ),
-                MyTextTitle(title: 'Service ID'),
-                MyTextForm(
-                  formkey: ValKey.serviceKey,
-                  controller: serviceController,
-                  textInputAction: TextInputAction.next,
-                  keyboardType: TextInputType.number,
-                  counterText: 'Ex: 0221234 / 13110234 / 456789-8910',
-                ),
-                MyTextTitle(title: 'Customer Name'),
-                MyTextForm(
-                  formkey: ValKey.nameKey,
-                  controller: nameController,
-                  textInputAction: TextInputAction.next,
-                  textCapitalization: TextCapitalization.words,
-                ),
-                MyTextTitle(title: 'Contact Phone'),
-                MyTextForm(
-                  formkey: ValKey.phoneKey,
-                  controller: phoneController,
-                  textInputAction: TextInputAction.next,
-                  keyboardType: TextInputType.number,
-                ),
-                MyTextTitle(title: 'Address'),
-                MyAddressForm(
-                  formkey: ValKey.addressKey,
-                  controller: addressController,
-                ),
-                const SizedBox(
-                  height: kPadding,
-                ),
-                BottonRounded(
-                  title: 'Next',
-                  onPressed: () {
-                    _sendDataToNextScreen(context);
-
-                    print(datePicker.selected);
-                  },
-                ),
-              ],
-            ),
-          ],
+    return Scaffold(
+      backgroundColor: kBgColour,
+      appBar: buildAppBar(context),
+      body: ListView(
+        padding: EdgeInsets.symmetric(
+          vertical: 24,
+          horizontal: kHorPadding,
         ),
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              MyTextTitle(title: 'Package'),
+              MyDropDownList(
+                formKey: ValKey.listKey,
+              ),
+              MyTextTitle(title: 'Date'),
+              MyDateForm(
+                formkey: ValKey.dateKey,
+              ),
+              MyTextTitle(title: 'No Order'),
+              MyTextForm(
+                formkey: ValKey.orderKey,
+                controller: orderController,
+                textInputAction: TextInputAction.next,
+                textCapitalization: TextCapitalization.characters,
+                counterText: 'Ex: SC12345 / IN12345 / 1-1234',
+              ),
+              MyTextTitle(title: 'Service ID'),
+              MyTextForm(
+                formkey: ValKey.serviceKey,
+                controller: serviceController,
+                textInputAction: TextInputAction.next,
+                keyboardType: TextInputType.number,
+                counterText: 'Ex: 0221234 / 13110234 / 456789-8910',
+              ),
+              MyTextTitle(title: 'Customer Name'),
+              MyTextForm(
+                formkey: ValKey.nameKey,
+                controller: nameController,
+                textInputAction: TextInputAction.next,
+                textCapitalization: TextCapitalization.words,
+              ),
+              MyTextTitle(title: 'Contact Phone'),
+              MyTextForm(
+                formkey: ValKey.phoneKey,
+                controller: phoneController,
+                textInputAction: TextInputAction.next,
+                keyboardType: TextInputType.number,
+              ),
+              MyTextTitle(title: 'Address'),
+              MyAddressForm(
+                formkey: ValKey.addressKey,
+                controller: addressController,
+              ),
+              const SizedBox(
+                height: kPadding,
+              ),
+              BottonRounded(
+                title: 'Next',
+                onPressed: () {
+                  _sendDataToNextScreen(context);
+
+                  // print(datePicker.selected);
+                },
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }
