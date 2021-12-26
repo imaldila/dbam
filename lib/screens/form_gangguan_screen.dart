@@ -1,4 +1,7 @@
 import 'package:d_bam/constants.dart';
+import 'package:d_bam/models/datepicker.dart';
+import 'package:d_bam/models/package_data.dart';
+import 'package:d_bam/models/text_data.dart';
 
 import 'package:d_bam/models/val_key.dart';
 import 'package:d_bam/screens/form_material_screen.dart';
@@ -11,6 +14,7 @@ import 'package:d_bam/widgets/my_text_title.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 
 class FormGangguan extends StatefulWidget {
   FormGangguan({Key? key}) : super(key: key);
@@ -28,6 +32,15 @@ class _FormGangguanState extends State<FormGangguan> {
   final phoneController = TextEditingController();
   final addressController = TextEditingController();
 
+  // @override
+  // void initState() {
+  //   final TextData myProvider = context.read<TextData>();
+
+  //   super.initState();
+  //   final orderController = TextEditingController(text: myProvider.order);
+  //   final serviceController = TextEditingController(text: myProvider.order);
+  // }
+
   @override
   void dispose() {
     orderController.dispose();
@@ -41,6 +54,7 @@ class _FormGangguanState extends State<FormGangguan> {
 
   @override
   Widget build(BuildContext context) {
+    final TextData myProvider = context.read<TextData>();
     return Scaffold(
       backgroundColor: kBgColour,
       appBar: buildAppBar(context),
@@ -64,39 +78,39 @@ class _FormGangguanState extends State<FormGangguan> {
               ),
               MyTextTitle(title: 'No Order'),
               MyTextForm(
-                formkey: ValKey.orderKey,
-                controller: orderController,
-                textInputAction: TextInputAction.next,
-                textCapitalization: TextCapitalization.characters,
-                counterText: 'Ex: SC12345 / IN12345 / 1-1234',
-              ),
+                  formkey: ValKey.orderKey,
+                  controller: orderController,
+                  textInputAction: TextInputAction.next,
+                  textCapitalization: TextCapitalization.characters,
+                  counterText: 'Ex: SC12345 / IN12345 / 1-1234',
+                  onChanged: myProvider.getOrder),
               MyTextTitle(title: 'Service ID'),
               MyTextForm(
-                formkey: ValKey.serviceKey,
-                controller: serviceController,
-                textInputAction: TextInputAction.next,
-                keyboardType: TextInputType.number,
-                counterText: 'Ex: 0221234 / 13110234 / 456789-8910',
-              ),
+                  formkey: ValKey.serviceKey,
+                  controller: serviceController,
+                  textInputAction: TextInputAction.next,
+                  keyboardType: TextInputType.number,
+                  counterText: 'Ex: 0221234 / 13110234 / 456789-8910',
+                  onChanged: myProvider.getService),
               MyTextTitle(title: 'Customer Name'),
               MyTextForm(
-                formkey: ValKey.nameKey,
-                controller: nameController,
-                textInputAction: TextInputAction.next,
-                textCapitalization: TextCapitalization.words,
-              ),
+                  formkey: ValKey.nameKey,
+                  controller: nameController,
+                  textInputAction: TextInputAction.next,
+                  textCapitalization: TextCapitalization.words,
+                  onChanged: myProvider.getName),
               MyTextTitle(title: 'Contact Phone'),
               MyTextForm(
-                formkey: ValKey.phoneKey,
-                controller: phoneController,
-                textInputAction: TextInputAction.next,
-                keyboardType: TextInputType.number,
-              ),
+                  formkey: ValKey.phoneKey,
+                  controller: phoneController,
+                  textInputAction: TextInputAction.next,
+                  keyboardType: TextInputType.number,
+                  onChanged: myProvider.getPhone),
               MyTextTitle(title: 'Address'),
               MyAddressForm(
-                formkey: ValKey.addressKey,
-                controller: addressController,
-              ),
+                  formkey: ValKey.addressKey,
+                  controller: addressController,
+                  onChanged: myProvider.getAddress),
               const SizedBox(
                 height: kPadding,
               ),
@@ -105,7 +119,13 @@ class _FormGangguanState extends State<FormGangguan> {
                 onPressed: () {
                   _sendDataToNextScreen(context);
 
-                  // print(datePicker.selected);
+                  print(context.read<PackageData>().selected);
+                  print(context.read<DatePicker>().selected);
+                  print(context.read<TextData>().order);
+                  print(context.read<TextData>().service);
+                  print(context.read<TextData>().name);
+                  print(context.read<TextData>().phone);
+                  print(context.read<TextData>().address);
                 },
               ),
             ],

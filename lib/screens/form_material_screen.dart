@@ -1,4 +1,7 @@
 import 'package:d_bam/models/category_data.dart';
+import 'package:d_bam/models/datepicker.dart';
+import 'package:d_bam/models/package_data.dart';
+import 'package:d_bam/models/text_data.dart';
 import 'package:d_bam/widgets/my_button_rounded.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -26,65 +29,39 @@ class _FormMaterialState extends State<FormMaterial> {
         backgroundColor: kBgColour,
         appBar: buildAppBar(context),
         //This is not finish !!!
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+        body: ListView(
+          padding: EdgeInsets.symmetric(
+            vertical: 24,
+            horizontal: kHorPadding,
+          ),
           children: [
-            Flexible(
-              child: ListView.builder(
-                padding: EdgeInsets.symmetric(
-                  vertical: 24,
-                  horizontal: kHorPadding,
-                ),
-                itemCount: categoryData.categoryCount,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (BuildContext context, int index) => Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    InkWell(
-                      borderRadius: BorderRadius.circular(16),
-                      onTap: () {
-                        setState(() {
-                          isSelected = !isSelected;
-                        });
-                      },
-                      child: FittedBox(
-                        fit: BoxFit.none,
-                        child: Material(
-                          elevation: 8,
-                          borderRadius: BorderRadius.circular(16),
-                          shadowColor: Colors.white,
-                          child: Container(
-                            decoration: kStyleBoxDecoration,
-                            padding: EdgeInsets.all(kPadding),
-                            height: size.height / 14.5,
-                            child: Text(categoryData.categories[index].label,
-                                style: kTextStyle16Bold),
-                            alignment: Alignment.center,
-                          ),
-                        ),
-                      ),
+            Wrap(
+              // direction: Axis.vertical,
+              spacing: 10,
+              runSpacing: 20,
+              children: [
+                FilterChip(
+                    label: Text(categoryData.categories[1].label),
+                    onSelected: (value) {
+                      setState(() {
+                        isSelected = !value;
+                      });
+                    }),
+                Material(
+                  elevation: 8,
+                  borderRadius: BorderRadius.circular(16),
+                  shadowColor: Colors.white,
+                  child: Container(
+                    decoration: kStyleBoxDecoration,
+                    padding: EdgeInsets.all(kPadding),
+                    child: Text(
+                      categoryData.categories[1].label,
+                      style: kTextStyle16Bold,
+                      textAlign: TextAlign.center,
                     ),
-                  ],
+                  ),
                 ),
-                // FilterChip(
-                //     selected:
-                //         _filters.contains(categoryData.categories[1].label),
-                //     label: Text(categoryData.categories[1].label),
-                //     onSelected: (bool selected) {
-                //       setState(() {
-                //         isSelected = !isSelected;
-                //         // if (selected) {
-                //         //   _filters.add(categoryData.categories[1].label);
-                //         // } else {
-                //         //   _filters.removeWhere((String name) {
-                //         //     return name == categoryData.categories[1].label;
-                //         //   });
-                //         // }
-                //         print(selected);
-                //       });
-                //     }),
-              ),
+              ],
             ),
             Divider(),
             Visibility(
@@ -100,7 +77,13 @@ class _FormMaterialState extends State<FormMaterial> {
             BottonRounded(
               title: 'Next',
               onPressed: () {
-                print(categoryData.categories[1].label);
+                print(context.read<PackageData>().selected);
+                print(context.read<DatePicker>().selected);
+                print(context.read<TextData>().order);
+                print(context.read<TextData>().service);
+                print(context.read<TextData>().name);
+                print(context.read<TextData>().phone);
+                print(context.read<TextData>().address);
               },
             ),
           ],

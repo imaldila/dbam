@@ -20,12 +20,6 @@ class DatePicker extends ChangeNotifier {
     dateController.text = getText();
   }
 
-  // UnmodifiableListView<DateTime> get selectDate {
-  //   return UnmodifiableListView(_selectDate);
-  // }
-
-  DateTime? _selectedDate;
-
   String getText() {
     if (_selectedDate == null) {
       return '';
@@ -33,6 +27,12 @@ class DatePicker extends ChangeNotifier {
       return DateFormat('dd/MM/yyyy').format(_selectedDate!);
     }
   }
+
+  // UnmodifiableListView<DateTime> get selectDate {
+  //   return UnmodifiableListView(_selectDate);
+  // }
+
+  DateTime? _selectedDate;
 
   DateTime? get selected {
     return _selectedDate;
