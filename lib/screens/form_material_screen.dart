@@ -3,6 +3,7 @@ import 'package:d_bam/models/datepicker.dart';
 import 'package:d_bam/models/package_data.dart';
 import 'package:d_bam/models/text_data.dart';
 import 'package:d_bam/widgets/my_button_rounded.dart';
+import 'package:d_bam/widgets/my_text_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
@@ -17,8 +18,19 @@ class FormMaterial extends StatefulWidget {
 }
 
 class _FormMaterialState extends State<FormMaterial> {
-  bool isSelected = false;
-  final List<String> _filters = <String>[];
+  bool visibilitySTB = false;
+  bool visibilityONT = false;
+
+  void _changed(bool visibility, String field) {
+    setState(() {
+      if (field == 'STB') {
+        visibilitySTB = visibility;
+      }
+      if (field == 'ONT') {
+        visibilityONT = visibility;
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,37 +52,99 @@ class _FormMaterialState extends State<FormMaterial> {
               spacing: 10,
               runSpacing: 20,
               children: [
-                FilterChip(
-                    label: Text(categoryData.categories[1].label),
-                    onSelected: (value) {
-                      setState(() {
-                        isSelected = !value;
-                      });
-                    }),
-                Material(
-                  elevation: 8,
+                InkWell(
                   borderRadius: BorderRadius.circular(16),
-                  shadowColor: Colors.white,
-                  child: Container(
-                    decoration: kStyleBoxDecoration,
-                    padding: EdgeInsets.all(kPadding),
-                    child: Text(
-                      categoryData.categories[1].label,
-                      style: kTextStyle16Bold,
-                      textAlign: TextAlign.center,
+                  onTap: () {
+                    setState(() {
+                      visibilitySTB
+                          ? _changed(false, categoryData.categories[1].label)
+                          : _changed(true, categoryData.categories[1].label);
+                      print('tapped');
+                    });
+                  },
+                  child: Material(
+                    elevation: 8,
+                    borderRadius: BorderRadius.circular(16),
+                    shadowColor: Colors.white,
+                    child: Container(
+                      decoration: visibilitySTB
+                          ? kStyleBoxDecorationTapped
+                          : kStyleBoxDecoration,
+                      padding: EdgeInsets.all(kPadding),
+                      child: Text(
+                        categoryData.categories[1].label,
+                        style: kTextStyle16Bold,
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ),
+                ),
+                InkWell(
+                  borderRadius: BorderRadius.circular(16),
+                  onTap: () {
+                    setState(() {
+                      visibilityONT
+                          ? _changed(false, categoryData.categories[0].label)
+                          : _changed(true, categoryData.categories[0].label);
+                      print('tapped');
+                    });
+                  },
+                  child: Material(
+                    elevation: 8,
+                    borderRadius: BorderRadius.circular(16),
+                    shadowColor: Colors.white,
+                    child: Container(
+                      decoration: visibilityONT
+                          ? kStyleBoxDecorationTapped
+                          : kStyleBoxDecoration,
+                      padding: EdgeInsets.all(kPadding),
+                      child: Text(
+                        categoryData.categories[0].label,
+                        style: kTextStyle16Bold,
+                        textAlign: TextAlign.center,
+                      ),
                     ),
                   ),
                 ),
               ],
             ),
             Divider(),
-            Visibility(
-              visible: categoryData.categories[1].isSelected,
-              child: Text('asdas'),
-            ),
-            Visibility(
-                visible: categoryData.categories[2].isSelected,
-                child: Text('asd12321as')),
+            visibilitySTB
+                ? Row(
+                    children: [
+                      Expanded(
+                        flex: 11,
+                        child: MyTextForm(),
+                      ),
+                      Expanded(
+                        child: IconButton(
+                          onPressed: () {
+                            _changed(false, 'STB');
+                          },
+                          icon: Icon(Icons.cancel),
+                        ),
+                      )
+                    ],
+                  )
+                : Container(),
+            visibilityONT
+                ? Row(
+                    children: [
+                      Expanded(
+                        flex: 11,
+                        child: MyTextForm(),
+                      ),
+                      Expanded(
+                        child: IconButton(
+                          onPressed: () {
+                            _changed(false, 'ONT');
+                          },
+                          icon: Icon(Icons.cancel),
+                        ),
+                      )
+                    ],
+                  )
+                : Container(),
             SizedBox(
               height: kPadding,
             ),
@@ -128,68 +202,6 @@ class _FormMaterialState extends State<FormMaterial> {
         ),
       ],
       shadowColor: kBgColour,
-    );
-  }
-}
-
-class ActorFilterEntry {
-  const ActorFilterEntry(this.name, this.initials);
-  final String name;
-  final String initials;
-}
-
-class CastFilter extends StatefulWidget {
-  const CastFilter({Key? key}) : super(key: key);
-
-  @override
-  State createState() => CastFilterState();
-}
-
-class CastFilterState extends State<CastFilter> {
-  final List<ActorFilterEntry> _cast = <ActorFilterEntry>[
-    const ActorFilterEntry('Aaron Burr', 'AB'),
-    const ActorFilterEntry('Alexander Hamilton', 'AH'),
-    const ActorFilterEntry('Eliza Hamilton', 'EH'),
-    const ActorFilterEntry('James Madison', 'JM'),
-    const ActorFilterEntry('Aasd Madison', 'JM'),
-    const ActorFilterEntry('Jamgasdases Madison', 'JM'),
-  ];
-  final List<String> _filters = <String>[];
-
-  Iterable<Widget> get actorWidgets sync* {
-    for (final ActorFilterEntry actor in _cast) {
-      yield Padding(
-        padding: const EdgeInsets.all(4.0),
-        child: FilterChip(
-          avatar: CircleAvatar(child: Text(actor.initials)),
-          label: Text(actor.name),
-          selected: _filters.contains(actor.name),
-          onSelected: (bool value) {
-            setState(() {
-              if (value) {
-                _filters.add(actor.name);
-              } else {
-                _filters.removeWhere((String name) {
-                  return name == actor.name;
-                });
-              }
-            });
-          },
-        ),
-      );
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        Wrap(
-          children: actorWidgets.toList(),
-        ),
-        Text('Look for: ${_filters.join(', ')}'),
-      ],
     );
   }
 }

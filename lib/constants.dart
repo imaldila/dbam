@@ -70,3 +70,8 @@ BoxDecoration kStyleBoxDecoration = BoxDecoration(
   color: Colors.white,
   borderRadius: BorderRadius.circular(16),
 );
+BoxDecoration kStyleBoxDecorationTapped = BoxDecoration(
+  color: kBtnColour,
+  borderRadius: BorderRadius.circular(16),
+);
+
