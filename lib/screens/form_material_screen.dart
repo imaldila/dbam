@@ -2,8 +2,10 @@ import 'package:d_bam/models/category_data.dart';
 import 'package:d_bam/models/datepicker.dart';
 import 'package:d_bam/models/package_data.dart';
 import 'package:d_bam/models/text_data.dart';
+import 'package:d_bam/widgets/my_adrdess_form.dart';
 import 'package:d_bam/widgets/my_button_rounded.dart';
-import 'package:d_bam/widgets/my_text_form.dart';
+import 'package:d_bam/widgets/my_nte_form.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
@@ -21,146 +23,99 @@ class _FormMaterialState extends State<FormMaterial> {
   bool visibilitySTB = false;
   bool visibilityONT = false;
 
-  void _changed(bool visibility, String field) {
-    setState(() {
-      if (field == 'STB') {
-        visibilitySTB = visibility;
-      }
-      if (field == 'ONT') {
-        visibilityONT = visibility;
-      }
-    });
-  }
+  // void _changed(bool visibility, String field) {
+  //   setState(() {
+  //     if (field == 'STB') {
+  //       visibilitySTB = visibility;
+  //     }
+  //     if (field == 'ONT') {
+  //       visibilityONT = visibility;
+  //     }
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-
+    // Size size = MediaQuery.of(context).size;
+    // make Form for other Clips
     return Consumer<CategoryData>(
       builder: (context, categoryData, child) => Scaffold(
         backgroundColor: kBgColour,
         appBar: buildAppBar(context),
-        //This is not finish !!!
-        body: ListView(
-          padding: EdgeInsets.symmetric(
-            vertical: 24,
-            horizontal: kHorPadding,
-          ),
-          children: [
-            Wrap(
-              // direction: Axis.vertical,
-              spacing: 10,
-              runSpacing: 20,
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(kPadding),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                InkWell(
-                  borderRadius: BorderRadius.circular(16),
-                  onTap: () {
-                    setState(() {
-                      visibilitySTB
-                          ? _changed(false, categoryData.categories[1].label)
-                          : _changed(true, categoryData.categories[1].label);
-                      print('tapped');
-                    });
-                  },
-                  child: Material(
-                    elevation: 8,
-                    borderRadius: BorderRadius.circular(16),
-                    shadowColor: Colors.white,
-                    child: Container(
-                      decoration: visibilitySTB
-                          ? kStyleBoxDecorationTapped
-                          : kStyleBoxDecoration,
-                      padding: EdgeInsets.all(kPadding),
-                      child: Text(
-                        categoryData.categories[1].label,
-                        style: kTextStyle16Bold,
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                  ),
+                Text(
+                  'Please Select an option below',
+                  style: kTextStyle16Bold,
+                  textAlign: TextAlign.center,
                 ),
-                InkWell(
-                  borderRadius: BorderRadius.circular(16),
-                  onTap: () {
-                    setState(() {
-                      visibilityONT
-                          ? _changed(false, categoryData.categories[0].label)
-                          : _changed(true, categoryData.categories[0].label);
-                      print('tapped');
-                    });
-                  },
-                  child: Material(
-                    elevation: 8,
-                    borderRadius: BorderRadius.circular(16),
-                    shadowColor: Colors.white,
-                    child: Container(
-                      decoration: visibilityONT
-                          ? kStyleBoxDecorationTapped
-                          : kStyleBoxDecoration,
-                      padding: EdgeInsets.all(kPadding),
-                      child: Text(
-                        categoryData.categories[0].label,
-                        style: kTextStyle16Bold,
-                        textAlign: TextAlign.center,
-                      ),
+                SizedBox(
+                  height: kPadding,
+                ),
+                Wrap(
+                  spacing: 8,
+                  children: [
+                    for (int i = 0; i < categoryData.categoryCount; i++)
+                      FilterChip(
+                          backgroundColor: kBgColour,
+                          elevation: 8,
+                          selectedColor: kBtnColour,
+                          labelStyle: kTextStyle14,
+                          selected: categoryData.categories[i].isSelected,
+                          label: Text(categoryData.categories[i].label),
+                          onSelected: (selected) {
+                            setState(() {
+                              categoryData.categories[i].isSelected = selected;
+                            });
+                          }),
+                  ],
+                ),
+                SizedBox(
+                  height: kPadding,
+                ),
+                Divider(),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    for (int i = 0; i < categoryData.categoryCount; i++)
+                      if (categoryData.categories[i].isSelected &&
+                          categoryData.categories[i].label == 'ONT')
+                        MyNTEForm(
+                          oldTitle: 'Old ONT',
+                          newTitle: 'New ONT',
+                        )
+                      else if (categoryData.categories[i].isSelected &&
+                          categoryData.categories[i].label == 'STB')
+                        MyAddressForm()
+                      else if (categoryData.categories[i].isSelected)
+                        Text('Added')
+                      else
+                        Container(),
+                    SizedBox(
+                      height: kPadding,
                     ),
-                  ),
+                  ],
+                ),
+                BottonRounded(
+                  title: 'Next',
+                  onPressed: () {
+                    print(context.read<PackageData>().selected);
+                    print(context.read<DatePicker>().selected);
+                    print(context.read<TextData>().order);
+                    print(context.read<TextData>().service);
+                    print(context.read<TextData>().name);
+                    print(context.read<TextData>().phone);
+                    print(context.read<TextData>().address);
+                  },
                 ),
               ],
             ),
-            Divider(),
-            visibilitySTB
-                ? Row(
-                    children: [
-                      Expanded(
-                        flex: 11,
-                        child: MyTextForm(),
-                      ),
-                      Expanded(
-                        child: IconButton(
-                          onPressed: () {
-                            _changed(false, 'STB');
-                          },
-                          icon: Icon(Icons.cancel),
-                        ),
-                      )
-                    ],
-                  )
-                : Container(),
-            visibilityONT
-                ? Row(
-                    children: [
-                      Expanded(
-                        flex: 11,
-                        child: MyTextForm(),
-                      ),
-                      Expanded(
-                        child: IconButton(
-                          onPressed: () {
-                            _changed(false, 'ONT');
-                          },
-                          icon: Icon(Icons.cancel),
-                        ),
-                      )
-                    ],
-                  )
-                : Container(),
-            SizedBox(
-              height: kPadding,
-            ),
-            BottonRounded(
-              title: 'Next',
-              onPressed: () {
-                print(context.read<PackageData>().selected);
-                print(context.read<DatePicker>().selected);
-                print(context.read<TextData>().order);
-                print(context.read<TextData>().service);
-                print(context.read<TextData>().name);
-                print(context.read<TextData>().phone);
-                print(context.read<TextData>().address);
-              },
-            ),
-          ],
+          ),
         ),
       ),
     );
@@ -205,3 +160,22 @@ class _FormMaterialState extends State<FormMaterial> {
     );
   }
 }
+
+    // visibilityONT
+                    //     ? Row(
+                    //         children: [
+                    //           Expanded(
+                    //             flex: 11,
+                    //             child: MyTextForm(),
+                    //           ),
+                    //           Expanded(
+                    //             child: IconButton(
+                    //               onPressed: () {
+                    //                 _changed(false, 'ONT');
+                    //               },
+                    //               icon: Icon(Icons.cancel),
+                    //             ),
+                    //           )
+                    //         ],
+                    //       )
+                    //     : Container(),
