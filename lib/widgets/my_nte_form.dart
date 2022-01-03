@@ -8,23 +8,26 @@ import '../constants.dart';
 class MyNTEForm extends StatelessWidget {
   MyNTEForm(
       {Key? key,
-      this.onChanged,
-      this.controller,
+      this.oldChanged,
+      this.newChanged,
       this.formkey,
       this.counterText,
       this.textInputAction,
-      this.keyboardType,
       this.textCapitalization = TextCapitalization.none,
       this.oldTitle,
-      this.newTitle})
+      this.newTitle,
+      this.oldController,
+      this.newController})
       : super(key: key);
 
-  final Function(String)? onChanged;
-  final TextEditingController? controller;
+  final Function(String)? oldChanged;
+  final Function(String)? newChanged;
+  final TextEditingController? oldController;
+  final TextEditingController? newController;
   final GlobalKey? formkey;
   final String? counterText;
   final TextInputAction? textInputAction;
-  final TextInputType? keyboardType;
+
   final TextCapitalization? textCapitalization;
   final String? oldTitle;
   final String? newTitle;
@@ -63,11 +66,10 @@ class MyNTEForm extends StatelessWidget {
                       }
                       return null;
                     },
-                    controller: controller,
-                    onChanged: onChanged,
-                    textCapitalization: textCapitalization!,
-                    textInputAction: textInputAction,
-                    keyboardType: keyboardType,
+                    controller: oldController,
+                    onChanged: oldChanged,
+                    textCapitalization: TextCapitalization.characters,
+                    textInputAction: TextInputAction.next,
                     decoration: InputDecoration(
                       counterText: counterText,
                       enabledBorder: kStyleBorder,
@@ -105,11 +107,10 @@ class MyNTEForm extends StatelessWidget {
                       }
                       return null;
                     },
-                    controller: controller,
-                    onChanged: onChanged,
-                    textCapitalization: textCapitalization!,
-                    textInputAction: textInputAction,
-                    keyboardType: keyboardType,
+                    controller: newController,
+                    onChanged: newChanged,
+                    textCapitalization: TextCapitalization.characters,
+                    textInputAction: TextInputAction.done,
                     decoration: InputDecoration(
                       counterText: counterText,
                       enabledBorder: kStyleBorder,

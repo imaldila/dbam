@@ -6,7 +6,8 @@ class TextData extends ChangeNotifier {
   String _name = '';
   String _phone = '';
   String _address = '';
-  String _ont = '';
+  String _oldONT = '';
+  String _newONT = '';
   // String _stb = '';
   // String _sdWan = '';
   // String _dropcore = '';
@@ -32,8 +33,13 @@ class TextData extends ChangeNotifier {
   String get address {
     return _address;
   }
-  String get ont {
-    return _ont;
+
+  String get oldONT {
+    return _oldONT;
+  }
+
+  String get newONT {
+    return _newONT;
   }
 
   getOrder(String order) {
@@ -60,8 +66,14 @@ class TextData extends ChangeNotifier {
     _address = address;
     notifyListeners();
   }
-  getONT(String ont) {
-    _ont = ont;
+
+  getOldONT(String oldONT) {
+    _oldONT = oldONT;
+    notifyListeners();
+  }
+
+  getNewONT(String newONT) {
+    _newONT = newONT;
     notifyListeners();
   }
 }
