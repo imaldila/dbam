@@ -1,5 +1,6 @@
 import 'package:d_bam/constants.dart';
 import 'package:d_bam/models/category_data.dart';
+import 'package:d_bam/models/counter.dart';
 import 'package:d_bam/models/datepicker.dart';
 import 'package:d_bam/models/package_data.dart';
 import 'package:d_bam/models/text_data.dart';
@@ -29,6 +30,9 @@ class MyApp extends StatelessWidget {
         }),
         ChangeNotifierProvider<TextData>(create: (BuildContext context) {
           return TextData();
+        }),
+         ChangeNotifierProvider<Counter>(create: (BuildContext context) {
+          return Counter();
         }),
       ],
       child: MaterialApp(

@@ -1,5 +1,7 @@
 import 'package:d_bam/models/category_data.dart';
+import 'package:d_bam/models/counter.dart';
 import 'package:d_bam/models/text_data.dart';
+import 'package:d_bam/widgets/my_dropcore_form.dart';
 import 'package:d_bam/widgets/my_materials_form.dart';
 import 'package:d_bam/widgets/my_text_form.dart';
 import 'package:flutter/material.dart';
@@ -62,11 +64,12 @@ class _MyCategoriesFormState extends State<MyCategoriesForm> {
               )
             else if (categoryData.categories[i].isSelected &&
                 categoryData.categories[i].label == 'Dropcore')
-              MyTextForm()
+              MyDropcoreForm()
             else if (categoryData.categories[i].isSelected)
               MyMaterialsForm(
-                title: categoryData.categories[i].label,
-              )
+                  title: categoryData.categories[i].label,
+                  // onChanged: context.read<Counter>().count,
+                  controller: categoryData.categories[i].controller)
             else
               Container(),
           SizedBox(

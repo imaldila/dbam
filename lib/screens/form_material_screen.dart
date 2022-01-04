@@ -52,6 +52,7 @@ class FormMaterial extends StatelessWidget {
                   // print(context.read<TextData>().address);
                   print('ONT Lama = ${context.read<TextData>().oldONT}');
                   print('ONT Baru = ${context.read<TextData>().newONT}');
+                  print('Dropcore = ${context.read<TextData>().dropcore} Meter');
                 },
               ),
             ],
