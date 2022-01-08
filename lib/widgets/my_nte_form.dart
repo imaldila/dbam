@@ -27,7 +27,6 @@ class MyNTEForm extends StatelessWidget {
   final GlobalKey? formkey;
   final String? counterText;
   final TextInputAction? textInputAction;
-
   final TextCapitalization? textCapitalization;
   final String? oldTitle;
   final String? newTitle;

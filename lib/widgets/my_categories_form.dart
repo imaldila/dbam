@@ -67,9 +67,12 @@ class _MyCategoriesFormState extends State<MyCategoriesForm> {
               MyDropcoreForm()
             else if (categoryData.categories[i].isSelected)
               MyMaterialsForm(
-                  title: categoryData.categories[i].label,
-                  // onChanged: context.read<Counter>().count,
-                  controller: categoryData.categories[i].controller)
+                title: categoryData.categories[i].label,
+                counting: '${categoryData.categories[i].count}',
+                onChanged: (v) {},
+                controller: categoryData.categories[i].controller,
+                counterText: '/pcs',
+              )
             else
               Container(),
           SizedBox(
