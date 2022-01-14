@@ -1,69 +1,90 @@
 import 'package:d_bam/constants.dart';
-import 'package:d_bam/models/category.dart';
 import 'package:d_bam/models/category_data.dart';
-import 'package:d_bam/models/counter.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class MyMaterialsForm extends StatelessWidget {
-  MyMaterialsForm(
-      {Key? key,
-      this.title,
-      this.onChanged,
-      this.controller,
-      this.counting,
-      this.counterText})
-      : super(key: key);
+  MyMaterialsForm({
+    Key? key,
+    this.title,
+    this.onChanged,
+    this.controller,
+    this.counting,
+    this.counterText,
+    this.remove,
+    this.add,
+  }) : super(key: key);
 
   final String? title;
   final String? counting;
   final TextEditingController? controller;
-  final Function(String?)? onChanged;
+  final Function(String)? onChanged;
   final String? counterText;
+  final Function()? remove;
+  final Function()? add;
 
   @override
   Widget build(BuildContext context) {
-    final counter = context.read<Counter>();
-    return Padding(
-      padding: const EdgeInsets.only(left: kPadding),
-      child: Row(
-        children: [
-          Text(
-            title!,
-            style: kTextStyle16Bold,
-          ),
-          Spacer(),
-          counter.count != 0
-              ? TextButton(
-                  onPressed: () =>
-                      (counter.count > 0 ? counter.decrement() : 0),
-                  child: Icon(
-                    Icons.remove,
-                    color: kIcColour,
+    // final counter = context.read<CategoryData>();
+    return Consumer<CategoryData>(
+      builder: (context, categoryData, child) {
+        return Padding(
+          padding: const EdgeInsets.only(left: kPadding),
+          child: Row(
+            children: [
+              Text(
+                title ?? '',
+                style: kTextStyle16Bold,
+              ),
+              Spacer(),
+              TextButton(
+                onPressed: remove,
+                child: Icon(
+                  Icons.remove,
+                  color: kIcColour,
+                ),
+              ),
+              SizedBox(
+                width: 15,
+                child: AbsorbPointer(
+                  child: TextFormField(
+                    decoration: InputDecoration(border: InputBorder.none),
+                    controller: controller,
+                    onChanged: onChanged,
+                    style: kTextStyle14,
                   ),
-                )
-              : Container(),
-          Text(
-            // counting ?? '',
-
-            '${context.watch<Counter>().count}',
-            style: kTextStyle14,
+                ),
+              ),
+              TextButton(
+                onPressed: add,
+                child: Icon(
+                  Icons.add,
+                  color: kIcColour,
+                ),
+              ),
+              Text('/ Pcs')
+            ],
           ),
-          TextButton(
-            onPressed: () {
-              counter.increment();
-              // context.read<CategoryData>().addInc;
-            },
-            child: Icon(
-              Icons.add,
-              color: kIcColour,
-            ),
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 }
+
+//  counter.counter != 0
+//                   ? TextButton(
+//                       onPressed: remove,
+//                         // (counter.counter > 0 ? counter.decrement() : 0);
+//                         // // controller!.text =
+//                         // //     context.read<CategoryData>().counter.toString();
+//                         // print(context.read<CategoryData>().counter);
+                      
+//                       child: Icon(
+//                         Icons.remove,
+//                         color: kIcColour,
+//                       ),
+//                     )
+//                   : Container(),
 
 // 
 

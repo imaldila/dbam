@@ -1,4 +1,5 @@
 import 'package:d_bam/constants.dart';
+import 'package:d_bam/models/text_data.dart';
 import 'package:d_bam/screens/form_gangguan_screen.dart';
 import 'package:d_bam/screens/form_material_screen.dart';
 import 'package:d_bam/widgets/my_option_card.dart';
@@ -6,6 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 
 class ChooseScreen extends StatelessWidget {
   const ChooseScreen({Key? key}) : super(key: key);
@@ -47,7 +49,7 @@ class ChooseScreen extends StatelessWidget {
                 height: kPadding,
               ),
               Text(
-                'PSB',
+                context.watch<TextData>().psb,
                 style: kTextStyle20Bold,
               ),
               SizedBox(
@@ -72,7 +74,7 @@ class ChooseScreen extends StatelessWidget {
                 height: kPadding,
               ),
               Text(
-                'Gangguan',
+                context.watch<TextData>().gangguan,
                 style: kTextStyle20Bold,
               ),
             ],

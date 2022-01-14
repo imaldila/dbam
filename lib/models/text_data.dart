@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 
 class TextData extends ChangeNotifier {
+  String _psb = 'Pasang Baru';
+  String _gangguan = 'Gangguan';
   String _order = '';
   String _service = '';
   String _name = '';
@@ -13,16 +15,18 @@ class TextData extends ChangeNotifier {
   String _oldSDWAN = '';
   String _newSDWAN = '';
   String _dropcore = '';
-  String _precon50 = '';
-  String _precon80 = '';
-  String _rj45 = '';
-  String _sClamp = '';
-  String _clampHook = '';
-  String _roset = '';
-  String _soc = '';
-  String _trayCable = '';
-  String _patchcore = '';
-  String _cableUTP = '';
+
+  String get psb => _psb;
+  String get gangguan => _gangguan;
+
+  getPSB(String psb) {
+    _psb = psb;
+  }
+
+  set getGangguan(String gangguan) {
+    _gangguan = gangguan;
+    notifyListeners();
+  }
 
   String get order {
     return _order;
@@ -70,46 +74,6 @@ class TextData extends ChangeNotifier {
 
   String get dropcore {
     return _dropcore;
-  }
-
-  String get precon50 {
-    return _precon50;
-  }
-
-  String get precon80 {
-    return _precon80;
-  }
-
-  String get rj45 {
-    return _rj45;
-  }
-
-  String get sClamp {
-    return _sClamp;
-  }
-
-  String get clampHook {
-    return _clampHook;
-  }
-
-  String get roset {
-    return _roset;
-  }
-
-  String get soc {
-    return _soc;
-  }
-
-  String get trayCable {
-    return _trayCable;
-  }
-
-  String get patchCore {
-    return _patchcore;
-  }
-
-  String get cableUTP {
-    return _cableUTP;
   }
 
   getOrder(String order) {
@@ -167,58 +131,8 @@ class TextData extends ChangeNotifier {
     notifyListeners();
   }
 
-  getDropcore(String newDropcore) {
-    _dropcore = newDropcore;
-    notifyListeners();
-  }
-
-  getPrecon50(String newPrecon50) {
-    _precon50 = newPrecon50;
-    notifyListeners();
-  }
-
-  getPrecon80(String newPrecon80) {
-    _precon80 = newPrecon80;
-    notifyListeners();
-  }
-
-  getRJ45(String newRJ45) {
-    _rj45 = newRJ45;
-    notifyListeners();
-  }
-
-  getSClamp(String newSClamp) {
-    _sClamp = newSClamp;
-    notifyListeners();
-  }
-
-  getClampHook(String newClampHook) {
-    _clampHook = newClampHook;
-    notifyListeners();
-  }
-
-  getRoset(String newRoset) {
-    _roset = newRoset;
-    notifyListeners();
-  }
-
-  getSoc(String newSoc) {
-    _soc = newSoc;
-    notifyListeners();
-  }
-
-  getTrayCable(String newTrayCable) {
-    _trayCable = newTrayCable;
-    notifyListeners();
-  }
-
-  getPatchcore(String newPatchcore) {
-    _patchcore = newPatchcore;
-    notifyListeners();
-  }
-
-  getCableUTP(String newCableUTP) {
-    _cableUTP = newCableUTP;
+  getDropcore(String dropCore) {
+    _dropcore = dropCore;
     notifyListeners();
   }
 }

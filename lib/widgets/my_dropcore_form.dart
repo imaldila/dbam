@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class MyDropcoreForm extends StatelessWidget {
-  const MyDropcoreForm({Key? key}) : super(key: key);
+  MyDropcoreForm({Key? key, this.onChanged, this.controller}) : super(key: key);
+  final TextEditingController? controller;
+  final Function(String)? onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -18,11 +20,11 @@ class MyDropcoreForm extends StatelessWidget {
             style: kTextStyle16Bold,
           ),
           Spacer(),
-          Container(
+          SizedBox(
             width: 50,
             child: TextField(
-              onChanged: context.read<TextData>().getDropcore,
-              controller: dropcoreController,
+              onChanged: context.watch<TextData>().getDropcore,
+              controller: controller,
               style: kTextStyle14,
               textAlign: TextAlign.center,
               keyboardType: TextInputType.number,
