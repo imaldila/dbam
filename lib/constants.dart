@@ -38,7 +38,7 @@ final kTextStyle16Bold = GoogleFonts.poppins(
   ),
 );
 
-final kTextStyle14 = GoogleFonts.poppins(
+final kTextStyle14 = GoogleFonts.poppins( 
   textStyle: TextStyle(
     fontSize: 14                                  ,
     color: kDarkColour,

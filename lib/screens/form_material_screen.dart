@@ -49,7 +49,7 @@ class FormMaterial extends StatelessWidget {
                 Navigator.push(
                   context,
                   PageTransition(
-                      child: Sg(),
+                      child: SignatureScreen(),
                       type: PageTransitionType.rightToLeftWithFade),
                 );
                 // print(context.read<PackageData>().selected);

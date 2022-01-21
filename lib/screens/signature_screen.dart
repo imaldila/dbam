@@ -3,7 +3,7 @@ import 'dart:typed_data';
 import 'package:d_bam/widgets/my_button_rounded.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:signature/signature.dart';
+import 'package:hand_signature/signature.dart';
 
 import '../constants.dart';
 
@@ -15,12 +15,14 @@ class SignatureScreen extends StatefulWidget {
 }
 
 class _SignatureScreenState extends State<SignatureScreen> {
-  final SignatureController signatureController = SignatureController(
-      penStrokeWidth: 2,
-      penColor: Colors.red,
-      exportBackgroundColor: Colors.blue,
-      onDrawStart: () => print('onDrawStart called!'),
-      onDrawEnd: () => print('onDrawEnd called!'));
+  ValueNotifier<String?> svg = ValueNotifier<String?>(null);
+  ValueNotifier<ByteData?> rawImageFit = ValueNotifier<ByteData?>(null);
+
+  HandSignatureControl customerControl = HandSignatureControl(
+    threshold: 0.01,
+    smoothRatio: 0.65,
+    velocityRange: 2.0,
+  );
 
   bool isClicked = false;
 
@@ -35,6 +37,13 @@ class _SignatureScreenState extends State<SignatureScreen> {
           // mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            Text(
+              'Customer Signature',
+              style: kTextStyle16Bold,
+            ),
+            SizedBox(
+              height: kPadding,
+            ),
             Stack(
               children: [
                 Material(
@@ -52,55 +61,113 @@ class _SignatureScreenState extends State<SignatureScreen> {
                             topRight: Radius.circular(8))),
                   ),
                 ),
-                AbsorbPointer(
-                  absorbing: (isClicked = !isClicked) ? true : false,
-                  child: Signature(
-                    width: size.width / 1.2,
-                    controller: signatureController,
-                    height: size.height / 4,
-                    backgroundColor: Colors.white24,
+                Expanded(
+                  child: Center(
+                    child: AspectRatio(
+                      aspectRatio: 1.6,
+                      child: Stack(
+                        children: <Widget>[
+                          Container(
+                            constraints: BoxConstraints.expand(),
+                            color: Colors.white,
+                            child: HandSignaturePainterView(
+                              control: customerControl,
+                              type: SignatureDrawType.shape,
+                            ),
+                          ),
+                          CustomPaint(
+                            painter: DebugSignaturePainterCP(
+                              control: customerControl,
+                              cp: false,
+                              cpStart: false,
+                              cpEnd: false,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                 ),
-                IconButton(
-                  onPressed: () {
-                    setState(() {});
-                  },
-                  icon: Icon(Icons.edit),
-                  color: kIcColour,
+                Positioned(
+                  bottom: 0,
+                  right: 15,
+                  left: 15,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      IconButton(
+                        onPressed: () async {
+                          // if (signatureController.isNotEmpty) {
+                          //   final Uint8List? data =
+                          //       await signatureController.toPngBytes();
+                          //   if (data != null) {
+                          //     Image.memory(data);
+                          //   }
+                          // }
+                          // setState(() {});
+                          rawImageFit.value = await customerControl.toImage(
+                              color: Colors.red, background: Colors.white);
+                        },
+                        icon: const Icon(Icons.check),
+                        color: kIcColour,
+                      ),
+                      IconButton(
+                        icon: const Icon(Icons.clear),
+                        color: kIcColour,
+                        onPressed: () {
+                          customerControl.clear();
+                        },
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
-            IconButton(
-              onPressed: () async {
-                if (signatureController.isNotEmpty) {
-                  final Uint8List? data =
-                      await signatureController.toPngBytes();
-                  if (data != null) {
-                    Image.memory(data);
-                  }
-                }
-                setState(() {});
-              },
-              icon: const Icon(Icons.check),
-              color: kIcColour,
-            ),
-            IconButton(
-              icon: const Icon(Icons.clear),
-              color: kIcColour,
-              onPressed: () {
-                signatureController.clear();
-              },
+            
+            SizedBox(
+              height: kPadding,
             ),
             BottonRounded(
                 title: 'test',
                 onPressed: () {
-                  print(signatureController);
-                })
+                  print(rawImageFit);
+                }),
+            Align(
+              alignment: Alignment.bottomRight,
+              child: _buildScaledImageView(),
+            )
           ],
         ),
       ),
     );
   }
+
+  Widget _buildScaledImageView() => Container(
+        width: 192.0,
+        height: 96.0,
+        decoration: BoxDecoration(
+          border: Border.all(),
+          color: Colors.white30,
+        ),
+        child: ValueListenableBuilder<ByteData?>(
+          valueListenable: rawImageFit,
+          builder: (context, data, child) {
+            if (data == null) {
+              return Container(
+                color: Colors.red,
+                child: Center(
+                  child: Text('not signed yet (png)\nscaleToFill: true'),
+                ),
+              );
+            } else {
+              return Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Image.memory(data.buffer.asUint8List()),
+              );
+            }
+          },
+        ),
+      );
 
   AppBar buildAppBar(BuildContext context) {
     return AppBar(
