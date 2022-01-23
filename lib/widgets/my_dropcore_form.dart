@@ -1,5 +1,4 @@
 import 'package:d_bam/constants.dart';
-import 'package:d_bam/models/category_data.dart';
 import 'package:d_bam/models/text_data.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

@@ -1,6 +1,5 @@
 import 'package:d_bam/models/counter.dart';
 import 'package:d_bam/models/text_data.dart';
-import 'package:d_bam/screens/sg.dart';
 import 'package:d_bam/screens/signature_screen.dart';
 import 'package:d_bam/widgets/my_button_rounded.dart';
 import 'package:d_bam/widgets/my_categories_filter.dart';

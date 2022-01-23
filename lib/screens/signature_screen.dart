@@ -23,12 +23,16 @@ class _SignatureScreenState extends State<SignatureScreen> {
     smoothRatio: 0.65,
     velocityRange: 2.0,
   );
+  HandSignatureControl technicianControl = HandSignatureControl(
+    threshold: 0.01,
+    smoothRatio: 0.65,
+    velocityRange: 2.0,
+  );
 
   bool isClicked = false;
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: buildAppBar(context),
       body: Padding(
@@ -44,100 +48,163 @@ class _SignatureScreenState extends State<SignatureScreen> {
             SizedBox(
               height: kPadding,
             ),
-            Stack(
-              children: [
-                Material(
-                  elevation: 8,
-                  shadowColor: Colors.white,
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(8),
-                      topRight: Radius.circular(8)),
-                  child: Container(
-                    height: size.height / 4,
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(8),
-                            topRight: Radius.circular(8))),
-                  ),
-                ),
-                Expanded(
-                  child: Center(
-                    child: AspectRatio(
-                      aspectRatio: 1.6,
-                      child: Stack(
-                        children: <Widget>[
-                          Container(
-                            constraints: BoxConstraints.expand(),
-                            color: Colors.white,
-                            child: HandSignaturePainterView(
-                              control: customerControl,
-                              type: SignatureDrawType.shape,
-                            ),
-                          ),
-                          CustomPaint(
-                            painter: DebugSignaturePainterCP(
-                              control: customerControl,
-                              cp: false,
-                              cpStart: false,
-                              cpEnd: false,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-                Positioned(
-                  bottom: 0,
-                  right: 15,
-                  left: 15,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      IconButton(
-                        onPressed: () async {
-                          // if (signatureController.isNotEmpty) {
-                          //   final Uint8List? data =
-                          //       await signatureController.toPngBytes();
-                          //   if (data != null) {
-                          //     Image.memory(data);
-                          //   }
-                          // }
-                          // setState(() {});
-                          rawImageFit.value = await customerControl.toImage(
-                              color: Colors.red, background: Colors.white);
-                        },
-                        icon: const Icon(Icons.check),
-                        color: kIcColour,
-                      ),
-                      IconButton(
-                        icon: const Icon(Icons.clear),
-                        color: kIcColour,
-                        onPressed: () {
-                          customerControl.clear();
-                        },
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-            
+            customerSignature(),
             SizedBox(
               height: kPadding,
             ),
+            Text(
+              'Technician Signature',
+              style: kTextStyle16Bold,
+            ),
+             SizedBox(
+              height: kPadding,
+            ),
+            technicianSignature(),
+            SizedBox(
+              height: kPadding,
+            ),
+            Spacer(),
             BottonRounded(
-                title: 'test',
+                title: 'Submit',
                 onPressed: () {
-                  print(rawImageFit);
+                  print(technicianControl.toImage());
                 }),
-            Align(
-              alignment: Alignment.bottomRight,
-              child: _buildScaledImageView(),
-            )
+            // Align(
+            //   alignment: Alignment.bottomRight,
+            //   child: _buildScaledImageView(),
+            // )
           ],
         ),
+      ),
+    );
+  }
+
+  AspectRatio customerSignature() {
+    Size size = MediaQuery.of(context).size;
+    return AspectRatio(
+      aspectRatio: 1.65,
+      child: Stack(
+        children: [
+          Material(
+            elevation: 8,
+            shadowColor: Colors.white,
+            borderRadius: BorderRadius.all(
+              Radius.circular(16),
+            ),
+            child: Container(
+              height: size.height / 4,
+              constraints: BoxConstraints.expand(),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.all(
+                  Radius.circular(16),
+                ),
+              ),
+              child: HandSignaturePainterView(
+                  control: customerControl,
+                  type: SignatureDrawType.shape,
+                  color: Colors.red),
+            ),
+          ),
+          CustomPaint(
+            painter: DebugSignaturePainterCP(
+              control: customerControl,
+              cp: false,
+              cpStart: false,
+              cpEnd: false,
+            ),
+          ),
+          Positioned(
+            bottom: 0,
+            right: 15,
+            left: 15,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                IconButton(
+                  onPressed: () async {
+                    rawImageFit.value = await customerControl.toImage(
+                        color: Colors.red, background: Colors.white);
+                  },
+                  icon: const Icon(Icons.check),
+                  color: kIcColour,
+                ),
+                IconButton(
+                  icon: const Icon(Icons.clear),
+                  color: kIcColour,
+                  onPressed: () {
+                    customerControl.clear();
+                  },
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  AspectRatio technicianSignature() {
+    Size size = MediaQuery.of(context).size;
+    return AspectRatio(
+      aspectRatio: 1.65,
+      child: Stack(
+        children: [
+          Material(
+            elevation: 8,
+            shadowColor: Colors.white,
+            borderRadius: BorderRadius.all(
+              Radius.circular(16),
+            ),
+            child: Container(
+              height: size.height / 4,
+              constraints: BoxConstraints.expand(),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.all(
+                  Radius.circular(16),
+                ),
+              ),
+              child: HandSignaturePainterView(
+                  control: technicianControl,
+                  type: SignatureDrawType.shape,
+                  color: Colors.red),
+            ),
+          ),
+          CustomPaint(
+            painter: DebugSignaturePainterCP(
+              control: technicianControl,
+              cp: false,
+              cpStart: false,
+              cpEnd: false,
+            ),
+          ),
+          Positioned(
+            bottom: 0,
+            right: 15,
+            left: 15,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                IconButton(
+                  onPressed: () async {
+                    rawImageFit.value = await technicianControl.toImage(
+                        color: Colors.red, background: Colors.white);
+                  },
+                  icon: const Icon(Icons.check),
+                  color: kIcColour,
+                ),
+                IconButton(
+                  icon: const Icon(Icons.clear),
+                  color: kIcColour,
+                  onPressed: () {
+                    technicianControl.clear();
+                  },
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
