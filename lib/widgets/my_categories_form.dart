@@ -21,29 +21,38 @@ class MyCategoriesForm extends StatefulWidget {
 class _MyCategoriesFormState extends State<MyCategoriesForm> {
   final oldONTController = TextEditingController();
   final newONTController = TextEditingController();
+  final oldSTBController = TextEditingController();
+  final newSTBController = TextEditingController();
+  final oldSDWANController = TextEditingController();
+  final newSDWANController = TextEditingController();
   final dropcoreController = TextEditingController();
   final preconn50Controller = TextEditingController();
   final preconn80Controller = TextEditingController();
 
-  @override
-  void initState() {
-    preconn50Controller.text = '${context.read<Counter>().preconn50}';
-    preconn80Controller.text = '${context.read<Counter>().preconn80}';
-    rj45Controller.text = '${context.read<Counter>().rj45}';
-    sClampController.text = '${context.read<Counter>().sClamp}';
-    clampHookController.text = '${context.read<Counter>().clampHook}';
-    rosetController.text = '${context.read<Counter>().roset}';
-    trayCableController.text = '${context.read<Counter>().trayCable}';
-    patchcoreController.text = '${context.read<Counter>().patchCore}';
-    cableUTPController.text = '${context.read<Counter>().cableUTP}';
+  // @override
+  // void initState() {
+  //   preconn50Controller.text = '${context.read<Counter>().preconn50}';
+  //   preconn80Controller.text = '${context.read<Counter>().preconn80}';
+  //   rj45Controller.text = '${context.read<Counter>().rj45}';
+  //   sClampController.text = '${context.read<Counter>().sClamp}';
+  //   clampHookController.text = '${context.read<Counter>().clampHook}';
+  //   rosetController.text = '${context.read<Counter>().roset}';
+  //   trayCableController.text = '${context.read<Counter>().trayCable}';
+  //   patchcoreController.text = '${context.read<Counter>().patchCore}';
+  //   cableUTPController.text = '${context.read<Counter>().cableUTP}';
 
-    super.initState();
-  }
+  //   super.initState();
+  // }
+
   //TODO: Dispose all controller !..
   @override
   void dispose() {
     oldONTController.dispose();
     newONTController.dispose();
+    oldSTBController.dispose();
+    newSTBController.dispose();
+    oldSDWANController.dispose();
+    newSDWANController.dispose();
     dropcoreController.dispose();
     // preconn50Controller.dispose();
     // preconn80Controller.dispose();
@@ -51,10 +60,11 @@ class _MyCategoriesFormState extends State<MyCategoriesForm> {
     // sClampController.dispose();
     // clampHookController.dispose();
     // rosetController.dispose();
+    // socController.dispose();
     // trayCableController.dispose();
     // patchcoreController.dispose();
     // cableUTPController.dispose();
-    // context.read<Counter>().dispose();
+
     super.dispose();
   }
 
@@ -85,12 +95,20 @@ class _MyCategoriesFormState extends State<MyCategoriesForm> {
                 MyNTEForm(
                   oldTitle: 'Old STB',
                   newTitle: 'New STB',
+                  oldChanged: textData.getOldSTB,
+                  newChanged: textData.getNewSTB,
+                  oldController: oldSTBController,
+                  newController: newSTBController,
                 )
               else if (categoryData.categories[i].isSelected &&
                   categoryData.categories[i].label == 'SD WAN')
                 MyNTEForm(
                   oldTitle: 'Old SDWan',
                   newTitle: 'New SDWan',
+                  oldChanged: textData.getOldSDWAN,
+                  newChanged: textData.getNewSDWAN,
+                  oldController: oldSDWANController,
+                  newController: newSDWANController,
                 )
               else if (categoryData.categories[i].isSelected &&
                   categoryData.categories[i].label == 'Dropcore')

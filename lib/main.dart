@@ -19,19 +19,19 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider<PackageData>(create: (BuildContext context) {
+        ChangeNotifierProvider<PackageData>(create: (context) {
           return PackageData();
         }),
-        ChangeNotifierProvider<DatePicker>(create: (BuildContext context) {
+        ChangeNotifierProvider<DatePicker>(create: (context) {
           return DatePicker();
         }),
-        ChangeNotifierProvider<CategoryData>(create: (BuildContext context) {
+        ChangeNotifierProvider<CategoryData>(create: (context) {
           return CategoryData();
         }),
-        ChangeNotifierProvider<TextData>(create: (BuildContext context) {
+        ChangeNotifierProvider<TextData>(create: (context) {
           return TextData();
         }),
-         ChangeNotifierProvider<Counter>(create: (BuildContext context) {
+         ChangeNotifierProvider<Counter>(create: (context) {
           return Counter();
         }),
       ],

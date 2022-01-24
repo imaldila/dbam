@@ -19,37 +19,47 @@ import 'package:provider/provider.dart';
 class FormGangguan extends StatefulWidget {
   FormGangguan({Key? key}) : super(key: key);
 
-  static const String id = 'Formg Gangguan';
-
   @override
   _FormGangguanState createState() => _FormGangguanState();
 }
 
 class _FormGangguanState extends State<FormGangguan> {
+  final dateController = TextEditingController();
   final orderController = TextEditingController();
   final serviceController = TextEditingController();
   final nameController = TextEditingController();
   final phoneController = TextEditingController();
   final addressController = TextEditingController();
 
-  final formKey = GlobalKey<FormState>();
+  final ValKey valKey = ValKey();
 
-  // @override
-  // void initState() {
-  //   final TextData myProvider = context.read<TextData>();
+  final _formKeyGangguanScreen = GlobalKey<FormState>();
 
-  //   super.initState();
-  //   final orderController = TextEditingController(text: myProvider.order);
-  //   final serviceController = TextEditingController(text: myProvider.order);
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  // void closeListerner() {
+  //   context.read<DatePicker>().close
   // }
 
   @override
   void dispose() {
+    dateController.dispose();
     orderController.dispose();
     serviceController.dispose();
     nameController.dispose();
     phoneController.dispose();
     addressController.dispose();
+
+    // ValKey.listKey.currentState!.dispose();
+    // ValKey.dateKey.currentState!.dispose();
+    // ValKey.orderKey.currentState!.dispose();
+    // ValKey.serviceKey.currentState!.dispose();
+    // ValKey.nameKey.currentState!.dispose();
+    // ValKey.phoneKey.currentState!.dispose();
+    // ValKey.addressKey.currentState!.dispose();
 
     super.dispose();
   }
@@ -57,6 +67,7 @@ class _FormGangguanState extends State<FormGangguan> {
   @override
   Widget build(BuildContext context) {
     final TextData myProvider = context.read<TextData>();
+
     return Scaffold(
       backgroundColor: kBgColour,
       appBar: buildAppBar(context),
@@ -67,7 +78,7 @@ class _FormGangguanState extends State<FormGangguan> {
         ),
         children: [
           Form(
-            key: formKey,
+            key: _formKeyGangguanScreen,
             autovalidateMode: AutovalidateMode.onUserInteraction,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -75,15 +86,15 @@ class _FormGangguanState extends State<FormGangguan> {
               children: [
                 MyTextTitle(title: 'Package'),
                 MyDropDownList(
-                  formKey: ValKey.listKey,
+                  formKey: valKey.listKey,
                 ),
                 MyTextTitle(title: 'Date'),
                 MyDateForm(
-                  formkey: ValKey.dateKey,
+                  formkey: valKey.dateKey,
                 ),
                 MyTextTitle(title: 'No Order'),
                 MyTextForm(
-                    formkey: ValKey.orderKey,
+                    formkey: valKey.orderKey,
                     controller: orderController,
                     textInputAction: TextInputAction.next,
                     textCapitalization: TextCapitalization.characters,
@@ -91,7 +102,7 @@ class _FormGangguanState extends State<FormGangguan> {
                     onChanged: myProvider.getOrder),
                 MyTextTitle(title: 'Service ID'),
                 MyTextForm(
-                    formkey: ValKey.serviceKey,
+                    formkey: valKey.serviceKey,
                     controller: serviceController,
                     textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.number,
@@ -99,21 +110,21 @@ class _FormGangguanState extends State<FormGangguan> {
                     onChanged: myProvider.getService),
                 MyTextTitle(title: 'Customer Name'),
                 MyTextForm(
-                    formkey: ValKey.nameKey,
+                    formkey: valKey.nameKey,
                     controller: nameController,
                     textInputAction: TextInputAction.next,
                     textCapitalization: TextCapitalization.words,
                     onChanged: myProvider.getName),
                 MyTextTitle(title: 'Contact Phone'),
                 MyTextForm(
-                    formkey: ValKey.phoneKey,
+                    formkey: valKey.phoneKey,
                     controller: phoneController,
                     textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.number,
                     onChanged: myProvider.getPhone),
                 MyTextTitle(title: 'Address'),
                 MyAddressForm(
-                    formkey: ValKey.addressKey,
+                    formkey: valKey.addressKey,
                     controller: addressController,
                     onChanged: myProvider.getAddress),
                 const SizedBox(
@@ -123,7 +134,7 @@ class _FormGangguanState extends State<FormGangguan> {
                   title: 'Next',
                   onPressed: () {
                     _sendDataToNextScreen(context);
-                    
+
                     print(context.read<TextData>().gangguan);
                     print(context.read<PackageData>().selected);
                     print(context.read<DatePicker>().selected);
@@ -182,20 +193,21 @@ class _FormGangguanState extends State<FormGangguan> {
   }
 
   void _sendDataToNextScreen(BuildContext context) {
-    if (ValKey.listKey.currentState!.validate() &&
-        ValKey.dateKey.currentState!.validate() &&
-        ValKey.orderKey.currentState!.validate() &&
-        ValKey.serviceKey.currentState!.validate() &&
-        ValKey.nameKey.currentState!.validate() &&
-        ValKey.phoneKey.currentState!.validate() &&
-        ValKey.addressKey.currentState!.validate()) {
-      ValKey.listKey.currentState!.save();
-      ValKey.dateKey.currentState!.save();
-      ValKey.orderKey.currentState!.save();
-      ValKey.serviceKey.currentState!.save();
-      ValKey.nameKey.currentState!.save();
-      ValKey.phoneKey.currentState!.save();
-      ValKey.addressKey.currentState!.save();
+    if (valKey.listKey.currentState!.validate() &&
+        valKey.dateKey.currentState!.validate() &&
+        valKey.orderKey.currentState!.validate() &&
+        valKey.serviceKey.currentState!.validate() &&
+        valKey.nameKey.currentState!.validate() &&
+        valKey.phoneKey.currentState!.validate() &&
+        valKey.addressKey.currentState!.validate()) {
+      valKey.listKey.currentState!.save();
+      valKey.dateKey.currentState!.save();
+      valKey.orderKey.currentState!.save();
+      valKey.serviceKey.currentState!.save();
+      valKey.nameKey.currentState!.save();
+      valKey.phoneKey.currentState!.save();
+      valKey.addressKey.currentState!.save();
+
       Navigator.push(
         context,
         PageTransition(

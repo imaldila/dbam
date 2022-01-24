@@ -17,20 +17,21 @@ class MyCategoriesFilter extends StatelessWidget {
         children: [
           for (int i = 0; i < categoryData.categoryCount; i++)
             FilterChip(
-                backgroundColor: kBgColour,
-                elevation: 8,
-                selectedColor: kBtnColour,
-                labelStyle: categoryData.categories[i].isSelected
-                    ? kTextStyle14White
-                    : kTextStyle14,
-                selected: categoryData.categories[i].isSelected,
-                label: Text(categoryData.categories[i].label),
-                onSelected: (selected) {
-                  categoryData.updateCategory(categoryData.categories[i]);
-                  // setState(() {
-                  //   categoryData.categories[i].isSelected = selected;
-                  // });
-                }),
+              backgroundColor: kBgColour,
+              elevation: 8,
+              selectedColor: kBtnColour,
+              labelStyle: categoryData.categories[i].isSelected
+                  ? kTextStyle14White
+                  : kTextStyle14,
+              selected: categoryData.categories[i].isSelected,
+              label: Text(categoryData.categories[i].label),
+              onSelected: (selected) {
+                categoryData.updateCategory(categoryData.categories[i]);
+                // setState(() {
+                //   categoryData.categories[i].isSelected = selected;
+                // });
+              },
+            ),
         ],
       ),
     );

@@ -68,7 +68,7 @@ class MyNTEForm extends StatelessWidget {
                     controller: oldController,
                     onChanged: oldChanged,
                     textCapitalization: TextCapitalization.characters,
-                    textInputAction: TextInputAction.next,
+                    textInputAction: TextInputAction.done,
                     decoration: InputDecoration(
                       counterText: counterText,
                       enabledBorder: kStyleBorder,

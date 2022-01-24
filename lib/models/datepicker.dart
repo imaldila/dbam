@@ -42,4 +42,10 @@ class DatePicker extends ChangeNotifier {
     _selectedDate = datePicker;
     notifyListeners();
   }
+
+  @override
+  void dispose() {
+    dateController.clear();
+    super.dispose();
+  }
 }

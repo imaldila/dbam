@@ -18,6 +18,7 @@ class FormMaterial extends StatelessWidget {
   Widget build(BuildContext context) {
     // Size size = MediaQuery.of(context).size;
     // make Form for other Clips
+    print('REBUILT WIDGET');
     return Scaffold(
       backgroundColor: kBgColour,
       appBar: buildAppBar(context),
@@ -51,26 +52,6 @@ class FormMaterial extends StatelessWidget {
                       child: SignatureScreen(),
                       type: PageTransitionType.rightToLeftWithFade),
                 );
-                // print(context.read<PackageData>().selected);
-                // print(context.read<DatePicker>().selected);
-                // print(context.read<TextData>().order);
-                // print(context.read<TextData>().service);
-                // print(context.read<TextData>().name);
-                // print(context.read<TextData>().phone);
-                // print(context.read<TextData>().address);
-                print('ONT Lama = ${context.read<TextData>().oldONT}');
-                print('ONT Baru = ${context.read<TextData>().newONT}');
-                print('Dropcore = ${context.read<TextData>().dropcore} Meter');
-                print('Preconn50 = ${context.read<Counter>().preconn50} /pcs');
-                print('Preconn80 = ${context.read<Counter>().preconn80} /pcs');
-                print('RJ45 = ${context.read<Counter>().rj45} /pcs');
-                print('S-Clamp = ${context.read<Counter>().sClamp} /pcs');
-                print('Clamp Hook = ${context.read<Counter>().clampHook} /pcs');
-                print('Roset = ${context.read<Counter>().roset} /pcs');
-                print('SOC = ${context.read<Counter>().soc} /pcs');
-                print('Tray Cable = ${context.read<Counter>().trayCable} /pcs');
-                print('Patchcore = ${context.read<Counter>().patchCore} /pcs');
-                print('Cable UTP = ${context.read<Counter>().cableUTP} /pcs');
               },
             ),
           ],

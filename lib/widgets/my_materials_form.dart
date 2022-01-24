@@ -26,47 +26,43 @@ class MyMaterialsForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // final counter = context.read<CategoryData>();
-    return Consumer<CategoryData>(
-      builder: (context, categoryData, child) {
-        return Padding(
-          padding: const EdgeInsets.only(left: kPadding),
-          child: Row(
-            children: [
-              Text(
-                title ?? '',
-                style: kTextStyle16Bold,
-              ),
-              Spacer(),
-              TextButton(
-                onPressed: remove,
-                child: Icon(
-                  Icons.remove,
-                  color: kIcColour,
-                ),
-              ),
-              SizedBox(
-                width: 15,
-                child: AbsorbPointer(
-                  child: TextFormField(
-                    decoration: InputDecoration(border: InputBorder.none),
-                    controller: controller,
-                    onChanged: onChanged,
-                    style: kTextStyle14,
-                  ),
-                ),
-              ),
-              TextButton(
-                onPressed: add,
-                child: Icon(
-                  Icons.add,
-                  color: kIcColour,
-                ),
-              ),
-              Text('/ Pcs')
-            ],
+    return Padding(
+      padding: const EdgeInsets.only(left: kPadding),
+      child: Row(
+        children: [
+          Text(
+            title ?? '',
+            style: kTextStyle16Bold,
           ),
-        );
-      },
+          Spacer(),
+          TextButton(
+            onPressed: remove,
+            child: Icon(
+              Icons.remove,
+              color: kIcColour,
+            ),
+          ),
+          SizedBox(
+            width: 15,
+            child: AbsorbPointer(
+              child: TextFormField(
+                decoration: InputDecoration(border: InputBorder.none),
+                controller: controller,
+                onChanged: onChanged,
+                style: kTextStyle14,
+              ),
+            ),
+          ),
+          TextButton(
+            onPressed: add,
+            child: Icon(
+              Icons.add,
+              color: kIcColour,
+            ),
+          ),
+          Text('/ Pcs')
+        ],
+      ),
     );
   }
 }

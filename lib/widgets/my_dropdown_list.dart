@@ -52,10 +52,10 @@ class MyDropDownList extends StatelessWidget {
                 onChanged: (newValue) {
                   packageData.selected = newValue;
                 },
-                items: packageData.packages.map<DropdownMenuItem<String>>(
-                  (String value) {
-                    return DropdownMenuItem<String>(
-                      value: value.toString(),
+                items: packageData.packages.map(
+                  (value) {
+                    return DropdownMenuItem(
+                      value: value,
                       child: Text(value),
                     );
                   },

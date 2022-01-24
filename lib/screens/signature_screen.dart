@@ -1,9 +1,16 @@
 import 'dart:typed_data';
 
+import 'package:d_bam/models/counter.dart';
+import 'package:d_bam/models/datepicker.dart';
+import 'package:d_bam/models/package_data.dart';
+import 'package:d_bam/models/text_data.dart';
+import 'package:d_bam/models/val_key.dart';
+import 'package:d_bam/screens/home_screen.dart';
 import 'package:d_bam/widgets/my_button_rounded.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hand_signature/signature.dart';
+import 'package:provider/provider.dart';
 
 import '../constants.dart';
 
@@ -32,6 +39,13 @@ class _SignatureScreenState extends State<SignatureScreen> {
   bool isClicked = false;
 
   @override
+  void dispose() {
+    customerControl.dispose();
+    technicianControl.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBar(context),
@@ -56,7 +70,7 @@ class _SignatureScreenState extends State<SignatureScreen> {
               'Technician Signature',
               style: kTextStyle16Bold,
             ),
-             SizedBox(
+            SizedBox(
               height: kPadding,
             ),
             technicianSignature(),
@@ -65,10 +79,41 @@ class _SignatureScreenState extends State<SignatureScreen> {
             ),
             Spacer(),
             BottonRounded(
-                title: 'Submit',
-                onPressed: () {
-                  print(technicianControl.toImage());
-                }),
+              title: 'Submit',
+              onPressed: () async {
+                print(technicianControl.toImage());
+                print(context.read<PackageData>().selected);
+                print(context.read<DatePicker>().selected);
+                print(context.read<TextData>().order);
+                print(context.read<TextData>().service);
+                print(context.read<TextData>().name);
+                print(context.read<TextData>().phone);
+                print(context.read<TextData>().address);
+                print('ONT Lama = ${context.read<TextData>().oldONT}');
+                print('ONT Baru = ${context.read<TextData>().newONT}');
+                print('STB Lama = ${context.read<TextData>().oldSTB}');
+                print('STB Baru = ${context.read<TextData>().newSTB}');
+                print('SDWAN Lama = ${context.read<TextData>().oldSDWAN}');
+                print('SDWAN Baru = ${context.read<TextData>().newSDWAN}');
+                print('Dropcore = ${context.read<TextData>().dropcore} Meter');
+                print('Preconn50 = ${context.read<Counter>().preconn50} /pcs');
+                print('Preconn80 = ${context.read<Counter>().preconn80} /pcs');
+                print('RJ45 = ${context.read<Counter>().rj45} /pcs');
+                print('S-Clamp = ${context.read<Counter>().sClamp} /pcs');
+                print('Clamp Hook = ${context.read<Counter>().clampHook} /pcs');
+                print('Roset = ${context.read<Counter>().roset} /pcs');
+                print('SOC = ${context.read<Counter>().soc} /pcs');
+                print('Tray Cable = ${context.read<Counter>().trayCable} /pcs');
+                print('Patchcore = ${context.read<Counter>().patchCore} /pcs');
+                print('Cable UTP = ${context.read<Counter>().cableUTP} /pcs');
+
+                await Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomeScreen()),
+                  (Route<dynamic> route) => false,
+                );
+              },
+            ),
             // Align(
             //   alignment: Alignment.bottomRight,
             //   child: _buildScaledImageView(),
