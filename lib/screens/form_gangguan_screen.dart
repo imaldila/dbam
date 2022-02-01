@@ -33,7 +33,7 @@ class _FormGangguanState extends State<FormGangguan> {
 
   final ValKey valKey = ValKey();
 
-  final _formKeyGangguanScreen = GlobalKey<FormState>();
+  
 
   @override
   void initState() {
@@ -77,76 +77,72 @@ class _FormGangguanState extends State<FormGangguan> {
           horizontal: kHorPadding,
         ),
         children: [
-          Form(
-            key: _formKeyGangguanScreen,
-            autovalidateMode: AutovalidateMode.onUserInteraction,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                MyTextTitle(title: 'Package'),
-                MyDropDownList(
-                  formKey: valKey.listKey,
-                ),
-                MyTextTitle(title: 'Date'),
-                MyDateForm(
-                  formkey: valKey.dateKey,
-                ),
-                MyTextTitle(title: 'No Order'),
-                MyTextForm(
-                    formkey: valKey.orderKey,
-                    controller: orderController,
-                    textInputAction: TextInputAction.next,
-                    textCapitalization: TextCapitalization.characters,
-                    counterText: 'Ex: SC12345 / IN12345 / 1-1234',
-                    onChanged: myProvider.getOrder),
-                MyTextTitle(title: 'Service ID'),
-                MyTextForm(
-                    formkey: valKey.serviceKey,
-                    controller: serviceController,
-                    textInputAction: TextInputAction.next,
-                    keyboardType: TextInputType.number,
-                    counterText: 'Ex: 0221234 / 13110234 / 456789-8910',
-                    onChanged: myProvider.getService),
-                MyTextTitle(title: 'Customer Name'),
-                MyTextForm(
-                    formkey: valKey.nameKey,
-                    controller: nameController,
-                    textInputAction: TextInputAction.next,
-                    textCapitalization: TextCapitalization.words,
-                    onChanged: myProvider.getName),
-                MyTextTitle(title: 'Contact Phone'),
-                MyTextForm(
-                    formkey: valKey.phoneKey,
-                    controller: phoneController,
-                    textInputAction: TextInputAction.next,
-                    keyboardType: TextInputType.number,
-                    onChanged: myProvider.getPhone),
-                MyTextTitle(title: 'Address'),
-                MyAddressForm(
-                    formkey: valKey.addressKey,
-                    controller: addressController,
-                    onChanged: myProvider.getAddress),
-                const SizedBox(
-                  height: kPadding,
-                ),
-                BottonRounded(
-                  title: 'Next',
-                  onPressed: () {
-                    _sendDataToNextScreen(context);
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              MyTextTitle(title: 'Package'),
+              MyDropDownList(
+                formKey: valKey.listKey,
+              ),
+              MyTextTitle(title: 'Date'),
+              MyDateForm(
+                formkey: valKey.dateKey,
+              ),
+              MyTextTitle(title: 'No Order'),
+              MyTextForm(
+                  formkey: valKey.orderKey,
+                  controller: orderController,
+                  textInputAction: TextInputAction.next,
+                  textCapitalization: TextCapitalization.characters,
+                  counterText: 'Ex: SC12345 / IN12345 / 1-1234',
+                  onChanged: myProvider.getOrder),
+              MyTextTitle(title: 'Service ID'),
+              MyTextForm(
+                  formkey: valKey.serviceKey,
+                  controller: serviceController,
+                  textInputAction: TextInputAction.next,
+                  keyboardType: TextInputType.number,
+                  counterText: 'Ex: 0221234 / 13110234 / 456789-8910',
+                  onChanged: myProvider.getService),
+              MyTextTitle(title: 'Customer Name'),
+              MyTextForm(
+                  formkey: valKey.nameKey,
+                  controller: nameController,
+                  textInputAction: TextInputAction.next,
+                  textCapitalization: TextCapitalization.words,
+                  onChanged: myProvider.getName),
+              MyTextTitle(title: 'Contact Phone'),
+              MyTextForm(
+                  formkey: valKey.phoneKey,
+                  controller: phoneController,
+                  textInputAction: TextInputAction.next,
+                  keyboardType: TextInputType.number,
+                  onChanged: myProvider.getPhone),
+              MyTextTitle(title: 'Address'),
+              MyAddressForm(
+                  formkey: valKey.addressKey,
+                  controller: addressController,
+                  onChanged: myProvider.getAddress),
+              const SizedBox(
+                height: kPadding,
+              ),
+              BottonRounded(
+                title: 'Next',
+                onPressed: () {
+                  _sendDataToNextScreen(context);
 
-                    print(context.read<TextData>().gangguan);
-                    print(context.read<PackageData>().selected);
-                    print(context.read<DatePicker>().selected);
-                    print(context.read<TextData>().order);
-                    print(context.read<TextData>().service);
-                    print(context.read<TextData>().name);
-                    print(context.read<TextData>().phone);
-                    print(context.read<TextData>().address);
-                  },
-                ),
-              ],
-            ),
+                  print(context.read<TextData>().gangguan);
+                  print(context.read<PackageData>().selected);
+                  print(context.read<DatePicker>().selected);
+                  print(context.read<TextData>().order);
+                  print(context.read<TextData>().service);
+                  print(context.read<TextData>().name);
+                  print(context.read<TextData>().phone);
+                  print(context.read<TextData>().address);
+                },
+              ),
+            ],
           ),
         ],
       ),
