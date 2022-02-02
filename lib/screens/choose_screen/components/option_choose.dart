@@ -5,8 +5,8 @@ import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
 import '../../../constants.dart';
-import '../../form_gangguan_screen.dart';
-import '../../form_material_screen.dart';
+import '../../customer_screen/form_customer_screen.dart';
+import '../../material_screen/form_material_screen.dart';
 import 'choose_card.dart';
 
 class OptionChoose extends StatelessWidget {
@@ -48,7 +48,7 @@ class OptionChoose extends StatelessWidget {
     Navigator.push(
       context,
       PageTransition(
-          child: FormGangguan(), type: PageTransitionType.rightToLeft),
+          child: FormCustomer(), type: PageTransitionType.rightToLeft),
     );
 
     print(context.read<ChooseData>().chooseData.asMap());

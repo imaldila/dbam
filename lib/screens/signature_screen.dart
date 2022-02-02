@@ -4,7 +4,6 @@ import 'package:d_bam/models/counter.dart';
 import 'package:d_bam/models/datepicker.dart';
 import 'package:d_bam/models/package_data.dart';
 import 'package:d_bam/models/text_data.dart';
-import 'package:d_bam/models/val_key.dart';
 import 'package:d_bam/screens/home_screen.dart';
 import 'package:d_bam/widgets/my_button_rounded.dart';
 import 'package:flutter/material.dart';
@@ -254,6 +253,7 @@ class _SignatureScreenState extends State<SignatureScreen> {
     );
   }
 
+  // ignore: unused_element
   Widget _buildScaledImageView() => Container(
         width: 192.0,
         height: 96.0,

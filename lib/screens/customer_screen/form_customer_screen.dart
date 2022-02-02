@@ -4,11 +4,10 @@ import 'package:d_bam/models/package_data.dart';
 import 'package:d_bam/models/text_data.dart';
 
 import 'package:d_bam/models/val_key.dart';
-import 'package:d_bam/screens/form_material_screen.dart';
-import 'package:d_bam/widgets/my_adrdess_form.dart';
+import 'package:d_bam/screens/material_screen/form_material_screen.dart';
+
 import 'package:d_bam/widgets/my_button_rounded.dart';
-import 'package:d_bam/widgets/my_date_form.dart';
-import 'package:d_bam/widgets/my_dropdown_list.dart';
+
 import 'package:d_bam/widgets/my_text_form.dart';
 import 'package:d_bam/widgets/my_text_title.dart';
 import 'package:flutter/material.dart';
@@ -16,14 +15,18 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
-class FormGangguan extends StatefulWidget {
-  FormGangguan({Key? key}) : super(key: key);
+import 'components/my_adrdess_form.dart';
+import 'components/my_date_form.dart';
+import 'components/my_dropdown_list.dart';
+
+class FormCustomer extends StatefulWidget {
+  FormCustomer({Key? key}) : super(key: key);
 
   @override
-  _FormGangguanState createState() => _FormGangguanState();
+  _FormCustomerState createState() => _FormCustomerState();
 }
 
-class _FormGangguanState extends State<FormGangguan> {
+class _FormCustomerState extends State<FormCustomer> {
   final dateController = TextEditingController();
   final orderController = TextEditingController();
   final serviceController = TextEditingController();
@@ -33,16 +36,10 @@ class _FormGangguanState extends State<FormGangguan> {
 
   final ValKey valKey = ValKey();
 
-  
-
   @override
   void initState() {
     super.initState();
   }
-
-  // void closeListerner() {
-  //   context.read<DatePicker>().close
-  // }
 
   @override
   void dispose() {
@@ -52,15 +49,6 @@ class _FormGangguanState extends State<FormGangguan> {
     nameController.dispose();
     phoneController.dispose();
     addressController.dispose();
-
-    // ValKey.listKey.currentState!.dispose();
-    // ValKey.dateKey.currentState!.dispose();
-    // ValKey.orderKey.currentState!.dispose();
-    // ValKey.serviceKey.currentState!.dispose();
-    // ValKey.nameKey.currentState!.dispose();
-    // ValKey.phoneKey.currentState!.dispose();
-    // ValKey.addressKey.currentState!.dispose();
-
     super.dispose();
   }
 

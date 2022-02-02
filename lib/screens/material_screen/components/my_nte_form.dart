@@ -3,7 +3,7 @@ import 'package:d_bam/widgets/my_text_title.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../constants.dart';
+import '/../constants.dart';
 
 class MyNTEForm extends StatelessWidget {
   MyNTEForm(

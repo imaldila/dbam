@@ -2,7 +2,7 @@ import 'package:d_bam/models/category_data.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../constants.dart';
+import '../../../constants.dart';
 
 class MyCategoriesFilter extends StatelessWidget {
   const MyCategoriesFilter({
@@ -27,9 +27,6 @@ class MyCategoriesFilter extends StatelessWidget {
               label: Text(categoryData.categories[i].label),
               onSelected: (selected) {
                 categoryData.updateCategory(categoryData.categories[i]);
-                // setState(() {
-                //   categoryData.categories[i].isSelected = selected;
-                // });
               },
             ),
         ],

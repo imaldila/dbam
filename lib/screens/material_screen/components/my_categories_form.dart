@@ -1,12 +1,12 @@
 import 'package:d_bam/models/category_data.dart';
 import 'package:d_bam/models/counter.dart';
 import 'package:d_bam/models/text_data.dart';
-import 'package:d_bam/widgets/my_dropcore_form.dart';
-import 'package:d_bam/widgets/my_materials_form.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../constants.dart';
+import '/../constants.dart';
+import 'my_dropcore_form.dart';
+import 'my_materials_form.dart';
 import 'my_nte_form.dart';
 
 class MyCategoriesForm extends StatefulWidget {
@@ -29,22 +29,6 @@ class _MyCategoriesFormState extends State<MyCategoriesForm> {
   final preconn50Controller = TextEditingController();
   final preconn80Controller = TextEditingController();
 
-  // @override
-  // void initState() {
-  //   preconn50Controller.text = '${context.read<Counter>().preconn50}';
-  //   preconn80Controller.text = '${context.read<Counter>().preconn80}';
-  //   rj45Controller.text = '${context.read<Counter>().rj45}';
-  //   sClampController.text = '${context.read<Counter>().sClamp}';
-  //   clampHookController.text = '${context.read<Counter>().clampHook}';
-  //   rosetController.text = '${context.read<Counter>().roset}';
-  //   trayCableController.text = '${context.read<Counter>().trayCable}';
-  //   patchcoreController.text = '${context.read<Counter>().patchCore}';
-  //   cableUTPController.text = '${context.read<Counter>().cableUTP}';
-
-  //   super.initState();
-  // }
-
-  //TODO: Dispose all controller !..
   @override
   void dispose() {
     oldONTController.dispose();
@@ -54,16 +38,6 @@ class _MyCategoriesFormState extends State<MyCategoriesForm> {
     oldSDWANController.dispose();
     newSDWANController.dispose();
     dropcoreController.dispose();
-    // preconn50Controller.dispose();
-    // preconn80Controller.dispose();
-    // rj45Controller.dispose();
-    // sClampController.dispose();
-    // clampHookController.dispose();
-    // rosetController.dispose();
-    // socController.dispose();
-    // trayCableController.dispose();
-    // patchcoreController.dispose();
-    // cableUTPController.dispose();
 
     super.dispose();
   }
