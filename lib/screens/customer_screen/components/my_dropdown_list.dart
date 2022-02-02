@@ -5,9 +5,6 @@ import 'package:provider/provider.dart';
 
 import '../../../constants.dart';
 
-
-
-
 class MyDropDownList extends StatelessWidget {
   MyDropDownList({
     Key? key,
@@ -41,7 +38,7 @@ class MyDropDownList extends StatelessWidget {
               DropdownButtonFormField<String>(
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please enter some text';
+                    return 'Please choose a package';
                   }
                   return null;
                 },

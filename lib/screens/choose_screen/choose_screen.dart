@@ -22,7 +22,7 @@ class ChooseScreen extends StatelessWidget {
             const SizedBox(
               height: kPadding,
             ),
-            const OptionChoose(),
+            OptionChoose(),
           ],
         ),
       ),

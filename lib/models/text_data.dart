@@ -76,7 +76,7 @@ class TextData extends ChangeNotifier {
     return _dropcore;
   }
 
-  getOrder(String order) {
+  getOrder(String order)  {
     _order = order;
     notifyListeners();
   }

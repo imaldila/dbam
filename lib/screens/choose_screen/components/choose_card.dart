@@ -7,7 +7,8 @@ class ChooseCard extends StatelessWidget {
   const ChooseCard({
     Key? key,
     required this.svgPicture,
-    required this.label, required this.onTap,
+    required this.label,
+    required this.onTap,
   }) : super(key: key);
 
   final SvgPicture svgPicture;

@@ -1,4 +1,5 @@
 import 'package:d_bam/models/choose_data.dart';
+import 'package:d_bam/screens/signature_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:page_transition/page_transition.dart';
@@ -23,19 +24,21 @@ class OptionChoose extends StatelessWidget {
           children: List.generate(
             data.chooseCount,
             (index) {
-              final dataChoose = data.chooseData[index];
+              final dataChoose = data.chooseDatas[index];
               return Padding(
                 padding: EdgeInsets.all(kPadding),
                 child: ChooseCard(
-                    svgPicture: SvgPicture.asset(dataChoose.images),
-                    label: dataChoose.label,
-                    onTap: () {
-                      dataChoose.label == 'Pasang Baru'
-                          ? toPSB(context)
-                          : toGangguan(context);
+                  svgPicture: SvgPicture.asset(dataChoose.images),
+                  label: dataChoose.label,
+                  onTap: () {
+                    dataChoose.label == 'Pasang Baru'
+                        ? toPSB(context)
+                        : toGangguan(context);
 
-                      print(dataChoose.label);
-                    }),
+                    print(dataChoose.label);
+                  },
+                  
+                ),
               );
             },
           ),
@@ -45,21 +48,20 @@ class OptionChoose extends StatelessWidget {
   }
 
   void toGangguan(BuildContext context) {
+    
     Navigator.push(
       context,
       PageTransition(
           child: FormCustomer(), type: PageTransitionType.rightToLeft),
     );
-
-    print(context.read<ChooseData>().chooseData.asMap());
   }
 
   void toPSB(BuildContext context) {
     Navigator.push(
       context,
       PageTransition(
-          child: FormMaterial(), type: PageTransitionType.rightToLeft),
+          child: SignatureScreen(), type: PageTransitionType.rightToLeft),
     );
-    print(context.read<ChooseData>().chooseData.asMap().keys.toList());
+    print(context.read<ChooseData>().chooseDatas.asMap().keys.toList());
   }
 }

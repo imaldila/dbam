@@ -1,5 +1,9 @@
+import 'dart:io';
 import 'dart:typed_data';
+import 'dart:ui' as ui;
 
+import 'package:d_bam/api/pdf_api.dart';
+import 'package:d_bam/models/category_data.dart';
 import 'package:d_bam/models/counter.dart';
 import 'package:d_bam/models/datepicker.dart';
 import 'package:d_bam/models/package_data.dart';
@@ -9,7 +13,10 @@ import 'package:d_bam/widgets/my_button_rounded.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hand_signature/signature.dart';
+import 'package:open_file/open_file.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:pdf/widgets.dart' as pw;
 
 import '../constants.dart';
 
@@ -21,6 +28,9 @@ class SignatureScreen extends StatefulWidget {
 }
 
 class _SignatureScreenState extends State<SignatureScreen> {
+  final pdfAPI = PdfAPI();
+  final pdf = pw.Document();
+
   ValueNotifier<String?> svg = ValueNotifier<String?>(null);
   ValueNotifier<ByteData?> rawImageFit = ValueNotifier<ByteData?>(null);
 
@@ -80,6 +90,18 @@ class _SignatureScreenState extends State<SignatureScreen> {
             BottonRounded(
               title: 'Submit',
               onPressed: () async {
+                // await showDialog(
+                //   context: context,
+                //   builder: (context) => Center(
+                //     child: CircularProgressIndicator(
+                //       color: Colors.grey,
+                //       backgroundColor: Colors.red,
+                //     ),
+                //   ),
+                // );
+
+                // Navigator.pop(context);
+                onSubmit();
                 print(technicianControl.toImage());
                 print(context.read<PackageData>().selected);
                 print(context.read<DatePicker>().selected);
@@ -106,11 +128,11 @@ class _SignatureScreenState extends State<SignatureScreen> {
                 print('Patchcore = ${context.read<Counter>().patchCore} /pcs');
                 print('Cable UTP = ${context.read<Counter>().cableUTP} /pcs');
 
-                await Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(builder: (context) => HomeScreen()),
-                  (Route<dynamic> route) => false,
-                );
+                // await Navigator.pushAndRemoveUntil(
+                //   context,
+                //   MaterialPageRoute(builder: (context) => HomeScreen()),
+                //   (Route<dynamic> route) => false,
+                // );
               },
             ),
             // Align(
@@ -123,7 +145,44 @@ class _SignatureScreenState extends State<SignatureScreen> {
     );
   }
 
+  Future onSubmit() async {
+    if (technicianControl.isFilled == false ||
+        customerControl.isFilled == false) {
+      final snackBar = SnackBar(
+        content: const Text('Please Fill the Signature First!'),
+        action: SnackBarAction(
+          label: 'Ok',
+          onPressed: () {
+            // Some code to undo the change.
+          },
+        ),
+      );
+
+      // Find the ScaffoldMessenger in the widget tree
+      // and use it to show a SnackBar.
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    } else {
+      showDialog(
+        context: context,
+        builder: (context) => Center(
+          child: CircularProgressIndicator(),
+        ),
+      );
+      final imageCus =
+          await customerControl.toImage(format: ui.ImageByteFormat.png);
+      final imageSignCus = imageCus!.buffer.asUint8List();
+      final imageTech =
+          await technicianControl.toImage(format: ui.ImageByteFormat.png);
+      final imageSignTech = imageTech!.buffer.asUint8List();
+
+      await pdfAPI.getPDF(signCus: imageSignCus, signTech: imageSignTech);
+
+      Navigator.of(context).pop();
+    }
+  }
+
   AspectRatio customerSignature() {
+    print(customerControl.isFilled);
     Size size = MediaQuery.of(context).size;
     return AspectRatio(
       aspectRatio: 1.65,
@@ -169,6 +228,7 @@ class _SignatureScreenState extends State<SignatureScreen> {
                   onPressed: () async {
                     rawImageFit.value = await customerControl.toImage(
                         color: Colors.red, background: Colors.white);
+                    print(customerControl.isFilled);
                   },
                   icon: const Icon(Icons.check),
                   color: kIcColour,
@@ -189,6 +249,7 @@ class _SignatureScreenState extends State<SignatureScreen> {
   }
 
   AspectRatio technicianSignature() {
+    print(technicianControl.isFilled);
     Size size = MediaQuery.of(context).size;
     return AspectRatio(
       aspectRatio: 1.65,
@@ -234,6 +295,7 @@ class _SignatureScreenState extends State<SignatureScreen> {
                   onPressed: () async {
                     rawImageFit.value = await technicianControl.toImage(
                         color: Colors.red, background: Colors.white);
+                    print(technicianControl.isFilled);
                   },
                   icon: const Icon(Icons.check),
                   color: kIcColour,

@@ -24,7 +24,7 @@ class ChooseData extends ChangeNotifier {
     return _chooseData.length;
   }
 
-  UnmodifiableListView<Choose> get chooseData {
+  UnmodifiableListView<Choose> get chooseDatas {
     return UnmodifiableListView(_chooseData);
   }
 

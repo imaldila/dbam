@@ -70,12 +70,7 @@ class CategoryData extends ChangeNotifier {
 
   int get counter => _counter;
 
-  // set counter(final int? categories) {
-  //   _counter++;
-  //   notifyListeners();
-  // }
-
-  void increment() {
+   void increment() {
     _counter++;
     notifyListeners();
     for (int i = 0; i < categories.length; i++) {

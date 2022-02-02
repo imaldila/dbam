@@ -14,9 +14,6 @@ class FormMaterial extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Size size = MediaQuery.of(context).size;
-    // make Form for other Clips
-    print('REBUILT WIDGET');
     return Scaffold(
       backgroundColor: kBgColour,
       appBar: buildAppBar(context),
