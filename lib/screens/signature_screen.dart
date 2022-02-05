@@ -164,9 +164,11 @@ class _SignatureScreenState extends State<SignatureScreen> {
     } else {
       showDialog(
         context: context,
-        builder: (context) => Center(
-          child: CircularProgressIndicator(),
-        ),
+        builder: (BuildContext context) {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        },
       );
       final imageCus =
           await customerControl.toImage(format: ui.ImageByteFormat.png);
@@ -206,7 +208,7 @@ class _SignatureScreenState extends State<SignatureScreen> {
               child: HandSignaturePainterView(
                   control: customerControl,
                   type: SignatureDrawType.shape,
-                  color: Colors.red),
+                  color: Colors.blue.shade600),
             ),
           ),
           CustomPaint(
@@ -273,7 +275,7 @@ class _SignatureScreenState extends State<SignatureScreen> {
               child: HandSignaturePainterView(
                   control: technicianControl,
                   type: SignatureDrawType.shape,
-                  color: Colors.red),
+                  color: Colors.blue.shade600),
             ),
           ),
           CustomPaint(

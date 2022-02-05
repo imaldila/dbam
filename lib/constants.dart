@@ -38,17 +38,14 @@ final kTextStyle16Bold = GoogleFonts.poppins(
   ),
 );
 
-final kTextStyle14 = GoogleFonts.poppins( 
+final kTextStyle14 = GoogleFonts.poppins(
   textStyle: TextStyle(
-    fontSize: 14                                  ,
+    fontSize: 14,
     color: kDarkColour,
   ),
 );
 final kTextStyle14White = GoogleFonts.poppins(
-  textStyle: TextStyle(
-    fontSize: 14                                  ,
-    color: Colors.white
-  ),
+  textStyle: TextStyle(fontSize: 14, color: Colors.white),
 );
 
 final kTextStyle24 = GoogleFonts.poppins(
@@ -80,4 +77,3 @@ BoxDecoration kStyleBoxDecorationTapped = BoxDecoration(
   color: kBtnColour,
   borderRadius: BorderRadius.circular(16),
 );
-

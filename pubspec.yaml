@@ -38,6 +38,7 @@ dependencies:
   page_transition: ^2.0.4
   path_provider: ^2.0.8
   pdf: ^3.7.1
+  printing: ^5.7.2
   provider: ^6.0.1
   signature: ^5.0.0
 
