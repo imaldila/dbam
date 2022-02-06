@@ -18,7 +18,8 @@ class FormMaterial extends StatelessWidget {
       backgroundColor: kBgColour,
       appBar: buildAppBar(context),
       body: Padding(
-        padding: const EdgeInsets.all(kPadding),
+        padding: const EdgeInsets.fromLTRB(
+            kPadding, kPadding, kPadding, kVerPadding),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [

@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'dart:typed_data';
 import 'dart:ui' as ui;
 
@@ -13,8 +12,7 @@ import 'package:d_bam/widgets/my_button_rounded.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hand_signature/signature.dart';
-import 'package:open_file/open_file.dart';
-import 'package:path_provider/path_provider.dart';
+
 import 'package:provider/provider.dart';
 import 'package:pdf/widgets.dart' as pw;
 
@@ -59,7 +57,8 @@ class _SignatureScreenState extends State<SignatureScreen> {
     return Scaffold(
       appBar: buildAppBar(context),
       body: Padding(
-        padding: const EdgeInsets.all(kPadding),
+        padding: const EdgeInsets.fromLTRB(
+            kPadding, kPadding, kPadding, kVerPadding),
         child: Column(
           // mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -102,31 +101,31 @@ class _SignatureScreenState extends State<SignatureScreen> {
 
                 // Navigator.pop(context);
                 onSubmit();
-                print(technicianControl.toImage());
-                print(context.read<PackageData>().selected);
-                print(context.read<DatePicker>().selected);
-                print(context.read<TextData>().order);
-                print(context.read<TextData>().service);
-                print(context.read<TextData>().name);
-                print(context.read<TextData>().phone);
-                print(context.read<TextData>().address);
-                print('ONT Lama = ${context.read<TextData>().oldONT}');
-                print('ONT Baru = ${context.read<TextData>().newONT}');
-                print('STB Lama = ${context.read<TextData>().oldSTB}');
-                print('STB Baru = ${context.read<TextData>().newSTB}');
-                print('SDWAN Lama = ${context.read<TextData>().oldSDWAN}');
-                print('SDWAN Baru = ${context.read<TextData>().newSDWAN}');
-                print('Dropcore = ${context.read<TextData>().dropcore} Meter');
-                print('Preconn50 = ${context.read<Counter>().preconn50} /pcs');
-                print('Preconn80 = ${context.read<Counter>().preconn80} /pcs');
-                print('RJ45 = ${context.read<Counter>().rj45} /pcs');
-                print('S-Clamp = ${context.read<Counter>().sClamp} /pcs');
-                print('Clamp Hook = ${context.read<Counter>().clampHook} /pcs');
-                print('Roset = ${context.read<Counter>().roset} /pcs');
-                print('SOC = ${context.read<Counter>().soc} /pcs');
-                print('Tray Cable = ${context.read<Counter>().trayCable} /pcs');
-                print('Patchcore = ${context.read<Counter>().patchCore} /pcs');
-                print('Cable UTP = ${context.read<Counter>().cableUTP} /pcs');
+                // print(technicianControl.toImage());
+                // print(context.read<PackageData>().selected);
+                // print(context.read<DatePicker>().selected);
+                // print(context.read<TextData>().order);
+                // print(context.read<TextData>().service);
+                // print(context.read<TextData>().name);
+                // print(context.read<TextData>().phone);
+                // print(context.read<TextData>().address);
+                // print('ONT Lama = ${context.read<TextData>().oldONT}');
+                // print('ONT Baru = ${context.read<TextData>().newONT}');
+                // print('STB Lama = ${context.read<TextData>().oldSTB}');
+                // print('STB Baru = ${context.read<TextData>().newSTB}');
+                // print('SDWAN Lama = ${context.read<TextData>().oldSDWAN}');
+                // print('SDWAN Baru = ${context.read<TextData>().newSDWAN}');
+                // print('Dropcore = ${context.read<TextData>().dropcore} Meter');
+                // print('Preconn50 = ${context.read<Counter>().preconn50} /pcs');
+                // print('Preconn80 = ${context.read<Counter>().preconn80} /pcs');
+                // print('RJ45 = ${context.read<Counter>().rj45} /pcs');
+                // print('S-Clamp = ${context.read<Counter>().sClamp} /pcs');
+                // print('Clamp Hook = ${context.read<Counter>().clampHook} /pcs');
+                // print('Roset = ${context.read<Counter>().roset} /pcs');
+                // print('SOC = ${context.read<Counter>().soc} /pcs');
+                // print('Tray Cable = ${context.read<Counter>().trayCable} /pcs');
+                // print('Patchcore = ${context.read<Counter>().patchCore} /pcs');
+                // print('Cable UTP = ${context.read<Counter>().cableUTP} /pcs');
 
                 // await Navigator.pushAndRemoveUntil(
                 //   context,

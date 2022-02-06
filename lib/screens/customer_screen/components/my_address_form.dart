@@ -33,15 +33,16 @@ class MyAddressForm extends StatelessWidget {
                 elevation: 8,
                 borderRadius: BorderRadius.circular(16),
                 shadowColor: Colors.white,
+                color: Colors.white,
                 child: Container(
-                  height: size.height / 7.3,
+                  height: size.height / 6.8,
                   decoration: kStyleBoxDecoration,
                 ),
               ),
               TextFormField(
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please enter an address!';
+                    return 'Please enter an Address!';
                   }
                   return null;
                 },

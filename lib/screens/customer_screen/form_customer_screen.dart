@@ -15,7 +15,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
-import 'components/my_adrdess_form.dart';
+import 'components/my_address_form.dart';
 import 'components/my_date_form.dart';
 import 'components/my_dropdown_list.dart';
 
@@ -45,7 +45,6 @@ class _FormCustomerState extends State<FormCustomer> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
   }
 
