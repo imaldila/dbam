@@ -1,7 +1,13 @@
 import 'package:d_bam/constants.dart';
-import 'package:d_bam/screens/choose_screen.dart';
+import 'package:d_bam/models/category_data.dart';
+import 'package:d_bam/models/choose_data.dart';
+import 'package:d_bam/models/counter.dart';
+import 'package:d_bam/models/datepicker.dart';
+import 'package:d_bam/models/package_data.dart';
+import 'package:d_bam/models/text_data.dart';
 import 'package:d_bam/screens/home_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,18 +18,36 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: kElevatedBtnStyle
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<PackageData>(create: (context) {
+          return PackageData();
+        }),
+        ChangeNotifierProvider<DatePicker>(create: (context) {
+          return DatePicker();
+        }),
+        ChangeNotifierProvider<CategoryData>(create: (context) {
+          return CategoryData();
+        }),
+        ChangeNotifierProvider<TextData>(create: (context) {
+          return TextData();
+        }),
+        ChangeNotifierProvider<Counter>(create: (context) {
+          return Counter();
+        }),
+        ChangeNotifierProvider<ChooseData>(
+          create: (context) => ChooseData(),
+        )
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          elevatedButtonTheme: ElevatedButtonThemeData(
+            style: kElevatedBtnStyle,
+          ),
         ),
+        home: HomeScreen(),
       ),
-      home: HomeScreen(),
-      routes: {
-        HomeScreen.id: (context) => HomeScreen(),
-        ChooseScreen.id: (context) => ChooseScreen()
-      }
     );
   }
 }

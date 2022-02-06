@@ -1,16 +1,13 @@
-import 'dart:ui';
-
-import 'package:d_bam/screens/choose_screen.dart';
-import 'package:d_bam/widgets/button_rounded.dart';
+import 'package:d_bam/screens/choose_screen/choose_screen.dart';
+import 'package:d_bam/widgets/my_button_rounded.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:page_transition/page_transition.dart';
 
 import '../constants.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
-
-  static const String id = 'Home Screen';
 
   @override
   Widget build(BuildContext context) {
@@ -30,11 +27,15 @@ class HomeScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   SvgPicture.asset(
-                    ('assets/icons/ic_menu.svg'),
+                    'assets/icons/ic_menu.svg',
                   ),
                   CircleAvatar(
-                    backgroundColor: Colors.white,
-                    child: Icon(Icons.person),
+                    backgroundColor: kBgColour,
+                    child: Image.asset(
+                      'assets/images/logo1.png',
+                      fit: BoxFit.cover,
+                    ),
+                    radius: 24,
                   ),
                 ],
               ),
@@ -46,7 +47,7 @@ class HomeScreen extends StatelessWidget {
                 width: 300,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 78,
             ),
             Text(
@@ -58,7 +59,12 @@ class HomeScreen extends StatelessWidget {
             BottonRounded(
               title: 'Create BA',
               onPressed: () {
-                Navigator.pushNamed(context, ChooseScreen.id);
+                Navigator.push(
+                  context,
+                  PageTransition(
+                      child: ChooseScreen(),
+                      type: PageTransitionType.rightToLeft),
+                );
               },
             ),
           ],
