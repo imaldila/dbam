@@ -23,7 +23,7 @@ class CustomerLabel extends pw.StatelessWidget {
           width: kPadding / 2,
         ),
         pw.Container(
-          width: 110,
+          width: 140,
           child: pw.Text(
             value,
           ),

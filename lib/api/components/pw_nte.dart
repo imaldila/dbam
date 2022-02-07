@@ -1,16 +1,15 @@
+import 'package:d_bam/constants.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:printing/printing.dart';
 
 class NTE extends pw.StatelessWidget {
-  final String oldNTE, newNTE, labelNTE, oldLabel, newLabel;
+  final String oldNTE, newNTE, labelNTE;
 
   final myFontBold = PdfGoogleFonts.poppinsBold();
   NTE({
     required this.oldNTE,
     required this.newNTE,
     required this.labelNTE,
-    required this.oldLabel,
-    required this.newLabel,
   });
   @override
   pw.Widget build(pw.Context context) {
@@ -28,53 +27,35 @@ class NTE extends pw.StatelessWidget {
               ' : ',
             ),
             pw.SizedBox(
-              width: 16,
+              width: kPadding,
             ),
-            pw.Column(
-              crossAxisAlignment: pw.CrossAxisAlignment.start,
-              mainAxisAlignment: pw.MainAxisAlignment.center,
-              children: [
-                pw.Text(
-                  oldLabel,
-                  style: pw.TextStyle(
-                    fontSize: 10,
-                    fontWeight: pw.FontWeight.bold,
-                  ),
+            pw.Text('OLD |'),
+            pw.SizedBox(width: kPadding / 4),
+            pw.Container(
+              width: 100,
+              child: pw.Center(
+                child: pw.Text(
+                  oldNTE,
                 ),
-                pw.SizedBox(height: 8),
-                pw.Container(
-                  width: 120,
-                  child: pw.Text(
-                    oldNTE,
-                  ),
-                ),
-              ],
+              ),
             ),
-            pw.SizedBox(width: 16),
+            pw.SizedBox(width: kPadding),
             pw.Icon(
-              pw.IconData(0xeac9),
+              pw.IconData(0xe5df),
             ),
-            pw.SizedBox(width: 16),
-            pw.Column(
-              crossAxisAlignment: pw.CrossAxisAlignment.start,
-              mainAxisAlignment: pw.MainAxisAlignment.center,
-              children: [
-                pw.Text(
-                  newLabel,
-                  style: pw.TextStyle(
-                      fontSize: 10, fontWeight: pw.FontWeight.bold),
+            pw.SizedBox(width: kPadding),
+            pw.Text('NEW |'),
+            pw.SizedBox(width: kPadding / 4),
+            pw.Container(
+              width: 100,
+              child: pw.Center(
+                child: pw.Text(
+                  newNTE,
                 ),
-                pw.SizedBox(height: 8),
-                pw.Container(
-                  width: 120,
-                  child: pw.Text(
-                    newNTE,
-                  ),
-                ),
-              ],
+              ),
             ),
           ],
-        )
+        ),
       ],
     );
   }

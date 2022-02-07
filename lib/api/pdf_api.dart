@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'dart:typed_data';
 import 'package:d_bam/api/components/pw_address_label.dart';
+import 'package:d_bam/api/components/pw_datek.dart';
 import 'package:d_bam/api/components/pw_material.dart';
 import 'package:d_bam/constants.dart';
 import 'package:flutter/cupertino.dart';
@@ -49,16 +50,23 @@ class PdfAPI {
             children: [
               headerPDF(myImageTA, myImageTelkom, myFontBold),
               pw.Divider(),
-              pw.SizedBox(height: kPadding),
+              pw.SizedBox(height: kPadding / 1.5),
               pw.Text(
                 'Customer Detail:',
                 style: pw.TextStyle(font: myFontBold, fontSize: 14),
               ),
               pw.SizedBox(height: kPadding / 3),
               customerPDF(),
-              pw.SizedBox(height: kPadding),
+              pw.SizedBox(height: kPadding / 1.5),
               pw.Text(
-                'Maerial Detail:',
+                'Datek:',
+                style: pw.TextStyle(font: myFontBold, fontSize: 14),
+              ),
+              pw.SizedBox(height: kPadding / 3),
+              datekPDF(myFontBold),
+              pw.SizedBox(height: kPadding / 1.5),
+              pw.Text(
+                'Material Detail:',
                 style: pw.TextStyle(font: myFontBold, fontSize: 14),
               ),
               pw.SizedBox(height: kPadding / 3),
@@ -156,21 +164,32 @@ class PdfAPI {
     );
   }
 
+  datekPDF(pw.Font myFontBold) {
+    return pw.Row(
+      
+      children: [
+        PWDatek(font: myFontBold, label: 'STO :', value: 'TRG'),
+        pw.SizedBox(width: kPadding),
+        PWDatek(font: myFontBold, label: 'ODC :', value: 'FBA'),
+        pw.SizedBox(width: kPadding),
+        PWDatek(font: myFontBold, label: 'ODP :', value: '18'),
+        pw.SizedBox(width: kPadding),
+        PWDatek(font: myFontBold, label: 'Port : ', value: '2'),
+      ],
+    );
+  }
+
   ntePDF() {
     return pw.Column(
       children: [
         NTE(
           labelNTE: 'SN ONT / Mac Address',
-          oldLabel: 'Old ONT',
-          newLabel: 'New ONT',
           newNTE: '4781273812',
           oldNTE: '127837217321',
         ),
         pw.SizedBox(height: 8),
         NTE(
           labelNTE: 'SN STB / Mac Address',
-          oldLabel: 'Old STB',
-          newLabel: 'New STB',
           newNTE: '-',
           oldNTE: '-',
         ),
@@ -236,27 +255,32 @@ class PdfAPI {
         pw.Text('Disclaimer:', style: pw.TextStyle(font: myFontItalic)),
         pw.Text(
           '1. Perangkat (ONT/Modem/STB) yang dipasang di rumah pelanggan adalah MILIK TELKOM yang dipinjamkan selama menjadi pelanggan TELKOM. Modem yang tidak dipakai karena Migrasi ke Fiber ditarik kembali.',
-          style: pw.TextStyle(fontSize: 8, font: myFontItalic), textAlign: pw.TextAlign.justify,
+          style: pw.TextStyle(fontSize: 8, font: myFontItalic),
+          textAlign: pw.TextAlign.justify,
         ),
         pw.SizedBox(height: kPadding / 3),
         pw.Text(
           '2. Telkom dapat mengambil Perangkat bila tidak ada penggunaan selama 3 bulan berturut-turut.',
-          style: pw.TextStyle(fontSize: 8, font: myFontItalic), textAlign: pw.TextAlign.justify,
+          style: pw.TextStyle(fontSize: 8, font: myFontItalic),
+          textAlign: pw.TextAlign.justify,
         ),
         pw.SizedBox(height: kPadding / 3),
         pw.Text(
           '3. Untuk progress pemilihan dan monitoring diharapkan power Perangkat selalu dalam kondisi hidup(ON)',
-          style: pw.TextStyle(fontSize: 8, font: myFontItalic), textAlign: pw.TextAlign.justify,
+          style: pw.TextStyle(fontSize: 8, font: myFontItalic),
+          textAlign: pw.TextAlign.justify,
         ),
         pw.SizedBox(height: kPadding / 3),
         pw.Text(
           '4. Disarankan untuk segera merubah password yang ada untuk menjaga agar tidak dipergunakan oleh pihak-pihak yang tidak dikehendaki.',
-          style: pw.TextStyle(fontSize: 8, font: myFontItalic), textAlign: pw.TextAlign.justify,
+          style: pw.TextStyle(fontSize: 8, font: myFontItalic),
+          textAlign: pw.TextAlign.justify,
         ),
         pw.SizedBox(height: kPadding / 3),
         pw.Text(
-          '5. DPelanggan sudah mendapatkan penjelasan dari sales/setter atau menerima buku petunjuk menggunakan modem internet yang telah dipasang.',
-          style: pw.TextStyle(fontSize: 8, font: myFontItalic), textAlign: pw.TextAlign.justify,
+          '5. Pelanggan sudah mendapatkan penjelasan dari sales/setter atau menerima buku petunjuk menggunakan modem internet yang telah dipasang.',
+          style: pw.TextStyle(fontSize: 8, font: myFontItalic),
+          textAlign: pw.TextAlign.justify,
         ),
         pw.SizedBox(height: kPadding / 3),
       ],
@@ -268,13 +292,13 @@ class PdfAPI {
       mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
       children: [
         PWSignature(
-          dateLabel: '',
+          dateLabel: ' ',
           labelName: 'Customer',
           signature: signTech.buffer.asUint8List(),
           name: 'Customer Name',
         ),
         PWSignature(
-          dateLabel: '',
+          dateLabel: '02/02/2022',
           labelName: 'Technician',
           signature: signCus.buffer.asUint8List(),
           name: 'Technician Name',
