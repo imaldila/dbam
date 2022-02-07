@@ -21,10 +21,17 @@ import 'components/pw_signature.dart';
 class PdfAPI {
   final pdf = pw.Document();
 
-  getPDF({
-    required Uint8List signCus,
-    required Uint8List signTech,
-  }) async {
+  getPDF(
+      {required Uint8List signCus,
+      required Uint8List signTech,
+      required String date,
+      typeOS,
+      package,
+      noOrder,
+      serviceID,
+      contactPhone,
+      customerName,
+      address}) async {
     var dataImageTA = await rootBundle.load('assets/images/logo_ta.png');
     var myImageTA = dataImageTA.buffer.asUint8List();
 
@@ -56,7 +63,7 @@ class PdfAPI {
                 style: pw.TextStyle(font: myFontBold, fontSize: 14),
               ),
               pw.SizedBox(height: kPadding / 3),
-              customerPDF(),
+              customerPDF(date, package),
               pw.SizedBox(height: kPadding / 1.5),
               pw.Text(
                 'Datek:',
@@ -127,13 +134,13 @@ class PdfAPI {
     );
   }
 
-  customerPDF() {
+  customerPDF(String date, package) {
     return pw.Column(
       children: [
         pw.Row(
           mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
           children: [
-            CustomerLabel(label: 'Date', value: '2/2/2022'),
+            CustomerLabel(label: 'Date', value: date),
             CustomerLabel(label: 'Type of Service', value: 'Gangguan'),
           ],
         ),
@@ -141,7 +148,7 @@ class PdfAPI {
         pw.Row(
           mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
           children: [
-            CustomerLabel(label: 'Package', value: 'ASTINET'),
+            CustomerLabel(label: 'Package', value: package),
             CustomerLabel(label: 'No Order', value: 'IN123454567'),
           ],
         ),

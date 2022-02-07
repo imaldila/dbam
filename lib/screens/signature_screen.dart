@@ -3,6 +3,7 @@ import 'dart:ui' as ui;
 
 import 'package:d_bam/api/pdf_api.dart';
 import 'package:d_bam/models/category_data.dart';
+import 'package:d_bam/models/choose_data.dart';
 import 'package:d_bam/models/counter.dart';
 import 'package:d_bam/models/datepicker.dart';
 import 'package:d_bam/models/package_data.dart';
@@ -176,7 +177,27 @@ class _SignatureScreenState extends State<SignatureScreen> {
           await technicianControl.toImage(format: ui.ImageByteFormat.png);
       final imageSignTech = imageTech!.buffer.asUint8List();
 
-      await pdfAPI.getPDF(signCus: imageSignCus, signTech: imageSignTech);
+      final datePDF = context.read<DatePicker>().selected.toString();
+      final typeOSPDF = context.read<ChooseData>().selected;
+      final packagePDF = context.read<PackageData>().selected;
+      final orderPDF = context.read<TextData>().order;
+      final servicePDF = context.read<TextData>().service;
+      final namePDF = context.read<TextData>().name;
+      final phonePDF = context.read<TextData>().phone;
+      final addressPDF = context.read<TextData>().address;
+
+      await pdfAPI.getPDF(
+        signCus: imageSignCus,
+        signTech: imageSignTech,
+        date: datePDF,
+        typeOS: typeOSPDF,
+        package: packagePDF,
+        noOrder: orderPDF,
+        serviceID: servicePDF,
+        contactPhone: phonePDF,
+        customerName: namePDF,
+        address: addressPDF,
+      );
 
       Navigator.of(context).pop();
     }
