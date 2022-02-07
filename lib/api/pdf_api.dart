@@ -166,7 +166,6 @@ class PdfAPI {
 
   datekPDF(pw.Font myFontBold) {
     return pw.Row(
-      
       children: [
         PWDatek(font: myFontBold, label: 'STO :', value: 'TRG'),
         pw.SizedBox(width: kPadding),
@@ -187,13 +186,13 @@ class PdfAPI {
           newNTE: '4781273812',
           oldNTE: '127837217321',
         ),
-        pw.SizedBox(height: 8),
+
         NTE(
           labelNTE: 'SN STB / Mac Address',
           newNTE: '-',
           oldNTE: '-',
         ),
-        pw.SizedBox(height: 8),
+        pw.SizedBox(height: kPadding / 2),
         // NTE(
         //   labelNTE: 'SN SDWAN / Mac Address',
         //   oldLabel: 'Old SDWAN',
