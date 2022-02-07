@@ -32,6 +32,7 @@ class NTE extends pw.StatelessWidget {
             ),
             pw.Column(
               crossAxisAlignment: pw.CrossAxisAlignment.start,
+              mainAxisAlignment: pw.MainAxisAlignment.center,
               children: [
                 pw.Text(
                   oldLabel,
@@ -56,6 +57,7 @@ class NTE extends pw.StatelessWidget {
             pw.SizedBox(width: 16),
             pw.Column(
               crossAxisAlignment: pw.CrossAxisAlignment.start,
+              mainAxisAlignment: pw.MainAxisAlignment.center,
               children: [
                 pw.Text(
                   newLabel,

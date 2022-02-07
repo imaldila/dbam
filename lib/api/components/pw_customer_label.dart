@@ -11,7 +11,7 @@ class CustomerLabel extends pw.StatelessWidget {
     return pw.Row(
       children: [
         pw.Container(
-          width: 140,
+          width: 110,
           child: pw.Text(
             label,
           ),

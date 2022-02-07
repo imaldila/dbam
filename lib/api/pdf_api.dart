@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'dart:typed_data';
 import 'package:d_bam/api/components/pw_address_label.dart';
+import 'package:d_bam/api/components/pw_material.dart';
 import 'package:d_bam/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:open_file/open_file.dart';
@@ -32,6 +33,7 @@ class PdfAPI {
 
     final myFontBold = await PdfGoogleFonts.poppinsBold();
     final myFont = await PdfGoogleFonts.poppinsRegular();
+    final myFontItalic = await PdfGoogleFonts.poppinsItalic();
 
     pdf.addPage(
       pw.Page(
@@ -50,19 +52,21 @@ class PdfAPI {
               pw.SizedBox(height: kPadding),
               pw.Text(
                 'Customer Detail:',
-                style: pw.TextStyle(font: myFontBold),
+                style: pw.TextStyle(font: myFontBold, fontSize: 14),
               ),
               pw.SizedBox(height: kPadding / 3),
               customerPDF(),
               pw.SizedBox(height: kPadding),
               pw.Text(
                 'Maerial Detail:',
-                style: pw.TextStyle(font: myFontBold),
+                style: pw.TextStyle(font: myFontBold, fontSize: 14),
               ),
               pw.SizedBox(height: kPadding / 3),
               ntePDF(),
+              pw.SizedBox(height: kPadding / 2),
+              materialPDF(),
               pw.SizedBox(height: kPadding),
-              // materialPDF(),
+              disclaimerPDF(myFontItalic),
               pw.Spacer(),
               signaturePDF(signCus, signTech),
             ],
@@ -102,7 +106,7 @@ class PdfAPI {
         ),
         pw.Container(
           child: pw.Text('Berita Acara Digital',
-              style: pw.TextStyle(font: myFontBold)),
+              style: pw.TextStyle(font: myFontBold, fontSize: 16)),
         ),
         pw.Container(
           width: 60,
@@ -130,14 +134,14 @@ class PdfAPI {
           mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
           children: [
             CustomerLabel(label: 'Package', value: 'ASTINET'),
-            CustomerLabel(label: 'No Order', value: 'IN12345'),
+            CustomerLabel(label: 'No Order', value: 'IN123454567'),
           ],
         ),
         pw.SizedBox(height: kPadding / 2),
         pw.Row(
           mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
           children: [
-            CustomerLabel(label: 'Service ID', value: '4856421-484514'),
+            CustomerLabel(label: 'Service ID', value: '4856421-484514a12312'),
             CustomerLabel(label: 'Contact Phone', value: '081320244664'),
           ],
         ),
@@ -182,7 +186,82 @@ class PdfAPI {
     );
   }
 
-  materialPDF() {}
+  materialPDF() {
+    return pw.Column(
+      children: [
+        pw.Row(
+          mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+          children: [
+            PWMaterial(title: 'Dropcore', value: '50', unit: 'Meter'),
+            PWMaterial(title: 'Precon 50', value: '1', unit: 'Pcs'),
+          ],
+        ),
+        pw.Row(
+          mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+          children: [
+            PWMaterial(title: 'Precon 80', value: '1', unit: 'Pcs'),
+            PWMaterial(title: 'RJ 45', value: '1', unit: 'Pcs'),
+          ],
+        ),
+        pw.Row(
+          mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+          children: [
+            PWMaterial(title: 'S-Clamp', value: '1', unit: 'Pcs'),
+            PWMaterial(title: 'Clamp Hook', value: '1', unit: 'Pcs'),
+          ],
+        ),
+        pw.Row(
+          mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+          children: [
+            PWMaterial(title: 'Roset', value: '1', unit: 'Pcs'),
+            PWMaterial(title: 'SOC', value: '3', unit: 'Pcs'),
+          ],
+        ),
+        pw.Row(
+          mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+          children: [
+            PWMaterial(title: 'Tray Cable', value: '10', unit: 'Pcs'),
+            PWMaterial(title: 'Patchcore', value: '1', unit: 'Pcs'),
+          ],
+        ),
+        PWMaterial(title: 'Cable UTP', value: '1', unit: 'Pcs'),
+      ],
+    );
+  }
+
+  disclaimerPDF(pw.Font myFontItalic) {
+    return pw.Column(
+      crossAxisAlignment: pw.CrossAxisAlignment.start,
+      children: [
+        pw.Text('Disclaimer:', style: pw.TextStyle(font: myFontItalic)),
+        pw.Text(
+          '1. Perangkat (ONT/Modem/STB) yang dipasang di rumah pelanggan adalah MILIK TELKOM yang dipinjamkan selama menjadi pelanggan TELKOM. Modem yang tidak dipakai karena Migrasi ke Fiber ditarik kembali.',
+          style: pw.TextStyle(fontSize: 8, font: myFontItalic), textAlign: pw.TextAlign.justify,
+        ),
+        pw.SizedBox(height: kPadding / 3),
+        pw.Text(
+          '2. Telkom dapat mengambil Perangkat bila tidak ada penggunaan selama 3 bulan berturut-turut.',
+          style: pw.TextStyle(fontSize: 8, font: myFontItalic), textAlign: pw.TextAlign.justify,
+        ),
+        pw.SizedBox(height: kPadding / 3),
+        pw.Text(
+          '3. Untuk progress pemilihan dan monitoring diharapkan power Perangkat selalu dalam kondisi hidup(ON)',
+          style: pw.TextStyle(fontSize: 8, font: myFontItalic), textAlign: pw.TextAlign.justify,
+        ),
+        pw.SizedBox(height: kPadding / 3),
+        pw.Text(
+          '4. Disarankan untuk segera merubah password yang ada untuk menjaga agar tidak dipergunakan oleh pihak-pihak yang tidak dikehendaki.',
+          style: pw.TextStyle(fontSize: 8, font: myFontItalic), textAlign: pw.TextAlign.justify,
+        ),
+        pw.SizedBox(height: kPadding / 3),
+        pw.Text(
+          '5. DPelanggan sudah mendapatkan penjelasan dari sales/setter atau menerima buku petunjuk menggunakan modem internet yang telah dipasang.',
+          style: pw.TextStyle(fontSize: 8, font: myFontItalic), textAlign: pw.TextAlign.justify,
+        ),
+        pw.SizedBox(height: kPadding / 3),
+      ],
+    );
+  }
 
   signaturePDF(Uint8List signTech, signCus) {
     return pw.Row(
