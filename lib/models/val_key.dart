@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 class ValKey {
-  static final listKey = GlobalKey<FormState>();
-  static final dateKey = GlobalKey<FormState>();
-  static final orderKey = GlobalKey<FormState>();
-  static final serviceKey = GlobalKey<FormState>();
-  static final nameKey = GlobalKey<FormState>();
-  static final phoneKey = GlobalKey<FormState>();
-  static final addressKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> listKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> dateKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> orderKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> serviceKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> nameKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> phoneKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> addressKey = GlobalKey<FormState>();
 }

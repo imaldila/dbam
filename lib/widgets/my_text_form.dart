@@ -13,13 +13,13 @@ class MyTextForm extends StatelessWidget {
       this.counterText,
       this.textInputAction,
       this.keyboardType,
-      this.textCapitalization = TextCapitalization.none})
+      this.textCapitalization = TextCapitalization.none, this.validator})
       : super(key: key);
 
   final Function(String)? onChanged;
   final TextEditingController? controller;
   final GlobalKey? formkey;
-  final String? counterText;
+  final String? counterText, validator;
   final TextInputAction? textInputAction;
   final TextInputType? keyboardType;
   final TextCapitalization? textCapitalization;
@@ -47,7 +47,7 @@ class MyTextForm extends StatelessWidget {
               TextFormField(
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please enter some text';
+                    return validator;
                   }
                   return null;
                 },

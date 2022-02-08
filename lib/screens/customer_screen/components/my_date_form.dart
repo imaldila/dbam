@@ -2,7 +2,7 @@ import 'package:d_bam/models/datepicker.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../constants.dart';
+import '../../../constants.dart';
 
 class MyDateForm extends StatelessWidget {
   MyDateForm({Key? key, this.controller, this.formkey}) : super(key: key);
@@ -38,7 +38,7 @@ class MyDateForm extends StatelessWidget {
                   child: TextFormField(
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Please enter some text';
+                        return 'Please select a date!';
                       }
                       return null;
                     },

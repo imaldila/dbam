@@ -1,6 +1,4 @@
-import 'dart:ui';
-
-import 'package:d_bam/screens/choose_screen.dart';
+import 'package:d_bam/screens/choose_screen/choose_screen.dart';
 import 'package:d_bam/widgets/my_button_rounded.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -10,8 +8,6 @@ import '../constants.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
-
-  static const String id = 'Home Screen';
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +47,7 @@ class HomeScreen extends StatelessWidget {
                 width: 300,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 78,
             ),
             Text(

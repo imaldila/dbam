@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
-import '../constants.dart';
+import '../../../constants.dart';
 
 class MyDropDownList extends StatelessWidget {
   MyDropDownList({
@@ -38,7 +38,7 @@ class MyDropDownList extends StatelessWidget {
               DropdownButtonFormField<String>(
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please enter some text';
+                    return 'Please choose a package';
                   }
                   return null;
                 },
@@ -52,10 +52,10 @@ class MyDropDownList extends StatelessWidget {
                 onChanged: (newValue) {
                   packageData.selected = newValue;
                 },
-                items: packageData.packages.map<DropdownMenuItem<String>>(
-                  (String value) {
-                    return DropdownMenuItem<String>(
-                      value: value.toString(),
+                items: packageData.packages.map(
+                  (value) {
+                    return DropdownMenuItem(
+                      value: value,
                       child: Text(value),
                     );
                   },
@@ -73,16 +73,3 @@ class MyDropDownList extends StatelessWidget {
     );
   }
 }
-
-              // items: getPackages.map((Package pack) {
-              //   return DropdownMenuItem(
-              //     child: Text(pack.name.toString()),
-              //     value: pack,
-              //   );
-              // }).toList(),
-              // onChanged: (value) {
-              //   // setState(() {
-              //   //   valueDrop = value.toString();
-              //   // });
-              //   print('');
-              // },

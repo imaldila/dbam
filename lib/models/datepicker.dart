@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -41,5 +40,11 @@ class DatePicker extends ChangeNotifier {
   set selected(DateTime? datePicker) {
     _selectedDate = datePicker;
     notifyListeners();
+  }
+
+  @override
+  void dispose() {
+    dateController.clear();
+    super.dispose();
   }
 }
