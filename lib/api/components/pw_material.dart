@@ -19,9 +19,12 @@ class PWMaterial extends pw.StatelessWidget {
           width: 110,
           child: pw.Text(
             title,
+            style: pw.TextStyle(
+              fontSize: 10,
+            ),
           ),
         ),
-        pw.Text( 
+        pw.Text(
           ' : ',
         ),
         pw.SizedBox(
@@ -32,6 +35,9 @@ class PWMaterial extends pw.StatelessWidget {
             child: pw.Center(
               child: pw.Text(
                 value,
+                style: pw.TextStyle(
+                  fontSize: 10,
+                ),
               ),
             )),
         pw.SizedBox(
@@ -41,6 +47,9 @@ class PWMaterial extends pw.StatelessWidget {
           width: 50,
           child: pw.Text(
             unit,
+            style: pw.TextStyle(
+              fontSize: 10,
+            ),
           ),
         ),
       ],

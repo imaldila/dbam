@@ -1,6 +1,6 @@
 import 'dart:typed_data';
 import 'dart:ui' as ui;
-
+import 'package:intl/intl.dart';
 import 'package:d_bam/api/pdf_api.dart';
 import 'package:d_bam/models/category_data.dart';
 import 'package:d_bam/models/choose_data.dart';
@@ -177,26 +177,28 @@ class _SignatureScreenState extends State<SignatureScreen> {
           await technicianControl.toImage(format: ui.ImageByteFormat.png);
       final imageSignTech = imageTech!.buffer.asUint8List();
 
-      final datePDF = context.read<DatePicker>().selected.toString();
-      final typeOSPDF = context.read<ChooseData>().selected;
-      final packagePDF = context.read<PackageData>().selected;
-      final orderPDF = context.read<TextData>().order;
-      final servicePDF = context.read<TextData>().service;
-      final namePDF = context.read<TextData>().name;
-      final phonePDF = context.read<TextData>().phone;
-      final addressPDF = context.read<TextData>().address;
+      final String? datePDF = context.read<DatePicker>().selected.toString();
+      // final String? dateFormatPDF =
+      //     DateFormat('dd-MM-yyyy').format(datePDF);
+      final String? typeOSPDF = context.read<ChooseData>().selected;
+      final String? packagePDF = context.read<PackageData>().selected;
+      final String? orderPDF = context.read<TextData>().order;
+      final String? servicePDF = context.read<TextData>().service;
+      final String? namePDF = context.read<TextData>().name;
+      final String? phonePDF = context.read<TextData>().phone;
+      final String? addressPDF = context.read<TextData>().address;
 
       await pdfAPI.getPDF(
         signCus: imageSignCus,
         signTech: imageSignTech,
-        date: datePDF,
-        typeOS: typeOSPDF,
-        package: packagePDF,
-        noOrder: orderPDF,
+        date: datePDF ?? '-',
+        typeOS: typeOSPDF ?? '-',
+        package: packagePDF ?? '-',
+        noOrder: orderPDF ?? '-',
         serviceID: servicePDF,
-        contactPhone: phonePDF,
-        customerName: namePDF,
-        address: addressPDF,
+        contactPhone: phonePDF ?? '-',
+        customerName: namePDF ?? '-',
+        address: addressPDF ?? '-',
       );
 
       Navigator.of(context).pop();

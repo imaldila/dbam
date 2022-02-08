@@ -23,7 +23,7 @@ class DatePicker extends ChangeNotifier {
     if (_selectedDate == null) {
       return '';
     } else {
-      return DateFormat('dd/MM/yyyy').format(_selectedDate!);
+      return DateFormat('dd-MM-yyyy').format(_selectedDate!);
     }
   }
 
@@ -37,10 +37,14 @@ class DatePicker extends ChangeNotifier {
     return _selectedDate;
   }
 
-  set selected(DateTime? datePicker) {
-    _selectedDate = datePicker;
-    notifyListeners();
-  }
+  // String get selected {
+  //   return DateFormat('dd-MM-yyyy').format(_selectedDate!);
+  // }
+
+  // set selected(DateTime? datePicker) {
+  //   _selectedDate = datePicker;
+  //   notifyListeners();
+  // }
 
   @override
   void dispose() {

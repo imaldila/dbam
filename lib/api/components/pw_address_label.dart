@@ -14,6 +14,9 @@ class Addressabel extends pw.StatelessWidget {
           width: 110,
           child: pw.Text(
             label,
+            style: pw.TextStyle(
+              fontSize: 10,
+            ),
           ),
         ),
         pw.Text(
@@ -26,6 +29,9 @@ class Addressabel extends pw.StatelessWidget {
           width: 280,
           child: pw.Text(
             value,
+            style: pw.TextStyle(
+              fontSize: 10,
+            ),
           ),
         ),
       ],

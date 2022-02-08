@@ -13,10 +13,19 @@ class PWDatek extends pw.StatelessWidget {
       children: [
         pw.Text(
           label,
-          style: pw.TextStyle(font: font),
+          style: pw.TextStyle(
+            font: font,
+            fontSize: 10,
+          ),
         ),
         pw.SizedBox(width: kPadding / 3),
-        pw.Text(value),
+        pw.Text(
+          value,
+          style: pw.TextStyle(
+            font: font,
+            fontSize: 10,
+          ),
+        ),
       ],
     );
   }
