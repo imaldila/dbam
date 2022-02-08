@@ -183,18 +183,18 @@ class _MyCategoriesFormState extends State<MyCategoriesForm> {
                   },
                 )
               else if (categoryData.categories[i].isSelected &&
-                  categoryData.categories[i].label == 'Rekso')
+                  categoryData.categories[i].label == 'Prekso')
                 MyMaterialsForm(
                   title: categoryData.categories[i].label,
-                  onChanged: counter.getRekso,
-                  controller: reksoController,
+                  onChanged: counter.getPrekso,
+                  controller: preksoController,
                   remove: () {
-                    counter.rekso > 0 ? counter.decRekso() : 0;
-                    reksoController.text = counter.rekso.toString();
+                    counter.prekso > 0 ? counter.decPrekso() : 0;
+                    preksoController.text = counter.prekso.toString();
                   },
                   add: () {
-                    counter.incRekso();
-                    reksoController.text = counter.rekso.toString();
+                    counter.incPrekso();
+                    preksoController.text = counter.prekso.toString();
                   },
                 )
               else if (categoryData.categories[i].isSelected &&
@@ -247,19 +247,6 @@ class _MyCategoriesFormState extends State<MyCategoriesForm> {
                 MyCableUTP(
                   controller: cableUTPController,
                 )
-              // MyMaterialsForm(
-              //   title: categoryData.categories[i].label,
-              //   onChanged: counter.getCableUTP,
-              //   controller: cableUTPController,
-              //   remove: () {
-              //     counter.cableUTP > 0 ? counter.decCableUTP() : 0;
-              //     cableUTPController.text = counter.cableUTP.toString();
-              //   },
-              //   add: () {
-              //     counter.incCableUTP();
-              //     cableUTPController.text = counter.cableUTP.toString();
-              //   },
-              // )
               else if (categoryData.categories[i].isSelected &&
                   categoryData.categories[i].label == 'RJ 45')
                 MyMaterialsForm(

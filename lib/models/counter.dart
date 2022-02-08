@@ -95,21 +95,21 @@ class Counter extends ChangeNotifier {
     notifyListeners();
   }
 
-  int _rekso = 0;
-  int get rekso => _rekso;
+  int _prekso = 0;
+  int get prekso => _prekso;
 
-  getRekso(String rekso) {
-    _rekso = int.parse(rekso);
+  getPrekso(String prekso) {
+    _prekso = int.parse(prekso);
     notifyListeners();
   }
 
-  void incRekso() {
-    _rekso++;
+  void incPrekso() {
+    _prekso++;
     notifyListeners();
   }
 
-  void decRekso() {
-    _rekso--;
+  void decPrekso() {
+    _prekso--;
     notifyListeners();
   }
 

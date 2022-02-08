@@ -19,7 +19,7 @@ TextEditingController trayCableController = TextEditingController();
 TextEditingController patchcoreController = TextEditingController();
 TextEditingController cableUTPController = TextEditingController();
 TextEditingController otpController = TextEditingController();
-TextEditingController reksoController = TextEditingController();
+TextEditingController preksoController = TextEditingController();
 
 class CategoryData extends ChangeNotifier {
   // bool selected = false;
@@ -34,7 +34,7 @@ class CategoryData extends ChangeNotifier {
     Category('S-Clamp', kBgColour, false, sClampController),
     Category('Clamp Hook', kBgColour, false, clampHookController),
     Category('OTP', kBgColour, false, otpController),
-    Category('Rekso', kBgColour, false, reksoController),
+    Category('Prekso', kBgColour, false, preksoController),
     Category('Roset', kBgColour, false, rosetController),
     Category('Tray Cable', kBgColour, false, trayCableController),
     Category('Patchcore', kBgColour, false, patchcoreController),

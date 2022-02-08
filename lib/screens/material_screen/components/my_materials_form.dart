@@ -58,7 +58,7 @@ class MyMaterialsForm extends StatelessWidget {
               color: kIcColour,
             ),
           ),
-          Text('/ Pcs')
+          Text('Pcs')
         ],
       ),
     );
