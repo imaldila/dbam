@@ -18,6 +18,8 @@ TextEditingController socController = TextEditingController();
 TextEditingController trayCableController = TextEditingController();
 TextEditingController patchcoreController = TextEditingController();
 TextEditingController cableUTPController = TextEditingController();
+TextEditingController otpController = TextEditingController();
+TextEditingController reksoController = TextEditingController();
 
 class CategoryData extends ChangeNotifier {
   // bool selected = false;
@@ -26,16 +28,18 @@ class CategoryData extends ChangeNotifier {
     Category('STB', kBgColour, false, stbController),
     Category('SD WAN', kBgColour, false, sdwanController),
     Category('Dropcore', kBgColour, false, dropcoreeController),
+    Category('SOC', kBgColour, false, socController),
     Category('Preconn 50M', kBgColour, false, precon50Controller),
     Category('Preconn 80M', kBgColour, false, precon80Controller),
-    Category('RJ 45', kBgColour, false, rj45Controller),
     Category('S-Clamp', kBgColour, false, sClampController),
     Category('Clamp Hook', kBgColour, false, clampHookController),
+    Category('OTP', kBgColour, false, otpController),
+    Category('Rekso', kBgColour, false, reksoController),
     Category('Roset', kBgColour, false, rosetController),
-    Category('SOC', kBgColour, false, socController),
     Category('Tray Cable', kBgColour, false, trayCableController),
     Category('Patchcore', kBgColour, false, patchcoreController),
     Category('Cable UTP', kBgColour, false, cableUTPController),
+    Category('RJ 45', kBgColour, false, rj45Controller),
     // Category('ONT', kBgColour, false, ontController, 0),
     // Category('STB', kBgColour, false, stbController, 0),
     // Category('SD WAN', kBgColour, false, sdwanController, 0),
@@ -70,7 +74,7 @@ class CategoryData extends ChangeNotifier {
 
   int get counter => _counter;
 
-   void increment() {
+  void increment() {
     _counter++;
     notifyListeners();
     for (int i = 0; i < categories.length; i++) {

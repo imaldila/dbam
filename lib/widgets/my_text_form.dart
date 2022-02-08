@@ -13,7 +13,8 @@ class MyTextForm extends StatelessWidget {
       this.counterText,
       this.textInputAction,
       this.keyboardType,
-      this.textCapitalization = TextCapitalization.none, this.validator})
+      this.textCapitalization = TextCapitalization.none,
+      this.validator})
       : super(key: key);
 
   final Function(String)? onChanged;

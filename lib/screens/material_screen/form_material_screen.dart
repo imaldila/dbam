@@ -17,41 +17,49 @@ class FormMaterial extends StatelessWidget {
     return Scaffold(
       backgroundColor: kBgColour,
       appBar: buildAppBar(context),
-      body: Padding(
+      body: ListView(
         padding: const EdgeInsets.fromLTRB(
             kPadding, kPadding, kPadding, kVerPadding),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Text(
-              'Please Select an option below',
-              style: kTextStyle16Bold,
-              textAlign: TextAlign.center,
-            ),
-            SizedBox(
-              height: kPadding,
-            ),
-            MyCategoriesFilter(),
-            SizedBox(
-              height: kPadding,
-            ),
-            Divider(),
-            Expanded(
-              child: MyCategoriesForm(),
-            ),
-            BottonRounded(
-              title: 'Next',
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  PageTransition(
-                      child: SignatureScreen(),
-                      type: PageTransitionType.rightToLeftWithFade),
-                );
-              },
-            ),
-          ],
-        ),
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text(
+                'Datek',
+                style: kTextStyle16Bold,
+                textAlign: TextAlign.center,
+              ),
+              SizedBox(
+                height: kPadding,
+              ),
+              Text(
+                'Please Select an option below',
+                style: kTextStyle16Bold,
+                textAlign: TextAlign.center,
+              ),
+              SizedBox(
+                height: kPadding,
+              ),
+              MyCategoriesFilter(),
+              SizedBox(
+                height: kPadding,
+              ),
+              Divider(),
+              MyCategoriesForm(),
+              BottonRounded(
+                title: 'Next',
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    PageTransition(
+                        child: SignatureScreen(),
+                        type: PageTransitionType.rightToLeftWithFade),
+                  );
+                },
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }

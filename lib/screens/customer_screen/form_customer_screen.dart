@@ -66,87 +66,89 @@ class _FormCustomerState extends State<FormCustomer> {
     return Scaffold(
       backgroundColor: kBgColour,
       appBar: buildAppBar(context),
-      body: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
+      body: ListView(
+        shrinkWrap: true,
         padding: EdgeInsets.symmetric(
           vertical: 24,
           horizontal: kHorPadding,
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            MyTextTitle(title: 'Package'),
-            MyDropDownList(
-              formKey: formKeys[0],
-            ),
-            MyTextTitle(title: 'Date'),
-            MyDateForm(
-              formkey: formKeys[1],
-            ),
-            MyTextTitle(title: 'No Order'),
-            MyTextForm(
-              formkey: formKeys[2],
-              controller: orderController,
-              textInputAction: TextInputAction.next,
-              textCapitalization: TextCapitalization.characters,
-              counterText: 'Ex: SC12345 / IN12345 / 1-1234',
-              onChanged: myProvider.getOrder,
-              validator: 'Please enter No Order!',
-            ),
-            MyTextTitle(title: 'Service ID'),
-            MyTextForm(
-              formkey: formKeys[3],
-              controller: serviceController,
-              textInputAction: TextInputAction.next,
-              keyboardType: TextInputType.number,
-              counterText: 'Ex: 0221234 / 13110234 / 456789-8910',
-              onChanged: myProvider.getService,
-              validator: 'Please enter Service ID!',
-            ),
-            MyTextTitle(title: 'Customer Name'),
-            MyTextForm(
-              formkey: formKeys[4],
-              controller: nameController,
-              textInputAction: TextInputAction.next,
-              textCapitalization: TextCapitalization.words,
-              onChanged: myProvider.getName,
-              validator: 'Please enter Customer Name!',
-            ),
-            MyTextTitle(title: 'Contact Phone'),
-            MyTextForm(
-              formkey: formKeys[5],
-              controller: phoneController,
-              textInputAction: TextInputAction.next,
-              keyboardType: TextInputType.number,
-              onChanged: myProvider.getPhone,
-              validator: 'Please enter Customer Contact Phone!',
-            ),
-            MyTextTitle(title: 'Address'),
-            MyAddressForm(
-                formkey: formKeys[6],
-                controller: addressController,
-                onChanged: myProvider.getAddress),
-            SizedBox(
-              height: kPadding,
-            ),
-            BottonRounded(
-              title: 'Next',
-              onPressed: () {
-                _sendDataToNextScreen(context);
-                print(context.read<ChooseData>().selected);
-                // print(context.read<TextData>().gangguan);
-                print(context.read<PackageData>().selected);
-                print(context.read<DatePicker>().selected);
-                print(context.read<TextData>().order);
-                print(context.read<TextData>().service);
-                print(context.read<TextData>().name);
-                print(context.read<TextData>().phone);
-                print(context.read<TextData>().address);
-              },
-            ),
-          ],
-        ),
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              MyTextTitle(title: 'Package'),
+              MyDropDownList(
+                formKey: formKeys[0],
+              ),
+              MyTextTitle(title: 'Date'),
+              MyDateForm(
+                formkey: formKeys[1],
+              ),
+              MyTextTitle(title: 'No Order'),
+              MyTextForm(
+                formkey: formKeys[2],
+                controller: orderController,
+                textInputAction: TextInputAction.next,
+                textCapitalization: TextCapitalization.characters,
+                counterText: 'Ex: SC12345 / IN12345 / 1-1234',
+                onChanged: myProvider.getOrder,
+                validator: 'Please enter No Order!',
+              ),
+              MyTextTitle(title: 'Service ID'),
+              MyTextForm(
+                formkey: formKeys[3],
+                controller: serviceController,
+                textInputAction: TextInputAction.next,
+                keyboardType: TextInputType.number,
+                counterText: 'Ex: 0221234 / 13110234 / 456789-8910',
+                onChanged: myProvider.getService,
+                validator: 'Please enter Service ID!',
+              ),
+              MyTextTitle(title: 'Customer Name'),
+              MyTextForm(
+                formkey: formKeys[4],
+                controller: nameController,
+                textInputAction: TextInputAction.next,
+                textCapitalization: TextCapitalization.words,
+                onChanged: myProvider.getName,
+                validator: 'Please enter Customer Name!',
+              ),
+              MyTextTitle(title: 'Contact Phone'),
+              MyTextForm(
+                formkey: formKeys[5],
+                controller: phoneController,
+                textInputAction: TextInputAction.next,
+                keyboardType: TextInputType.number,
+                onChanged: myProvider.getPhone,
+                validator: 'Please enter Customer Contact Phone!',
+              ),
+              MyTextTitle(title: 'Address'),
+              MyAddressForm(
+                  formkey: formKeys[6],
+                  controller: addressController,
+                  onChanged: myProvider.getAddress),
+              SizedBox(
+                height: kPadding,
+              ),
+              BottonRounded(
+                title: 'Next',
+                onPressed: () {
+                  _sendDataToNextScreen(context);
+                  print(context.read<ChooseData>().selected);
+                  // print(context.read<TextData>().gangguan);
+                  print(context.read<PackageData>().selected);
+                  print(context.read<DatePicker>().selected);
+                  print(context.read<TextData>().order);
+                  print(context.read<TextData>().service);
+                  print(context.read<TextData>().name);
+                  print(context.read<TextData>().phone);
+                  print(context.read<TextData>().address);
+                },
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }
@@ -192,7 +194,8 @@ class _FormCustomerState extends State<FormCustomer> {
 
   void _sendDataToNextScreen(BuildContext context) async {
     for (int i = 0; i < formKeys.length; i++)
-      if (formKeys[i].currentState!.validate()) ;
+      // ignore: curly_braces_in_flow_control_structures
+      if (formKeys[i].currentState!.validate()) {}
 
     if (formKeys[0].currentState!.validate() &&
         formKeys[1].currentState!.validate() &&

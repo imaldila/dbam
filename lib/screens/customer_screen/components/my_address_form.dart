@@ -35,7 +35,7 @@ class MyAddressForm extends StatelessWidget {
                 shadowColor: Colors.white,
                 color: Colors.white,
                 child: Container(
-                  height: size.height / 6.8,
+                  height: size.height / 7.3,
                   decoration: kStyleBoxDecoration,
                 ),
               ),

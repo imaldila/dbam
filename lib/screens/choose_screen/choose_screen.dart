@@ -13,16 +13,20 @@ class ChooseScreen extends StatelessWidget {
       backgroundColor: kBgColour,
       appBar: buildAppBar(context),
       body: Center(
-        child: Column(
+        child: ListView(
           children: [
-            const SizedBox(
-              height: kPadding,
+            Column(
+              children: [
+                const SizedBox(
+                  height: kPadding,
+                ),
+                Text('Please Select One', style: kTextStyle24),
+                const SizedBox(
+                  height: kPadding,
+                ),
+                OptionChoose(),
+              ],
             ),
-            Text('Please Select One', style: kTextStyle24),
-            const SizedBox(
-              height: kPadding,
-            ),
-            OptionChoose(),
           ],
         ),
       ),

@@ -1,6 +1,7 @@
 import 'package:d_bam/models/category_data.dart';
 import 'package:d_bam/models/counter.dart';
 import 'package:d_bam/models/text_data.dart';
+import 'package:d_bam/screens/material_screen/components/my_cableutp_form.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -28,6 +29,7 @@ class _MyCategoriesFormState extends State<MyCategoriesForm> {
   final dropcoreController = TextEditingController();
   final preconn50Controller = TextEditingController();
   final preconn80Controller = TextEditingController();
+  final cableUTPController = TextEditingController();
 
   @override
   void dispose() {
@@ -38,6 +40,7 @@ class _MyCategoriesFormState extends State<MyCategoriesForm> {
     oldSDWANController.dispose();
     newSDWANController.dispose();
     dropcoreController.dispose();
+    cableUTPController.dispose();
 
     super.dispose();
   }
@@ -90,6 +93,21 @@ class _MyCategoriesFormState extends State<MyCategoriesForm> {
                   controller: dropcoreController,
                 )
               else if (categoryData.categories[i].isSelected &&
+                  categoryData.categories[i].label == 'SOC')
+                MyMaterialsForm(
+                  title: categoryData.categories[i].label,
+                  onChanged: counter.getSOC,
+                  controller: socController,
+                  remove: () {
+                    counter.soc > 0 ? counter.decSOC() : 0;
+                    socController.text = counter.soc.toString();
+                  },
+                  add: () {
+                    counter.incSOC();
+                    socController.text = counter.soc.toString();
+                  },
+                )
+              else if (categoryData.categories[i].isSelected &&
                   categoryData.categories[i].label == 'Preconn 50M')
                 MyMaterialsForm(
                   title: categoryData.categories[i].label,
@@ -117,21 +135,6 @@ class _MyCategoriesFormState extends State<MyCategoriesForm> {
                   add: () {
                     counter.incPreconn80();
                     preconn80Controller.text = counter.preconn80.toString();
-                  },
-                )
-              else if (categoryData.categories[i].isSelected &&
-                  categoryData.categories[i].label == 'RJ 45')
-                MyMaterialsForm(
-                  title: categoryData.categories[i].label,
-                  onChanged: counter.getRJ45,
-                  controller: rj45Controller,
-                  remove: () {
-                    counter.rj45 > 0 ? counter.decRJ45() : 0;
-                    rj45Controller.text = counter.rj45.toString();
-                  },
-                  add: () {
-                    counter.incRJ45();
-                    rj45Controller.text = counter.rj45.toString();
                   },
                 )
               else if (categoryData.categories[i].isSelected &&
@@ -165,6 +168,36 @@ class _MyCategoriesFormState extends State<MyCategoriesForm> {
                   },
                 )
               else if (categoryData.categories[i].isSelected &&
+                  categoryData.categories[i].label == 'OTP')
+                MyMaterialsForm(
+                  title: categoryData.categories[i].label,
+                  onChanged: counter.getOTP,
+                  controller: otpController,
+                  remove: () {
+                    counter.otp > 0 ? counter.decOTP() : 0;
+                    otpController.text = counter.otp.toString();
+                  },
+                  add: () {
+                    counter.incOTP();
+                    otpController.text = counter.otp.toString();
+                  },
+                )
+              else if (categoryData.categories[i].isSelected &&
+                  categoryData.categories[i].label == 'Rekso')
+                MyMaterialsForm(
+                  title: categoryData.categories[i].label,
+                  onChanged: counter.getRekso,
+                  controller: reksoController,
+                  remove: () {
+                    counter.rekso > 0 ? counter.decRekso() : 0;
+                    reksoController.text = counter.rekso.toString();
+                  },
+                  add: () {
+                    counter.incRekso();
+                    reksoController.text = counter.rekso.toString();
+                  },
+                )
+              else if (categoryData.categories[i].isSelected &&
                   categoryData.categories[i].label == 'Roset')
                 MyMaterialsForm(
                   title: categoryData.categories[i].label,
@@ -177,36 +210,6 @@ class _MyCategoriesFormState extends State<MyCategoriesForm> {
                   add: () {
                     counter.incRoset();
                     rosetController.text = counter.roset.toString();
-                  },
-                )
-              else if (categoryData.categories[i].isSelected &&
-                  categoryData.categories[i].label == 'SOC')
-                MyMaterialsForm(
-                  title: categoryData.categories[i].label,
-                  onChanged: counter.getSOC,
-                  controller: socController,
-                  remove: () {
-                    counter.soc > 0 ? counter.decSOC() : 0;
-                    socController.text = counter.soc.toString();
-                  },
-                  add: () {
-                    counter.incSOC();
-                    socController.text = counter.soc.toString();
-                  },
-                )
-              else if (categoryData.categories[i].isSelected &&
-                  categoryData.categories[i].label == 'Tray Cable')
-                MyMaterialsForm(
-                  title: categoryData.categories[i].label,
-                  onChanged: counter.getTrayCable,
-                  controller: trayCableController,
-                  remove: () {
-                    counter.trayCable > 0 ? counter.decTrayCable() : 0;
-                    trayCableController.text = counter.trayCable.toString();
-                  },
-                  add: () {
-                    counter.incTrayCable();
-                    trayCableController.text = counter.trayCable.toString();
                   },
                 )
               else if (categoryData.categories[i].isSelected &&
@@ -225,18 +228,51 @@ class _MyCategoriesFormState extends State<MyCategoriesForm> {
                   },
                 )
               else if (categoryData.categories[i].isSelected &&
-                  categoryData.categories[i].label == 'Cable UTP')
+                  categoryData.categories[i].label == 'Tray Cable')
                 MyMaterialsForm(
                   title: categoryData.categories[i].label,
-                  onChanged: counter.getCableUTP,
-                  controller: cableUTPController,
+                  onChanged: counter.getTrayCable,
+                  controller: trayCableController,
                   remove: () {
-                    counter.cableUTP > 0 ? counter.decCableUTP() : 0;
-                    cableUTPController.text = counter.cableUTP.toString();
+                    counter.trayCable > 0 ? counter.decTrayCable() : 0;
+                    trayCableController.text = counter.trayCable.toString();
                   },
                   add: () {
-                    counter.incCableUTP();
-                    cableUTPController.text = counter.cableUTP.toString();
+                    counter.incTrayCable();
+                    trayCableController.text = counter.trayCable.toString();
+                  },
+                )
+              else if (categoryData.categories[i].isSelected &&
+                  categoryData.categories[i].label == 'Cable UTP')
+                MyCableUTP(
+                  controller: cableUTPController,
+                )
+              // MyMaterialsForm(
+              //   title: categoryData.categories[i].label,
+              //   onChanged: counter.getCableUTP,
+              //   controller: cableUTPController,
+              //   remove: () {
+              //     counter.cableUTP > 0 ? counter.decCableUTP() : 0;
+              //     cableUTPController.text = counter.cableUTP.toString();
+              //   },
+              //   add: () {
+              //     counter.incCableUTP();
+              //     cableUTPController.text = counter.cableUTP.toString();
+              //   },
+              // )
+              else if (categoryData.categories[i].isSelected &&
+                  categoryData.categories[i].label == 'RJ 45')
+                MyMaterialsForm(
+                  title: categoryData.categories[i].label,
+                  onChanged: counter.getRJ45,
+                  controller: rj45Controller,
+                  remove: () {
+                    counter.rj45 > 0 ? counter.decRJ45() : 0;
+                    rj45Controller.text = counter.rj45.toString();
+                  },
+                  add: () {
+                    counter.incRJ45();
+                    rj45Controller.text = counter.rj45.toString();
                   },
                 )
               else

@@ -77,6 +77,42 @@ class Counter extends ChangeNotifier {
     notifyListeners();
   }
 
+  int _otp = 0;
+  int get otp => _otp;
+
+  getOTP(String otp) {
+    _otp = int.parse(otp);
+    notifyListeners();
+  }
+
+  void incOTP() {
+    _otp++;
+    notifyListeners();
+  }
+
+  void decOTP() {
+    _otp--;
+    notifyListeners();
+  }
+
+  int _rekso = 0;
+  int get rekso => _rekso;
+
+  getRekso(String rekso) {
+    _rekso = int.parse(rekso);
+    notifyListeners();
+  }
+
+  void incRekso() {
+    _rekso++;
+    notifyListeners();
+  }
+
+  void decRekso() {
+    _rekso--;
+    notifyListeners();
+  }
+
   int _roset = 0;
 
   int get roset => _roset;
