@@ -16,8 +16,8 @@ class Choose {
 
 class ChooseData extends ChangeNotifier {
   final List<Choose> _chooseData = [
-    Choose(label: 'Pasang Baru', images: 'assets/images/img_psb.svg'),
-    Choose(label: 'Gangguan', images: 'assets/images/img_ggn.svg')
+    Choose(label: 'Provisioning', images: 'assets/images/img_psb.svg'),
+    Choose(label: 'Assurance', images: 'assets/images/img_ggn.svg')
   ];
 
   int get chooseCount {

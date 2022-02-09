@@ -31,7 +31,7 @@ class NTELabel extends pw.StatelessWidget {
                   'OLD',
                   style: pw.TextStyle(
                     fontSize: 10,
-                    font: font,
+                    font: font
                   ),
                 ),
               ),

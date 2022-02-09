@@ -1,9 +1,8 @@
+import 'package:d_bam/screens/material_screen/components/my_datek_form.dart';
 import 'package:d_bam/screens/signature_screen.dart';
 import 'package:d_bam/widgets/my_button_rounded.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:page_transition/page_transition.dart';
 
 import '../../constants.dart';
 import 'components/my_categories_filter.dart';
@@ -17,49 +16,58 @@ class FormMaterial extends StatelessWidget {
     return Scaffold(
       backgroundColor: kBgColour,
       appBar: buildAppBar(context),
-      body: ListView(
+      body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
         padding: const EdgeInsets.fromLTRB(
             kPadding, kPadding, kPadding, kVerPadding),
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Text(
-                'Datek',
-                style: kTextStyle16Bold,
-                textAlign: TextAlign.center,
-              ),
-              SizedBox(
-                height: kPadding,
-              ),
-              Text(
-                'Please Select an option below',
-                style: kTextStyle16Bold,
-                textAlign: TextAlign.center,
-              ),
-              SizedBox(
-                height: kPadding,
-              ),
-              MyCategoriesFilter(),
-              SizedBox(
-                height: kPadding,
-              ),
-              Divider(),
-              MyCategoriesForm(),
-              BottonRounded(
-                title: 'Next',
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    PageTransition(
-                        child: SignatureScreen(),
-                        type: PageTransitionType.rightToLeftWithFade),
-                  );
-                },
-              ),
-            ],
-          ),
-        ],
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Text(
+              'Datek',
+              style: kTextStyle16Bold,
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(
+              height: kPadding,
+            ),
+            MyDatekForm(),
+            SizedBox(
+              height: kPadding,
+            ),
+            Text(
+              'Please Select an option below',
+              style: kTextStyle16Bold,
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(
+              height: kPadding,
+            ),
+            MyCategoriesFilter(),
+            SizedBox(
+              height: kPadding,
+            ),
+            Divider(),
+            MyCategoriesForm(),
+            BottonRounded(
+              title: 'Next',
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SignatureScreen(),
+                  ),
+                );
+                // Navigator.push(
+                //   context,
+                //   PageTransition(
+                //       child: SignatureScreen(),
+                //       type: PageTransitionType.rightToLeftWithFade),
+                // );
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

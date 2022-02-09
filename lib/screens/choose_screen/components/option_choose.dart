@@ -31,13 +31,12 @@ class OptionChoose extends StatelessWidget {
                   svgPicture: SvgPicture.asset(dataChoose.images),
                   label: dataChoose.label,
                   onTap: () {
-                    dataChoose.label == 'Pasang Baru'
+                    dataChoose.label == 'Provisioning'
                         ? toPSB(context)
                         : toGangguan(context);
 
                     print(dataChoose.label);
                   },
-                  
                 ),
               );
             },
@@ -48,7 +47,6 @@ class OptionChoose extends StatelessWidget {
   }
 
   void toGangguan(BuildContext context) {
-    
     Navigator.push(
       context,
       PageTransition(
@@ -60,7 +58,7 @@ class OptionChoose extends StatelessWidget {
     Navigator.push(
       context,
       PageTransition(
-          child: SignatureScreen(), type: PageTransitionType.rightToLeft),
+          child: FormMaterial(), type: PageTransitionType.rightToLeft),
     );
     print(context.read<ChooseData>().chooseDatas.asMap().keys.toList());
   }

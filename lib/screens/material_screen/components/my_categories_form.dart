@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '/../constants.dart';
-import 'my_dropcore_form.dart';
+import 'my_label_form.dart';
 import 'my_materials_form.dart';
 import 'my_nte_form.dart';
 
@@ -78,20 +78,16 @@ class _MyCategoriesFormState extends State<MyCategoriesForm> {
                   newController: newSTBController,
                 )
               else if (categoryData.categories[i].isSelected &&
-                  categoryData.categories[i].label == 'SD WAN')
-                MyNTEForm(
-                  oldTitle: 'Old SDWan',
-                  newTitle: 'New SDWan',
-                  oldChanged: textData.getOldSDWAN,
-                  newChanged: textData.getNewSDWAN,
-                  oldController: oldSDWANController,
-                  newController: newSDWANController,
-                )
-              else if (categoryData.categories[i].isSelected &&
                   categoryData.categories[i].label == 'Dropcore')
-                MyDropcoreForm(
+                MyLabelForm(
+                  label: 'Dropcore',
                   controller: dropcoreController,
+                  onChanged: textData.getDropcore,
+                  units: 'Meter',
                 )
+              // MyDropcoreForm(
+              //   controller: dropcoreController,
+              // )
               else if (categoryData.categories[i].isSelected &&
                   categoryData.categories[i].label == 'SOC')
                 MyMaterialsForm(
@@ -244,9 +240,15 @@ class _MyCategoriesFormState extends State<MyCategoriesForm> {
                 )
               else if (categoryData.categories[i].isSelected &&
                   categoryData.categories[i].label == 'Cable UTP')
-                MyCableUTP(
+                MyLabelForm(
+                  label: 'Cable UTP',
                   controller: cableUTPController,
+                  onChanged: textData.getCableUTP,
+                  units: 'Meter',
                 )
+              // MyCableUTP(
+              //   controller: cableUTPController,
+              // )
               else if (categoryData.categories[i].isSelected &&
                   categoryData.categories[i].label == 'RJ 45')
                 MyMaterialsForm(

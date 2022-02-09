@@ -26,7 +26,7 @@ class CategoryData extends ChangeNotifier {
   final List<Category> _categories = [
     Category('ONT', kBgColour, false, ontController),
     Category('STB', kBgColour, false, stbController),
-    Category('SD WAN', kBgColour, false, sdwanController),
+    // Category('SD WAN', kBgColour, false, sdwanController),
     Category('Dropcore', kBgColour, false, dropcoreeController),
     Category('SOC', kBgColour, false, socController),
     Category('Preconn 50M', kBgColour, false, precon50Controller),

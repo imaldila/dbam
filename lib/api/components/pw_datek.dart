@@ -22,7 +22,6 @@ class PWDatek extends pw.StatelessWidget {
         pw.Text(
           value,
           style: pw.TextStyle(
-            font: font,
             fontSize: 10,
           ),
         ),

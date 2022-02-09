@@ -16,6 +16,10 @@ class TextData extends ChangeNotifier {
   String _newSDWAN = '';
   String _dropcore = '';
   String _cableUTP = '';
+  String _sto = '';
+  String _odc = '';
+  String _odp = '';
+  String _port = '';
 
   String get psb => _psb;
   String get gangguan => _gangguan;
@@ -81,6 +85,14 @@ class TextData extends ChangeNotifier {
     return _cableUTP;
   }
 
+  String get sto {
+    return _sto;
+  }
+
+  String get odc => _odc;
+  String get odp => _odp;
+  String get port => _port;
+
   getOrder(String order) {
     _order = order;
     notifyListeners();
@@ -143,6 +155,26 @@ class TextData extends ChangeNotifier {
 
   getCableUTP(String cableUTP) {
     _cableUTP = cableUTP;
+    notifyListeners();
+  }
+
+  getSTO(String sto) {
+    _sto = sto;
+    notifyListeners();
+  }
+
+  getODC(String odc) {
+    _odc = odc;
+    notifyListeners();
+  }
+
+  getODP(String odp) {
+    _odp = odp;
+    notifyListeners();
+  }
+
+  getPort(String port) {
+    _port = port;
     notifyListeners();
   }
 }

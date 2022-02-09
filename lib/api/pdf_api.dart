@@ -196,20 +196,13 @@ class PdfAPI {
           newNTE: '4781273812',
           oldNTE: '127837217321',
         ),
-
         NTE(
           labelNTE: 'STB',
           newNTE: 'A3100499007037000000A440271A4312',
           oldNTE: 'A3100499007037000000A440271A4312',
         ),
+        NTE(oldNTE: '', newNTE: '', labelNTE: 'OTHERS'),
         pw.SizedBox(height: kPadding / 2),
-        // NTE(
-        //   labelNTE: 'SN SDWAN / Mac Address',
-        //   oldLabel: 'Old SDWAN',
-        //   newLabel: 'New SDWAN',
-        //   newNTE: '-',
-        //   oldNTE: '127837217321',
-        // ),
       ],
     );
   }

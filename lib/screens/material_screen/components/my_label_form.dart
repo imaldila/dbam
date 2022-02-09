@@ -3,10 +3,12 @@ import 'package:d_bam/models/text_data.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class MyDropcoreForm extends StatelessWidget {
-  MyDropcoreForm({Key? key, this.onChanged, this.controller}) : super(key: key);
+class MyLabelForm extends StatelessWidget {
+  MyLabelForm({Key? key, this.onChanged, this.controller, this.label, this.units})
+      : super(key: key);
   final TextEditingController? controller;
   final Function(String)? onChanged;
+  final String? label, units;
 
   @override
   Widget build(BuildContext context) {
@@ -15,14 +17,15 @@ class MyDropcoreForm extends StatelessWidget {
       child: Row(
         children: [
           Text(
-            'Dropcore',
+            label!,
             style: kTextStyle16Bold,
           ),
           Spacer(),
           SizedBox(
             width: 50,
             child: TextField(
-              onChanged: context.watch<TextData>().getDropcore,
+              onChanged: onChanged,
+              // onChanged: context.watch<TextData>().getDropcore,
               controller: controller,
               style: kTextStyle14,
               textAlign: TextAlign.center,
@@ -39,7 +42,7 @@ class MyDropcoreForm extends StatelessWidget {
             width: kPadding,
           ),
           Text(
-            'Meter',
+            units ?? '',
             style: kTextStyle14,
           )
         ],
