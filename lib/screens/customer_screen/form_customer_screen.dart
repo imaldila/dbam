@@ -215,10 +215,12 @@ class _FormCustomerState extends State<FormCustomer> {
       formKeys[4].currentState!.save();
       formKeys[5].currentState!.save();
       formKeys[6].currentState!.save();
+      // await Navigator.push(
+      //     context,
+      //     PageTransition(
+      //         child: FormMaterial(), type: PageTransitionType.rightToLeft));
       await Navigator.push(
-          context,
-          PageTransition(
-              child: FormMaterial(), type: PageTransitionType.rightToLeft));
+          context, MaterialPageRoute(builder: (context) => FormMaterial()));
     }
 
     // if (valKey.listKey.currentState!.validate() &&

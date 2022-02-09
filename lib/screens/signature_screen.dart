@@ -2,9 +2,7 @@ import 'dart:typed_data';
 import 'dart:ui' as ui;
 import 'package:d_bam/widgets/my_text_form.dart';
 import 'package:d_bam/widgets/my_text_title.dart';
-import 'package:intl/intl.dart';
 import 'package:d_bam/api/pdf_api.dart';
-import 'package:d_bam/models/category_data.dart';
 import 'package:d_bam/models/choose_data.dart';
 import 'package:d_bam/models/counter.dart';
 import 'package:d_bam/models/datepicker.dart';
@@ -61,10 +59,10 @@ class _SignatureScreenState extends State<SignatureScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBar(context),
-      body: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        padding: const EdgeInsets.fromLTRB(
-            kPadding, kPadding, kPadding, kVerPadding),
+      body: Padding(
+        // scrollDirection: Axis.vertical,
+        padding:
+            const EdgeInsets.fromLTRB(kPadding, kPadding, kPadding, kPadding),
         child: Column(
           // mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -91,50 +89,19 @@ class _SignatureScreenState extends State<SignatureScreen> {
             SizedBox(
               height: kPadding,
             ),
-            MyTextTitle(title: 'Technician Name :'),
+            MyTextTitle(title: 'Technician Name / NIK'),
             MyTextForm(
               controller: technicianController,
               textInputAction: TextInputAction.next,
               textCapitalization: TextCapitalization.words,
               onChanged: context.read<TextData>().getTechName,
+              counterText: 'ex: Dede / 101010',
             ),
             // Spacer(),
             BottonRounded(
               title: 'Submit',
               onPressed: () async {
-                // Navigator.pop(context);
                 onSubmit();
-                // print(technicianControl.toImage());
-                // print(context.read<PackageData>().selected);
-                // print(context.read<DatePicker>().selected);
-                // print(context.read<TextData>().order);
-                // print(context.read<TextData>().service);
-                // print(context.read<TextData>().name);
-                // print(context.read<TextData>().phone);
-                // print(context.read<TextData>().address);
-                // print('ONT Lama = ${context.read<TextData>().oldONT}');
-                // print('ONT Baru = ${context.read<TextData>().newONT}');
-                // print('STB Lama = ${context.read<TextData>().oldSTB}');
-                // print('STB Baru = ${context.read<TextData>().newSTB}');
-                // print('SDWAN Lama = ${context.read<TextData>().oldSDWAN}');
-                // print('SDWAN Baru = ${context.read<TextData>().newSDWAN}');
-                // print('Dropcore = ${context.read<TextData>().dropcore} Meter');
-                // print('Preconn50 = ${context.read<Counter>().preconn50} /pcs');
-                // print('Preconn80 = ${context.read<Counter>().preconn80} /pcs');
-                // print('RJ45 = ${context.read<Counter>().rj45} /pcs');
-                // print('S-Clamp = ${context.read<Counter>().sClamp} /pcs');
-                // print('Clamp Hook = ${context.read<Counter>().clampHook} /pcs');
-                // print('Roset = ${context.read<Counter>().roset} /pcs');
-                // print('SOC = ${context.read<Counter>().soc} /pcs');
-                // print('Tray Cable = ${context.read<Counter>().trayCable} /pcs');
-                // print('Patchcore = ${context.read<Counter>().patchCore} /pcs');
-                // print('Cable UTP = ${context.read<Counter>().cableUTP} /pcs');
-
-                // await Navigator.pushAndRemoveUntil(
-                //   context,
-                //   MaterialPageRoute(builder: (context) => HomeScreen()),
-                //   (Route<dynamic> route) => false,
-                // );
               },
             ),
           ],
@@ -183,6 +150,7 @@ class _SignatureScreenState extends State<SignatureScreen> {
       //     DateFormat('dd-MM-yyyy').format(datePDF);
 
       final provTextData = context.read<TextData>();
+      final provCounter = context.read<Counter>();
       final String? typeOSPDF =
           (context.read<ChooseData>().selected == 'Provisioning')
               ? provTextData.psb
@@ -202,6 +170,19 @@ class _SignatureScreenState extends State<SignatureScreen> {
       final String? newSTBPDF = provTextData.newSTB;
       final String? oldSTBPDF = provTextData.oldSTB;
       final String? techNamePDF = provTextData.techName;
+      final String? dropcorePDF = provTextData.dropcore;
+      final String? socPDF = provCounter.soc.toString();
+      final String? preconn50PDF = provCounter.preconn50.toString();
+      final String? preconn80PDF = provCounter.preconn80.toString();
+      final String? sClampPDF = provCounter.sClamp.toString();
+      final String? clampHookPDF = provCounter.clampHook.toString();
+      final String? otpPDF = provCounter.otp.toString();
+      final String? preksoPDF = provCounter.prekso.toString();
+      final String? rosetPDF = provCounter.roset.toString();
+      final String? trayCablePDF = provCounter.trayCable.toString();
+      final String? patchcorePDF = provCounter.patchCore.toString();
+      final String? cableUTPPDF = provTextData.cableUTP;
+      final String? rj45PDF = provCounter.rj45.toString();
 
       await pdfAPI.getPDF(
         signCus: imageSignCus,
@@ -223,9 +204,26 @@ class _SignatureScreenState extends State<SignatureScreen> {
         newSTB: newSTBPDF ?? '-',
         oldSTB: oldSTBPDF ?? '-',
         techName: techNamePDF ?? '-',
+        dropcore: dropcorePDF ?? '-',
+        soc: socPDF ?? '-',
+        preconn50: preconn50PDF ?? '-',
+        preconn80: preconn80PDF ?? '-',
+        sCLamp: sClampPDF ?? '-',
+        clampHook: clampHookPDF ?? '-',
+        otp: otpPDF ?? '-',
+        prekso: preksoPDF ?? '-',
+        roset: rosetPDF ?? '-',
+        trayCable: trayCablePDF ?? '-',
+        patchcore: patchcorePDF ?? '-',
+        cableUTP: cableUTPPDF ?? '-',
+        rj45: rj45PDF ?? '-',
       );
 
-      Navigator.of(context).pop();
+      await Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (context) => HomeScreen()),
+        (Route<dynamic> route) => false,
+      );
     }
   }
 

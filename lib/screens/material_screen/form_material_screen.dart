@@ -1,11 +1,9 @@
 import 'package:d_bam/models/choose_data.dart';
-import 'package:d_bam/models/text_data.dart';
 import 'package:d_bam/screens/material_screen/components/my_datek_form.dart';
 import 'package:d_bam/screens/signature_screen.dart';
 import 'package:d_bam/widgets/my_button_rounded.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:provider/src/provider.dart';
 
 import '../../constants.dart';
 import 'components/my_categories_filter.dart';

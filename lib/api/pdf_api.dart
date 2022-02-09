@@ -6,7 +6,6 @@ import 'package:d_bam/api/components/pw_datek.dart';
 import 'package:d_bam/api/components/pw_material.dart';
 import 'package:d_bam/api/components/pw_nte_label.dart';
 import 'package:d_bam/constants.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:printing/printing.dart';
@@ -41,6 +40,19 @@ class PdfAPI {
     oldONT,
     newSTB,
     oldSTB,
+    dropcore,
+    soc,
+    preconn50,
+    preconn80,
+    sCLamp,
+    clampHook,
+    otp,
+    prekso,
+    roset,
+    trayCable,
+    patchcore,
+    cableUTP,
+    rj45,
     techName,
   }) async {
     var dataImageTA = await rootBundle.load('assets/images/logo_ta.png');
@@ -99,7 +111,21 @@ class PdfAPI {
               pw.SizedBox(height: kPadding / 3),
               ntePDF(myFontBold, newONT, oldONT, newSTB, oldSTB),
               pw.SizedBox(height: kPadding / 2),
-              materialPDF(),
+              materialPDF(
+                dropcore,
+                soc,
+                preconn50,
+                preconn80,
+                sCLamp,
+                clampHook,
+                otp,
+                prekso,
+                roset,
+                trayCable,
+                patchcore,
+                cableUTP,
+                rj45,
+              ),
               pw.SizedBox(height: kPadding),
               disclaimerPDF(myFontItalic),
               pw.Spacer(),
@@ -232,52 +258,66 @@ class PdfAPI {
     );
   }
 
-  materialPDF() {
+  materialPDF(
+    String dropcore,
+    soc,
+    preconn50,
+    preconn80,
+    sCLamp,
+    clampHook,
+    otp,
+    prekso,
+    roset,
+    trayCable,
+    patchcore,
+    cableUTP,
+    rj45,
+  ) {
     return pw.Column(
       children: [
         pw.Row(
           mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
           children: [
-            PWMaterial(title: 'Dropcore', value: '50', unit: 'Meter'),
-            PWMaterial(title: 'OTP', value: '3', unit: 'Pcs'),
+            PWMaterial(title: 'Dropcore', value: dropcore, unit: 'Meter'),
+            PWMaterial(title: 'OTP', value: otp, unit: 'Pcs'),
           ],
         ),
         pw.Row(
           mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
           children: [
-            PWMaterial(title: 'SOC', value: '3', unit: 'Pcs'),
-            PWMaterial(title: 'Prekso', value: '15', unit: 'Meter'),
+            PWMaterial(title: 'SOC', value: soc, unit: 'Pcs'),
+            PWMaterial(title: 'Prekso', value: prekso ?? '-', unit: 'Meter'),
           ],
         ),
         pw.Row(
           mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
           children: [
-            PWMaterial(title: 'Precon 50', value: '1', unit: 'Pcs'),
-            PWMaterial(title: 'Roset', value: '1', unit: 'Pcs'),
+            PWMaterial(title: 'Precon 50', value: preconn50, unit: 'Pcs'),
+            PWMaterial(title: 'Roset', value: roset, unit: 'Pcs'),
           ],
         ),
         pw.Row(
           mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
           children: [
-            PWMaterial(title: 'Precon 80', value: '1', unit: 'Pcs'),
-            PWMaterial(title: 'Patchcore', value: '1', unit: 'Pcs'),
+            PWMaterial(title: 'Precon 80', value: preconn80, unit: 'Pcs'),
+            PWMaterial(title: 'Patchcore', value: patchcore, unit: 'Pcs'),
           ],
         ),
         pw.Row(
           mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
           children: [
-            PWMaterial(title: 'S-Clamp', value: '1', unit: 'Pcs'),
-            PWMaterial(title: 'Tray Cable', value: '10', unit: 'Pcs'),
+            PWMaterial(title: 'S-Clamp', value: sCLamp, unit: 'Pcs'),
+            PWMaterial(title: 'Tray Cable', value: trayCable, unit: 'Pcs'),
           ],
         ),
         pw.Row(
           mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
           children: [
-            PWMaterial(title: 'Clamp Hook', value: '1', unit: 'Pcs'),
-            PWMaterial(title: 'Cable UTP', value: '10', unit: 'Meter'),
+            PWMaterial(title: 'Clamp Hook', value: clampHook, unit: 'Pcs'),
+            PWMaterial(title: 'Cable UTP', value: cableUTP, unit: 'Meter'),
           ],
         ),
-        PWMaterial(title: 'RJ 45', value: '1', unit: 'Pcs'),
+        PWMaterial(title: 'RJ 45', value: rj45, unit: 'Pcs'),
       ],
     );
   }
@@ -323,7 +363,8 @@ class PdfAPI {
     );
   }
 
-  signaturePDF(Uint8List signTech, signCus, String customerName, date, techName) {
+  signaturePDF(
+      Uint8List signTech, signCus, String customerName, date, techName) {
     return pw.Row(
       mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
       children: [

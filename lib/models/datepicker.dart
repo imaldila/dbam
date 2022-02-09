@@ -33,13 +33,13 @@ class DatePicker extends ChangeNotifier {
 
   DateTime? _selectedDate;
 
-  DateTime? get selected {
-    return _selectedDate;
-  }
-
-  // String? get selected {
-  //   return DateFormat('dd-MM-yyyy').format(_selectedDate!);
+  // DateTime? get selected {
+  //   return _selectedDate;
   // }
+
+  String? get selected {
+    return DateFormat('dd-MM-yyyy').format(_selectedDate!);
+  }
 
   // set selected(DateTime? datePicker) {
   //   _selectedDate = datePicker;
