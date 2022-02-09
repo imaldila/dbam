@@ -37,7 +37,7 @@ class DatePicker extends ChangeNotifier {
     return _selectedDate;
   }
 
-  // String get selected {
+  // String? get selected {
   //   return DateFormat('dd-MM-yyyy').format(_selectedDate!);
   // }
 

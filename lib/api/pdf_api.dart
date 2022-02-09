@@ -33,6 +33,15 @@ class PdfAPI {
     contactPhone,
     customerName,
     address,
+    sto,
+    odc,
+    odp,
+    port,
+    newONT,
+    oldONT,
+    newSTB,
+    oldSTB,
+    techName,
   }) async {
     var dataImageTA = await rootBundle.load('assets/images/logo_ta.png');
     var myImageTA = dataImageTA.buffer.asUint8List();
@@ -65,43 +74,52 @@ class PdfAPI {
                 style: pw.TextStyle(font: myFontBold, fontSize: 12),
               ),
               pw.SizedBox(height: kPadding / 3),
-              customerPDF(date, package),
+              customerPDF(
+                date,
+                package,
+                typeOS,
+                noOrder,
+                serviceID,
+                contactPhone,
+                customerName,
+                address,
+              ),
               pw.SizedBox(height: kPadding / 1.5),
               pw.Text(
                 'Datek :',
                 style: pw.TextStyle(font: myFontBold, fontSize: 12),
               ),
               pw.SizedBox(height: kPadding / 3),
-              datekPDF(myFontBold),
+              datekPDF(myFontBold, sto, odc, odp, port),
               pw.SizedBox(height: kPadding / 1.5),
               pw.Text(
                 'Material Detail :',
                 style: pw.TextStyle(font: myFontBold, fontSize: 12),
               ),
               pw.SizedBox(height: kPadding / 3),
-              ntePDF(myFontBold),
+              ntePDF(myFontBold, newONT, oldONT, newSTB, oldSTB),
               pw.SizedBox(height: kPadding / 2),
               materialPDF(),
               pw.SizedBox(height: kPadding),
               disclaimerPDF(myFontItalic),
               pw.Spacer(),
-              signaturePDF(signCus, signTech),
+              signaturePDF(signCus, signTech, customerName, date, techName),
             ],
           );
         },
       ),
     );
-    pdfOpen();
+    pdfOpen(noOrder);
   }
 
-  void pdfOpen() async {
+  void pdfOpen(String noOrder) async {
     // save
     Uint8List bytes = await pdf.save();
 
     // buat file kosong di directory
 
     final dir = await getApplicationDocumentsDirectory();
-    final file = File('${dir.path}/mydocument.pdf');
+    final file = File('${dir.path}/$noOrder.pdf');
 
     // timpa file kosong dengan file pdf
     await file.writeAsBytes(bytes);
@@ -136,14 +154,23 @@ class PdfAPI {
     );
   }
 
-  customerPDF(String date, package) {
+  customerPDF(
+    String date,
+    package,
+    typeOS,
+    noOrder,
+    serviceID,
+    contactPhone,
+    customerName,
+    address,
+  ) {
     return pw.Column(
       children: [
         pw.Row(
           mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
           children: [
             CustomerLabel(label: 'Date', value: date),
-            CustomerLabel(label: 'Type of Service', value: 'Gangguan'),
+            CustomerLabel(label: 'Type of Service', value: typeOS),
           ],
         ),
         pw.SizedBox(height: kPadding / 2),
@@ -151,55 +178,53 @@ class PdfAPI {
           mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
           children: [
             CustomerLabel(label: 'Package', value: package),
-            CustomerLabel(label: 'No Order', value: 'IN123454567'),
+            CustomerLabel(label: 'No Order', value: noOrder),
           ],
         ),
         pw.SizedBox(height: kPadding / 2),
         pw.Row(
           mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
           children: [
-            CustomerLabel(label: 'Service ID', value: '4856421-484514a12312'),
-            CustomerLabel(label: 'Contact Phone', value: '081320244664'),
+            CustomerLabel(label: 'Service ID', value: serviceID),
+            CustomerLabel(label: 'Contact Phone', value: contactPhone),
           ],
         ),
         pw.SizedBox(height: kPadding / 2),
-        CustomerLabel(label: 'Customer Name', value: 'John Doe'),
+        CustomerLabel(label: 'Customer Name', value: customerName),
         pw.SizedBox(height: kPadding / 2),
-        Addressabel(
-            label: 'Address',
-            value: 'Komp. Kota Baru jl. Alamanda No. 10 Cibaduyut'),
+        Addressabel(label: 'Address', value: address),
         pw.SizedBox(height: 8),
       ],
     );
   }
 
-  datekPDF(pw.Font myFontBold) {
+  datekPDF(pw.Font myFontBold, String sto, odc, odp, port) {
     return pw.Row(
       children: [
-        PWDatek(font: myFontBold, label: 'STO :', value: 'TRG'),
+        PWDatek(font: myFontBold, label: 'STO :', value: sto),
         pw.SizedBox(width: kPadding),
-        PWDatek(font: myFontBold, label: 'ODC :', value: 'FBA'),
+        PWDatek(font: myFontBold, label: 'ODC :', value: odc),
         pw.SizedBox(width: kPadding),
-        PWDatek(font: myFontBold, label: 'ODP :', value: '18'),
+        PWDatek(font: myFontBold, label: 'ODP :', value: odp),
         pw.SizedBox(width: kPadding),
-        PWDatek(font: myFontBold, label: 'Port : ', value: '2'),
+        PWDatek(font: myFontBold, label: 'Port : ', value: port),
       ],
     );
   }
 
-  ntePDF(pw.Font myFontBold) {
+  ntePDF(pw.Font myFontBold, String newONT, oldONT, newSTB, oldSTB) {
     return pw.Column(
       children: [
         NTELabel(font: myFontBold),
         NTE(
           labelNTE: 'ONT / MODEM',
-          newNTE: '4781273812',
-          oldNTE: '127837217321',
+          newNTE: newONT,
+          oldNTE: oldONT,
         ),
         NTE(
           labelNTE: 'STB',
-          newNTE: 'A3100499007037000000A440271A4312',
-          oldNTE: 'A3100499007037000000A440271A4312',
+          newNTE: newSTB,
+          oldNTE: oldSTB,
         ),
         NTE(oldNTE: '', newNTE: '', labelNTE: 'OTHERS'),
         pw.SizedBox(height: kPadding / 2),
@@ -298,7 +323,7 @@ class PdfAPI {
     );
   }
 
-  signaturePDF(Uint8List signTech, signCus) {
+  signaturePDF(Uint8List signTech, signCus, String customerName, date, techName) {
     return pw.Row(
       mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
       children: [
@@ -306,13 +331,13 @@ class PdfAPI {
           dateLabel: '_',
           labelName: 'Customer',
           signature: signTech.buffer.asUint8List(),
-          name: 'Customer Name',
+          name: customerName,
         ),
         PWSignature(
-          dateLabel: 'Bandung, 02/02/2022',
+          dateLabel: 'Bandung, $date',
           labelName: 'Technician',
           signature: signCus.buffer.asUint8List(),
-          name: 'Technician Name',
+          name: techName,
         ),
       ],
     );

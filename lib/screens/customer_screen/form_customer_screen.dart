@@ -43,6 +43,8 @@ class _FormCustomerState extends State<FormCustomer> {
     GlobalKey<FormState>()
   ];
 
+  final ChooseData chooseData = ChooseData();
+
   @override
   void initState() {
     super.initState();
@@ -135,6 +137,7 @@ class _FormCustomerState extends State<FormCustomer> {
                 title: 'Next',
                 onPressed: () {
                   _sendDataToNextScreen(context);
+
                   print(context.read<ChooseData>().selected);
                   // print(context.read<TextData>().gangguan);
                   print(context.read<PackageData>().selected);

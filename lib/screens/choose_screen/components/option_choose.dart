@@ -1,4 +1,5 @@
 import 'package:d_bam/models/choose_data.dart';
+import 'package:d_bam/models/text_data.dart';
 import 'package:d_bam/screens/signature_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -31,11 +32,12 @@ class OptionChoose extends StatelessWidget {
                   svgPicture: SvgPicture.asset(dataChoose.images),
                   label: dataChoose.label,
                   onTap: () {
+                    print(context.read<ChooseData>().selected == 'gangguan'
+                        ? context.read<TextData>().psb
+                        : context.read<TextData>().gangguan);
                     dataChoose.label == 'Provisioning'
                         ? toPSB(context)
                         : toGangguan(context);
-
-                    print(dataChoose.label);
                   },
                 ),
               );
@@ -60,6 +62,5 @@ class OptionChoose extends StatelessWidget {
       PageTransition(
           child: FormMaterial(), type: PageTransitionType.rightToLeft),
     );
-    print(context.read<ChooseData>().chooseDatas.asMap().keys.toList());
   }
 }

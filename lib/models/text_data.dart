@@ -20,6 +20,7 @@ class TextData extends ChangeNotifier {
   String _odc = '';
   String _odp = '';
   String _port = '';
+  String _techName = '';
 
   String get psb => _psb;
   String get gangguan => _gangguan;
@@ -92,6 +93,8 @@ class TextData extends ChangeNotifier {
   String get odc => _odc;
   String get odp => _odp;
   String get port => _port;
+
+  String get techName => _techName;
 
   getOrder(String order) {
     _order = order;
@@ -175,6 +178,11 @@ class TextData extends ChangeNotifier {
 
   getPort(String port) {
     _port = port;
+    notifyListeners();
+  }
+
+  getTechName(String techName) {
+    _techName = techName;
     notifyListeners();
   }
 }

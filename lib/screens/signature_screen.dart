@@ -1,5 +1,7 @@
 import 'dart:typed_data';
 import 'dart:ui' as ui;
+import 'package:d_bam/widgets/my_text_form.dart';
+import 'package:d_bam/widgets/my_text_title.dart';
 import 'package:intl/intl.dart';
 import 'package:d_bam/api/pdf_api.dart';
 import 'package:d_bam/models/category_data.dart';
@@ -30,6 +32,8 @@ class _SignatureScreenState extends State<SignatureScreen> {
   final pdfAPI = PdfAPI();
   final pdf = pw.Document();
 
+  final technicianController = TextEditingController();
+
   ValueNotifier<String?> svg = ValueNotifier<String?>(null);
   ValueNotifier<ByteData?> rawImageFit = ValueNotifier<ByteData?>(null);
 
@@ -57,7 +61,8 @@ class _SignatureScreenState extends State<SignatureScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBar(context),
-      body: Padding(
+      body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
         padding: const EdgeInsets.fromLTRB(
             kPadding, kPadding, kPadding, kVerPadding),
         child: Column(
@@ -86,20 +91,17 @@ class _SignatureScreenState extends State<SignatureScreen> {
             SizedBox(
               height: kPadding,
             ),
-            Spacer(),
+            MyTextTitle(title: 'Technician Name :'),
+            MyTextForm(
+              controller: technicianController,
+              textInputAction: TextInputAction.next,
+              textCapitalization: TextCapitalization.words,
+              onChanged: context.read<TextData>().getTechName,
+            ),
+            // Spacer(),
             BottonRounded(
               title: 'Submit',
               onPressed: () async {
-                // await showDialog(
-                //   context: context,
-                //   builder: (context) => Center(
-                //     child: CircularProgressIndicator(
-                //       color: Colors.grey,
-                //       backgroundColor: Colors.red,
-                //     ),
-                //   ),
-                // );
-
                 // Navigator.pop(context);
                 onSubmit();
                 // print(technicianControl.toImage());
@@ -135,10 +137,6 @@ class _SignatureScreenState extends State<SignatureScreen> {
                 // );
               },
             ),
-            // Align(
-            //   alignment: Alignment.bottomRight,
-            //   child: _buildScaledImageView(),
-            // )
           ],
         ),
       ),
@@ -166,7 +164,10 @@ class _SignatureScreenState extends State<SignatureScreen> {
         context: context,
         builder: (BuildContext context) {
           return Center(
-            child: CircularProgressIndicator(),
+            child: CircularProgressIndicator(
+              color: Colors.grey,
+              backgroundColor: Colors.red,
+            ),
           );
         },
       );
@@ -180,13 +181,27 @@ class _SignatureScreenState extends State<SignatureScreen> {
       final String? datePDF = context.read<DatePicker>().selected.toString();
       // final String? dateFormatPDF =
       //     DateFormat('dd-MM-yyyy').format(datePDF);
-      final String? typeOSPDF = context.read<ChooseData>().selected;
+
+      final provTextData = context.read<TextData>();
+      final String? typeOSPDF =
+          (context.read<ChooseData>().selected == 'Provisioning')
+              ? provTextData.psb
+              : provTextData.gangguan;
       final String? packagePDF = context.read<PackageData>().selected;
-      final String? orderPDF = context.read<TextData>().order;
-      final String? servicePDF = context.read<TextData>().service;
-      final String? namePDF = context.read<TextData>().name;
-      final String? phonePDF = context.read<TextData>().phone;
-      final String? addressPDF = context.read<TextData>().address;
+      final String? orderPDF = provTextData.order;
+      final String? servicePDF = provTextData.service;
+      final String? namePDF = provTextData.name;
+      final String? phonePDF = provTextData.phone;
+      final String? addressPDF = provTextData.address;
+      final String? stoPDF = provTextData.sto;
+      final String? odcPDF = provTextData.odc;
+      final String? odpPDF = provTextData.odp;
+      final String? portPDF = provTextData.port;
+      final String? newONTPDF = provTextData.newONT;
+      final String? oldONTPDF = provTextData.oldONT;
+      final String? newSTBPDF = provTextData.newSTB;
+      final String? oldSTBPDF = provTextData.oldSTB;
+      final String? techNamePDF = provTextData.techName;
 
       await pdfAPI.getPDF(
         signCus: imageSignCus,
@@ -195,10 +210,19 @@ class _SignatureScreenState extends State<SignatureScreen> {
         typeOS: typeOSPDF ?? '-',
         package: packagePDF ?? '-',
         noOrder: orderPDF ?? '-',
-        serviceID: servicePDF,
+        serviceID: servicePDF ?? '-',
         contactPhone: phonePDF ?? '-',
         customerName: namePDF ?? '-',
         address: addressPDF ?? '-',
+        sto: stoPDF ?? '-',
+        odc: odcPDF ?? '-',
+        odp: odpPDF ?? '-',
+        port: portPDF ?? '-',
+        newONT: newONTPDF ?? '-',
+        oldONT: oldONTPDF ?? '-',
+        newSTB: newSTBPDF ?? '-',
+        oldSTB: oldSTBPDF ?? '-',
+        techName: techNamePDF ?? '-',
       );
 
       Navigator.of(context).pop();
