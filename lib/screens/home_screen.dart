@@ -1,8 +1,13 @@
+import 'package:d_bam/models/category_data.dart';
+import 'package:d_bam/models/datepicker.dart';
+import 'package:d_bam/models/package_data.dart';
+import 'package:d_bam/models/text_data.dart';
 import 'package:d_bam/screens/choose_screen/choose_screen.dart';
 import 'package:d_bam/widgets/my_button_rounded.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 
 import '../constants.dart';
 
@@ -51,7 +56,7 @@ class HomeScreen extends StatelessWidget {
               height: 78,
             ),
             Text(
-              'Hi, Samantha don’t forget to create BA after you done work. Thank You !',
+              'Hi, Technician don’t forget to create BA after you done work. Thank You !',
               style: kTextStyle20,
               textAlign: TextAlign.center,
             ),
@@ -65,6 +70,15 @@ class HomeScreen extends StatelessWidget {
                       child: ChooseScreen(),
                       type: PageTransitionType.rightToLeft),
                 );
+               
+                // print(context.read<PackageData>().selected ?? '');
+                // print(context.read<DatePicker>().selected ?? '');
+                // print(context.read<TextData>().order);
+                // print(context.read<TextData>().service);
+                // print(context.read<TextData>().name);
+                // print(context.read<TextData>().phone);
+                // print(context.read<TextData>().techName);
+                // print(context.read<TextData>().address);
               },
             ),
           ],

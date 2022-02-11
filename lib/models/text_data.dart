@@ -1,6 +1,6 @@
-import 'package:flutter/cupertino.dart';
+import 'package:d_bam/providers/disposable_providers.dart';
 
-class TextData extends ChangeNotifier {
+class TextData extends DisposableProviders {
   String _psb = 'Pasang Baru';
   String _gangguan = 'Gangguan';
   String _order = '';
@@ -27,6 +27,7 @@ class TextData extends ChangeNotifier {
 
   getPSB(String psb) {
     _psb = psb;
+    notifyListeners();
   }
 
   set getGangguan(String gangguan) {
@@ -34,62 +35,20 @@ class TextData extends ChangeNotifier {
     notifyListeners();
   }
 
-  String get order {
-    return _order;
-  }
-
-  String get service {
-    return _service;
-  }
-
-  String get name {
-    return _name;
-  }
-
-  String get phone {
-    return _phone;
-  }
-
-  String get address {
-    return _address;
-  }
-
-  String get oldONT {
-    return _oldONT;
-  }
-
-  String get newONT {
-    return _newONT;
-  }
-
-  String get oldSTB {
-    return _oldSTB;
-  }
-
-  String get newSTB {
-    return _newSTB;
-  }
-
-  String get oldSDWAN {
-    return _oldSDWAN;
-  }
-
-  String get newSDWAN {
-    return _newSDWAN;
-  }
-
-  String get dropcore {
-    return _dropcore;
-  }
-
-  String get cableUTP {
-    return _cableUTP;
-  }
-
-  String get sto {
-    return _sto;
-  }
-
+  String get order => _order;
+  String get service => _service;
+  String get name => _name;
+  String get phone => _phone;
+  String get address => _address;
+  String get oldONT => _oldONT;
+  String get newONT => _newONT;
+  String get oldSTB => _oldSTB;
+  String get newSTB => _newSTB;
+  String get oldSDWAN => _oldSDWAN;
+  String get newSDWAN => _newSDWAN;
+  String get dropcore => _dropcore;
+  String get cableUTP => _cableUTP;
+  String get sto => _sto;
   String get odc => _odc;
   String get odp => _odp;
   String get port => _port;
@@ -184,5 +143,27 @@ class TextData extends ChangeNotifier {
   getTechName(String techName) {
     _techName = techName;
     notifyListeners();
+  }
+
+  @override
+  void disposeValue() {
+    _order = '';
+    _service = '';
+    _name = '';
+    _phone = '';
+    _address = '';
+    _oldONT = '';
+    _newONT = '';
+    _oldSTB = '';
+    _newSTB = '';
+    _oldSDWAN = '';
+    _newSDWAN = '';
+    _dropcore = '';
+    _cableUTP = '';
+    _sto = '';
+    _odc = '';
+    _odp = '';
+    _port = '';
+    _techName = '';
   }
 }

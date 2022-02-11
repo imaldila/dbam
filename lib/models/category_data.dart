@@ -2,6 +2,7 @@ import 'dart:collection';
 
 import 'package:d_bam/constants.dart';
 import 'package:d_bam/models/category.dart';
+import 'package:d_bam/providers/disposable_providers.dart';
 import 'package:flutter/cupertino.dart';
 
 TextEditingController ontController = TextEditingController();
@@ -21,25 +22,25 @@ TextEditingController cableUTPController = TextEditingController();
 TextEditingController otpController = TextEditingController();
 TextEditingController preksoController = TextEditingController();
 
-class CategoryData extends ChangeNotifier {
+class CategoryData extends DisposableProviders {
   // bool selected = false;
   final List<Category> _categories = [
-    Category('ONT', kBgColour, false, ontController),
-    Category('STB', kBgColour, false, stbController),
+    Category('ONT', kBgColour, false),
+    Category('STB', kBgColour, false),
     // Category('SD WAN', kBgColour, false, sdwanController),
-    Category('Dropcore', kBgColour, false, dropcoreeController),
-    Category('SOC', kBgColour, false, socController),
-    Category('Preconn 50M', kBgColour, false, precon50Controller),
-    Category('Preconn 80M', kBgColour, false, precon80Controller),
-    Category('S-Clamp', kBgColour, false, sClampController),
-    Category('Clamp Hook', kBgColour, false, clampHookController),
-    Category('OTP', kBgColour, false, otpController),
-    Category('Prekso', kBgColour, false, preksoController),
-    Category('Roset', kBgColour, false, rosetController),
-    Category('Tray Cable', kBgColour, false, trayCableController),
-    Category('Patchcore', kBgColour, false, patchcoreController),
-    Category('Cable UTP', kBgColour, false, cableUTPController),
-    Category('RJ 45', kBgColour, false, rj45Controller),
+    Category('Dropcore', kBgColour, false),
+    Category('SOC', kBgColour, false),
+    Category('Preconn 50M', kBgColour, false),
+    Category('Preconn 80M', kBgColour, false),
+    Category('S-Clamp', kBgColour, false),
+    Category('Clamp Hook', kBgColour, false),
+    Category('OTP', kBgColour, false),
+    Category('Prekso', kBgColour, false),
+    Category('Roset', kBgColour, false),
+    Category('Tray Cable', kBgColour, false),
+    Category('Patchcore', kBgColour, false),
+    Category('Cable UTP', kBgColour, false),
+    Category('RJ 45', kBgColour, false),
     // Category('ONT', kBgColour, false, ontController, 0),
     // Category('STB', kBgColour, false, stbController, 0),
     // Category('SD WAN', kBgColour, false, sdwanController, 0),
@@ -70,26 +71,6 @@ class CategoryData extends ChangeNotifier {
     return _selectedCategory;
   }
 
-  int _counter = 0;
-
-  int get counter => _counter;
-
-  void increment() {
-    _counter++;
-    notifyListeners();
-    for (int i = 0; i < categories.length; i++) {
-      categories[i].controller.text == _counter.toString();
-    }
-  }
-
-  void decrement() {
-    _counter--;
-    notifyListeners();
-    for (int i = 0; i < categories.length; i++) {
-      categories[i].controller.text = _counter.toString();
-    }
-  }
-
   set selected(final String? categories) {
     _selectedCategory = categories;
     notifyListeners();
@@ -98,5 +79,10 @@ class CategoryData extends ChangeNotifier {
   void updateCategory(Category categories) {
     categories.toggleDone();
     notifyListeners();
+  }
+
+  @override
+  void disposeValue() {
+    _selectedCategory = '0';
   }
 }

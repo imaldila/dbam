@@ -20,7 +20,7 @@ class MyAddressForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    // Size size = MediaQuery.of(context).size;
     return Consumer<TextData>(
       builder: (context, textData, child) => Padding(
         padding: const EdgeInsets.only(top: kPadding / 2, bottom: kPadding),
@@ -35,7 +35,7 @@ class MyAddressForm extends StatelessWidget {
                 shadowColor: Colors.white,
                 color: Colors.white,
                 child: Container(
-                  height: size.height / 7.3,
+                  height: 120,
                   decoration: kStyleBoxDecoration,
                 ),
               ),

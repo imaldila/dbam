@@ -4,9 +4,8 @@ class Category {
   String label;
   Color colour;
   bool isSelected;
-  TextEditingController controller;
 
-  Category(this.label, this.colour, this.isSelected, this.controller);
+  Category(this.label, this.colour, this.isSelected);
 
   void toggleDone() {
     isSelected = !isSelected;

@@ -26,8 +26,17 @@ class _MyCategoriesFormState extends State<MyCategoriesForm> {
   final oldSDWANController = TextEditingController();
   final newSDWANController = TextEditingController();
   final dropcoreController = TextEditingController();
+  final socController = TextEditingController();
   final preconn50Controller = TextEditingController();
   final preconn80Controller = TextEditingController();
+  final sClampController = TextEditingController();
+  final clampHookController = TextEditingController();
+  final otpController = TextEditingController();
+  final preksoController = TextEditingController();
+  final rosetController = TextEditingController();
+  final trayCableController = TextEditingController();
+  final patchcoreController = TextEditingController();
+  final rj45Controller = TextEditingController();
   final cableUTPController = TextEditingController();
 
   @override
@@ -40,6 +49,17 @@ class _MyCategoriesFormState extends State<MyCategoriesForm> {
     newSDWANController.dispose();
     dropcoreController.dispose();
     cableUTPController.dispose();
+    socController.dispose();
+    preconn50Controller.dispose();
+    preconn80Controller.dispose();
+    sClampController.dispose();
+    clampHookController.dispose();
+    otpController.dispose();
+    preksoController.dispose();
+    rosetController.dispose();
+    trayCableController.dispose();
+    patchcoreController.dispose();
+    rj45Controller.dispose();
 
     super.dispose();
   }
@@ -139,7 +159,7 @@ class _MyCategoriesFormState extends State<MyCategoriesForm> {
                   onChanged: counter.getSclamp,
                   controller: sClampController,
                   remove: () {
-                    counter.sClamp > 0 ? counter.decSclamp5() : 0;
+                    counter.sClamp > 0 ? counter.decSclamp() : 0;
                     sClampController.text = counter.sClamp.toString();
                   },
                   add: () {

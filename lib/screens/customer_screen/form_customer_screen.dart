@@ -33,6 +33,7 @@ class _FormCustomerState extends State<FormCustomer> {
   final nameController = TextEditingController();
   final phoneController = TextEditingController();
   final addressController = TextEditingController();
+  final technicianController = TextEditingController();
   List<GlobalKey<FormState>> formKeys = [
     GlobalKey<FormState>(),
     GlobalKey<FormState>(),
@@ -40,7 +41,8 @@ class _FormCustomerState extends State<FormCustomer> {
     GlobalKey<FormState>(),
     GlobalKey<FormState>(),
     GlobalKey<FormState>(),
-    GlobalKey<FormState>()
+    GlobalKey<FormState>(),
+    GlobalKey<FormState>(),
   ];
 
   final ChooseData chooseData = ChooseData();
@@ -58,13 +60,13 @@ class _FormCustomerState extends State<FormCustomer> {
     nameController.dispose();
     phoneController.dispose();
     addressController.dispose();
+    technicianController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     final TextData myProvider = context.read<TextData>();
-
     return Scaffold(
       backgroundColor: kBgColour,
       appBar: buildAppBar(context),
@@ -125,9 +127,19 @@ class _FormCustomerState extends State<FormCustomer> {
                 onChanged: myProvider.getPhone,
                 validator: 'Please enter Customer Contact Phone!',
               ),
+              MyTextTitle(title: 'Technician Name / NIK'),
+              MyTextForm(
+                formkey: formKeys[6],
+                controller: technicianController,
+                textInputAction: TextInputAction.next,
+                textCapitalization: TextCapitalization.words,
+                onChanged: context.read<TextData>().getTechName,
+                validator: 'Please enter Your Name Please!',
+                counterText: 'ex: Dede / 101010',
+              ),
               MyTextTitle(title: 'Address'),
               MyAddressForm(
-                  formkey: formKeys[6],
+                  formkey: formKeys[7],
                   controller: addressController,
                   onChanged: myProvider.getAddress),
               SizedBox(
@@ -138,15 +150,16 @@ class _FormCustomerState extends State<FormCustomer> {
                 onPressed: () {
                   _sendDataToNextScreen(context);
 
-                  print(context.read<ChooseData>().selected);
-                  // print(context.read<TextData>().gangguan);
-                  print(context.read<PackageData>().selected);
-                  print(context.read<DatePicker>().selected);
-                  print(context.read<TextData>().order);
-                  print(context.read<TextData>().service);
-                  print(context.read<TextData>().name);
-                  print(context.read<TextData>().phone);
-                  print(context.read<TextData>().address);
+                  // // print(context.read<ChooseData>().selected);
+                  // // print(context.read<TextData>().gangguan);
+                  // print(context.read<PackageData>().selected);
+                  // print(context.read<DatePicker>().selected);
+                  // print(context.read<TextData>().order);
+                  // print(context.read<TextData>().service);
+                  // print(context.read<TextData>().name);
+                  // print(context.read<TextData>().phone);
+                  // print(context.read<TextData>().techName);
+                  // print(context.read<TextData>().address);
                 },
               ),
             ],
@@ -206,7 +219,8 @@ class _FormCustomerState extends State<FormCustomer> {
         formKeys[3].currentState!.validate() &&
         formKeys[4].currentState!.validate() &&
         formKeys[5].currentState!.validate() &&
-        formKeys[6].currentState!.validate()) {
+        formKeys[6].currentState!.validate() &&
+        formKeys[7].currentState!.validate()) {
       formKeys[0].currentState!.save();
       formKeys[1].currentState!.save();
       formKeys[2].currentState!.save();
@@ -215,6 +229,7 @@ class _FormCustomerState extends State<FormCustomer> {
       formKeys[4].currentState!.save();
       formKeys[5].currentState!.save();
       formKeys[6].currentState!.save();
+      formKeys[7].currentState!.save();
       // await Navigator.push(
       //     context,
       //     PageTransition(
