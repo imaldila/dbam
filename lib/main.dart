@@ -7,6 +7,7 @@ import 'package:d_bam/models/package_data.dart';
 import 'package:d_bam/models/text_data.dart';
 import 'package:d_bam/screens/home_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -18,6 +19,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<PackageData>(create: (context) {

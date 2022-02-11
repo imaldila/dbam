@@ -1,7 +1,5 @@
 import 'package:d_bam/constants.dart';
 import 'package:d_bam/models/choose_data.dart';
-import 'package:d_bam/models/datepicker.dart';
-import 'package:d_bam/models/package_data.dart';
 import 'package:d_bam/models/text_data.dart';
 
 import 'package:d_bam/screens/material_screen/form_material_screen.dart';
@@ -149,17 +147,6 @@ class _FormCustomerState extends State<FormCustomer> {
                 title: 'Next',
                 onPressed: () {
                   _sendDataToNextScreen(context);
-
-                  // // print(context.read<ChooseData>().selected);
-                  // // print(context.read<TextData>().gangguan);
-                  // print(context.read<PackageData>().selected);
-                  // print(context.read<DatePicker>().selected);
-                  // print(context.read<TextData>().order);
-                  // print(context.read<TextData>().service);
-                  // print(context.read<TextData>().name);
-                  // print(context.read<TextData>().phone);
-                  // print(context.read<TextData>().techName);
-                  // print(context.read<TextData>().address);
                 },
               ),
             ],
@@ -230,28 +217,9 @@ class _FormCustomerState extends State<FormCustomer> {
       formKeys[5].currentState!.save();
       formKeys[6].currentState!.save();
       formKeys[7].currentState!.save();
-      // await Navigator.push(
-      //     context,
-      //     PageTransition(
-      //         child: FormMaterial(), type: PageTransitionType.rightToLeft));
+
       await Navigator.push(
           context, MaterialPageRoute(builder: (context) => FormMaterial()));
     }
-
-    // if (valKey.listKey.currentState!.validate() &&
-    //     valKey.dateKey.currentState!.validate() &&
-    //     valKey.orderKey.currentState!.validate() &&
-    //     valKey.serviceKey.currentState!.validate() &&
-    //     valKey.nameKey.currentState!.validate() &&
-    //     valKey.phoneKey.currentState!.validate() &&
-    //     valKey.addressKey.currentState!.validate()) {
-    //   valKey.listKey.currentState!.save();
-    //   valKey.dateKey.currentState!.save();
-    //   valKey.orderKey.currentState!.save();
-    //   valKey.serviceKey.currentState!.save();
-    //   valKey.nameKey.currentState!.save();
-    //   valKey.phoneKey.currentState!.save();
-    //   valKey.addressKey.currentState!.save();
-    // }
   }
 }
