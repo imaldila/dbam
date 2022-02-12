@@ -1,5 +1,5 @@
 class Package {
   final String name;
 
-  Package(this.name);
+  Package({this.name = ''});
 }

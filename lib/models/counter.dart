@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
+import 'package:d_bam/providers/disposable_providers.dart';
 
-class Counter extends ChangeNotifier {
+class Counter extends DisposableProviders {
   int _preconn50 = 0;
 
   int get preconn50 => _preconn50;
@@ -72,7 +72,7 @@ class Counter extends ChangeNotifier {
     notifyListeners();
   }
 
-  void decSclamp5() {
+  void decSclamp() {
     _sClamp--;
     notifyListeners();
   }
@@ -225,5 +225,21 @@ class Counter extends ChangeNotifier {
   void decCableUTP() {
     _cableUTP--;
     notifyListeners();
+  }
+
+  @override
+  void disposeValue() {
+    _cableUTP = 0;
+    _clampHook = 0;
+    _otp = 0;
+    _patchCore = 0;
+    _preconn50 = 0;
+    _preconn80 = 0;
+    _prekso = 0;
+    _rj45 = 0;
+    _roset = 0;
+    _sClamp = 0;
+    _soc = 0;
+    _trayCable = 0;
   }
 }

@@ -1,6 +1,6 @@
-import 'package:flutter/cupertino.dart';
+import 'package:d_bam/providers/disposable_providers.dart';
 
-class TextData extends ChangeNotifier {
+class TextData extends DisposableProviders {
   String _psb = 'Pasang Baru';
   String _gangguan = 'Gangguan';
   String _order = '';
@@ -142,5 +142,27 @@ class TextData extends ChangeNotifier {
   getTechName(String techName) {
     _techName = techName;
     notifyListeners();
+  }
+
+  @override
+  void disposeValue() {
+    _order = '';
+    _service = '';
+    _name = '';
+    _phone = '';
+    _address = '';
+    _oldONT = '';
+    _newONT = '';
+    _oldSTB = '';
+    _newSTB = '';
+    _oldSDWAN = '';
+    _newSDWAN = '';
+    _dropcore = '';
+    _cableUTP = '';
+    _sto = '';
+    _odc = '';
+    _odp = '';
+    _port = '';
+    _techName = '';
   }
 }

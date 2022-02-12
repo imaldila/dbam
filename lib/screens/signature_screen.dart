@@ -1,7 +1,7 @@
 import 'dart:typed_data';
 import 'dart:ui' as ui;
-import 'package:d_bam/widgets/my_text_form.dart';
-import 'package:d_bam/widgets/my_text_title.dart';
+import 'package:d_bam/models/category_data.dart';
+import 'package:d_bam/providers/disposable_providers.dart';
 import 'package:d_bam/api/pdf_api.dart';
 import 'package:d_bam/models/choose_data.dart';
 import 'package:d_bam/models/counter.dart';
@@ -29,6 +29,7 @@ class SignatureScreen extends StatefulWidget {
 class _SignatureScreenState extends State<SignatureScreen> {
   final pdfAPI = PdfAPI();
   final pdf = pw.Document();
+  final CategoryData categoryData = CategoryData();
 
   ValueNotifier<String?> svg = ValueNotifier<String?>(null);
   ValueNotifier<ByteData?> rawImageFit = ValueNotifier<ByteData?>(null);
@@ -91,11 +92,15 @@ class _SignatureScreenState extends State<SignatureScreen> {
             SizedBox(
               height: kPadding,
             ),
-            Spacer(),
+
+            // Spacer(),
             BottonRounded(
               title: 'Submit',
               onPressed: () async {
                 onSubmit();
+                for (int i = 0; i < categoryData.categoryCount; i++) {
+                  context.read<CategoryData>().categories[i].isSelected = false;
+                }
               },
             ),
           ],
@@ -111,14 +116,10 @@ class _SignatureScreenState extends State<SignatureScreen> {
         content: const Text('Please Fill the Signature First!'),
         action: SnackBarAction(
           label: 'Ok',
-          onPressed: () {
-            // Some code to undo the change.
-          },
+          onPressed: () {},
         ),
       );
 
-      // Find the ScaffoldMessenger in the widget tree
-      // and use it to show a SnackBar.
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
     } else {
       showDialog(
@@ -139,10 +140,7 @@ class _SignatureScreenState extends State<SignatureScreen> {
           await technicianControl.toImage(format: ui.ImageByteFormat.png);
       final imageSignTech = imageTech!.buffer.asUint8List();
 
-      final String? datePDF =  context.read<DatePicker>().selected.toString();
-      // final String? dateFormatPDF =
-      //     DateFormat('dd-MM-yyyy').format(datePDF);
-
+      final String? datePDF = context.read<DatePicker>().selected.toString();
       final provTextData = context.read<TextData>();
       final provCounter = context.read<Counter>();
       final String? typeOSPDF =
@@ -212,10 +210,12 @@ class _SignatureScreenState extends State<SignatureScreen> {
         cableUTP: cableUTPPDF ?? '-',
         rj45: rj45PDF ?? '-',
       );
+      AppProviders.disposeAllDisposableProviders(context);
+      await Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => HomeScreen()),
+      );
 
-      await Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (context) => HomeScreen()),
-          (route) => false);
       // await Navigator.pushAndRemoveUntil(
       //   context,
       //   MaterialPageRoute(builder: (context) => HomeScreen()),
@@ -271,7 +271,7 @@ class _SignatureScreenState extends State<SignatureScreen> {
                   onPressed: () async {
                     rawImageFit.value = await customerControl.toImage(
                         color: Colors.red, background: Colors.white);
-                    print(customerControl.isFilled);
+                    // print(customerControl.isFilled);
                   },
                   icon: const Icon(Icons.check),
                   color: kIcColour,
@@ -338,7 +338,7 @@ class _SignatureScreenState extends State<SignatureScreen> {
                   onPressed: () async {
                     rawImageFit.value = await technicianControl.toImage(
                         color: Colors.red, background: Colors.white);
-                    print(technicianControl.isFilled);
+                    // print(technicianControl.isFilled);
                   },
                   icon: const Icon(Icons.check),
                   color: kIcColour,
@@ -357,34 +357,6 @@ class _SignatureScreenState extends State<SignatureScreen> {
       ),
     );
   }
-
-  // ignore: unused_element
-  Widget _buildScaledImageView() => Container(
-        width: 192.0,
-        height: 96.0,
-        decoration: BoxDecoration(
-          border: Border.all(),
-          color: Colors.white30,
-        ),
-        child: ValueListenableBuilder<ByteData?>(
-          valueListenable: rawImageFit,
-          builder: (context, data, child) {
-            if (data == null) {
-              return Container(
-                color: Colors.red,
-                child: Center(
-                  child: Text('not signed yet (png)\nscaleToFill: true'),
-                ),
-              );
-            } else {
-              return Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Image.memory(data.buffer.asUint8List()),
-              );
-            }
-          },
-        ),
-      );
 
   AppBar buildAppBar(BuildContext context) {
     return AppBar(

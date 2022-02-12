@@ -1,7 +1,5 @@
 import 'package:d_bam/constants.dart';
 import 'package:d_bam/models/choose_data.dart';
-import 'package:d_bam/models/datepicker.dart';
-import 'package:d_bam/models/package_data.dart';
 import 'package:d_bam/models/text_data.dart';
 
 import 'package:d_bam/screens/material_screen/form_material_screen.dart';
@@ -12,7 +10,6 @@ import 'package:d_bam/widgets/my_text_form.dart';
 import 'package:d_bam/widgets/my_text_title.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
 import 'components/my_address_form.dart';
@@ -34,7 +31,6 @@ class _FormCustomerState extends State<FormCustomer> {
   final phoneController = TextEditingController();
   final addressController = TextEditingController();
   final technicianController = TextEditingController();
-
   List<GlobalKey<FormState>> formKeys = [
     GlobalKey<FormState>(),
     GlobalKey<FormState>(),
@@ -42,7 +38,8 @@ class _FormCustomerState extends State<FormCustomer> {
     GlobalKey<FormState>(),
     GlobalKey<FormState>(),
     GlobalKey<FormState>(),
-    GlobalKey<FormState>()
+    GlobalKey<FormState>(),
+    GlobalKey<FormState>(),
   ];
 
   final ChooseData chooseData = ChooseData();
@@ -62,14 +59,12 @@ class _FormCustomerState extends State<FormCustomer> {
     phoneController.dispose();
     addressController.dispose();
     technicianController.dispose();
-
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    final TextData myProvider = context.watch<TextData>();
-
+    final TextData myProvider = context.read<TextData>();
     return Scaffold(
       backgroundColor: kBgColour,
       appBar: buildAppBar(context),
@@ -132,15 +127,17 @@ class _FormCustomerState extends State<FormCustomer> {
               ),
               MyTextTitle(title: 'Technician Name / NIK'),
               MyTextForm(
+                formkey: formKeys[6],
                 controller: technicianController,
                 textInputAction: TextInputAction.next,
                 textCapitalization: TextCapitalization.words,
-                onChanged: myProvider.getTechName,
+                onChanged: context.read<TextData>().getTechName,
+                validator: 'Please enter Your Name Please!',
                 counterText: 'ex: Dede / 101010',
               ),
               MyTextTitle(title: 'Address'),
               MyAddressForm(
-                  formkey: formKeys[6],
+                  formkey: formKeys[7],
                   controller: addressController,
                   onChanged: myProvider.getAddress),
               SizedBox(
@@ -150,16 +147,6 @@ class _FormCustomerState extends State<FormCustomer> {
                 title: 'Next',
                 onPressed: () {
                   _sendDataToNextScreen(context);
-
-                  // print(context.read<ChooseData>().selected);
-                  // print(context.read<TextData>().gangguan);
-                  print(context.read<PackageData>().selected);
-                  print(context.read<DatePicker>().selected);
-                  print(context.read<TextData>().order);
-                  print(context.read<TextData>().service);
-                  print(context.read<TextData>().name);
-                  print(context.read<TextData>().phone);
-                  print(context.read<TextData>().address);
                 },
               ),
             ],
@@ -219,7 +206,8 @@ class _FormCustomerState extends State<FormCustomer> {
         formKeys[3].currentState!.validate() &&
         formKeys[4].currentState!.validate() &&
         formKeys[5].currentState!.validate() &&
-        formKeys[6].currentState!.validate()) {
+        formKeys[6].currentState!.validate() &&
+        formKeys[7].currentState!.validate()) {
       formKeys[0].currentState!.save();
       formKeys[1].currentState!.save();
       formKeys[2].currentState!.save();
@@ -228,28 +216,10 @@ class _FormCustomerState extends State<FormCustomer> {
       formKeys[4].currentState!.save();
       formKeys[5].currentState!.save();
       formKeys[6].currentState!.save();
-      // await Navigator.push(
-      //     context,
-      //     PageTransition(
-      //         child: FormMaterial(), type: PageTransitionType.rightToLeft));
+      formKeys[7].currentState!.save();
+
       await Navigator.push(
           context, MaterialPageRoute(builder: (context) => FormMaterial()));
     }
-
-    // if (valKey.listKey.currentState!.validate() &&
-    //     valKey.dateKey.currentState!.validate() &&
-    //     valKey.orderKey.currentState!.validate() &&
-    //     valKey.serviceKey.currentState!.validate() &&
-    //     valKey.nameKey.currentState!.validate() &&
-    //     valKey.phoneKey.currentState!.validate() &&
-    //     valKey.addressKey.currentState!.validate()) {
-    //   valKey.listKey.currentState!.save();
-    //   valKey.dateKey.currentState!.save();
-    //   valKey.orderKey.currentState!.save();
-    //   valKey.serviceKey.currentState!.save();
-    //   valKey.nameKey.currentState!.save();
-    //   valKey.phoneKey.currentState!.save();
-    //   valKey.addressKey.currentState!.save();
-    // }
   }
 }
