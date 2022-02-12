@@ -33,6 +33,8 @@ class _FormCustomerState extends State<FormCustomer> {
   final nameController = TextEditingController();
   final phoneController = TextEditingController();
   final addressController = TextEditingController();
+  final technicianController = TextEditingController();
+
   List<GlobalKey<FormState>> formKeys = [
     GlobalKey<FormState>(),
     GlobalKey<FormState>(),
@@ -44,6 +46,7 @@ class _FormCustomerState extends State<FormCustomer> {
   ];
 
   final ChooseData chooseData = ChooseData();
+  final TextData textData = TextData();
 
   @override
   void initState() {
@@ -58,12 +61,14 @@ class _FormCustomerState extends State<FormCustomer> {
     nameController.dispose();
     phoneController.dispose();
     addressController.dispose();
+    technicianController.dispose();
+
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    final TextData myProvider = context.read<TextData>();
+    final TextData myProvider = context.watch<TextData>();
 
     return Scaffold(
       backgroundColor: kBgColour,
@@ -125,6 +130,14 @@ class _FormCustomerState extends State<FormCustomer> {
                 onChanged: myProvider.getPhone,
                 validator: 'Please enter Customer Contact Phone!',
               ),
+              MyTextTitle(title: 'Technician Name / NIK'),
+              MyTextForm(
+                controller: technicianController,
+                textInputAction: TextInputAction.next,
+                textCapitalization: TextCapitalization.words,
+                onChanged: myProvider.getTechName,
+                counterText: 'ex: Dede / 101010',
+              ),
               MyTextTitle(title: 'Address'),
               MyAddressForm(
                   formkey: formKeys[6],
@@ -138,7 +151,7 @@ class _FormCustomerState extends State<FormCustomer> {
                 onPressed: () {
                   _sendDataToNextScreen(context);
 
-                  print(context.read<ChooseData>().selected);
+                  // print(context.read<ChooseData>().selected);
                   // print(context.read<TextData>().gangguan);
                   print(context.read<PackageData>().selected);
                   print(context.read<DatePicker>().selected);

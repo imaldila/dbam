@@ -46,8 +46,8 @@ class _MyCategoriesFormState extends State<MyCategoriesForm> {
 
   @override
   Widget build(BuildContext context) {
-    final TextData textData = context.read<TextData>();
-    final Counter counter = context.read<Counter>();
+    final TextData textData = context.watch<TextData>();
+    final Counter counter = context.watch<Counter>();
 
     return Consumer<CategoryData>(
       builder: (context, categoryData, child) => SingleChildScrollView(

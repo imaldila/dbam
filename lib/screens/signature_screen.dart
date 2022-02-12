@@ -30,8 +30,6 @@ class _SignatureScreenState extends State<SignatureScreen> {
   final pdfAPI = PdfAPI();
   final pdf = pw.Document();
 
-  final technicianController = TextEditingController();
-
   ValueNotifier<String?> svg = ValueNotifier<String?>(null);
   ValueNotifier<ByteData?> rawImageFit = ValueNotifier<ByteData?>(null);
 
@@ -61,8 +59,12 @@ class _SignatureScreenState extends State<SignatureScreen> {
       appBar: buildAppBar(context),
       body: Padding(
         // scrollDirection: Axis.vertical,
-        padding:
-            const EdgeInsets.fromLTRB(kPadding, kPadding, kPadding, kPadding),
+        padding: const EdgeInsets.only(
+          left: kPadding,
+          right: kPadding,
+          top: kPadding,
+          bottom: kVerPadding,
+        ),
         child: Column(
           // mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -89,15 +91,7 @@ class _SignatureScreenState extends State<SignatureScreen> {
             SizedBox(
               height: kPadding,
             ),
-            MyTextTitle(title: 'Technician Name / NIK'),
-            MyTextForm(
-              controller: technicianController,
-              textInputAction: TextInputAction.next,
-              textCapitalization: TextCapitalization.words,
-              onChanged: context.read<TextData>().getTechName,
-              counterText: 'ex: Dede / 101010',
-            ),
-            // Spacer(),
+            Spacer(),
             BottonRounded(
               title: 'Submit',
               onPressed: () async {
@@ -145,7 +139,7 @@ class _SignatureScreenState extends State<SignatureScreen> {
           await technicianControl.toImage(format: ui.ImageByteFormat.png);
       final imageSignTech = imageTech!.buffer.asUint8List();
 
-      final String? datePDF = context.read<DatePicker>().selected.toString();
+      final String? datePDF =  context.read<DatePicker>().selected.toString();
       // final String? dateFormatPDF =
       //     DateFormat('dd-MM-yyyy').format(datePDF);
 
@@ -219,11 +213,14 @@ class _SignatureScreenState extends State<SignatureScreen> {
         rj45: rj45PDF ?? '-',
       );
 
-      await Navigator.pushAndRemoveUntil(
-        context,
-        MaterialPageRoute(builder: (context) => HomeScreen()),
-        (Route<dynamic> route) => false,
-      );
+      await Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (context) => HomeScreen()),
+          (route) => false);
+      // await Navigator.pushAndRemoveUntil(
+      //   context,
+      //   MaterialPageRoute(builder: (context) => HomeScreen()),
+      //   (Route<dynamic> route) => false,
+      // );
     }
   }
 
