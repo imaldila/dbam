@@ -1,7 +1,4 @@
-import 'package:d_bam/models/category_data.dart';
-import 'package:d_bam/models/datepicker.dart';
-import 'package:d_bam/models/package_data.dart';
-import 'package:d_bam/models/text_data.dart';
+import 'dart:io' show Platform, exit;
 import 'package:d_bam/screens/choose_screen/choose_screen.dart';
 import 'package:d_bam/widgets/my_button_rounded.dart';
 import 'package:flutter/material.dart';
@@ -9,10 +6,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:provider/provider.dart';
 
 import '../constants.dart';
 
+// ignore: must_be_immutable
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key}) : super(key: key);
   DateTime? currentBackPressTime;
@@ -92,7 +89,7 @@ class HomeScreen extends StatelessWidget {
       Fluttertoast.showToast(msg: 'Press Again to Exit Bro !');
       return Future.value(false);
     }
-    SystemNavigator.pop();
+    Platform.isAndroid ? SystemNavigator.pop() : exit(0);
     return Future.value(true);
   }
 }
