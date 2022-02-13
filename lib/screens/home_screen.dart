@@ -1,3 +1,5 @@
+import 'dart:io' show Platform, exit;
+
 import 'package:d_bam/screens/choose_screen/choose_screen.dart';
 import 'package:d_bam/widgets/my_button_rounded.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +10,7 @@ import 'package:page_transition/page_transition.dart';
 
 import '../constants.dart';
 
+// ignore: must_be_immutable
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key}) : super(key: key);
   DateTime? currentBackPressTime;
@@ -87,7 +90,7 @@ class HomeScreen extends StatelessWidget {
       Fluttertoast.showToast(msg: 'Press Again to Exit Bro !');
       return Future.value(false);
     }
-    SystemNavigator.pop();
+    Platform.isAndroid ? SystemNavigator.pop() : exit(0);
     return Future.value(true);
   }
 }
