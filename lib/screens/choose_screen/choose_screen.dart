@@ -12,22 +12,24 @@ class ChooseScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: kBgColour,
       appBar: buildAppBar(context),
-      body: Center(
-        child: ListView(
-          children: [
-            Column(
-              children: [
-                const SizedBox(
-                  height: kPadding,
-                ),
-                Text('Please Select One', style: kTextStyle24),
-                const SizedBox(
-                  height: kPadding,
-                ),
-                OptionChoose(),
-              ],
-            ),
-          ],
+      body: SafeArea(
+        child: Center(
+          child: ListView(
+            children: [
+              Column(
+                children: [
+                  const SizedBox(
+                    height: kPadding,
+                  ),
+                  Text('Please Select One', style: kTextStyle24),
+                  const SizedBox(
+                    height: kPadding,
+                  ),
+                  OptionChoose(),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

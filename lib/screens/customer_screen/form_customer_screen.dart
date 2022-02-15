@@ -79,15 +79,15 @@ class _FormCustomerState extends State<FormCustomer> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              MyTextTitle(title: 'Package'),
+              const MyTextTitle(title: 'Package'),
               MyDropDownList(
                 formKey: formKeys[0],
               ),
-              MyTextTitle(title: 'Date'),
+              const MyTextTitle(title: 'Date'),
               MyDateForm(
                 formkey: formKeys[1],
               ),
-              MyTextTitle(title: 'No Order'),
+              const MyTextTitle(title: 'No Order'),
               MyTextForm(
                 formkey: formKeys[2],
                 controller: orderController,
@@ -97,7 +97,7 @@ class _FormCustomerState extends State<FormCustomer> {
                 onChanged: myProvider.getOrder,
                 validator: 'Please enter No Order!',
               ),
-              MyTextTitle(title: 'Service ID'),
+              const MyTextTitle(title: 'Service ID'),
               MyTextForm(
                 formkey: formKeys[3],
                 controller: serviceController,
@@ -107,7 +107,7 @@ class _FormCustomerState extends State<FormCustomer> {
                 onChanged: myProvider.getService,
                 validator: 'Please enter Service ID!',
               ),
-              MyTextTitle(title: 'Customer Name'),
+              const MyTextTitle(title: 'Customer Name'),
               MyTextForm(
                 formkey: formKeys[4],
                 controller: nameController,
@@ -116,7 +116,7 @@ class _FormCustomerState extends State<FormCustomer> {
                 onChanged: myProvider.getName,
                 validator: 'Please enter Customer Name!',
               ),
-              MyTextTitle(title: 'Contact Phone'),
+              const MyTextTitle(title: 'Contact Phone'),
               MyTextForm(
                 formkey: formKeys[5],
                 controller: phoneController,
@@ -125,7 +125,7 @@ class _FormCustomerState extends State<FormCustomer> {
                 onChanged: myProvider.getPhone,
                 validator: 'Please enter Customer Contact Phone!',
               ),
-              MyTextTitle(title: 'Technician Name / NIK'),
+              const MyTextTitle(title: 'Technician Name / NIK'),
               MyTextForm(
                 formkey: formKeys[6],
                 controller: technicianController,
@@ -135,12 +135,12 @@ class _FormCustomerState extends State<FormCustomer> {
                 validator: 'Please enter Your Name Please!',
                 counterText: 'ex: Dede / 101010',
               ),
-              MyTextTitle(title: 'Address'),
+              const MyTextTitle(title: 'Address'),
               MyAddressForm(
                   formkey: formKeys[7],
                   controller: addressController,
                   onChanged: myProvider.getAddress),
-              SizedBox(
+              const SizedBox(
                 height: kPadding,
               ),
               BottonRounded(
@@ -218,8 +218,14 @@ class _FormCustomerState extends State<FormCustomer> {
       formKeys[6].currentState!.save();
       formKeys[7].currentState!.save();
 
+      // await Navigator.push(
+      //     context, MaterialPageRoute(builder: (context) => FormMaterial()));
+
       await Navigator.push(
-          context, MaterialPageRoute(builder: (context) => FormMaterial()));
+        context,
+        PageTransition(
+            child: FormMaterial(), type: PageTransitionType.rightToLeft),
+      );
     }
   }
 }

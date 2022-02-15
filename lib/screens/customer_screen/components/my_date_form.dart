@@ -12,46 +12,35 @@ class MyDateForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Consumer<DatePicker>(
       builder: (context, datePicker, child) => Padding(
         padding: const EdgeInsets.only(top: kPadding / 2, bottom: kPadding),
         child: Form(
           key: formkey,
           autovalidateMode: AutovalidateMode.onUserInteraction,
-          child: Stack(
-            children: [
-              Material(
-                elevation: 8,
-                borderRadius: BorderRadius.circular(16),
-                shadowColor: Colors.white,
-                child: Container(
-                  height: size.height / 15.5,
-                  decoration: kStyleBoxDecoration,
-                ),
-              ),
-              InkWell(
-                onTap: () {
-                  datePicker.selectDate(context);
+          child: InkWell(
+            onTap: () {
+              datePicker.selectDate(context);
+            },
+            child: AbsorbPointer(
+              child: TextFormField(
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please select a date!';
+                  }
+                  return null;
                 },
-                child: AbsorbPointer(
-                  child: TextFormField(
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please select a date!';
-                      }
-                      return null;
-                    },
-                    decoration: InputDecoration(
-                      enabledBorder: kStyleBorder,
-                      border: kStyleBorder,
-                    ),
-                    // onChanged: onChanged,
-                    controller: datePicker.dateController,
-                  ),
+                decoration: InputDecoration(
+                  contentPadding: const EdgeInsets.symmetric(
+                      vertical: kPadding * 1.4, horizontal: kPadding * 0.8),
+                  enabledBorder: kStyleBorder,
+                  border: kStyleBorder,
+                  errorBorder: kErrorBorder,
                 ),
+                // onChanged: onChanged,
+                controller: datePicker.dateController,
               ),
-            ],
+            ),
           ),
         ),
       ),

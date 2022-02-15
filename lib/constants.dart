@@ -66,7 +66,17 @@ final kTextStyle20Bold = GoogleFonts.poppins(
 
 OutlineInputBorder kStyleBorder = OutlineInputBorder(
   borderRadius: BorderRadius.circular(16),
-  borderSide: BorderSide(color: Colors.transparent),
+  borderSide: BorderSide(
+    color: kDarkColour.withOpacity(0.2),
+    width: 3,
+  ),
+);
+OutlineInputBorder kErrorBorder = OutlineInputBorder(
+  borderRadius: BorderRadius.circular(16),
+  borderSide: BorderSide(
+    color: Colors.red,
+    width: 2,
+  ),
 );
 
 BoxDecoration kStyleBoxDecoration = BoxDecoration(
