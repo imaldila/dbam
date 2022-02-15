@@ -74,26 +74,26 @@ class _SignatureScreenState extends State<SignatureScreen> {
               height: kPadding,
             ),
             customerSignature(),
-            SizedBox(
+            const SizedBox(
               height: kPadding,
             ),
             Text(
               'Technician Signature',
               style: kTextStyle16Bold,
             ),
-            SizedBox(
+            const SizedBox(
               height: kPadding,
             ),
             technicianSignature(),
-            SizedBox(
+            const SizedBox(
               height: kPadding,
             ),
-
             // Spacer(),
             BottonRounded(
               title: 'Submit',
               onPressed: () async {
                 onSubmit();
+                // reset filterchip
                 for (int i = 0; i < categoryData.categoryCount; i++) {
                   context.read<CategoryData>().categories[i].isSelected = false;
                 }
@@ -122,9 +122,21 @@ class _SignatureScreenState extends State<SignatureScreen> {
         context: context,
         builder: (BuildContext context) {
           return Center(
-            child: CircularProgressIndicator(
-              color: Colors.grey,
-              backgroundColor: Colors.red,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CircularProgressIndicator(
+                  color: Colors.grey,
+                  backgroundColor: Colors.red,
+                ),
+                const SizedBox(
+                  height: kPadding,
+                ),
+                Text(
+                  'Please wait, don\'t close the app.',
+                  style: kTextStyle14White,
+                )
+              ],
             ),
           );
         },
