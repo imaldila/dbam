@@ -223,10 +223,12 @@ class _SignatureScreenState extends State<SignatureScreen> {
         rj45: rj45PDF ?? '-',
       );
       AppProviders.disposeAllDisposableProviders(context);
-      await Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => HomeScreen()),
-      );
+      await Future.delayed(Duration(seconds: 3), () async {
+        await Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => HomeScreen()),
+        );
+      });
 
       // await Navigator.pushAndRemoveUntil(
       //   context,
