@@ -3,6 +3,7 @@ import 'package:d_bam/screens/signature_screen.dart';
 import 'package:d_bam/widgets/my_button_rounded.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:page_transition/page_transition.dart';
 
 import '../../constants.dart';
 import 'components/my_categories_filter.dart';
@@ -52,19 +53,19 @@ class FormMaterial extends StatelessWidget {
             BottonRounded(
               title: 'Next',
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => SignatureScreen(),
-                  ),
-                );
-
                 // Navigator.push(
                 //   context,
-                //   PageTransition(
-                //       child: SignatureScreen(),
-                //       type: PageTransitionType.rightToLeftWithFade),
+                //   MaterialPageRoute(
+                //     builder: (context) => SignatureScreen(),
+                //   ),
                 // );
+
+                Navigator.push(
+                  context,
+                  PageTransition(
+                      child: SignatureScreen(),
+                      type: PageTransitionType.rightToLeftWithFade),
+                );
               },
             ),
           ],

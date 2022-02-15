@@ -47,35 +47,23 @@ class MyNTEForm extends StatelessWidget {
               SizedBox(
                 height: 8,
               ),
-              Stack(
-                children: [
-                  Material(
-                    elevation: 8,
-                    borderRadius: BorderRadius.circular(16),
-                    shadowColor: Colors.white,
-                    child: Container(
-                      height: size.height / 15.5,
-                      decoration: kStyleBoxDecoration,
-                    ),
-                  ),
-                  TextFormField(
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter some text';
-                      }
-                      return null;
-                    },
-                    controller: oldController,
-                    onChanged: oldChanged,
-                    textCapitalization: TextCapitalization.characters,
-                    textInputAction: TextInputAction.done,
-                    decoration: InputDecoration(
-                      counterText: counterText,
-                      enabledBorder: kStyleBorder,
-                      border: kStyleBorder,
-                    ),
-                  ),
-                ],
+
+              TextFormField(
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter NTE Serial Number';
+                  }
+                  return null;
+                },
+                controller: oldController,
+                onChanged: oldChanged,
+                textCapitalization: TextCapitalization.characters,
+                textInputAction: TextInputAction.done,
+                decoration: InputDecoration(
+                  counterText: counterText,
+                  enabledBorder: kStyleBorder,
+                  border: kStyleBorder,
+                ),
               ),
               SizedBox(
                 height: 8,
@@ -88,35 +76,22 @@ class MyNTEForm extends StatelessWidget {
               SizedBox(
                 height: 8,
               ),
-              Stack(
-                children: [
-                  Material(
-                    elevation: 8,
-                    borderRadius: BorderRadius.circular(16),
-                    shadowColor: Colors.white,
-                    child: Container(
-                      height: size.height / 15.5,
-                      decoration: kStyleBoxDecoration,
-                    ),
-                  ),
-                  TextFormField(
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter some text';
-                      }
-                      return null;
-                    },
-                    controller: newController,
-                    onChanged: newChanged,
-                    textCapitalization: TextCapitalization.characters,
-                    textInputAction: TextInputAction.done,
-                    decoration: InputDecoration(
-                      counterText: counterText,
-                      enabledBorder: kStyleBorder,
-                      border: kStyleBorder,
-                    ),
-                  ),
-                ],
+              TextFormField(
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter NTE Serial Number';
+                  }
+                  return null;
+                },
+                controller: newController,
+                onChanged: newChanged,
+                textCapitalization: TextCapitalization.characters,
+                textInputAction: TextInputAction.done,
+                decoration: InputDecoration(
+                  counterText: counterText,
+                  enabledBorder: kStyleBorder,
+                  border: kStyleBorder,
+                ),
               ),
             ],
           ),

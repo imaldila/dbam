@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../constants.dart';
 
 class MyTextTitle extends StatelessWidget {
-  MyTextTitle({
+  const MyTextTitle({
     Key? key,
     required this.title,
   }) : super(key: key);
