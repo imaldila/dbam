@@ -1,6 +1,7 @@
 import 'package:d_bam/models/datepicker.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../constants.dart';
 
@@ -26,7 +27,7 @@ class MyDateForm extends StatelessWidget {
               child: TextFormField(
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please select a date!';
+                    return AppLocalizations.of(context)!.valDate;
                   }
                   return null;
                 },

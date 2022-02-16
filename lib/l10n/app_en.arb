@@ -112,5 +112,55 @@
     "submitButton": "Submit",
     "@submitButton": {
       "description": "Submit"
+    },
+
+    "valOrder": "Please enter No Order!",
+    "@valOrder": {
+      "description": "Please enter No Order!"
+    },
+
+    "valServiceID": "Please enter Service ID!",
+    "@valServiceID": {
+      "description": "Please enter Service ID!"
+    },
+
+    "valCustomerName": "Please enter Customer Name!",
+    "@valCustomerName": {
+      "description": "Please enter Customer Name!"
+    },
+
+    "valContactPhone": "Please enter Customer Contact Phone!",
+    "@valContactPhone": {
+      "description": "Please enter Customer Contact Phone!"
+    },
+
+    "valTechnicianName": "Please enter Your Name Please!",
+    "@valTechnicianName": {
+      "description": "Please enter Your Name Please!"
+    },
+
+    "valNIK": "Please enter Your NIK!",
+    "@valNIK": {
+      "description": "Please enter Your NIK!"
+    },
+
+    "valAddress": "Please enter an Address!",
+    "@valAddress": {
+      "description": "Please enter an Address!"
+    },
+
+    "valDate": "Please select a date!",
+    "@valDate": {
+      "description": "Please select a date!"
+    },
+
+    "valPackage": "Please choose a package",
+    "@valPackage": {
+      "description": "Please choose a package"
+    },
+
+    "toast": "Press Again to Exit Bro !",
+    "@toast": {
+      "description": "Press Again to Exit Bro !"
     }
 }

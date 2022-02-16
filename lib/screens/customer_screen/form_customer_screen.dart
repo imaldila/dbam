@@ -30,7 +30,10 @@ class _FormCustomerState extends State<FormCustomer> {
   final phoneController = TextEditingController();
   final addressController = TextEditingController();
   final technicianController = TextEditingController();
+  final nikController = TextEditingController();
+
   List<GlobalKey<FormState>> formKeys = [
+    GlobalKey<FormState>(),
     GlobalKey<FormState>(),
     GlobalKey<FormState>(),
     GlobalKey<FormState>(),
@@ -94,7 +97,7 @@ class _FormCustomerState extends State<FormCustomer> {
                 textCapitalization: TextCapitalization.characters,
                 counterText: 'Ex: SC12345 / IN12345 / 1-1234',
                 onChanged: myProvider.getOrder,
-                validator: 'Please enter No Order!',
+                validator: AppLocalizations.of(context)!.valOrder,
               ),
               MyTextTitle(title: AppLocalizations.of(context)!.serviceID),
               MyTextForm(
@@ -104,7 +107,7 @@ class _FormCustomerState extends State<FormCustomer> {
                 keyboardType: TextInputType.number,
                 counterText: 'Ex: 0221234 / 13110234 / 456789-8910',
                 onChanged: myProvider.getService,
-                validator: 'Please enter Service ID!',
+                validator: AppLocalizations.of(context)!.valServiceID,
               ),
               MyTextTitle(title: AppLocalizations.of(context)!.customerName),
               MyTextForm(
@@ -113,7 +116,7 @@ class _FormCustomerState extends State<FormCustomer> {
                 textInputAction: TextInputAction.next,
                 textCapitalization: TextCapitalization.words,
                 onChanged: myProvider.getName,
-                validator: 'Please enter Customer Name!',
+                validator: AppLocalizations.of(context)!.valCustomerName,
               ),
               MyTextTitle(title: AppLocalizations.of(context)!.contactPhone),
               MyTextForm(
@@ -122,21 +125,57 @@ class _FormCustomerState extends State<FormCustomer> {
                 textInputAction: TextInputAction.next,
                 keyboardType: TextInputType.number,
                 onChanged: myProvider.getPhone,
-                validator: 'Please enter Customer Contact Phone!',
+                validator: AppLocalizations.of(context)!.valContactPhone,
               ),
-              MyTextTitle(title: AppLocalizations.of(context)!.technicianName),
-              MyTextForm(
-                formkey: formKeys[6],
-                controller: technicianController,
-                textInputAction: TextInputAction.next,
-                textCapitalization: TextCapitalization.words,
-                onChanged: context.read<TextData>().getTechName,
-                validator: 'Please enter Your Name Please!',
-                counterText: 'ex: Dede / 101010',
+              // MyTextTitle(title: AppLocalizations.of(context)!.technicianName),
+              Row(
+                children: [
+                  Expanded(
+                    flex: 3,
+                    child: Column(
+                      children: [
+                        MyTextTitle(
+                            title:
+                                AppLocalizations.of(context)!.technicianName),
+                        MyTextForm(
+                          formkey: formKeys[6],
+                          controller: technicianController,
+                          textInputAction: TextInputAction.next,
+                          textCapitalization: TextCapitalization.words,
+                          onChanged: context.read<TextData>().getTechName,
+                          validator:
+                              AppLocalizations.of(context)!.valTechnicianName,
+                          counterText: 'ex: Dede',
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(
+                    width: kPadding,
+                  ),
+                  Expanded(
+                    flex: 2,
+                    child: Column(
+                      children: [
+                        MyTextTitle(title: 'NIK'),
+                        MyTextForm(
+                          formkey: formKeys[7],
+                          controller: nikController,
+                          textInputAction: TextInputAction.next,
+                          textCapitalization: TextCapitalization.words,
+                          onChanged: context.read<TextData>().getNIK,
+                          validator:
+                              AppLocalizations.of(context)!.valNIK,
+                          counterText: 'ex: 101010',
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
               MyTextTitle(title: AppLocalizations.of(context)!.address),
               MyAddressForm(
-                  formkey: formKeys[7],
+                  formkey: formKeys[8],
                   controller: addressController,
                   onChanged: myProvider.getAddress),
               const SizedBox(
@@ -206,7 +245,8 @@ class _FormCustomerState extends State<FormCustomer> {
         formKeys[4].currentState!.validate() &&
         formKeys[5].currentState!.validate() &&
         formKeys[6].currentState!.validate() &&
-        formKeys[7].currentState!.validate()) {
+        formKeys[7].currentState!.validate() &&
+        formKeys[8].currentState!.validate()) {
       formKeys[0].currentState!.save();
       formKeys[1].currentState!.save();
       formKeys[2].currentState!.save();
@@ -216,6 +256,7 @@ class _FormCustomerState extends State<FormCustomer> {
       formKeys[5].currentState!.save();
       formKeys[6].currentState!.save();
       formKeys[7].currentState!.save();
+      formKeys[8].currentState!.save();
 
       // await Navigator.push(
       //     context, MaterialPageRoute(builder: (context) => FormMaterial()));

@@ -21,6 +21,7 @@ class TextData extends DisposableProviders {
   String _odp = '';
   String _port = '';
   String _techName = '';
+  String _nik = '';
 
   String get psb => _psb;
   String get gangguan => _gangguan;
@@ -53,6 +54,7 @@ class TextData extends DisposableProviders {
   String get odp => _odp;
   String get port => _port;
   String get techName => _techName;
+  String get nik => _nik;
 
   getOrder(String order) {
     _order = order;
@@ -144,6 +146,11 @@ class TextData extends DisposableProviders {
     notifyListeners();
   }
 
+  getNIK(String nik) {
+    _nik = nik;
+    notifyListeners();
+  }
+
   @override
   void disposeValue() {
     _order = '';
@@ -164,5 +171,6 @@ class TextData extends DisposableProviders {
     _odp = '';
     _port = '';
     _techName = '';
+    _nik = '';
   }
 }

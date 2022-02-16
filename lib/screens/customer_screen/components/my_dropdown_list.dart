@@ -2,6 +2,7 @@ import 'package:d_bam/models/package_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../constants.dart';
 
@@ -24,7 +25,7 @@ class MyDropDownList extends StatelessWidget {
           child: DropdownButtonFormField<String>(
             validator: (value) {
               if (value == null || value.isEmpty) {
-                return 'Please choose a package';
+                return AppLocalizations.of(context)!.valPackage;
               }
               return null;
             },

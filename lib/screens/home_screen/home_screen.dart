@@ -69,7 +69,6 @@ class HomeScreen extends StatelessWidget {
               Expanded(
                 child: Text(
                   AppLocalizations.of(context)!.labelHome,
-                  // 'Hi, Technician don’t forget to create BA after you done work. Thank You !',
                   style: kTextStyle20,
                   textAlign: TextAlign.center,
                 ),
@@ -105,39 +104,3 @@ class HomeScreen extends StatelessWidget {
     return Future.value(true);
   }
 }
-
-
-
-
-//  Drawer(
-//                           child: ListView(
-//                             // Important: Remove any padding from the ListView.
-//                             padding: EdgeInsets.zero,
-//                             children: [
-//                               const DrawerHeader(
-//                                 decoration: BoxDecoration(
-//                                   color: Colors.blue,
-//                                 ),
-//                                 child: Text('Drawer Header'),
-//                               ),
-//                               ListTile(
-//                                 title: const Text('Item 1'),
-//                                 onTap: () {
-//                                   // Update the state of the app
-//                                   // ...
-//                                   // Then close the drawer
-//                                   Navigator.pop(context);
-//                                 },
-//                               ),
-//                               ListTile(
-//                                 title: const Text('Item 2'),
-//                                 onTap: () {
-//                                   // Update the state of the app
-//                                   // ...
-//                                   // Then close the drawer
-//                                   Navigator.pop(context);
-//                                 },
-//                               ),
-//                             ],
-//                           ),
-//                         );

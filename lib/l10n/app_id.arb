@@ -21,5 +21,15 @@
     "customerSignature": "Tanda Tangan Pelanggan",
     "technicianSignature": "Tanda Tangan Teknisi",
     "titleSignature": "Form Tanda Tangan",
-    "submitButton": "Selesai"
+    "submitButton": "Selesai",
+    "valOrder": "Harap masukan No SC / IN yaa.",
+    "valServiceID": "Harap masukan No Inet / Tlp / SID, Ok!",
+    "valCustomerName": "Jangan Lupa masukan Nama Pelanggan Rekan 👌",
+    "valContactPhone": "No Hp Pelanggan masukin ya 😉",
+    "valTechnicianName": "Eits, Nama kamu belum di isi 😎",
+    "valNIK": "NIK anda di isi!",
+    "valAddress": "Alamat Pelanggan jangan lupa di isi Kang! 🏠",
+    "valDate": "Tanggal kamu selesai pekerjaan jangan lupa ya 📆",
+    "valPackage": "Maaf yah, paket nya jangan lupa di isi 👍",
+    "toast": "Pencet sekali lagi a supaya keluar 🤭"
 }
