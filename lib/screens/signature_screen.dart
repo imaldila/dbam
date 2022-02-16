@@ -178,6 +178,7 @@ class _SignatureScreenState extends State<SignatureScreen> {
       final String? newSTBPDF = provTextData.newSTB;
       final String? oldSTBPDF = provTextData.oldSTB;
       final String? techNamePDF = provTextData.techName;
+      final String? nikPDF = provTextData.nik;
       final String? dropcorePDF = provTextData.dropcore;
       final String? socPDF = provCounter.soc.toString();
       final String? preconn50PDF = provCounter.preconn50.toString();
@@ -212,6 +213,7 @@ class _SignatureScreenState extends State<SignatureScreen> {
         newSTB: newSTBPDF ?? '-',
         oldSTB: oldSTBPDF ?? '-',
         techName: techNamePDF ?? '-',
+        nik: nikPDF ?? '-',
         dropcore: dropcorePDF ?? '-',
         soc: socPDF ?? '-',
         preconn50: preconn50PDF ?? '-',

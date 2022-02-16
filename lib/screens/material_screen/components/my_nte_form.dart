@@ -33,7 +33,6 @@ class MyNTEForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Consumer<TextData>(
       builder: (context, textData, child) => Padding(
         padding: const EdgeInsets.only(top: kPadding / 2, bottom: kPadding),
@@ -47,7 +46,6 @@ class MyNTEForm extends StatelessWidget {
               SizedBox(
                 height: 8,
               ),
-
               TextFormField(
                 validator: (value) {
                   if (value == null || value.isEmpty) {

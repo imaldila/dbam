@@ -133,6 +133,7 @@ class _FormCustomerState extends State<FormCustomer> {
                   Expanded(
                     flex: 3,
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         MyTextTitle(
                             title:
@@ -145,7 +146,7 @@ class _FormCustomerState extends State<FormCustomer> {
                           onChanged: context.read<TextData>().getTechName,
                           validator:
                               AppLocalizations.of(context)!.valTechnicianName,
-                          counterText: 'ex: Dede',
+                          // counterText: 'ex: Dede',
                         ),
                       ],
                     ),
@@ -156,17 +157,18 @@ class _FormCustomerState extends State<FormCustomer> {
                   Expanded(
                     flex: 2,
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         MyTextTitle(title: 'NIK'),
                         MyTextForm(
                           formkey: formKeys[7],
                           controller: nikController,
+                          keyboardType: TextInputType.number,
                           textInputAction: TextInputAction.next,
-                          textCapitalization: TextCapitalization.words,
+                          // textCapitalization: TextCapitalization.words,
                           onChanged: context.read<TextData>().getNIK,
-                          validator:
-                              AppLocalizations.of(context)!.valNIK,
-                          counterText: 'ex: 101010',
+                          validator: AppLocalizations.of(context)!.valNIK,
+                          // counterText: 'ex: 101010',
                         ),
                       ],
                     ),

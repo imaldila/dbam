@@ -97,7 +97,7 @@ class HomeScreen extends StatelessWidget {
     if (currentBackPressTime == null ||
         now.difference(currentBackPressTime!) > Duration(seconds: 2)) {
       currentBackPressTime = now;
-      Fluttertoast.showToast(msg: 'Press Again to Exit Bro !');
+      Fluttertoast.showToast(msg: 'Pencet sekali lagi a supaya keluar 🤭');
       return Future.value(false);
     }
     Platform.isAndroid ? SystemNavigator.pop() : exit(0);
