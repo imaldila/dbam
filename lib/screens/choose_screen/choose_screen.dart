@@ -15,22 +15,20 @@ class ChooseScreen extends StatelessWidget {
       appBar: buildAppBar(context),
       body: SafeArea(
         child: Center(
-          child: ListView(
+          child: Column(
             children: [
-              Column(
-                children: [
-                  const SizedBox(
-                    height: kPadding,
-                  ),
-                  Text(
-                    AppLocalizations.of(context)!.titleChoose,
-                    style: kTextStyle24,
-                  ),
-                  const SizedBox(
-                    height: kPadding,
-                  ),
-                  OptionChoose(),
-                ],
+              const SizedBox(
+                height: kPadding,
+              ),
+              Expanded(
+                child: Text(
+                  AppLocalizations.of(context)!.titleChoose,
+                  style: kTextStyle24,
+                ),
+              ),
+              Expanded(
+                flex: 14,
+                child: OptionChoose(),
               ),
             ],
           ),
