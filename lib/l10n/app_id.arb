@@ -31,5 +31,9 @@
     "valAddress": "Alamat Pelanggan jangan lupa di isi Kang! 🏠",
     "valDate": "Tanggal kamu selesai pekerjaan jangan lupa ya 📆",
     "valPackage": "Maaf yah, paket nya jangan lupa di isi 👍",
-    "toast": "Pencet sekali lagi a supaya keluar 🤭"
+    "toast": "Pencet sekali lagi a supaya keluar 🤭",
+    "oldONT": "ONT Lama",
+    "newONT": "ONT Baru",
+    "oldSTB": "STB Lama",
+    "newSTB": "STB Baru"
 }

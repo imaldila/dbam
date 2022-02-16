@@ -3,6 +3,7 @@ import 'package:d_bam/models/counter.dart';
 import 'package:d_bam/models/text_data.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '/../constants.dart';
 import 'my_label_form.dart';
@@ -79,8 +80,8 @@ class _MyCategoriesFormState extends State<MyCategoriesForm> {
               if (categoryData.categories[i].isSelected &&
                   categoryData.categories[i].label == 'ONT')
                 MyNTEForm(
-                  oldTitle: 'Old ONT',
-                  newTitle: 'New ONT',
+                  oldTitle: AppLocalizations.of(context)!.oldONT,
+                  newTitle: AppLocalizations.of(context)!.newONT,
                   oldChanged: textData.getOldONT,
                   newChanged: textData.getNewONT,
                   oldController: oldONTController,
@@ -89,8 +90,8 @@ class _MyCategoriesFormState extends State<MyCategoriesForm> {
               else if (categoryData.categories[i].isSelected &&
                   categoryData.categories[i].label == 'STB')
                 MyNTEForm(
-                  oldTitle: 'Old STB',
-                  newTitle: 'New STB',
+                  oldTitle: AppLocalizations.of(context)!.oldSTB,
+                  newTitle: AppLocalizations.of(context)!.newSTB,
                   oldChanged: textData.getOldSTB,
                   newChanged: textData.getNewSTB,
                   oldController: oldSTBController,

@@ -162,5 +162,25 @@
     "toast": "Press Again to Exit Bro !",
     "@toast": {
       "description": "Press Again to Exit Bro !"
+    },
+
+    "oldONT": "Old ONT",
+    "@oldONT": {
+      "description": "Old ONT"
+    },
+
+    "newONT": "New ONT",
+    "@newONT": {
+      "description": "New ONT"
+    },
+
+    "oldSTB": "Old STB",
+    "@oldSTB": {
+      "description": "Old STB"
+    },
+
+    "newSTB": "New STB",
+    "@newSTB": {
+      "description": "New STB"
     }
 }

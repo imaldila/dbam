@@ -12,7 +12,7 @@ class MyTextForm extends StatelessWidget {
       this.textInputAction,
       this.keyboardType,
       this.textCapitalization = TextCapitalization.none,
-      this.validator})
+      this.validator, this.maxLength})
       : super(key: key);
 
   final Function(String)? onChanged;
@@ -22,6 +22,7 @@ class MyTextForm extends StatelessWidget {
   final TextInputAction? textInputAction;
   final TextInputType? keyboardType;
   final TextCapitalization? textCapitalization;
+  final int? maxLength;
 
   @override
   Widget build(BuildContext context) {
@@ -42,6 +43,7 @@ class MyTextForm extends StatelessWidget {
           textCapitalization: textCapitalization!,
           textInputAction: textInputAction,
           keyboardType: keyboardType,
+          maxLength: maxLength,
           decoration: InputDecoration(
             contentPadding: const EdgeInsets.symmetric(
               vertical: kPadding * 1.4,
