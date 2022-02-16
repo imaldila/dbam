@@ -125,22 +125,25 @@ class _SignatureScreenState extends State<SignatureScreen> {
       showDialog(
         context: context,
         builder: (BuildContext context) {
-          return Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                CircularProgressIndicator(
-                  color: Colors.grey,
-                  backgroundColor: Colors.red,
-                ),
-                const SizedBox(
-                  height: kPadding,
-                ),
-                Text(
-                  'Please wait, don\'t close the app.',
-                  style: kTextStyle14White,
-                )
-              ],
+          return Scaffold(
+            backgroundColor: Colors.transparent,
+            body: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CircularProgressIndicator(
+                    color: Colors.grey,
+                    backgroundColor: Colors.red,
+                  ),
+                  const SizedBox(
+                    height: kPadding,
+                  ),
+                  Text(
+                    'Please wait, don\'t close the app.',
+                    style: kTextStyle14White,
+                  )
+                ],
+              ),
             ),
           );
         },
@@ -239,7 +242,7 @@ class _SignatureScreenState extends State<SignatureScreen> {
   }
 
   AspectRatio customerSignature() {
-    print(customerControl.isFilled);
+    // print(customerControl.isFilled);
     Size size = MediaQuery.of(context).size;
     return AspectRatio(
       aspectRatio: 1.65,
@@ -306,7 +309,7 @@ class _SignatureScreenState extends State<SignatureScreen> {
   }
 
   AspectRatio technicianSignature() {
-    print(technicianControl.isFilled);
+    // print(technicianControl.isFilled);
     Size size = MediaQuery.of(context).size;
     return AspectRatio(
       aspectRatio: 1.65,
