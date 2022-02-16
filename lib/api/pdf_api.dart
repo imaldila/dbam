@@ -54,6 +54,7 @@ class PdfAPI {
     cableUTP,
     rj45,
     techName,
+    nik,
   }) async {
     var dataImageTA = await rootBundle.load('assets/images/logo_ta.png');
     var myImageTA = dataImageTA.buffer.asUint8List();
@@ -129,7 +130,8 @@ class PdfAPI {
               pw.SizedBox(height: kPadding),
               disclaimerPDF(myFontItalic),
               pw.Spacer(),
-              signaturePDF(signCus, signTech, customerName, date, techName),
+              signaturePDF(
+                  signCus, signTech, customerName, date, techName, nik),
             ],
           );
         },
@@ -364,7 +366,7 @@ class PdfAPI {
   }
 
   signaturePDF(
-      Uint8List signTech, signCus, String customerName, date, techName) {
+      Uint8List signTech, signCus, String customerName, date, techName, nik) {
     return pw.Row(
       mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
       children: [
@@ -378,7 +380,7 @@ class PdfAPI {
           dateLabel: 'Bandung, $date',
           labelName: 'Technician',
           signature: signCus.buffer.asUint8List(),
-          name: techName,
+          name: '$techName / $nik',
         ),
       ],
     );
