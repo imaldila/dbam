@@ -1,17 +1,15 @@
 import 'package:d_bam/constants.dart';
 import 'package:d_bam/models/choose_data.dart';
 import 'package:d_bam/models/text_data.dart';
-
 import 'package:d_bam/screens/material_screen/form_material_screen.dart';
-
 import 'package:d_bam/widgets/my_button_rounded.dart';
-
 import 'package:d_bam/widgets/my_text_form.dart';
 import 'package:d_bam/widgets/my_text_title.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'components/my_address_form.dart';
 import 'components/my_date_form.dart';
@@ -80,15 +78,15 @@ class _FormCustomerState extends State<FormCustomer> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const MyTextTitle(title: 'Package'),
+              MyTextTitle(title: AppLocalizations.of(context)!.package),
               MyDropDownList(
                 formKey: formKeys[0],
               ),
-              const MyTextTitle(title: 'Date'),
+              MyTextTitle(title: AppLocalizations.of(context)!.date),
               MyDateForm(
                 formkey: formKeys[1],
               ),
-              const MyTextTitle(title: 'No Order'),
+              MyTextTitle(title: AppLocalizations.of(context)!.noOrder),
               MyTextForm(
                 formkey: formKeys[2],
                 controller: orderController,
@@ -98,7 +96,7 @@ class _FormCustomerState extends State<FormCustomer> {
                 onChanged: myProvider.getOrder,
                 validator: 'Please enter No Order!',
               ),
-              const MyTextTitle(title: 'Service ID'),
+              MyTextTitle(title: AppLocalizations.of(context)!.serviceID),
               MyTextForm(
                 formkey: formKeys[3],
                 controller: serviceController,
@@ -108,7 +106,7 @@ class _FormCustomerState extends State<FormCustomer> {
                 onChanged: myProvider.getService,
                 validator: 'Please enter Service ID!',
               ),
-              const MyTextTitle(title: 'Customer Name'),
+              MyTextTitle(title: AppLocalizations.of(context)!.customerName),
               MyTextForm(
                 formkey: formKeys[4],
                 controller: nameController,
@@ -117,7 +115,7 @@ class _FormCustomerState extends State<FormCustomer> {
                 onChanged: myProvider.getName,
                 validator: 'Please enter Customer Name!',
               ),
-              const MyTextTitle(title: 'Contact Phone'),
+              MyTextTitle(title: AppLocalizations.of(context)!.contactPhone),
               MyTextForm(
                 formkey: formKeys[5],
                 controller: phoneController,
@@ -126,7 +124,7 @@ class _FormCustomerState extends State<FormCustomer> {
                 onChanged: myProvider.getPhone,
                 validator: 'Please enter Customer Contact Phone!',
               ),
-              const MyTextTitle(title: 'Technician Name / NIK'),
+              MyTextTitle(title: AppLocalizations.of(context)!.technicianName),
               MyTextForm(
                 formkey: formKeys[6],
                 controller: technicianController,
@@ -136,7 +134,7 @@ class _FormCustomerState extends State<FormCustomer> {
                 validator: 'Please enter Your Name Please!',
                 counterText: 'ex: Dede / 101010',
               ),
-              const MyTextTitle(title: 'Address'),
+              MyTextTitle(title: AppLocalizations.of(context)!.address),
               MyAddressForm(
                   formkey: formKeys[7],
                   controller: addressController,
@@ -145,7 +143,7 @@ class _FormCustomerState extends State<FormCustomer> {
                 height: kPadding,
               ),
               BottonRounded(
-                title: 'Next',
+                title: AppLocalizations.of(context)!.buttonNext,
                 onPressed: () {
                   _sendDataToNextScreen(context);
                 },
@@ -175,7 +173,7 @@ class _FormCustomerState extends State<FormCustomer> {
       ),
       centerTitle: true,
       title: Text(
-        'Customer Form',
+        AppLocalizations.of(context)!.titleCustomer,
         style: kTextStyle20Bold,
       ),
       actions: [

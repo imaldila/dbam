@@ -4,6 +4,7 @@ import 'package:d_bam/widgets/my_button_rounded.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../constants.dart';
 import 'components/my_categories_filter.dart';
@@ -37,7 +38,7 @@ class FormMaterial extends StatelessWidget {
               height: kPadding,
             ),
             Text(
-              'Please Select an option below',
+              AppLocalizations.of(context)!.titleMaterialOption,
               style: kTextStyle16Bold,
               textAlign: TextAlign.center,
             ),
@@ -51,7 +52,7 @@ class FormMaterial extends StatelessWidget {
             Divider(),
             MyCategoriesForm(),
             BottonRounded(
-              title: 'Next',
+              title: AppLocalizations.of(context)!.buttonNext,
               onPressed: () {
                 // Navigator.push(
                 //   context,
@@ -92,7 +93,7 @@ class FormMaterial extends StatelessWidget {
       ),
       centerTitle: true,
       title: Text(
-        'Material Form',
+        AppLocalizations.of(context)!.titleMaterial,
         style: kTextStyle20Bold,
       ),
       actions: [

@@ -8,11 +8,12 @@ import 'package:d_bam/models/counter.dart';
 import 'package:d_bam/models/datepicker.dart';
 import 'package:d_bam/models/package_data.dart';
 import 'package:d_bam/models/text_data.dart';
-import 'package:d_bam/screens/home_screen.dart';
+import 'package:d_bam/screens/home_screen/home_screen.dart';
 import 'package:d_bam/widgets/my_button_rounded.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hand_signature/signature.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'package:provider/provider.dart';
 import 'package:pdf/widgets.dart' as pw;
@@ -71,7 +72,7 @@ class _SignatureScreenState extends State<SignatureScreen> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
-              'Customer Signature',
+              AppLocalizations.of(context)!.customerSignature,
               style: kTextStyle16Bold,
             ),
             SizedBox(
@@ -82,7 +83,7 @@ class _SignatureScreenState extends State<SignatureScreen> {
               height: kPadding,
             ),
             Text(
-              'Technician Signature',
+              AppLocalizations.of(context)!.technicianSignature,
               style: kTextStyle16Bold,
             ),
             const SizedBox(
@@ -94,7 +95,7 @@ class _SignatureScreenState extends State<SignatureScreen> {
             ),
             // Spacer(),
             BottonRounded(
-              title: 'Submit',
+              title: AppLocalizations.of(context)!.submitButton,
               onPressed: () async {
                 onSubmit();
                 // reset filterchip
@@ -393,7 +394,7 @@ class _SignatureScreenState extends State<SignatureScreen> {
       ),
       centerTitle: true,
       title: Text(
-        'Signature Form',
+        AppLocalizations.of(context)!.titleSignature,
         style: kTextStyle20Bold,
       ),
       actions: [

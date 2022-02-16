@@ -1,0 +1,116 @@
+{
+    "helloWorld": "Hello World!",
+    "@helloWorld": {
+      "description": "The conventional newborn programmer greeting"
+    },
+
+    "selectLanguage": "Select Language :",
+    "@selectLanguage": {
+      "description": "Select Language"
+    },
+
+    "labelHome": "Hi, Technician don’t forget to create BA after you done work. Thank You !",
+    "@labelHome": {
+      "description": "Label Home"
+    },
+
+    "buttonCreateBA": "Create BA",
+    "@buttonCreateBA": {
+      "description": "Create BA"
+    },
+
+    "titleChoose": "Please Select One",
+    "@titleChoose": {
+      "description": "Please Select One"
+    },
+    
+    "provisioning": "Provisioning",
+    "@provisioning": {
+      "description": "Provisioning"
+    },
+
+    "assurance": "Assurance",
+    "@assurance": {
+      "description": "Assurance"
+    },
+
+    "titleCustomer": "Customer Form",
+    "@titleCustomer": {
+      "description": "Customer Form"
+    },
+
+    "package": "Package",
+    "@package": {
+      "description": "Package"
+    },
+
+    "date": "Date",
+    "@date": {
+      "description": "Date"
+    },
+
+    "noOrder": "No Order",
+    "@noOrder": {
+      "description": "No Order"
+    },
+
+    "serviceID": "Service ID",
+    "@serviceID": {
+      "description": "Service ID"
+    },
+
+    "customerName": "Customer Name",
+    "@customerName": {
+      "description": "Customer Name"
+    },
+
+    "contactPhone": "Contact Phone",
+    "@contactPhone": {
+      "description": "Contact Phone"
+    },
+
+    "technicianName": "Technician Name",
+    "@technicianName": {
+      "description": "Technician Name"
+    },
+
+    "address": "Address",
+    "@address": {
+      "description": "Address"
+    },
+
+    "titleMaterial": "Material Form",
+    "@titleMaterial": {
+      "description": "Material Form"
+    },
+
+    "titleMaterialOption": "Please Select an option below",
+    "@titleMaterialOption": {
+      "description": "Please Select an option below"
+    },
+
+    "buttonNext": "Next",
+    "@buttonNext": {
+      "description": "Next"
+    },
+
+    "customerSignature": "Customer Signature",
+    "@customerSignature": {
+      "description": "Customer Signature"
+    },
+
+    "technicianSignature": "Technician Signature",
+    "@technicianSignature": {
+      "description": "Technician Signature"
+    },
+
+    "titleSignature": "Signature Form",
+    "@titleSignature": {
+      "description": "Signature Form"
+    },
+
+    "submitButton": "Submit",
+    "@submitButton": {
+      "description": "Submit"
+    }
+}

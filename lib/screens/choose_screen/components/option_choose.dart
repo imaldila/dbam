@@ -30,9 +30,6 @@ class OptionChoose extends StatelessWidget {
                   svgPicture: SvgPicture.asset(dataChoose.images),
                   label: dataChoose.label,
                   onTap: () {
-                    print(context.read<ChooseData>().selected == 'gangguan'
-                        ? context.read<TextData>().psb
-                        : context.read<TextData>().gangguan);
                     dataChoose.label == 'Provisioning'
                         ? toPSB(context)
                         : toGangguan(context);
