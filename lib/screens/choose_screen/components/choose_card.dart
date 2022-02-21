@@ -26,7 +26,7 @@ class ChooseCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(16),
             shadowColor: kBtnColour,
             child: Container(
-              height: 256,
+              height: MediaQuery.of(context).size.height / 3.5,
               width: 256,
               child: Padding(
                 padding: const EdgeInsets.all(38.0),

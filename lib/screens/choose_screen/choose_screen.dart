@@ -20,16 +20,11 @@ class ChooseScreen extends StatelessWidget {
               const SizedBox(
                 height: kPadding,
               ),
-              Expanded(
-                child: Text(
-                  AppLocalizations.of(context)!.titleChoose,
-                  style: kTextStyle24,
-                ),
+              Text(
+                AppLocalizations.of(context)!.titleChoose,
+                style: kTextStyle24,
               ),
-              Expanded(
-                flex: 14,
-                child: OptionChoose(),
-              ),
+              OptionChoose(),
             ],
           ),
         ),
