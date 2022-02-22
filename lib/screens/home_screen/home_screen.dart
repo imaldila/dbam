@@ -155,20 +155,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 const SizedBox(
                   width: 16,
                 ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Digitalisasi ',
-                      style: kTextStyle14Bold,
-                      textAlign: TextAlign.justify,
-                    ),
-                    Text(
-                      'Berita Acara Manual ',
-                      style: kTextStyle14Bold,
-                      textAlign: TextAlign.justify,
-                    ),
-                  ],
+                Expanded(
+                  child: Text(
+                    'Digitalisasi Berita Acara Manual ',
+                    style: kTextStyle14Bold,
+                    textAlign: TextAlign.center,
+                  ),
                 ),
               ],
             ),

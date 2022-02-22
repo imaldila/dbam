@@ -126,8 +126,8 @@ class _FormCustomerState extends State<FormCustomer> {
                 keyboardType: TextInputType.number,
                 onChanged: myProvider.getPhone,
                 validator: AppLocalizations.of(context)!.valContactPhone,
+                counterText: 'Ex: 08123456789',
               ),
-              // MyTextTitle(title: AppLocalizations.of(context)!.technicianName),
               Row(
                 children: [
                   Expanded(
@@ -188,6 +188,7 @@ class _FormCustomerState extends State<FormCustomer> {
                 title: AppLocalizations.of(context)!.buttonNext,
                 onPressed: () {
                   _sendDataToNextScreen(context);
+                  print(context.read<ChooseData>().selected);
                 },
               ),
             ],

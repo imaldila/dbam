@@ -16,26 +16,34 @@ class OptionChoose extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<ChooseData>(
-      builder: (context, data, child) => SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        child: Column(
-          children: List.generate(
-            data.chooseCount,
-            (index) {
-              final dataChoose = data.chooseDatas[index];
-              return Padding(
-                padding: EdgeInsets.all(kPadding),
-                child: ChooseCard(
-                  svgPicture: SvgPicture.asset(dataChoose.images),
-                  label: dataChoose.label,
-                  onTap: () {
-                    dataChoose.label == 'Provisioning'
-                        ? toPSB(context)
-                        : toGangguan(context);
-                  },
-                ),
-              );
-            },
+      builder: (context, data, child) => Expanded(
+        child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Column(
+            children: List.generate(
+              data.chooseCount,
+              (index) {
+                final dataChoose = data.chooseDatas[index];
+                return Padding(
+                  padding: EdgeInsets.all(kPadding),
+                  child: ChooseCard(
+                    svgPicture: SvgPicture.asset(dataChoose.images),
+                    label: dataChoose.label,
+                    onTap: () {
+                      dataChoose.label == 'Provisioning'
+                          ? toPSB(context)
+                          : toGangguan(context);
+
+                      // print(dataChoose.label == 'Assurance'
+                      //     ? context.read<ChooseData>().chooseDatas[index].label
+                      //     : context
+                      //         .read<ChooseData>()
+                      //         .chooseDatas[index].label);
+                    },
+                  ),
+                );
+              },
+            ),
           ),
         ),
       ),
