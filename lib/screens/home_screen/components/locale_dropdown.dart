@@ -52,6 +52,7 @@ class LocaleDropdown extends StatelessWidget {
       case 'en':
         return Row(
           children: [
+            // ignore: sized_box_for_whitespace
             Container(
                 height: 20,
                 width: 20,
@@ -69,6 +70,7 @@ class LocaleDropdown extends StatelessWidget {
       case 'id':
         return Row(
           children: [
+            // ignore: sized_box_for_whitespace
             Container(
               height: 20,
               width: 20,
@@ -85,6 +87,7 @@ class LocaleDropdown extends StatelessWidget {
       default:
         return Row(
           children: [
+            // ignore: sized_box_for_whitespace
             Container(
                 height: 20,
                 width: 20,
