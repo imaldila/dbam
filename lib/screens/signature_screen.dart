@@ -31,6 +31,7 @@ class _SignatureScreenState extends State<SignatureScreen> {
   final pdfAPI = PdfAPI();
   final pdf = pw.Document();
   final CategoryData categoryData = CategoryData();
+  final ChooseData chooseData = ChooseData();
 
   ValueNotifier<String?> svg = ValueNotifier<String?>(null);
   ValueNotifier<ByteData?> rawImageFit = ValueNotifier<ByteData?>(null);
@@ -159,10 +160,7 @@ class _SignatureScreenState extends State<SignatureScreen> {
       final String? datePDF = context.read<DatePicker>().selected.toString();
       final provTextData = context.read<TextData>();
       final provCounter = context.read<Counter>();
-      final String? typeOSPDF =
-          (context.read<ChooseData>().selected == 'Provisioning')
-              ? provTextData.psb
-              : provTextData.gangguan;
+      final String? typeOSPDF = context.read<ChooseData>().selected;
       final String? packagePDF = context.read<PackageData>().selected;
       final String? orderPDF = provTextData.order;
       final String? servicePDF = provTextData.service;
@@ -235,7 +233,7 @@ class _SignatureScreenState extends State<SignatureScreen> {
           MaterialPageRoute(builder: (context) => HomeScreen()),
         );
       });
-
+      // context.read<ChooseData>().takeChip = null;
       // await Navigator.pushAndRemoveUntil(
       //   context,
       //   MaterialPageRoute(builder: (context) => HomeScreen()),

@@ -1,4 +1,5 @@
 import 'package:d_bam/models/category_data.dart';
+import 'package:d_bam/models/choose_data.dart';
 import 'package:d_bam/models/counter.dart';
 import 'package:d_bam/models/datepicker.dart';
 import 'package:d_bam/models/package_data.dart';
@@ -18,6 +19,7 @@ class AppProviders {
       context.read<DatePicker>(),
       context.read<TextData>(),
       context.read<PackageData>(),
+      context.read<ChooseData>(),
     ];
   }
 

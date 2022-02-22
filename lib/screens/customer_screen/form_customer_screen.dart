@@ -1,6 +1,7 @@
 import 'package:d_bam/constants.dart';
 import 'package:d_bam/models/choose_data.dart';
 import 'package:d_bam/models/text_data.dart';
+import 'package:d_bam/screens/customer_screen/components/my_choices.dart';
 import 'package:d_bam/screens/material_screen/form_material_screen.dart';
 import 'package:d_bam/widgets/my_button_rounded.dart';
 import 'package:d_bam/widgets/my_text_form.dart';
@@ -81,6 +82,8 @@ class _FormCustomerState extends State<FormCustomer> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              MyTextTitle(title: AppLocalizations.of(context)!.titleChoose),
+              MyChoices(),
               MyTextTitle(title: AppLocalizations.of(context)!.package),
               MyDropDownList(
                 formKey: formKeys[0],
@@ -188,7 +191,7 @@ class _FormCustomerState extends State<FormCustomer> {
                 title: AppLocalizations.of(context)!.buttonNext,
                 onPressed: () {
                   _sendDataToNextScreen(context);
-                  print(context.read<ChooseData>().selected);
+                  // context.read<ChooseData>().takeChip = 0;
                 },
               ),
             ],
@@ -264,12 +267,33 @@ class _FormCustomerState extends State<FormCustomer> {
 
       // await Navigator.push(
       //     context, MaterialPageRoute(builder: (context) => FormMaterial()));
-
-      await Navigator.push(
-        context,
-        PageTransition(
-            child: FormMaterial(), type: PageTransitionType.rightToLeft),
-      );
+      if (context.read<ChooseData>().selected.isEmpty) {
+        await showDialog(
+          context: context,
+          builder: (BuildContext context) => AlertDialog(
+            title: Text(
+              AppLocalizations.of(context)!.titleChoose,
+              style: kTextStyle16Bold,
+            ),
+            content: Text(
+              'Provisioning / Assurance',
+              style: kTextStyle14Bold,
+            ),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(context, 'OK'),
+                child: const Text('OK'),
+              ),
+            ],
+          ),
+        );
+      } else {
+        await Navigator.push(
+          context,
+          PageTransition(
+              child: FormMaterial(), type: PageTransitionType.rightToLeft),
+        );
+      }
     }
   }
 }
