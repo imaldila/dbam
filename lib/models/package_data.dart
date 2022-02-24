@@ -14,7 +14,8 @@ class PackageData extends DisposableProviders {
     'SIP-TRUNK',
     'WMS / WIFI.ID',
     'OLO',
-    'NODIN'
+    'NODIN',
+    'ONT PREMIUM'
     // final List<Package> _packages = [
     //   Package(name: '1P'),
     //   Package(name: '2P'),
