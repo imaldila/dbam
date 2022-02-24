@@ -139,9 +139,8 @@ class _FormCustomerState extends State<FormCustomer> {
                           controller: picControlller,
                           textInputAction: TextInputAction.next,
                           textCapitalization: TextCapitalization.words,
-                          onChanged: context.read<TextData>().getPIC,
-                          validator:
-                              AppLocalizations.of(context)!.valPIC,
+                          onChanged: myProvider.getPIC,
+                          validator: AppLocalizations.of(context)!.valPIC,
                           counterText: 'ex: Dede',
                         ),
                       ],
@@ -158,6 +157,7 @@ class _FormCustomerState extends State<FormCustomer> {
                         MyTextTitle(
                             title: AppLocalizations.of(context)!.contactPhone),
                         MyTextForm(
+                          maxLength: 16,
                           formkey: formKeys[6],
                           controller: phoneController,
                           textInputAction: TextInputAction.next,
@@ -187,7 +187,7 @@ class _FormCustomerState extends State<FormCustomer> {
                           controller: technicianController,
                           textInputAction: TextInputAction.next,
                           textCapitalization: TextCapitalization.words,
-                          onChanged: context.read<TextData>().getTechName,
+                          onChanged: myProvider.getTechName,
                           validator:
                               AppLocalizations.of(context)!.valTechnicianName,
                           // counterText: 'ex: Dede',
@@ -211,7 +211,7 @@ class _FormCustomerState extends State<FormCustomer> {
                           keyboardType: TextInputType.number,
                           textInputAction: TextInputAction.next,
                           // textCapitalization: TextCapitalization.words,
-                          onChanged: context.read<TextData>().getNIK,
+                          onChanged: myProvider.getNIK,
                           validator: AppLocalizations.of(context)!.valNIK,
                           counterText: '',
                         ),
@@ -232,8 +232,8 @@ class _FormCustomerState extends State<FormCustomer> {
                 title: AppLocalizations.of(context)!.buttonNext,
                 onPressed: () {
                   _sendDataToNextScreen(context);
-                  print(context.read<ChooseData>().selected == 'Provisioning' ? 'Pasang Baru' : 'Gangguan');
-                  print('tap');
+                  // print(context.read<ChooseData>().selected == 'Provisioning' ? 'Pasang Baru' : 'Gangguan');
+                  // print('tap');
                 },
               ),
             ],
@@ -295,7 +295,8 @@ class _FormCustomerState extends State<FormCustomer> {
         formKeys[5].currentState!.validate() &&
         formKeys[6].currentState!.validate() &&
         formKeys[7].currentState!.validate() &&
-        formKeys[8].currentState!.validate() && formKeys[9].currentState!.validate()) {
+        formKeys[8].currentState!.validate() &&
+        formKeys[9].currentState!.validate()) {
       formKeys[0].currentState!.save();
       formKeys[1].currentState!.save();
       formKeys[2].currentState!.save();

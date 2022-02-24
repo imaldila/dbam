@@ -5,6 +5,7 @@ import 'package:d_bam/api/components/pw_address_label.dart';
 import 'package:d_bam/api/components/pw_datek.dart';
 import 'package:d_bam/api/components/pw_material.dart';
 import 'package:d_bam/api/components/pw_nte_label.dart';
+import 'package:d_bam/api/components/pw_pic_label.dart';
 import 'package:d_bam/constants.dart';
 import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
@@ -105,14 +106,14 @@ class PdfAPI {
                 picName,
                 address,
               ),
-              pw.SizedBox(height: kPadding / 1.5),
+              pw.SizedBox(height: kPadding / 2),
               pw.Text(
                 'Datek :',
                 style: pw.TextStyle(font: myFontBold, fontSize: 12),
               ),
               pw.SizedBox(height: kPadding / 3),
               datekPDF(myFontBold, sto, odc, odp, port),
-              pw.SizedBox(height: kPadding / 1.5),
+              pw.SizedBox(height: kPadding / 2),
               pw.Text(
                 'Detail Material :',
                 style: pw.TextStyle(font: myFontBold, fontSize: 12),
@@ -120,7 +121,7 @@ class PdfAPI {
               pw.SizedBox(height: kPadding / 3),
               ntePDF(myFontBold, newONT, oldONT, newSTB, oldSTB, newOTHER,
                   oldOTHER),
-              pw.SizedBox(height: kPadding / 2),
+              pw.SizedBox(height: kPadding / 3),
               materialPDF(
                 dropcore,
                 soc,
@@ -144,7 +145,7 @@ class PdfAPI {
               disclaimerPDF(myFontItalic),
               pw.Spacer(),
               signaturePDF(
-                  signCus, signTech, customerName, date, techName, nik),
+                  signCus, signTech, picName, date, techName, nik),
             ],
           );
         },
@@ -203,8 +204,8 @@ class PdfAPI {
     serviceID,
     contactPhone,
     customerName,
-    address,
     picName,
+    address,
   ) {
     return pw.Column(
       children: [
@@ -232,9 +233,10 @@ class PdfAPI {
           ],
         ),
         pw.SizedBox(height: kPadding / 2),
-        CustomerLabel(label: 'PIC / No Hp', value: '$picName / $contactPhone'),
+        // CustomerLabel(label: 'PIC / No Hp', value: '$picName / $contactPhone'),
+        PICLabel(label: 'PIC / No Hp', value: '$picName / $contactPhone'),
         pw.SizedBox(height: kPadding / 2),
-        Addressabel(label: 'Alamat', value: address),
+        AddressLabel(label: 'Alamat', value: address),
         pw.SizedBox(height: 8),
       ],
     );
@@ -270,7 +272,6 @@ class PdfAPI {
           oldNTE: oldSTB,
         ),
         NTE(oldNTE: oldOTHER, newNTE: newOTHER, labelNTE: 'LAINNYA'),
-        pw.SizedBox(height: kPadding / 2),
       ],
     );
   }
@@ -399,7 +400,7 @@ class PdfAPI {
   }
 
   signaturePDF(
-      Uint8List signTech, signCus, String customerName, date, techName, nik) {
+      Uint8List signTech, signCus, String picName, date, techName, nik) {
     return pw.Row(
       mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
       children: [
@@ -407,7 +408,7 @@ class PdfAPI {
           dateLabel: '_',
           labelName: 'Pelanggan',
           signature: signTech.buffer.asUint8List(),
-          name: customerName,
+          name: picName,
         ),
         PWSignature(
           dateLabel: 'Bandung, $date',

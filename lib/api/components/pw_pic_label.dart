@@ -1,10 +1,10 @@
 import 'package:d_bam/constants.dart';
 import 'package:pdf/widgets.dart' as pw;
 
-class AddressLabel extends pw.StatelessWidget {
+class PICLabel extends pw.StatelessWidget {
   final String label, value;
 
-  AddressLabel({required this.label, required this.value});
+  PICLabel({required this.label, required this.value});
 
   @override
   pw.Widget build(pw.Context context) {
