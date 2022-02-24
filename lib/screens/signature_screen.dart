@@ -68,44 +68,46 @@ class _SignatureScreenState extends State<SignatureScreen> {
           top: kPadding,
           bottom: kVerPadding,
         ),
-        child: Column(
-          // mainAxisAlignment: MainAxisAlignment.spaceAround,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Text(
-              AppLocalizations.of(context)!.customerSignature,
-              style: kTextStyle16Bold,
-            ),
-            SizedBox(
-              height: kPadding,
-            ),
-            customerSignature(),
-            const SizedBox(
-              height: kPadding,
-            ),
-            Text(
-              AppLocalizations.of(context)!.technicianSignature,
-              style: kTextStyle16Bold,
-            ),
-            const SizedBox(
-              height: kPadding,
-            ),
-            technicianSignature(),
-            const SizedBox(
-              height: kPadding,
-            ),
-            // Spacer(),
-            BottonRounded(
-              title: AppLocalizations.of(context)!.submitButton,
-              onPressed: () async {
-                onSubmit();
-                // reset filterchip
-                for (int i = 0; i < categoryData.categoryCount; i++) {
-                  context.read<CategoryData>().categories[i].isSelected = false;
-                }
-              },
-            ),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            // mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text(
+                AppLocalizations.of(context)!.customerSignature,
+                style: kTextStyle16Bold,
+              ),
+              SizedBox(
+                height: kPadding,
+              ),
+              customerSignature(),
+              const SizedBox(
+                height: kPadding,
+              ),
+              Text(
+                AppLocalizations.of(context)!.technicianSignature,
+                style: kTextStyle16Bold,
+              ),
+              const SizedBox(
+                height: kPadding,
+              ),
+              technicianSignature(),
+              const SizedBox(
+                height: kPadding,
+              ),
+              // Spacer(),
+              BottonRounded(
+                title: AppLocalizations.of(context)!.submitButton,
+                onPressed: () async {
+                  onSubmit();
+                  // reset filterchip
+                  for (int i = 0; i < categoryData.categoryCount; i++) {
+                    context.read<CategoryData>().categories[i].isSelected = false;
+                  }
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -165,6 +167,7 @@ class _SignatureScreenState extends State<SignatureScreen> {
       final String? orderPDF = provTextData.order;
       final String? servicePDF = provTextData.service;
       final String? namePDF = provTextData.name;
+      final String? picPDF = provTextData.pic;
       final String? phonePDF = provTextData.phone;
       final String? addressPDF = provTextData.address;
       final String? stoPDF = provTextData.sto;
@@ -175,6 +178,8 @@ class _SignatureScreenState extends State<SignatureScreen> {
       final String? oldONTPDF = provTextData.oldONT;
       final String? newSTBPDF = provTextData.newSTB;
       final String? oldSTBPDF = provTextData.oldSTB;
+      final String? oldOTHERPDF = provTextData.oldOTHER;
+      final String? newOTHERPDF = provTextData.newOTHER;
       final String? techNamePDF = provTextData.techName;
       final String? nikPDF = provTextData.nik;
       final String? dropcorePDF = provTextData.dropcore;
@@ -205,6 +210,7 @@ class _SignatureScreenState extends State<SignatureScreen> {
         serviceID: servicePDF ?? '-',
         contactPhone: phonePDF ?? '-',
         customerName: namePDF ?? '-',
+        picName: picPDF ?? '-',
         address: addressPDF ?? '-',
         sto: stoPDF ?? '-',
         odc: odcPDF ?? '-',
@@ -214,6 +220,8 @@ class _SignatureScreenState extends State<SignatureScreen> {
         oldONT: oldONTPDF ?? '-',
         newSTB: newSTBPDF ?? '-',
         oldSTB: oldSTBPDF ?? '-',
+        newOTHER: newOTHERPDF ?? '-',
+        oldOTHER: oldOTHERPDF ?? '-',
         techName: techNamePDF ?? '-',
         nik: nikPDF ?? '-',
         dropcore: dropcorePDF ?? '-',

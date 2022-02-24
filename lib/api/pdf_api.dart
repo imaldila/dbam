@@ -29,6 +29,7 @@ class PdfAPI {
     package,
     noOrder,
     serviceID,
+    picName,
     contactPhone,
     customerName,
     address,
@@ -40,6 +41,8 @@ class PdfAPI {
     oldONT,
     newSTB,
     oldSTB,
+    oldOTHER,
+    newOTHER,
     dropcore,
     soc,
     preconn50,
@@ -87,7 +90,7 @@ class PdfAPI {
               pw.Divider(),
               pw.SizedBox(height: kPadding / 1.5),
               pw.Text(
-                'Customer Detail :',
+                'Detail Pelanggan :',
                 style: pw.TextStyle(font: myFontBold, fontSize: 12),
               ),
               pw.SizedBox(height: kPadding / 3),
@@ -99,6 +102,7 @@ class PdfAPI {
                 serviceID,
                 contactPhone,
                 customerName,
+                picName,
                 address,
               ),
               pw.SizedBox(height: kPadding / 1.5),
@@ -110,11 +114,12 @@ class PdfAPI {
               datekPDF(myFontBold, sto, odc, odp, port),
               pw.SizedBox(height: kPadding / 1.5),
               pw.Text(
-                'Material Detail :',
+                'Detail Material :',
                 style: pw.TextStyle(font: myFontBold, fontSize: 12),
               ),
               pw.SizedBox(height: kPadding / 3),
-              ntePDF(myFontBold, newONT, oldONT, newSTB, oldSTB),
+              ntePDF(myFontBold, newONT, oldONT, newSTB, oldSTB, newOTHER,
+                  oldOTHER),
               pw.SizedBox(height: kPadding / 2),
               materialPDF(
                 dropcore,
@@ -199,21 +204,22 @@ class PdfAPI {
     contactPhone,
     customerName,
     address,
+    picName,
   ) {
     return pw.Column(
       children: [
         pw.Row(
           mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
           children: [
-            CustomerLabel(label: 'Date', value: date),
-            CustomerLabel(label: 'Type of Service', value: typeOS),
+            CustomerLabel(label: 'Tanggal', value: date),
+            CustomerLabel(label: 'Jenis Layanan', value: typeOS),
           ],
         ),
         pw.SizedBox(height: kPadding / 2),
         pw.Row(
           mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
           children: [
-            CustomerLabel(label: 'Package', value: package),
+            CustomerLabel(label: 'Jenis Paket', value: package),
             CustomerLabel(label: 'No Order', value: noOrder),
           ],
         ),
@@ -222,13 +228,13 @@ class PdfAPI {
           mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
           children: [
             CustomerLabel(label: 'Service ID', value: serviceID),
-            CustomerLabel(label: 'Contact Phone', value: contactPhone),
+            CustomerLabel(label: 'Nama Pelanggan', value: customerName),
           ],
         ),
         pw.SizedBox(height: kPadding / 2),
-        CustomerLabel(label: 'Customer Name', value: customerName),
+        CustomerLabel(label: 'PIC / No Hp', value: '$picName / $contactPhone'),
         pw.SizedBox(height: kPadding / 2),
-        Addressabel(label: 'Address', value: address),
+        Addressabel(label: 'Alamat', value: address),
         pw.SizedBox(height: 8),
       ],
     );
@@ -248,7 +254,8 @@ class PdfAPI {
     );
   }
 
-  ntePDF(pw.Font myFontBold, String newONT, oldONT, newSTB, oldSTB) {
+  ntePDF(pw.Font myFontBold, String newONT, oldONT, newSTB, oldSTB, oldOTHER,
+      newOTHER) {
     return pw.Column(
       children: [
         NTELabel(font: myFontBold),
@@ -262,7 +269,7 @@ class PdfAPI {
           newNTE: newSTB,
           oldNTE: oldSTB,
         ),
-        NTE(oldNTE: '', newNTE: '', labelNTE: 'OTHERS'),
+        NTE(oldNTE: oldOTHER, newNTE: newOTHER, labelNTE: 'LAINNYA'),
         pw.SizedBox(height: kPadding / 2),
       ],
     );
@@ -398,13 +405,13 @@ class PdfAPI {
       children: [
         PWSignature(
           dateLabel: '_',
-          labelName: 'Customer',
+          labelName: 'Pelanggan',
           signature: signTech.buffer.asUint8List(),
           name: customerName,
         ),
         PWSignature(
           dateLabel: 'Bandung, $date',
-          labelName: 'Technician',
+          labelName: 'Teknisi',
           signature: signCus.buffer.asUint8List(),
           name: '$techName / $nik',
         ),

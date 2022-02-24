@@ -28,7 +28,7 @@ class NTELabel extends pw.StatelessWidget {
               width: 200,
               child: pw.Center(
                 child: pw.Text(
-                  'OLD',
+                  'LAMA',
                   style: pw.TextStyle(
                     fontSize: 10,
                     font: font
@@ -41,7 +41,7 @@ class NTELabel extends pw.StatelessWidget {
               width: 200,
               child: pw.Center(
                 child: pw.Text(
-                  'NEW',
+                  'BARU',
                   style: pw.TextStyle(
                     fontSize: 10,
                     font: font,

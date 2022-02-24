@@ -24,8 +24,8 @@ class _MyCategoriesFormState extends State<MyCategoriesForm> {
   final newONTController = TextEditingController();
   final oldSTBController = TextEditingController();
   final newSTBController = TextEditingController();
-  final oldSDWANController = TextEditingController();
-  final newSDWANController = TextEditingController();
+  final oldOTHERController = TextEditingController();
+  final newOTHERController = TextEditingController();
   final dropcoreController = TextEditingController();
   final socController = TextEditingController();
   final preconn50Controller = TextEditingController();
@@ -50,8 +50,8 @@ class _MyCategoriesFormState extends State<MyCategoriesForm> {
     newONTController.dispose();
     oldSTBController.dispose();
     newSTBController.dispose();
-    oldSDWANController.dispose();
-    newSDWANController.dispose();
+    oldOTHERController.dispose();
+    newOTHERController.dispose();
     dropcoreController.dispose();
     cableUTPController.dispose();
     socController.dispose();
@@ -104,6 +104,16 @@ class _MyCategoriesFormState extends State<MyCategoriesForm> {
                   newChanged: textData.getNewSTB,
                   oldController: oldSTBController,
                   newController: newSTBController,
+                )
+              else if (categoryData.categories[i].isSelected &&
+                  categoryData.categories[i].label == 'OTHER')
+                MyNTEForm(
+                  oldTitle: AppLocalizations.of(context)!.oldOTHER,
+                  newTitle: AppLocalizations.of(context)!.newOTHER,
+                  oldChanged: textData.getOldOTHER,
+                  newChanged: textData.getNewOTHER,
+                  oldController: oldOTHERController,
+                  newController: newOTHERController,
                 )
               else if (categoryData.categories[i].isSelected &&
                   categoryData.categories[i].label == 'Dropcore')

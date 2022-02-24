@@ -27,7 +27,7 @@ class CategoryData extends DisposableProviders {
   final List<Category> _categories = [
     Category('ONT', kBgColour, false),
     Category('STB', kBgColour, false),
-    // Category('SD WAN', kBgColour, false, sdwanController),
+    Category('OTHER', kBgColour, false),
     Category('Dropcore', kBgColour, false),
     Category('SOC', kBgColour, false),
     Category('Preconn 50M', kBgColour, false),

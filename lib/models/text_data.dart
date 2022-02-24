@@ -6,14 +6,15 @@ class TextData extends DisposableProviders {
   String _order = '';
   String _service = '';
   String _name = '';
+  String _pic = '';
   String _phone = '';
   String _address = '';
   String _oldONT = '';
   String _newONT = '';
   String _oldSTB = '';
   String _newSTB = '';
-  String _oldSDWAN = '';
-  String _newSDWAN = '';
+  String _oldOTHER = '';
+  String _newOTHER = '';
   String _dropcore = '';
   String _cableUTP = '';
   String _sto = '';
@@ -39,14 +40,15 @@ class TextData extends DisposableProviders {
   String get order => _order;
   String get service => _service;
   String get name => _name;
+  String get pic => _pic;
   String get phone => _phone;
   String get address => _address;
   String get oldONT => _oldONT;
   String get newONT => _newONT;
   String get oldSTB => _oldSTB;
   String get newSTB => _newSTB;
-  String get oldSDWAN => _oldSDWAN;
-  String get newSDWAN => _newSDWAN;
+  String get oldOTHER => _oldOTHER;
+  String get newOTHER => _newOTHER;
   String get dropcore => _dropcore;
   String get cableUTP => _cableUTP;
   String get sto => _sto;
@@ -68,6 +70,11 @@ class TextData extends DisposableProviders {
 
   getName(String name) {
     _name = name;
+    notifyListeners();
+  }
+
+  getPIC(String pic) {
+    _pic = pic;
     notifyListeners();
   }
 
@@ -101,13 +108,13 @@ class TextData extends DisposableProviders {
     notifyListeners();
   }
 
-  getOldSDWAN(String oldSDWAN) {
-    _oldSDWAN = oldSDWAN;
+  getOldOTHER(String oldOTHER) {
+    _oldOTHER = oldOTHER;
     notifyListeners();
   }
 
-  getNewSDWAN(String newSDWAN) {
-    _newSDWAN = newSDWAN;
+  getNewOTHER(String newOTHER) {
+    _newOTHER = newOTHER;
     notifyListeners();
   }
 
@@ -156,14 +163,15 @@ class TextData extends DisposableProviders {
     _order = '';
     _service = '';
     _name = '';
+    _pic = '';
     _phone = '';
     _address = '';
     _oldONT = '';
     _newONT = '';
     _oldSTB = '';
     _newSTB = '';
-    _oldSDWAN = '';
-    _newSDWAN = '';
+    _oldOTHER = '';
+    _newOTHER = '';
     _dropcore = '';
     _cableUTP = '';
     _sto = '';

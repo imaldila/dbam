@@ -13,7 +13,7 @@
     "serviceID": "No SID / Inet / Tlp",
     "customerName": "Nama Pelanggan",
     "picName": "Nama PIC",
-    "contactPhone": "No Hp Pelanggan",
+    "contactPhone": "No Hp PIC",
     "technicianName": "Nama Teknisi",
     "address": "Alamat",
     "titleMaterial": "Form Material",
@@ -28,6 +28,7 @@
     "valCustomerName": "Jangan Lupa masukan Nama Pelanggan Rekan 👌",
     "valContactPhone": "No Hp Pelanggan masukin ya 😉",
     "valTechnicianName": "Eits, Nama kamu belum di isi 😎",
+    "valPIC": "Eits, Nama PIC belum di isi 😎",
     "valNIK": "NIK anda di isi!",
     "valAddress": "Alamat Pelanggan jangan lupa di isi Kang! 🏠",
     "valDate": "Tanggal kamu selesai pekerjaan jangan lupa ya 📆",
@@ -36,5 +37,7 @@
     "oldONT": "ONT Lama",
     "newONT": "ONT Baru",
     "oldSTB": "STB Lama",
-    "newSTB": "STB Baru"
+    "newSTB": "STB Baru",
+    "oldOTHER": "Lainnya",
+    "newOTHER": "Lainnya"
 }

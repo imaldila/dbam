@@ -29,6 +29,7 @@ class _FormCustomerState extends State<FormCustomer> {
   final serviceController = TextEditingController();
   final nameController = TextEditingController();
   final phoneController = TextEditingController();
+  final picControlller = TextEditingController();
   final addressController = TextEditingController();
   final technicianController = TextEditingController();
   final nikController = TextEditingController();
@@ -60,6 +61,7 @@ class _FormCustomerState extends State<FormCustomer> {
     orderController.dispose();
     serviceController.dispose();
     nameController.dispose();
+    picControlller.dispose();
     phoneController.dispose();
     addressController.dispose();
     technicianController.dispose();
@@ -134,12 +136,12 @@ class _FormCustomerState extends State<FormCustomer> {
                             title: AppLocalizations.of(context)!.picName),
                         MyTextForm(
                           formkey: formKeys[5],
-                          controller: technicianController,
+                          controller: picControlller,
                           textInputAction: TextInputAction.next,
                           textCapitalization: TextCapitalization.words,
-                          onChanged: context.read<TextData>().getTechName,
+                          onChanged: context.read<TextData>().getPIC,
                           validator:
-                              AppLocalizations.of(context)!.valTechnicianName,
+                              AppLocalizations.of(context)!.valPIC,
                           counterText: 'ex: Dede',
                         ),
                       ],
