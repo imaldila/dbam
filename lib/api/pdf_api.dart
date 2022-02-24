@@ -307,7 +307,7 @@ class PdfAPI {
           mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
           children: [
             PWMaterial(title: 'SOC', value: soc, unit: 'Pcs'),
-            PWMaterial(title: 'Prekso', value: prekso ?? '-', unit: 'Meter'),
+            PWMaterial(title: 'Prekso', value: prekso ?? '-', unit: 'Pcs'),
           ],
         ),
         pw.Row(

@@ -232,7 +232,8 @@ class _FormCustomerState extends State<FormCustomer> {
                 title: AppLocalizations.of(context)!.buttonNext,
                 onPressed: () {
                   _sendDataToNextScreen(context);
-                  // context.read<ChooseData>().takeChip = 0;
+                  print(context.read<ChooseData>().selected == 'Provisioning' ? 'Pasang Baru' : 'Gangguan');
+                  print('tap');
                 },
               ),
             ],

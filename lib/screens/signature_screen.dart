@@ -102,7 +102,8 @@ class _SignatureScreenState extends State<SignatureScreen> {
                   onSubmit();
                   // reset filterchip
                   for (int i = 0; i < categoryData.categoryCount; i++) {
-                    context.read<CategoryData>().categories[i].isSelected = false;
+                    context.read<CategoryData>().categories[i].isSelected =
+                        false;
                   }
                 },
               ),
@@ -162,7 +163,10 @@ class _SignatureScreenState extends State<SignatureScreen> {
       final String? datePDF = context.read<DatePicker>().selected.toString();
       final provTextData = context.read<TextData>();
       final provCounter = context.read<Counter>();
-      final String? typeOSPDF = context.read<ChooseData>().selected;
+      final String? typeOSPDF =
+          context.read<ChooseData>().selected == 'Provisioning'
+              ? 'Pasang Baru'
+              : 'Gangguan';
       final String? packagePDF = context.read<PackageData>().selected;
       final String? orderPDF = provTextData.order;
       final String? servicePDF = provTextData.service;
