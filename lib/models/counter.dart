@@ -227,6 +227,74 @@ class Counter extends DisposableProviders {
     notifyListeners();
   }
 
+  int _adapter = 0;
+  int get adapter => _adapter;
+
+  getAdapter(String adapter) {
+    _adapter = int.parse(adapter);
+  }
+
+  void incAdapter() {
+    _adapter++;
+    notifyListeners();
+  }
+
+  void decAdapter() {
+    _adapter--;
+    notifyListeners();
+  }
+
+  int _splitter2 = 0;
+  int get splitter2 => _splitter2;
+
+  getSplitter2(String splitter2) {
+    _splitter2 = int.parse(splitter2);
+  }
+
+  void incSplitter2() {
+    _splitter2++;
+    notifyListeners();
+  }
+
+  void decSplitter2() {
+    _splitter2--;
+    notifyListeners();
+  }
+
+  int _splitter4 = 0;
+  int get splitter4 => _splitter4;
+
+  getSplitter4(String splitter4) {
+    _splitter4 = int.parse(splitter4);
+  }
+
+  void incSplitter4() {
+    _splitter4++;
+    notifyListeners();
+  }
+
+  void decSplitter4() {
+    _splitter4--;
+    notifyListeners();
+  }
+
+  int _splitter8 = 0;
+  int get splitter8 => _splitter8;
+
+  getSplitter8(String splitter8) {
+    _splitter8 = int.parse(splitter8);
+  }
+
+  void incSplitter8() {
+    _splitter8++;
+    notifyListeners();
+  }
+
+  void decSplitter8() {
+    _splitter8--;
+    notifyListeners();
+  }
+
   @override
   void disposeValue() {
     _cableUTP = 0;
@@ -241,5 +309,9 @@ class Counter extends DisposableProviders {
     _sClamp = 0;
     _soc = 0;
     _trayCable = 0;
+    _adapter = 0;
+    _splitter2 = 0;
+    _splitter4 = 0;
+    _splitter8 = 0;
   }
 }

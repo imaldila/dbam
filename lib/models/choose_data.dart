@@ -22,11 +22,11 @@ class Choose {
 class ChooseData extends DisposableProviders {
   final List<Choose> _chooseDatas = [
     Choose(
-        label: 'Provisioning',
+        label: 'Pasang Baru',
         images: 'assets/images/img_psb.svg',
         isSelected: false),
     Choose(
-        label: 'Assurance',
+        label: 'Gangguan',
         images: 'assets/images/img_ggn.svg',
         isSelected: false)
   ];

@@ -8,11 +8,13 @@ class PackageData extends DisposableProviders {
     '1P',
     '2P',
     '3P',
-    'VPNIP',
+    'VPN IP',
     'ASTINET',
     'METRO-E',
     'SIP-TRUNK',
-    'OTHERS',
+    'WMS / WIFI.ID',
+    'OLO',
+    'NODIN'
     // final List<Package> _packages = [
     //   Package(name: '1P'),
     //   Package(name: '2P'),

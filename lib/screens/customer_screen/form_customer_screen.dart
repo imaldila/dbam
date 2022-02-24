@@ -43,6 +43,7 @@ class _FormCustomerState extends State<FormCustomer> {
     GlobalKey<FormState>(),
     GlobalKey<FormState>(),
     GlobalKey<FormState>(),
+    GlobalKey<FormState>(),
   ];
 
   final ChooseData chooseData = ChooseData();
@@ -120,16 +121,54 @@ class _FormCustomerState extends State<FormCustomer> {
                 textCapitalization: TextCapitalization.words,
                 onChanged: myProvider.getName,
                 validator: AppLocalizations.of(context)!.valCustomerName,
+                counterText: 'ex: PT Dede / Dedea',
               ),
-              MyTextTitle(title: AppLocalizations.of(context)!.contactPhone),
-              MyTextForm(
-                formkey: formKeys[5],
-                controller: phoneController,
-                textInputAction: TextInputAction.next,
-                keyboardType: TextInputType.number,
-                onChanged: myProvider.getPhone,
-                validator: AppLocalizations.of(context)!.valContactPhone,
-                counterText: 'Ex: 08123456789',
+              Row(
+                children: [
+                  Expanded(
+                    flex: 3,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        MyTextTitle(
+                            title: AppLocalizations.of(context)!.picName),
+                        MyTextForm(
+                          formkey: formKeys[5],
+                          controller: technicianController,
+                          textInputAction: TextInputAction.next,
+                          textCapitalization: TextCapitalization.words,
+                          onChanged: context.read<TextData>().getTechName,
+                          validator:
+                              AppLocalizations.of(context)!.valTechnicianName,
+                          counterText: 'ex: Dede',
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(
+                    width: kPadding,
+                  ),
+                  Expanded(
+                    flex: 2,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        MyTextTitle(
+                            title: AppLocalizations.of(context)!.contactPhone),
+                        MyTextForm(
+                          formkey: formKeys[6],
+                          controller: phoneController,
+                          textInputAction: TextInputAction.next,
+                          keyboardType: TextInputType.number,
+                          onChanged: myProvider.getPhone,
+                          validator:
+                              AppLocalizations.of(context)!.valContactPhone,
+                          counterText: 'Ex: 08123456789',
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
               Row(
                 children: [
@@ -142,7 +181,7 @@ class _FormCustomerState extends State<FormCustomer> {
                             title:
                                 AppLocalizations.of(context)!.technicianName),
                         MyTextForm(
-                          formkey: formKeys[6],
+                          formkey: formKeys[7],
                           controller: technicianController,
                           textInputAction: TextInputAction.next,
                           textCapitalization: TextCapitalization.words,
@@ -164,7 +203,7 @@ class _FormCustomerState extends State<FormCustomer> {
                       children: [
                         MyTextTitle(title: 'NIK'),
                         MyTextForm(
-                          formkey: formKeys[7],
+                          formkey: formKeys[8],
                           maxLength: 8,
                           controller: nikController,
                           keyboardType: TextInputType.number,
@@ -181,7 +220,7 @@ class _FormCustomerState extends State<FormCustomer> {
               ),
               MyTextTitle(title: AppLocalizations.of(context)!.address),
               MyAddressForm(
-                  formkey: formKeys[8],
+                  formkey: formKeys[9],
                   controller: addressController,
                   onChanged: myProvider.getAddress),
               const SizedBox(
@@ -253,7 +292,7 @@ class _FormCustomerState extends State<FormCustomer> {
         formKeys[5].currentState!.validate() &&
         formKeys[6].currentState!.validate() &&
         formKeys[7].currentState!.validate() &&
-        formKeys[8].currentState!.validate()) {
+        formKeys[8].currentState!.validate() && formKeys[9].currentState!.validate()) {
       formKeys[0].currentState!.save();
       formKeys[1].currentState!.save();
       formKeys[2].currentState!.save();
@@ -264,6 +303,7 @@ class _FormCustomerState extends State<FormCustomer> {
       formKeys[6].currentState!.save();
       formKeys[7].currentState!.save();
       formKeys[8].currentState!.save();
+      formKeys[9].currentState!.save();
 
       // await Navigator.push(
       //     context, MaterialPageRoute(builder: (context) => FormMaterial()));

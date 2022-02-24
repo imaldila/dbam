@@ -190,6 +190,10 @@ class _SignatureScreenState extends State<SignatureScreen> {
       final String? patchcorePDF = provCounter.patchCore.toString();
       final String? cableUTPPDF = provTextData.cableUTP;
       final String? rj45PDF = provCounter.rj45.toString();
+      final String? adapterPDF = provCounter.adapter.toString();
+      final String? splitter2PDF = provCounter.splitter2.toString();
+      final String? splitter4PDF = provCounter.splitter4.toString();
+      final String? splitter8PDF = provCounter.splitter8.toString();
 
       await pdfAPI.getPDF(
         signCus: imageSignCus,
@@ -225,6 +229,10 @@ class _SignatureScreenState extends State<SignatureScreen> {
         patchcore: patchcorePDF ?? '-',
         cableUTP: cableUTPPDF ?? '-',
         rj45: rj45PDF ?? '-',
+        adapter: adapterPDF ?? '-',
+        splitter2: splitter2PDF ?? '-',
+        splitter4: splitter4PDF ?? '-',
+        splitter8: splitter8PDF ?? '-',
       );
       AppProviders.disposeAllDisposableProviders(context);
       await Future.delayed(Duration(seconds: 3), () async {

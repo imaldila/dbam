@@ -41,6 +41,11 @@ class CategoryData extends DisposableProviders {
     Category('Patchcore', kBgColour, false),
     Category('Cable UTP', kBgColour, false),
     Category('RJ 45', kBgColour, false),
+    Category('Adapter', kBgColour, false),
+    Category('Splitter 1:2', kBgColour, false),
+    Category('Splitter 1:4', kBgColour, false),
+    Category('Splitter 1:8', kBgColour, false),
+
     // Category('ONT', kBgColour, false, ontController, 0),
     // Category('STB', kBgColour, false, stbController, 0),
     // Category('SD WAN', kBgColour, false, sdwanController, 0),

@@ -64,6 +64,11 @@
       "description": "Customer Name"
     },
 
+    "picName": "PIC Name",
+    "@picName": {
+      "description": "PIC Name"
+    },
+
     "contactPhone": "Contact Phone",
     "@contactPhone": {
       "description": "Contact Phone"

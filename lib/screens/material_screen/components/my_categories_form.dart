@@ -39,6 +39,10 @@ class _MyCategoriesFormState extends State<MyCategoriesForm> {
   final patchcoreController = TextEditingController();
   final rj45Controller = TextEditingController();
   final cableUTPController = TextEditingController();
+  final adapterController = TextEditingController();
+  final splitter2Controller = TextEditingController();
+  final splitter4Controller = TextEditingController();
+  final splitter8Controller = TextEditingController();
 
   @override
   void dispose() {
@@ -61,6 +65,10 @@ class _MyCategoriesFormState extends State<MyCategoriesForm> {
     trayCableController.dispose();
     patchcoreController.dispose();
     rj45Controller.dispose();
+    adapterController.dispose();
+    splitter2Controller.dispose();
+    splitter4Controller.dispose();
+    splitter8Controller.dispose();
 
     super.dispose();
   }
@@ -266,9 +274,6 @@ class _MyCategoriesFormState extends State<MyCategoriesForm> {
                   onChanged: textData.getCableUTP,
                   units: 'Meter',
                 )
-              // MyCableUTP(
-              //   controller: cableUTPController,
-              // )
               else if (categoryData.categories[i].isSelected &&
                   categoryData.categories[i].label == 'RJ 45')
                 MyMaterialsForm(
@@ -282,6 +287,66 @@ class _MyCategoriesFormState extends State<MyCategoriesForm> {
                   add: () {
                     counter.incRJ45();
                     rj45Controller.text = counter.rj45.toString();
+                  },
+                )
+              else if (categoryData.categories[i].isSelected &&
+                  categoryData.categories[i].label == 'Adapter')
+                MyMaterialsForm(
+                  title: categoryData.categories[i].label,
+                  onChanged: counter.getAdapter,
+                  controller: adapterController,
+                  remove: () {
+                    counter.adapter > 0 ? counter.decAdapter() : 0;
+                    adapterController.text = counter.adapter.toString();
+                  },
+                  add: () {
+                    counter.incAdapter();
+                    adapterController.text = counter.adapter.toString();
+                  },
+                )
+              else if (categoryData.categories[i].isSelected &&
+                  categoryData.categories[i].label == 'Splitter 1:2')
+                MyMaterialsForm(
+                  title: categoryData.categories[i].label,
+                  onChanged: counter.getSplitter2,
+                  controller: splitter2Controller,
+                  remove: () {
+                    counter.splitter2 > 0 ? counter.decSplitter2() : 0;
+                    splitter2Controller.text = counter.splitter2.toString();
+                  },
+                  add: () {
+                    counter.incSplitter2();
+                    splitter2Controller.text = counter.splitter2.toString();
+                  },
+                )
+              else if (categoryData.categories[i].isSelected &&
+                  categoryData.categories[i].label == 'Splitter 1:4')
+                MyMaterialsForm(
+                  title: categoryData.categories[i].label,
+                  onChanged: counter.getSplitter4,
+                  controller: splitter4Controller,
+                  remove: () {
+                    counter.splitter4 > 0 ? counter.decSplitter4() : 0;
+                    splitter4Controller.text = counter.splitter4.toString();
+                  },
+                  add: () {
+                    counter.incSplitter4();
+                    splitter4Controller.text = counter.splitter4.toString();
+                  },
+                )
+              else if (categoryData.categories[i].isSelected &&
+                  categoryData.categories[i].label == 'Splitter 1:8')
+                MyMaterialsForm(
+                  title: categoryData.categories[i].label,
+                  onChanged: counter.getSplitter8,
+                  controller: splitter8Controller,
+                  remove: () {
+                    counter.splitter8 > 0 ? counter.decSplitter8() : 0;
+                    splitter8Controller.text = counter.splitter8.toString();
+                  },
+                  add: () {
+                    counter.incSplitter8();
+                    splitter8Controller.text = counter.splitter8.toString();
                   },
                 )
               else

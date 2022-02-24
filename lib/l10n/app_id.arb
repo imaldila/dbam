@@ -12,6 +12,7 @@
     "noOrder": "No Tiket / SC",
     "serviceID": "No SID / Inet / Tlp",
     "customerName": "Nama Pelanggan",
+    "picName": "Nama PIC",
     "contactPhone": "No Hp Pelanggan",
     "technicianName": "Nama Teknisi",
     "address": "Alamat",

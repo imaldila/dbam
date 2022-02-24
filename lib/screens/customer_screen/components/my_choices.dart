@@ -28,9 +28,7 @@ class MyChoices extends StatelessWidget {
                   selectedColor: kBtnColour,
                   elevation: 8,
                   label: Text(choose.chooseDatas[index].label),
-                  labelStyle: choose.chooseDatas[index].isSelected
-                      ? kTextStyle14White
-                      : kTextStyle14Bold,
+                  labelStyle: kTextStyle14Bold,
                   selected: choose.chooseDatas[index].isSelected =
                       index == choose.takeChip,
                   avatar: choose.chooseDatas[index].isSelected

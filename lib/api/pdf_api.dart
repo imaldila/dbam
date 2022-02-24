@@ -53,6 +53,10 @@ class PdfAPI {
     patchcore,
     cableUTP,
     rj45,
+    adapter,
+    splitter2,
+    splitter4,
+    splitter8,
     techName,
     nik,
   }) async {
@@ -126,6 +130,10 @@ class PdfAPI {
                 patchcore,
                 cableUTP,
                 rj45,
+                adapter,
+                splitter2,
+                splitter4,
+                splitter8,
               ),
               pw.SizedBox(height: kPadding),
               disclaimerPDF(myFontItalic),
@@ -274,6 +282,10 @@ class PdfAPI {
     patchcore,
     cableUTP,
     rj45,
+    adapter,
+    splitter2,
+    splitter4,
+    splitter8,
   ) {
     return pw.Column(
       children: [
@@ -319,7 +331,21 @@ class PdfAPI {
             PWMaterial(title: 'Cable UTP', value: cableUTP, unit: 'Meter'),
           ],
         ),
-        PWMaterial(title: 'RJ 45', value: rj45, unit: 'Pcs'),
+        pw.Row(
+          mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+          children: [
+            PWMaterial(title: 'Splitter 1:2', value: splitter2, unit: 'Pcs'),
+            PWMaterial(title: 'Adapter', value: adapter, unit: 'Pcs'),
+          ],
+        ),
+        pw.Row(
+          mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+          children: [
+            PWMaterial(title: 'Splitter 1:4', value: splitter4, unit: 'Pcs'),
+            PWMaterial(title: 'RJ 45', value: rj45, unit: 'Pcs'),
+          ],
+        ),
+        PWMaterial(title: 'Splitter 1:8', value: splitter8, unit: 'Pcs'),
       ],
     );
   }
