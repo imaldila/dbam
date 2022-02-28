@@ -311,7 +311,7 @@ class PdfAPI {
       splitter8,
       context) {
     return pw.Wrap(
-      spacing: kPadding * 3,
+      spacing: kPadding * 2,
       alignment: pw.WrapAlignment.spaceBetween,
       children: [
         (dropcore != '')
