@@ -96,3 +96,5 @@ BoxDecoration kStyleBoxDecorationTapped = BoxDecoration(
   color: kBtnColour,
   borderRadius: BorderRadius.circular(16),
 );
+
+const String kHeadDesc = 'Pada hari ini, telah dilakukan instalasi sesuai layanan di atas dengan data dan hasil sebagai berikut: ';

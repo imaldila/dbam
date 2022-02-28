@@ -71,7 +71,7 @@ class PdfAPI {
         await rootBundle.load('assets/images/logo_telkom.png');
     var myImageTelkom = dataImageTelkom.buffer.asUint8List();
 
-    final myFontBold = await PdfGoogleFonts.poppinsBold();
+    final myFontBold = await PdfGoogleFonts.poppinsSemiBold();
     final myFont = await PdfGoogleFonts.poppinsRegular();
     final myFontItalic = await PdfGoogleFonts.poppinsItalic();
 
@@ -90,6 +90,13 @@ class PdfAPI {
               headerPDF(myImageTA, myImageTelkom, myFontBold),
               pw.Divider(),
               pw.SizedBox(height: kPadding / 1.5),
+              CustomerLabel(label: 'Jenis Layanan', value: typeOS),
+              pw.SizedBox(height: kPadding / 3),
+              pw.Text(
+                kHeadDesc,
+                style: pw.TextStyle(fontSize: 10),
+              ),
+              pw.SizedBox(height: kPadding / 3),
               pw.Text(
                 'Detail Pelanggan :',
                 style: pw.TextStyle(font: myFontBold, fontSize: 12),
@@ -106,14 +113,14 @@ class PdfAPI {
                 picName,
                 address,
               ),
-              pw.SizedBox(height: kPadding / 2),
+              pw.SizedBox(height: kPadding / 3),
               pw.Text(
                 'Datek :',
                 style: pw.TextStyle(font: myFontBold, fontSize: 12),
               ),
               pw.SizedBox(height: kPadding / 3),
               datekPDF(myFontBold, sto, odc, odp, port),
-              pw.SizedBox(height: kPadding / 2),
+              pw.SizedBox(height: kPadding / 3),
               pw.Text(
                 'Detail Material :',
                 style: pw.TextStyle(font: myFontBold, fontSize: 12),
@@ -141,11 +148,10 @@ class PdfAPI {
                 splitter4,
                 splitter8,
               ),
-              pw.SizedBox(height: kPadding),
+              pw.SizedBox(height: kPadding / 3),
               disclaimerPDF(myFontItalic),
               pw.Spacer(),
-              signaturePDF(
-                  signCus, signTech, picName, date, techName, nik),
+              signaturePDF(signCus, signTech, picName, date, techName, nik),
             ],
           );
         },
@@ -182,8 +188,8 @@ class PdfAPI {
           ),
         ),
         pw.Container(
-          child: pw.Text('Berita Acara Digital',
-              style: pw.TextStyle(font: myFontBold, fontSize: 16)),
+          child: pw.Text('BERITA ACARA PEKERJAAN LAPANGAN',
+              style: pw.TextStyle(font: myFontBold, fontSize: 14)),
         ),
         pw.Container(
           width: 60,
@@ -209,14 +215,14 @@ class PdfAPI {
   ) {
     return pw.Column(
       children: [
-        pw.Row(
-          mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
-          children: [
-            CustomerLabel(label: 'Tanggal', value: date),
-            CustomerLabel(label: 'Jenis Layanan', value: typeOS),
-          ],
-        ),
-        pw.SizedBox(height: kPadding / 2),
+        // pw.Row(
+        //   mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+        //   children: [
+        //     CustomerLabel(label: 'Tanggal', value: date),
+        //     CustomerLabel(label: 'Jenis Layanan', value: typeOS),
+        //   ],
+        // ),
+        // pw.SizedBox(height: kPadding / 2),
         pw.Row(
           mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
           children: [
@@ -237,7 +243,6 @@ class PdfAPI {
         PICLabel(label: 'PIC / No Hp', value: '$picName / $contactPhone'),
         pw.SizedBox(height: kPadding / 2),
         AddressLabel(label: 'Alamat', value: address),
-        pw.SizedBox(height: 8),
       ],
     );
   }
@@ -370,31 +375,32 @@ class PdfAPI {
           style: pw.TextStyle(fontSize: 6, font: myFontItalic),
           textAlign: pw.TextAlign.justify,
         ),
-        // pw.SizedBox(height: kPadding / 3),
         pw.Text(
           '2. Telkom dapat mengambil Perangkat bila tidak ada penggunaan selama 3 bulan berturut-turut.',
           style: pw.TextStyle(fontSize: 6, font: myFontItalic),
           textAlign: pw.TextAlign.justify,
         ),
-        // pw.SizedBox(height: kPadding / 3),
         pw.Text(
           '3. Untuk progress pemilihan dan monitoring diharapkan power Perangkat selalu dalam kondisi hidup(ON)',
           style: pw.TextStyle(fontSize: 6, font: myFontItalic),
           textAlign: pw.TextAlign.justify,
         ),
-        // pw.SizedBox(height: kPadding / 3),
         pw.Text(
           '4. Disarankan untuk segera merubah password yang ada untuk menjaga agar tidak dipergunakan oleh pihak-pihak yang tidak dikehendaki.',
           style: pw.TextStyle(fontSize: 6, font: myFontItalic),
           textAlign: pw.TextAlign.justify,
         ),
-        // pw.SizedBox(height: kPadding / 3),
         pw.Text(
           '5. Pelanggan sudah mendapatkan penjelasan dari sales/setter atau menerima buku petunjuk menggunakan modem internet yang telah dipasang.',
           style: pw.TextStyle(fontSize: 6, font: myFontItalic),
           textAlign: pw.TextAlign.justify,
         ),
-        // pw.SizedBox(height: kPadding / 3),
+        pw.SizedBox(height: kPadding / 3),
+        pw.Text(
+          'Demikian berita acara ini dibuat untuk dapat dipergunakan seperlunya.',
+          style: pw.TextStyle(fontSize: 6, font: myFontItalic),
+          textAlign: pw.TextAlign.justify,
+        ),
       ],
     );
   }
