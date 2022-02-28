@@ -3,8 +3,9 @@ import 'package:pdf/widgets.dart' as pw;
 
 class CustomerLabel extends pw.StatelessWidget {
   final String label, value;
+  final pw.Font? font;
 
-  CustomerLabel({required this.label, required this.value});
+  CustomerLabel({this.font, required this.label, required this.value});
 
   @override
   pw.Widget build(pw.Context context) {
@@ -14,9 +15,7 @@ class CustomerLabel extends pw.StatelessWidget {
           width: 110,
           child: pw.Text(
             label,
-            style: pw.TextStyle(
-              fontSize: 10,
-            ),
+            style: pw.TextStyle(fontSize: 10, font: font),
           ),
         ),
         pw.Text(

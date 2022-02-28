@@ -90,7 +90,8 @@ class PdfAPI {
               headerPDF(myImageTA, myImageTelkom, myFontBold),
               pw.Divider(),
               pw.SizedBox(height: kPadding / 1.5),
-              CustomerLabel(label: 'Jenis Layanan', value: typeOS),
+              CustomerLabel(
+                  label: 'Jenis Layanan', value: typeOS, font: myFontBold),
               pw.SizedBox(height: kPadding / 3),
               pw.Text(
                 kHeadDesc,
@@ -99,7 +100,7 @@ class PdfAPI {
               pw.SizedBox(height: kPadding / 3),
               pw.Text(
                 'Detail Pelanggan :',
-                style: pw.TextStyle(font: myFontBold, fontSize: 12),
+                style: pw.TextStyle(font: myFontBold, fontSize: 10),
               ),
               pw.SizedBox(height: kPadding / 3),
               customerPDF(
@@ -116,19 +117,20 @@ class PdfAPI {
               pw.SizedBox(height: kPadding / 3),
               pw.Text(
                 'Datek :',
-                style: pw.TextStyle(font: myFontBold, fontSize: 12),
+                style: pw.TextStyle(font: myFontBold, fontSize: 10),
               ),
               pw.SizedBox(height: kPadding / 3),
               datekPDF(myFontBold, sto, odc, odp, port),
               pw.SizedBox(height: kPadding / 3),
               pw.Text(
                 'Detail Material :',
-                style: pw.TextStyle(font: myFontBold, fontSize: 12),
+                style: pw.TextStyle(font: myFontBold, fontSize: 10),
               ),
               pw.SizedBox(height: kPadding / 3),
               ntePDF(myFontBold, newONT, oldONT, newSTB, oldSTB, newOTHER,
                   oldOTHER),
               pw.SizedBox(height: kPadding / 3),
+              pw.Divider(thickness: 0.1, color: PdfColors.grey),
               materialPDF(
                   dropcore,
                   soc,
