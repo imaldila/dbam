@@ -7,18 +7,14 @@ import 'package:d_bam/api/components/pw_material.dart';
 import 'package:d_bam/api/components/pw_nte_label.dart';
 import 'package:d_bam/api/components/pw_pic_label.dart';
 import 'package:d_bam/constants.dart';
-import 'package:flutter/material.dart';
 import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:provider/provider.dart';
 import 'package:printing/printing.dart';
 
 import 'package:pdf/widgets.dart' as pw;
 import 'package:pdf/pdf.dart';
 import 'package:flutter/services.dart' show rootBundle;
 
-import '../models/counter.dart';
-import '../models/text_data.dart';
 import 'components/pw_customer_label.dart';
 import 'components/pw_nte.dart';
 import 'components/pw_signature.dart';
@@ -270,17 +266,25 @@ class PdfAPI {
     return pw.Column(
       children: [
         NTELabel(font: myFontBold),
+        (newONT != '' || oldONT != '')
+            ? NTE(
+                labelNTE: 'ONT / MODEM',
+                newNTE: newONT,
+                oldNTE: oldONT,
+              )
+            : pw.Container(),
+        (newSTB != '' || oldSTB != '')
+            ? NTE(
+                labelNTE: 'STB',
+                newNTE: newSTB,
+                oldNTE: oldSTB,
+              )
+            : pw.Container(),
         NTE(
-          labelNTE: 'ONT / MODEM',
-          newNTE: newONT,
-          oldNTE: oldONT,
+          oldNTE: oldOTHER,
+          newNTE: newOTHER,
+          labelNTE: 'LAINNYA',
         ),
-        NTE(
-          labelNTE: 'STB',
-          newNTE: newSTB,
-          oldNTE: oldSTB,
-        ),
-        NTE(oldNTE: oldOTHER, newNTE: newOTHER, labelNTE: 'LAINNYA'),
       ],
     );
   }
