@@ -7,14 +7,18 @@ import 'package:d_bam/api/components/pw_material.dart';
 import 'package:d_bam/api/components/pw_nte_label.dart';
 import 'package:d_bam/api/components/pw_pic_label.dart';
 import 'package:d_bam/constants.dart';
+import 'package:flutter/material.dart';
 import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:provider/provider.dart';
 import 'package:printing/printing.dart';
 
 import 'package:pdf/widgets.dart' as pw;
 import 'package:pdf/pdf.dart';
 import 'package:flutter/services.dart' show rootBundle;
 
+import '../models/counter.dart';
+import '../models/text_data.dart';
 import 'components/pw_customer_label.dart';
 import 'components/pw_nte.dart';
 import 'components/pw_signature.dart';
@@ -130,24 +134,24 @@ class PdfAPI {
                   oldOTHER),
               pw.SizedBox(height: kPadding / 3),
               materialPDF(
-                dropcore,
-                soc,
-                preconn50,
-                preconn80,
-                sCLamp,
-                clampHook,
-                otp,
-                prekso,
-                roset,
-                trayCable,
-                patchcore,
-                cableUTP,
-                rj45,
-                adapter,
-                splitter2,
-                splitter4,
-                splitter8,
-              ),
+                  dropcore,
+                  soc,
+                  preconn50,
+                  preconn80,
+                  sCLamp,
+                  clampHook,
+                  otp,
+                  prekso,
+                  roset,
+                  trayCable,
+                  patchcore,
+                  cableUTP,
+                  rj45,
+                  adapter,
+                  splitter2,
+                  splitter4,
+                  splitter8,
+                  context),
               pw.SizedBox(height: kPadding / 3),
               disclaimerPDF(myFontItalic),
               pw.Spacer(),
@@ -188,7 +192,7 @@ class PdfAPI {
           ),
         ),
         pw.Container(
-          child: pw.Text('BERITA ACARA PEKERJAAN LAPANGAN',
+          child: pw.Text('BERITA ACARA INSTALASI',
               style: pw.TextStyle(font: myFontBold, fontSize: 14)),
         ),
         pw.Container(
@@ -282,85 +286,152 @@ class PdfAPI {
   }
 
   materialPDF(
-    String dropcore,
-    soc,
-    preconn50,
-    preconn80,
-    sCLamp,
-    clampHook,
-    otp,
-    prekso,
-    roset,
-    trayCable,
-    patchcore,
-    cableUTP,
-    rj45,
-    adapter,
-    splitter2,
-    splitter4,
-    splitter8,
-  ) {
-    return pw.Column(
+      String dropcore,
+      soc,
+      preconn50,
+      preconn80,
+      sCLamp,
+      clampHook,
+      otp,
+      prekso,
+      roset,
+      trayCable,
+      patchcore,
+      cableUTP,
+      rj45,
+      adapter,
+      splitter2,
+      splitter4,
+      splitter8,
+      context) {
+    return pw.Wrap(
+      spacing: kPadding * 3,
+      alignment: pw.WrapAlignment.spaceBetween,
       children: [
-        pw.Row(
-          mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
-          children: [
-            PWMaterial(title: 'Dropcore', value: dropcore, unit: 'Meter'),
-            PWMaterial(title: 'OTP', value: otp, unit: 'Pcs'),
-          ],
-        ),
-        pw.Row(
-          mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
-          children: [
-            PWMaterial(title: 'SOC', value: soc, unit: 'Pcs'),
-            PWMaterial(title: 'Prekso', value: prekso ?? '-', unit: 'Pcs'),
-          ],
-        ),
-        pw.Row(
-          mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
-          children: [
-            PWMaterial(title: 'Precon 50', value: preconn50, unit: 'Pcs'),
-            PWMaterial(title: 'Roset', value: roset, unit: 'Pcs'),
-          ],
-        ),
-        pw.Row(
-          mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
-          children: [
-            PWMaterial(title: 'Precon 80', value: preconn80, unit: 'Pcs'),
-            PWMaterial(title: 'Patchcore', value: patchcore, unit: 'Pcs'),
-          ],
-        ),
-        pw.Row(
-          mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
-          children: [
-            PWMaterial(title: 'S-Clamp', value: sCLamp, unit: 'Pcs'),
-            PWMaterial(title: 'Tray Cable', value: trayCable, unit: 'Pcs'),
-          ],
-        ),
-        pw.Row(
-          mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
-          children: [
-            PWMaterial(title: 'Clamp Hook', value: clampHook, unit: 'Pcs'),
-            PWMaterial(title: 'Cable UTP', value: cableUTP, unit: 'Meter'),
-          ],
-        ),
-        pw.Row(
-          mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
-          children: [
-            PWMaterial(title: 'Splitter 1:2', value: splitter2, unit: 'Pcs'),
-            PWMaterial(title: 'Adapter', value: adapter, unit: 'Pcs'),
-          ],
-        ),
-        pw.Row(
-          mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
-          children: [
-            PWMaterial(title: 'Splitter 1:4', value: splitter4, unit: 'Pcs'),
-            PWMaterial(title: 'RJ 45', value: rj45, unit: 'Pcs'),
-          ],
-        ),
-        PWMaterial(title: 'Splitter 1:8', value: splitter8, unit: 'Pcs'),
+        (dropcore != '')
+            ? PWMaterial(title: 'Dropcore', value: dropcore, unit: 'Meter')
+            : pw.Container(),
+        (soc != 0.toString())
+            ? PWMaterial(title: 'SOC', value: soc, unit: 'Pcs')
+            : pw.Container(),
+        (preconn50 != 0.toString())
+            ? PWMaterial(title: 'Precon 50', value: preconn50, unit: 'Pcs')
+            : pw.Container(),
+        (preconn80 != 0.toString())
+            ? PWMaterial(title: 'Precon 80', value: preconn80, unit: 'Pcs')
+            : pw.Container(),
+        (sCLamp != 0.toString())
+            ? PWMaterial(title: 'S-Clamp', value: sCLamp, unit: 'Pcs')
+            : pw.Container(),
+        (clampHook != 0.toString())
+            ? PWMaterial(title: 'Clamp Hook', value: clampHook, unit: 'Pcs')
+            : pw.Container(),
+        (splitter2 != 0.toString())
+            ? PWMaterial(title: 'Splitter 1:2', value: splitter2, unit: 'Pcs')
+            : pw.Container(),
+        (splitter4 != 0.toString())
+            ? PWMaterial(title: 'Splitter 1:4', value: splitter4, unit: 'Pcs')
+            : pw.Container(),
+        (splitter8 != 0.toString())
+            ? PWMaterial(title: 'Splitter 1:8', value: splitter8, unit: 'Pcs')
+            : pw.Container(),
+        (otp != 0.toString())
+            ? PWMaterial(title: 'OTP', value: otp, unit: 'Pcs')
+            : pw.Container(),
+        (prekso != 0.toString())
+            ? PWMaterial(title: 'Prekso', value: prekso, unit: 'Pcs')
+            : pw.Container(),
+        (roset != 0.toString())
+            ? PWMaterial(title: 'Roset', value: roset, unit: 'Pcs')
+            : pw.Container(),
+        (patchcore != 0.toString())
+            ? PWMaterial(title: 'Patchcore', value: patchcore, unit: 'Pcs')
+            : pw.Container(),
+        (trayCable != 0.toString())
+            ? PWMaterial(title: 'Tray Cable', value: trayCable, unit: 'Pcs')
+            : pw.Container(),
+        (cableUTP != '')
+            ? PWMaterial(title: 'Cable UTP', value: cableUTP, unit: 'Meter')
+            : pw.Container(),
+        (adapter != 0.toString())
+            ? PWMaterial(title: 'Adapter', value: adapter, unit: 'Pcs')
+            : pw.Container(),
+        (rj45 != 0.toString())
+            ? PWMaterial(title: 'RJ 45', value: rj45, unit: 'Pcs')
+            : pw.Container(),
       ],
     );
+
+    //  pw.Column(
+    //   children: [
+    //     // pw.Row(
+    //     //   mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+    //     //   children: [
+    //     //     if (dropcore != '' || otp != 0.toString())
+    //     //       PWMaterial(title: 'Dropcore', value: dropcore, unit: 'Meter')
+    //     //     else
+    //     //       PWMaterial(title: 'OTP', value: otp, unit: 'Pcs'),
+
+    //     //     pw.Container()
+    //     //     // (dropcore != '')
+    //     //     //     ? PWMaterial(title: 'Dropcore', value: dropcore, unit: 'Meter')
+    //     //     //     : (otp != 0.toString())
+    //     //     //         ? PWMaterial(title: 'OTP', value: otp, unit: 'Pcs')
+    //     //     //         : pw.Container(),
+    //     //   ],
+    //     // ),
+    //     pw.Row(
+    //       mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+    //       children: [
+    //         PWMaterial(title: 'SOC', value: soc, unit: 'Pcs'),
+    //         PWMaterial(title: 'Prekso', value: prekso ?? '-', unit: 'Pcs'),
+    //       ],
+    //     ),
+    //     pw.Row(
+    //       mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+    //       children: [
+    //         PWMaterial(title: 'Precon 50', value: preconn50, unit: 'Pcs'),
+    //         PWMaterial(title: 'Roset', value: roset, unit: 'Pcs'),
+    //       ],
+    //     ),
+    //     pw.Row(
+    //       mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+    //       children: [
+    //         PWMaterial(title: 'Precon 80', value: preconn80, unit: 'Pcs'),
+    //         PWMaterial(title: 'Patchcore', value: patchcore, unit: 'Pcs'),
+    //       ],
+    //     ),
+    //     pw.Row(
+    //       mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+    //       children: [
+    //         PWMaterial(title: 'S-Clamp', value: sCLamp, unit: 'Pcs'),
+    //         PWMaterial(title: 'Tray Cable', value: trayCable, unit: 'Pcs'),
+    //       ],
+    //     ),
+    //     pw.Row(
+    //       mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+    //       children: [
+    //         PWMaterial(title: 'Clamp Hook', value: clampHook, unit: 'Pcs'),
+    //         PWMaterial(title: 'Cable UTP', value: cableUTP, unit: 'Meter'),
+    //       ],
+    //     ),
+    //     pw.Row(
+    //       mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+    //       children: [
+    //         PWMaterial(title: 'Splitter 1:2', value: splitter2, unit: 'Pcs'),
+    //         PWMaterial(title: 'Adapter', value: adapter, unit: 'Pcs'),
+    //       ],
+    //     ),
+    //     pw.Row(
+    //       mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+    //       children: [
+    //         PWMaterial(title: 'Splitter 1:4', value: splitter4, unit: 'Pcs'),
+    //         PWMaterial(title: 'RJ 45', value: rj45, unit: 'Pcs'),
+    //       ],
+    //     ),
+    //     PWMaterial(title: 'Splitter 1:8', value: splitter8, unit: 'Pcs'),
+    //   ],
+    // );
   }
 
   disclaimerPDF(pw.Font myFontItalic) {

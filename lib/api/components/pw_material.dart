@@ -13,7 +13,7 @@ class PWMaterial extends pw.StatelessWidget {
 
   @override
   pw.Widget build(pw.Context context) {
-    return pw.Row(
+    return pw.Wrap(
       children: [
         pw.Container(
           width: 110,
