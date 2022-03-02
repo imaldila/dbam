@@ -21,6 +21,7 @@ class TextData extends DisposableProviders {
   String _odc = '';
   String _odp = '';
   String _port = '';
+  String _metro = '';
   String _techName = '';
   String _nik = '';
 
@@ -55,6 +56,7 @@ class TextData extends DisposableProviders {
   String get odc => _odc;
   String get odp => _odp;
   String get port => _port;
+  String get metro => _metro;
   String get techName => _techName;
   String get nik => _nik;
 
@@ -148,6 +150,11 @@ class TextData extends DisposableProviders {
     notifyListeners();
   }
 
+  getMetro(String metro) {
+    _metro = metro;
+    notifyListeners();
+  }
+
   getTechName(String techName) {
     _techName = techName;
     notifyListeners();
@@ -178,6 +185,7 @@ class TextData extends DisposableProviders {
     _odc = '';
     _odp = '';
     _port = '';
+    _metro = '';
     _techName = '';
     _nik = '';
   }

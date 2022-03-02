@@ -38,6 +38,7 @@ class PdfAPI {
     odc,
     odp,
     port,
+    metro,
     newONT,
     oldONT,
     newSTB,
@@ -120,7 +121,7 @@ class PdfAPI {
                 style: pw.TextStyle(font: myFontBold, fontSize: 10),
               ),
               pw.SizedBox(height: kPadding / 3),
-              datekPDF(myFontBold, sto, odc, odp, port),
+              datekPDF(myFontBold, sto, odc, odp, port, metro),
               pw.SizedBox(height: kPadding / 3),
               pw.Text(
                 'Detail Material :',
@@ -249,7 +250,7 @@ class PdfAPI {
     );
   }
 
-  datekPDF(pw.Font myFontBold, String sto, odc, odp, port) {
+  datekPDF(pw.Font myFontBold, String sto, odc, odp, port, metro) {
     return pw.Row(
       children: [
         PWDatek(font: myFontBold, label: 'STO :', value: sto),
@@ -259,6 +260,8 @@ class PdfAPI {
         PWDatek(font: myFontBold, label: 'ODP :', value: odp),
         pw.SizedBox(width: kPadding),
         PWDatek(font: myFontBold, label: 'Port : ', value: port),
+        pw.SizedBox(width: kPadding),
+        PWDatek(font: myFontBold, label: 'Metro : ', value: metro),
       ],
     );
   }
