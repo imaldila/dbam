@@ -26,7 +26,7 @@ class AddressLabel extends pw.StatelessWidget {
           width: kPadding / 2,
         ),
         pw.Container(
-          width: 280,
+          width: 380,
           child: pw.Text(
             value,
             style: pw.TextStyle(

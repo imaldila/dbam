@@ -32,12 +32,14 @@ class MyAddressForm extends StatelessWidget {
             }
             return null;
           },
+          maxLength: 100,
           maxLines: 5,
           controller: controller,
           textInputAction: TextInputAction.done,
           textCapitalization: TextCapitalization.words,
           onChanged: onChanged,
           decoration: InputDecoration(
+            hintText: '',
             counterText: counterText,
             enabledBorder: kStyleBorder,
             border: kStyleBorder,

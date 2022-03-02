@@ -102,6 +102,7 @@ class _FormCustomerState extends State<FormCustomer> {
                 textInputAction: TextInputAction.next,
                 textCapitalization: TextCapitalization.characters,
                 counterText: 'Ex: SC12345 / IN12345 / 1-1234',
+                maxLength: 14,
                 onChanged: myProvider.getOrder,
                 validator: AppLocalizations.of(context)!.valOrder,
               ),
@@ -112,6 +113,7 @@ class _FormCustomerState extends State<FormCustomer> {
                 textInputAction: TextInputAction.next,
                 keyboardType: TextInputType.number,
                 counterText: 'Ex: 0221234 / 13110234 / 456789-8910',
+                maxLength: 25,
                 onChanged: myProvider.getService,
                 validator: AppLocalizations.of(context)!.valServiceID,
               ),
@@ -222,6 +224,7 @@ class _FormCustomerState extends State<FormCustomer> {
               ),
               MyTextTitle(title: AppLocalizations.of(context)!.address),
               MyAddressForm(
+                
                   formkey: formKeys[9],
                   controller: addressController,
                   onChanged: myProvider.getAddress),
