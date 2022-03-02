@@ -126,6 +126,7 @@ class _FormCustomerState extends State<FormCustomer> {
                 onChanged: myProvider.getName,
                 validator: AppLocalizations.of(context)!.valCustomerName,
                 counterText: 'ex: PT Dede / Dedea',
+                maxLength: 25,
               ),
               Row(
                 children: [
@@ -144,6 +145,7 @@ class _FormCustomerState extends State<FormCustomer> {
                           onChanged: myProvider.getPIC,
                           validator: AppLocalizations.of(context)!.valPIC,
                           counterText: 'ex: Dede',
+                          maxLength: 15,
                         ),
                       ],
                     ),
@@ -193,6 +195,7 @@ class _FormCustomerState extends State<FormCustomer> {
                           validator:
                               AppLocalizations.of(context)!.valTechnicianName,
                           // counterText: 'ex: Dede',
+                          maxLength: 15,
                         ),
                       ],
                     ),
@@ -224,7 +227,6 @@ class _FormCustomerState extends State<FormCustomer> {
               ),
               MyTextTitle(title: AppLocalizations.of(context)!.address),
               MyAddressForm(
-                
                   formkey: formKeys[9],
                   controller: addressController,
                   onChanged: myProvider.getAddress),

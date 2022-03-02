@@ -57,7 +57,7 @@ class ChooseData extends DisposableProviders {
     notifyListeners();
   }
 
-  int? _takeChip = 0;
+  int? _takeChip;
 
   int? get takeChip => _takeChip;
 

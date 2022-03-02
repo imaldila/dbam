@@ -9,7 +9,7 @@
     "assurance": "Gangguan",
     "package": "Paket",
     "date": "Tanggal",
-    "noOrder": "No Tiket / SC",
+    "noOrder": "No SC / Tiket / AO",
     "serviceID": "No SID / Inet / Tlp",
     "customerName": "Nama Pelanggan",
     "picName": "Nama PIC",

@@ -1,7 +1,6 @@
 import 'dart:io' show Platform, exit;
 
 import 'package:d_bam/screens/customer_screen/form_customer_screen.dart';
-import 'package:d_bam/screens/material_screen/form_material_screen.dart';
 import 'package:d_bam/widgets/my_button_rounded.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -104,7 +103,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   Navigator.push(
                     context,
                     PageTransition(
-                        child: FormMaterial(),
+                        child: FormCustomer(),
                         type: PageTransitionType.rightToLeft),
                   );
                 },
