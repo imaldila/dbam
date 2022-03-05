@@ -9,6 +9,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../constants.dart';
 import 'components/my_categories_filter.dart';
 import 'components/my_categories_form.dart';
+import 'components/my_metro_form.dart';
 
 class FormMaterial extends StatelessWidget {
   FormMaterial({Key? key}) : super(key: key);
@@ -34,6 +35,10 @@ class FormMaterial extends StatelessWidget {
               height: kPadding,
             ),
             MyDatekForm(),
+            SizedBox(
+              height: kPadding,
+            ),
+            MyMetroForm(),
             SizedBox(
               height: kPadding,
             ),

@@ -31,6 +31,7 @@ class _SignatureScreenState extends State<SignatureScreen> {
   final pdfAPI = PdfAPI();
   final pdf = pw.Document();
   final CategoryData categoryData = CategoryData();
+  final ChooseData chooseData = ChooseData();
 
   ValueNotifier<String?> svg = ValueNotifier<String?>(null);
   ValueNotifier<ByteData?> rawImageFit = ValueNotifier<ByteData?>(null);
@@ -67,44 +68,47 @@ class _SignatureScreenState extends State<SignatureScreen> {
           top: kPadding,
           bottom: kVerPadding,
         ),
-        child: Column(
-          // mainAxisAlignment: MainAxisAlignment.spaceAround,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Text(
-              AppLocalizations.of(context)!.customerSignature,
-              style: kTextStyle16Bold,
-            ),
-            SizedBox(
-              height: kPadding,
-            ),
-            customerSignature(),
-            const SizedBox(
-              height: kPadding,
-            ),
-            Text(
-              AppLocalizations.of(context)!.technicianSignature,
-              style: kTextStyle16Bold,
-            ),
-            const SizedBox(
-              height: kPadding,
-            ),
-            technicianSignature(),
-            const SizedBox(
-              height: kPadding,
-            ),
-            // Spacer(),
-            BottonRounded(
-              title: AppLocalizations.of(context)!.submitButton,
-              onPressed: () async {
-                onSubmit();
-                // reset filterchip
-                for (int i = 0; i < categoryData.categoryCount; i++) {
-                  context.read<CategoryData>().categories[i].isSelected = false;
-                }
-              },
-            ),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            // mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text(
+                AppLocalizations.of(context)!.customerSignature,
+                style: kTextStyle16Bold,
+              ),
+              SizedBox(
+                height: kPadding,
+              ),
+              customerSignature(),
+              const SizedBox(
+                height: kPadding,
+              ),
+              Text(
+                AppLocalizations.of(context)!.technicianSignature,
+                style: kTextStyle16Bold,
+              ),
+              const SizedBox(
+                height: kPadding,
+              ),
+              technicianSignature(),
+              const SizedBox(
+                height: kPadding,
+              ),
+              // Spacer(),
+              BottonRounded(
+                title: AppLocalizations.of(context)!.submitButton,
+                onPressed: () async {
+                  onSubmit();
+                  // reset filterchip
+                  for (int i = 0; i < categoryData.categoryCount; i++) {
+                    context.read<CategoryData>().categories[i].isSelected =
+                        false;
+                  }
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -160,23 +164,27 @@ class _SignatureScreenState extends State<SignatureScreen> {
       final provTextData = context.read<TextData>();
       final provCounter = context.read<Counter>();
       final String? typeOSPDF =
-          (context.read<ChooseData>().selected == 'Provisioning')
-              ? provTextData.psb
-              : provTextData.gangguan;
+          context.read<ChooseData>().selected == 'Provisioning'
+              ? 'Pasang Baru'
+              : 'Gangguan';
       final String? packagePDF = context.read<PackageData>().selected;
       final String? orderPDF = provTextData.order;
       final String? servicePDF = provTextData.service;
       final String? namePDF = provTextData.name;
+      final String? picPDF = provTextData.pic;
       final String? phonePDF = provTextData.phone;
       final String? addressPDF = provTextData.address;
       final String? stoPDF = provTextData.sto;
       final String? odcPDF = provTextData.odc;
       final String? odpPDF = provTextData.odp;
       final String? portPDF = provTextData.port;
+      final String? metroPDF = provTextData.metro;
       final String? newONTPDF = provTextData.newONT;
       final String? oldONTPDF = provTextData.oldONT;
       final String? newSTBPDF = provTextData.newSTB;
       final String? oldSTBPDF = provTextData.oldSTB;
+      final String? oldOTHERPDF = provTextData.oldOTHER;
+      final String? newOTHERPDF = provTextData.newOTHER;
       final String? techNamePDF = provTextData.techName;
       final String? nikPDF = provTextData.nik;
       final String? dropcorePDF = provTextData.dropcore;
@@ -192,6 +200,10 @@ class _SignatureScreenState extends State<SignatureScreen> {
       final String? patchcorePDF = provCounter.patchCore.toString();
       final String? cableUTPPDF = provTextData.cableUTP;
       final String? rj45PDF = provCounter.rj45.toString();
+      final String? adapterPDF = provCounter.adapter.toString();
+      final String? splitter2PDF = provCounter.splitter2.toString();
+      final String? splitter4PDF = provCounter.splitter4.toString();
+      final String? splitter8PDF = provCounter.splitter8.toString();
 
       await pdfAPI.getPDF(
         signCus: imageSignCus,
@@ -203,15 +215,19 @@ class _SignatureScreenState extends State<SignatureScreen> {
         serviceID: servicePDF ?? '-',
         contactPhone: phonePDF ?? '-',
         customerName: namePDF ?? '-',
+        picName: picPDF ?? '-',
         address: addressPDF ?? '-',
         sto: stoPDF ?? '-',
         odc: odcPDF ?? '-',
         odp: odpPDF ?? '-',
         port: portPDF ?? '-',
+        metro: metroPDF ?? '-',
         newONT: newONTPDF ?? '-',
         oldONT: oldONTPDF ?? '-',
         newSTB: newSTBPDF ?? '-',
         oldSTB: oldSTBPDF ?? '-',
+        newOTHER: newOTHERPDF ?? '-',
+        oldOTHER: oldOTHERPDF ?? '-',
         techName: techNamePDF ?? '-',
         nik: nikPDF ?? '-',
         dropcore: dropcorePDF ?? '-',
@@ -227,6 +243,10 @@ class _SignatureScreenState extends State<SignatureScreen> {
         patchcore: patchcorePDF ?? '-',
         cableUTP: cableUTPPDF ?? '-',
         rj45: rj45PDF ?? '-',
+        adapter: adapterPDF ?? '-',
+        splitter2: splitter2PDF ?? '-',
+        splitter4: splitter4PDF ?? '-',
+        splitter8: splitter8PDF ?? '-',
       );
       AppProviders.disposeAllDisposableProviders(context);
       await Future.delayed(Duration(seconds: 3), () async {
@@ -235,7 +255,7 @@ class _SignatureScreenState extends State<SignatureScreen> {
           MaterialPageRoute(builder: (context) => HomeScreen()),
         );
       });
-
+      // context.read<ChooseData>().takeChip = null;
       // await Navigator.pushAndRemoveUntil(
       //   context,
       //   MaterialPageRoute(builder: (context) => HomeScreen()),

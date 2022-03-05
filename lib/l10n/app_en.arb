@@ -64,6 +64,11 @@
       "description": "Customer Name"
     },
 
+    "picName": "PIC Name",
+    "@picName": {
+      "description": "PIC Name"
+    },
+
     "contactPhone": "Contact Phone",
     "@contactPhone": {
       "description": "Contact Phone"
@@ -129,6 +134,11 @@
       "description": "Please enter Customer Name!"
     },
 
+    "valPIC": "Please enter PIC Name!",
+    "@valPIC": {
+      "description": "Please enter PIC Name!"
+    },
+
     "valContactPhone": "Please enter Customer Contact Phone!",
     "@valContactPhone": {
       "description": "Please enter Customer Contact Phone!"
@@ -182,5 +192,15 @@
     "newSTB": "New STB",
     "@newSTB": {
       "description": "New STB"
+    },
+
+    "oldOTHER": "OTHER",
+    "@oldOTHER": {
+      "description": "OTHER"
+    },
+
+    "newOTHER": "OTHER",
+    "@newOTHER": {
+      "description": "OTHER"
     }
 }

@@ -20,31 +20,32 @@ class OptionChoose extends StatelessWidget {
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Column(
-            children: List.generate(
-              data.chooseCount,
-              (index) {
-                final dataChoose = data.chooseDatas[index];
-                return Padding(
-                  padding: EdgeInsets.all(kPadding),
-                  child: ChooseCard(
-                    svgPicture: SvgPicture.asset(dataChoose.images),
-                    label: dataChoose.label,
-                    onTap: () {
-                      dataChoose.label == 'Provisioning'
-                          ? toPSB(context)
-                          : toGangguan(context);
+              children: List.generate(
+            data.chooseCount,
+            (index) {
+              final dataChoose = data.chooseDatas[index];
+              return Padding(
+                padding: EdgeInsets.all(kPadding),
+                child: ChooseCard(
+                  onChanged: (p0) => data.updateSelect(dataChoose),
+                  svgPicture: SvgPicture.asset(dataChoose.images),
+                  label: dataChoose.label,
+                  onTap: () {
+                    // dataChoose.label == 'Provisioning'
+                    //     ? toPSB(context)
+                    //     : toGangguan(context);
+                    print(context.read<ChooseData>().selected);
 
-                      // print(dataChoose.label == 'Assurance'
-                      //     ? context.read<ChooseData>().chooseDatas[index].label
-                      //     : context
-                      //         .read<ChooseData>()
-                      //         .chooseDatas[index].label);
-                    },
-                  ),
-                );
-              },
-            ),
-          ),
+                    // print(dataChoose.label == 'Assurance'
+                    //     ? context.read<ChooseData>().chooseDatas[index].label
+                    //     : context
+                    //         .read<ChooseData>()
+                    //         .chooseDatas[index].label);
+                  },
+                ),
+              );
+            },
+          )),
         ),
       ),
     );

@@ -8,12 +8,13 @@ class ChooseCard extends StatelessWidget {
     Key? key,
     required this.svgPicture,
     required this.label,
-    required this.onTap,
+    required this.onTap, this.onChanged,
   }) : super(key: key);
 
   final SvgPicture svgPicture;
   final String label;
   final Function() onTap;
+  final Function(bool)? onChanged;
 
   @override
   Widget build(BuildContext context) {

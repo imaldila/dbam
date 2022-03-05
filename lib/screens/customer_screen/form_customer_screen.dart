@@ -1,6 +1,7 @@
 import 'package:d_bam/constants.dart';
 import 'package:d_bam/models/choose_data.dart';
 import 'package:d_bam/models/text_data.dart';
+import 'package:d_bam/screens/customer_screen/components/my_choices.dart';
 import 'package:d_bam/screens/material_screen/form_material_screen.dart';
 import 'package:d_bam/widgets/my_button_rounded.dart';
 import 'package:d_bam/widgets/my_text_form.dart';
@@ -28,11 +29,13 @@ class _FormCustomerState extends State<FormCustomer> {
   final serviceController = TextEditingController();
   final nameController = TextEditingController();
   final phoneController = TextEditingController();
+  final picControlller = TextEditingController();
   final addressController = TextEditingController();
   final technicianController = TextEditingController();
   final nikController = TextEditingController();
 
   List<GlobalKey<FormState>> formKeys = [
+    GlobalKey<FormState>(),
     GlobalKey<FormState>(),
     GlobalKey<FormState>(),
     GlobalKey<FormState>(),
@@ -58,6 +61,7 @@ class _FormCustomerState extends State<FormCustomer> {
     orderController.dispose();
     serviceController.dispose();
     nameController.dispose();
+    picControlller.dispose();
     phoneController.dispose();
     addressController.dispose();
     technicianController.dispose();
@@ -81,6 +85,8 @@ class _FormCustomerState extends State<FormCustomer> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              MyTextTitle(title: AppLocalizations.of(context)!.titleChoose),
+              MyChoices(),
               MyTextTitle(title: AppLocalizations.of(context)!.package),
               MyDropDownList(
                 formKey: formKeys[0],
@@ -96,6 +102,7 @@ class _FormCustomerState extends State<FormCustomer> {
                 textInputAction: TextInputAction.next,
                 textCapitalization: TextCapitalization.characters,
                 counterText: 'Ex: SC12345 / IN12345 / 1-1234',
+                maxLength: 14,
                 onChanged: myProvider.getOrder,
                 validator: AppLocalizations.of(context)!.valOrder,
               ),
@@ -106,6 +113,7 @@ class _FormCustomerState extends State<FormCustomer> {
                 textInputAction: TextInputAction.next,
                 keyboardType: TextInputType.number,
                 counterText: 'Ex: 0221234 / 13110234 / 456789-8910',
+                maxLength: 25,
                 onChanged: myProvider.getService,
                 validator: AppLocalizations.of(context)!.valServiceID,
               ),
@@ -117,16 +125,56 @@ class _FormCustomerState extends State<FormCustomer> {
                 textCapitalization: TextCapitalization.words,
                 onChanged: myProvider.getName,
                 validator: AppLocalizations.of(context)!.valCustomerName,
+                counterText: 'ex: PT Dede / Dedea',
+                maxLength: 25,
               ),
-              MyTextTitle(title: AppLocalizations.of(context)!.contactPhone),
-              MyTextForm(
-                formkey: formKeys[5],
-                controller: phoneController,
-                textInputAction: TextInputAction.next,
-                keyboardType: TextInputType.number,
-                onChanged: myProvider.getPhone,
-                validator: AppLocalizations.of(context)!.valContactPhone,
-                counterText: 'Ex: 08123456789',
+              Row(
+                children: [
+                  Expanded(
+                    flex: 3,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        MyTextTitle(
+                            title: AppLocalizations.of(context)!.picName),
+                        MyTextForm(
+                          formkey: formKeys[5],
+                          controller: picControlller,
+                          textInputAction: TextInputAction.next,
+                          textCapitalization: TextCapitalization.words,
+                          onChanged: myProvider.getPIC,
+                          validator: AppLocalizations.of(context)!.valPIC,
+                          counterText: 'ex: Dede',
+                          maxLength: 15,
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(
+                    width: kPadding,
+                  ),
+                  Expanded(
+                    flex: 2,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        MyTextTitle(
+                            title: AppLocalizations.of(context)!.contactPhone),
+                        MyTextForm(
+                          maxLength: 16,
+                          formkey: formKeys[6],
+                          controller: phoneController,
+                          textInputAction: TextInputAction.next,
+                          keyboardType: TextInputType.number,
+                          onChanged: myProvider.getPhone,
+                          validator:
+                              AppLocalizations.of(context)!.valContactPhone,
+                          counterText: 'Ex: 08123456789',
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
               Row(
                 children: [
@@ -139,14 +187,15 @@ class _FormCustomerState extends State<FormCustomer> {
                             title:
                                 AppLocalizations.of(context)!.technicianName),
                         MyTextForm(
-                          formkey: formKeys[6],
+                          formkey: formKeys[7],
                           controller: technicianController,
                           textInputAction: TextInputAction.next,
                           textCapitalization: TextCapitalization.words,
-                          onChanged: context.read<TextData>().getTechName,
+                          onChanged: myProvider.getTechName,
                           validator:
                               AppLocalizations.of(context)!.valTechnicianName,
                           // counterText: 'ex: Dede',
+                          maxLength: 15,
                         ),
                       ],
                     ),
@@ -161,13 +210,13 @@ class _FormCustomerState extends State<FormCustomer> {
                       children: [
                         MyTextTitle(title: 'NIK'),
                         MyTextForm(
-                          formkey: formKeys[7],
+                          formkey: formKeys[8],
                           maxLength: 8,
                           controller: nikController,
                           keyboardType: TextInputType.number,
                           textInputAction: TextInputAction.next,
                           // textCapitalization: TextCapitalization.words,
-                          onChanged: context.read<TextData>().getNIK,
+                          onChanged: myProvider.getNIK,
                           validator: AppLocalizations.of(context)!.valNIK,
                           counterText: '',
                         ),
@@ -178,7 +227,7 @@ class _FormCustomerState extends State<FormCustomer> {
               ),
               MyTextTitle(title: AppLocalizations.of(context)!.address),
               MyAddressForm(
-                  formkey: formKeys[8],
+                  formkey: formKeys[9],
                   controller: addressController,
                   onChanged: myProvider.getAddress),
               const SizedBox(
@@ -188,7 +237,8 @@ class _FormCustomerState extends State<FormCustomer> {
                 title: AppLocalizations.of(context)!.buttonNext,
                 onPressed: () {
                   _sendDataToNextScreen(context);
-                  print(context.read<ChooseData>().selected);
+                  // print(context.read<ChooseData>().selected == 'Provisioning' ? 'Pasang Baru' : 'Gangguan');
+                  // print('tap');
                 },
               ),
             ],
@@ -250,7 +300,8 @@ class _FormCustomerState extends State<FormCustomer> {
         formKeys[5].currentState!.validate() &&
         formKeys[6].currentState!.validate() &&
         formKeys[7].currentState!.validate() &&
-        formKeys[8].currentState!.validate()) {
+        formKeys[8].currentState!.validate() &&
+        formKeys[9].currentState!.validate()) {
       formKeys[0].currentState!.save();
       formKeys[1].currentState!.save();
       formKeys[2].currentState!.save();
@@ -261,15 +312,37 @@ class _FormCustomerState extends State<FormCustomer> {
       formKeys[6].currentState!.save();
       formKeys[7].currentState!.save();
       formKeys[8].currentState!.save();
+      formKeys[9].currentState!.save();
 
       // await Navigator.push(
       //     context, MaterialPageRoute(builder: (context) => FormMaterial()));
-
-      await Navigator.push(
-        context,
-        PageTransition(
-            child: FormMaterial(), type: PageTransitionType.rightToLeft),
-      );
+      if (context.read<ChooseData>().selected.isEmpty) {
+        await showDialog(
+          context: context,
+          builder: (BuildContext context) => AlertDialog(
+            title: Text(
+              AppLocalizations.of(context)!.titleChoose,
+              style: kTextStyle16Bold,
+            ),
+            content: Text(
+              'Provisioning / Assurance',
+              style: kTextStyle14Bold,
+            ),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(context, 'OK'),
+                child: const Text('OK'),
+              ),
+            ],
+          ),
+        );
+      } else {
+        await Navigator.push(
+          context,
+          PageTransition(
+              child: FormMaterial(), type: PageTransitionType.rightToLeft),
+        );
+      }
     }
   }
 }
