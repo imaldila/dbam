@@ -102,7 +102,7 @@ class _FormCustomerState extends State<FormCustomer> {
                 textInputAction: TextInputAction.next,
                 textCapitalization: TextCapitalization.characters,
                 counterText: 'Ex: SC12345 / IN12345 / 1-1234',
-                maxLength: 14,
+                maxLength: 35,
                 onChanged: myProvider.getOrder,
                 validator: AppLocalizations.of(context)!.valOrder,
               ),
@@ -126,7 +126,7 @@ class _FormCustomerState extends State<FormCustomer> {
                 onChanged: myProvider.getName,
                 validator: AppLocalizations.of(context)!.valCustomerName,
                 counterText: 'ex: PT Dede / Dedea',
-                maxLength: 25,
+                // maxLength: 25,
               ),
               Row(
                 children: [
@@ -194,7 +194,7 @@ class _FormCustomerState extends State<FormCustomer> {
                           onChanged: myProvider.getTechName,
                           validator:
                               AppLocalizations.of(context)!.valTechnicianName,
-                          // counterText: 'ex: Dede',
+                          counterText: '',
                           maxLength: 15,
                         ),
                       ],
