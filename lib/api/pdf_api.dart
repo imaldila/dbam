@@ -348,7 +348,7 @@ class PdfAPI {
             ? PWMaterial(title: 'OTP', value: otp, unit: 'Pcs')
             : pw.Container(),
         (prekso != 0.toString())
-            ? PWMaterial(title: 'Prekso', value: prekso, unit: 'Pcs')
+            ? PWMaterial(title: 'Prekso', value: prekso, unit: 'Meter')
             : pw.Container(),
         (roset != 0.toString())
             ? PWMaterial(title: 'Roset', value: roset, unit: 'Pcs')
@@ -451,27 +451,27 @@ class PdfAPI {
             style: pw.TextStyle(font: myFontItalic, fontSize: 10)),
         pw.SizedBox(height: kPadding / 3),
         pw.Text(
-          '1. Perangkat (ONT/Modem/STB) yang dipasang di rumah pelanggan adalah MILIK TELKOM yang dipinjamkan selama menjadi pelanggan TELKOM. Modem yang tidak dipakai karena Migrasi ke Fiber ditarik kembali.',
+          kDisclaimer1,
           style: pw.TextStyle(fontSize: 6, font: myFontItalic),
           textAlign: pw.TextAlign.justify,
         ),
         pw.Text(
-          '2. Telkom dapat mengambil Perangkat bila tidak ada penggunaan selama 3 bulan berturut-turut.',
+          kDisclaimer2,
           style: pw.TextStyle(fontSize: 6, font: myFontItalic),
           textAlign: pw.TextAlign.justify,
         ),
         pw.Text(
-          '3. Untuk progress pemilihan dan monitoring diharapkan power Perangkat selalu dalam kondisi hidup(ON)',
+          kDisclaimer3,
           style: pw.TextStyle(fontSize: 6, font: myFontItalic),
           textAlign: pw.TextAlign.justify,
         ),
         pw.Text(
-          '4. Disarankan untuk segera merubah password yang ada untuk menjaga agar tidak dipergunakan oleh pihak-pihak yang tidak dikehendaki.',
+          kDisclaimer4,
           style: pw.TextStyle(fontSize: 6, font: myFontItalic),
           textAlign: pw.TextAlign.justify,
         ),
         pw.Text(
-          '5. Pelanggan sudah mendapatkan penjelasan dari sales/setter atau menerima buku petunjuk menggunakan modem internet yang telah dipasang.',
+          kDisclaimer5,
           style: pw.TextStyle(fontSize: 6, font: myFontItalic),
           textAlign: pw.TextAlign.justify,
         ),

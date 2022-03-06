@@ -17,6 +17,7 @@ class TextData extends DisposableProviders {
   String _newOTHER = '';
   String _dropcore = '';
   String _cableUTP = '';
+  String _prekso = '';
   String _sto = '';
   String _odc = '';
   String _odp = '';
@@ -52,6 +53,7 @@ class TextData extends DisposableProviders {
   String get newOTHER => _newOTHER;
   String get dropcore => _dropcore;
   String get cableUTP => _cableUTP;
+  String get prekso => _prekso;
   String get sto => _sto;
   String get odc => _odc;
   String get odp => _odp;
@@ -130,6 +132,11 @@ class TextData extends DisposableProviders {
     notifyListeners();
   }
 
+  getPrekso(String prekso) {
+    _prekso = prekso;
+    notifyListeners();
+  }
+
   getSTO(String sto) {
     _sto = sto;
     notifyListeners();
@@ -181,6 +188,7 @@ class TextData extends DisposableProviders {
     _newOTHER = '';
     _dropcore = '';
     _cableUTP = '';
+    _prekso = '';
     _sto = '';
     _odc = '';
     _odp = '';

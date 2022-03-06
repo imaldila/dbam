@@ -123,9 +123,6 @@ class _MyCategoriesFormState extends State<MyCategoriesForm> {
                   onChanged: textData.getDropcore,
                   units: 'Meter',
                 )
-              // MyDropcoreForm(
-              //   controller: dropcoreController,
-              // )
               else if (categoryData.categories[i].isSelected &&
                   categoryData.categories[i].label == 'SOC')
                 MyMaterialsForm(
@@ -218,18 +215,11 @@ class _MyCategoriesFormState extends State<MyCategoriesForm> {
                 )
               else if (categoryData.categories[i].isSelected &&
                   categoryData.categories[i].label == 'Prekso')
-                MyMaterialsForm(
-                  title: categoryData.categories[i].label,
-                  onChanged: counter.getPrekso,
+               MyLabelForm(
+                  label: 'Prekso',
                   controller: preksoController,
-                  remove: () {
-                    counter.prekso > 0 ? counter.decPrekso() : 0;
-                    preksoController.text = counter.prekso.toString();
-                  },
-                  add: () {
-                    counter.incPrekso();
-                    preksoController.text = counter.prekso.toString();
-                  },
+                  onChanged: textData.getPrekso,
+                  units: 'Meter',
                 )
               else if (categoryData.categories[i].isSelected &&
                   categoryData.categories[i].label == 'Roset')

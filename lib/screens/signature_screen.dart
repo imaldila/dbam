@@ -194,7 +194,7 @@ class _SignatureScreenState extends State<SignatureScreen> {
       final String? sClampPDF = provCounter.sClamp.toString();
       final String? clampHookPDF = provCounter.clampHook.toString();
       final String? otpPDF = provCounter.otp.toString();
-      final String? preksoPDF = provCounter.prekso.toString();
+      final String? preksoPDF = provTextData.prekso;
       final String? rosetPDF = provCounter.roset.toString();
       final String? trayCablePDF = provCounter.trayCable.toString();
       final String? patchcorePDF = provCounter.patchCore.toString();

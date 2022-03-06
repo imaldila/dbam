@@ -97,4 +97,15 @@ BoxDecoration kStyleBoxDecorationTapped = BoxDecoration(
   borderRadius: BorderRadius.circular(16),
 );
 
-const String kHeadDesc = 'Pada hari ini, telah dilakukan instalasi sesuai layanan di atas dengan data dan hasil sebagai berikut: ';
+const String kHeadDesc =
+    'Pada hari ini, telah dilakukan instalasi sesuai layanan di atas dengan data dan hasil sebagai berikut: ';
+const String kDisclaimer1 =
+    '1. Perangkat (ONT/Modem/STB) yang dipasang di rumah pelanggan adalah MILIK TELKOM yang dipinjamkan selama menjadi pelanggan TELKOM. Modem yang tidak dipakai karena Migrasi ke Fiber ditarik kembali.';
+const String kDisclaimer2 =
+    '2. Telkom dapat mengambil Perangkat bila tidak ada penggunaan selama 3 bulan berturut-turut.';
+const String kDisclaimer3 =
+    '3. Untuk progress pemilihan dan monitoring diharapkan power Perangkat selalu dalam kondisi hidup(ON)';
+const String kDisclaimer4 =
+    '4. Disarankan untuk segera merubah password yang ada untuk menjaga agar tidak dipergunakan oleh pihak-pihak yang tidak dikehendaki.';
+const String kDisclaimer5 =
+    '5. Pelanggan sudah mendapatkan penjelasan dari sales/setter atau menerima buku petunjuk menggunakan modem internet yang telah dipasang.';
