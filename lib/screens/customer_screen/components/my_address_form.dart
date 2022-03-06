@@ -40,7 +40,7 @@ class MyAddressForm extends StatelessWidget {
           onChanged: onChanged,
           decoration: InputDecoration(
             hintText: '',
-            counterText: counterText,
+            counterText: '',
             enabledBorder: kStyleBorder,
             border: kStyleBorder,
             errorBorder: kErrorBorder,

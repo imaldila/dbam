@@ -7,6 +7,7 @@ import 'package:d_bam/widgets/my_button_rounded.dart';
 import 'package:d_bam/widgets/my_text_form.dart';
 import 'package:d_bam/widgets/my_text_title.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
@@ -98,6 +99,9 @@ class _FormCustomerState extends State<FormCustomer> {
               MyTextTitle(title: AppLocalizations.of(context)!.noOrder),
               MyTextForm(
                 formkey: formKeys[2],
+                inputFormatter: [
+                  FilteringTextInputFormatter.deny('/'),
+                ],
                 controller: orderController,
                 textInputAction: TextInputAction.next,
                 textCapitalization: TextCapitalization.characters,

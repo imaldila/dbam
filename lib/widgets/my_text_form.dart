@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../constants.dart';
 
@@ -12,7 +13,7 @@ class MyTextForm extends StatelessWidget {
       this.textInputAction,
       this.keyboardType,
       this.textCapitalization = TextCapitalization.none,
-      this.validator, this.maxLength})
+      this.validator, this.maxLength, this.inputFormatter})
       : super(key: key);
 
   final Function(String)? onChanged;
@@ -23,6 +24,7 @@ class MyTextForm extends StatelessWidget {
   final TextInputType? keyboardType;
   final TextCapitalization? textCapitalization;
   final int? maxLength;
+  final List<TextInputFormatter>? inputFormatter;
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +34,7 @@ class MyTextForm extends StatelessWidget {
         key: formkey,
         autovalidateMode: AutovalidateMode.onUserInteraction,
         child: TextFormField(
+          inputFormatters: inputFormatter,
           validator: (value) {
             if (value == null || value.isEmpty) {
               return validator;
