@@ -347,7 +347,7 @@ class PdfAPI {
         (otp != 0.toString())
             ? PWMaterial(title: 'OTP', value: otp, unit: 'Pcs')
             : pw.Container(),
-        (prekso != 0.toString())
+        (prekso != '')
             ? PWMaterial(title: 'Prekso', value: prekso, unit: 'Meter')
             : pw.Container(),
         (roset != 0.toString())

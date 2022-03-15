@@ -153,6 +153,7 @@ class _SignatureScreenState extends State<SignatureScreen> {
           );
         },
       );
+      
       final imageCus =
           await customerControl.toImage(format: ui.ImageByteFormat.png);
       final imageSignCus = imageCus!.buffer.asUint8List();
