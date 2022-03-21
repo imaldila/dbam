@@ -64,6 +64,7 @@ class PdfAPI {
     splitter8,
     techName,
     nik,
+    List<File>? images,
   }) async {
     var dataImageTA = await rootBundle.load('assets/images/logo_ta.png');
     var myImageTA = dataImageTA.buffer.asUint8List();
@@ -160,6 +161,30 @@ class PdfAPI {
         },
       ),
     );
+
+    if (images!.isEmpty != true) {
+      pdf.addPage(
+        pw.Page(
+          theme: pw.ThemeData.withFont(
+              icons: await PdfGoogleFonts.materialIcons(),
+              base: myFont,
+              bold: myFont),
+          margin: pw.EdgeInsets.fromLTRB(36, 16, 36, 36),
+          pageFormat: PdfPageFormat.a4,
+          build: (pw.Context context) {
+            return pw.Column(
+              crossAxisAlignment: pw.CrossAxisAlignment.start,
+              children: [
+                headerPDF(myImageTA, myImageTelkom, myFontBold),
+                pw.Divider(),
+                evidentImages(images)
+              ],
+            );
+          },
+        ),
+      );
+    }
+
     pdfOpen(noOrder);
   }
 
@@ -288,7 +313,7 @@ class PdfAPI {
         NTE(
           oldNTE: oldOTHER,
           newNTE: newOTHER,
-          labelNTE: 'LAINNYA',
+          labelNTE: 'KETERANGAN',
         ),
       ],
     );
@@ -370,77 +395,6 @@ class PdfAPI {
             : pw.Container(),
       ],
     );
-
-    //  pw.Column(
-    //   children: [
-    //     // pw.Row(
-    //     //   mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
-    //     //   children: [
-    //     //     if (dropcore != '' || otp != 0.toString())
-    //     //       PWMaterial(title: 'Dropcore', value: dropcore, unit: 'Meter')
-    //     //     else
-    //     //       PWMaterial(title: 'OTP', value: otp, unit: 'Pcs'),
-
-    //     //     pw.Container()
-    //     //     // (dropcore != '')
-    //     //     //     ? PWMaterial(title: 'Dropcore', value: dropcore, unit: 'Meter')
-    //     //     //     : (otp != 0.toString())
-    //     //     //         ? PWMaterial(title: 'OTP', value: otp, unit: 'Pcs')
-    //     //     //         : pw.Container(),
-    //     //   ],
-    //     // ),
-    //     pw.Row(
-    //       mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
-    //       children: [
-    //         PWMaterial(title: 'SOC', value: soc, unit: 'Pcs'),
-    //         PWMaterial(title: 'Prekso', value: prekso ?? '-', unit: 'Pcs'),
-    //       ],
-    //     ),
-    //     pw.Row(
-    //       mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
-    //       children: [
-    //         PWMaterial(title: 'Precon 50', value: preconn50, unit: 'Pcs'),
-    //         PWMaterial(title: 'Roset', value: roset, unit: 'Pcs'),
-    //       ],
-    //     ),
-    //     pw.Row(
-    //       mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
-    //       children: [
-    //         PWMaterial(title: 'Precon 80', value: preconn80, unit: 'Pcs'),
-    //         PWMaterial(title: 'Patchcore', value: patchcore, unit: 'Pcs'),
-    //       ],
-    //     ),
-    //     pw.Row(
-    //       mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
-    //       children: [
-    //         PWMaterial(title: 'S-Clamp', value: sCLamp, unit: 'Pcs'),
-    //         PWMaterial(title: 'Tray Cable', value: trayCable, unit: 'Pcs'),
-    //       ],
-    //     ),
-    //     pw.Row(
-    //       mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
-    //       children: [
-    //         PWMaterial(title: 'Clamp Hook', value: clampHook, unit: 'Pcs'),
-    //         PWMaterial(title: 'Cable UTP', value: cableUTP, unit: 'Meter'),
-    //       ],
-    //     ),
-    //     pw.Row(
-    //       mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
-    //       children: [
-    //         PWMaterial(title: 'Splitter 1:2', value: splitter2, unit: 'Pcs'),
-    //         PWMaterial(title: 'Adapter', value: adapter, unit: 'Pcs'),
-    //       ],
-    //     ),
-    //     pw.Row(
-    //       mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
-    //       children: [
-    //         PWMaterial(title: 'Splitter 1:4', value: splitter4, unit: 'Pcs'),
-    //         PWMaterial(title: 'RJ 45', value: rj45, unit: 'Pcs'),
-    //       ],
-    //     ),
-    //     PWMaterial(title: 'Splitter 1:8', value: splitter8, unit: 'Pcs'),
-    //   ],
-    // );
   }
 
   disclaimerPDF(pw.Font myFontItalic) {
@@ -503,6 +457,38 @@ class PdfAPI {
           name: '$techName / $nik',
         ),
       ],
+    );
+  }
+
+  evidentImages(List<File> images) {
+    return pw.Center(
+      child: pw.GridView(
+        childAspectRatio: 1,
+        crossAxisCount: 3,
+        crossAxisSpacing: 8,
+        mainAxisSpacing: 8,
+        children: [
+          for (var img in images)
+            pw.Container(
+              decoration: pw.BoxDecoration(
+                borderRadius: pw.BorderRadius.circular(16),
+                color: PdfColors.white,
+                // boxShadow: [
+                //   pw.BoxShadow(
+                //     color: PdfColors.black,
+                //     offset: PdfPoint(3, 3),
+                //     blurRadius: 6,
+                //   )
+                // ],
+              ),
+              child: pw.Image(
+                pw.MemoryImage(
+                  img.readAsBytesSync(),
+                ),
+              ),
+            ),
+        ],
+      ),
     );
   }
 }

@@ -4,6 +4,7 @@ import 'package:d_bam/models/category_data.dart';
 import 'package:d_bam/models/choose_data.dart';
 import 'package:d_bam/models/counter.dart';
 import 'package:d_bam/models/datepicker.dart';
+import 'package:d_bam/models/evident.dart';
 import 'package:d_bam/models/package_data.dart';
 import 'package:d_bam/models/text_data.dart';
 import 'package:d_bam/providers/local_provider.dart';
@@ -29,26 +30,29 @@ class MyApp extends StatelessWidget {
     ]);
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider<PackageData>(create: (context) {
-          return PackageData();
-        }),
-        ChangeNotifierProvider<DatePicker>(create: (context) {
-          return DatePicker();
-        }),
-        ChangeNotifierProvider<CategoryData>(create: (context) {
-          return CategoryData();
-        }),
-        ChangeNotifierProvider<TextData>(create: (context) {
-          return TextData();
-        }),
-        ChangeNotifierProvider<Counter>(create: (context) {
-          return Counter();
-        }),
+        ChangeNotifierProvider<PackageData>(
+          create: (context) => PackageData(),
+        ),
+        ChangeNotifierProvider<DatePicker>(
+          create: (context) => DatePicker(),
+        ),
+        ChangeNotifierProvider<CategoryData>(
+          create: (context) => CategoryData(),
+        ),
+        ChangeNotifierProvider<TextData>(
+          create: (context) => TextData(),
+        ),
+        ChangeNotifierProvider<Counter>(
+          create: (context) => Counter(),
+        ),
         ChangeNotifierProvider<ChooseData>(
           create: (context) => ChooseData(),
         ),
         ChangeNotifierProvider<LocaleProvider>(
           create: (context) => LocaleProvider(),
+        ),
+        ChangeNotifierProvider<Evident>(
+          create: (context) => Evident(),
         ),
       ],
       child: Consumer<LocaleProvider>(

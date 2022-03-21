@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../constants.dart';
 
-class BottonRounded extends StatelessWidget {
-  BottonRounded({Key? key, required this.title, required this.onPressed})
+class ButtonRounded extends StatelessWidget {
+  ButtonRounded({Key? key, required this.title, required this.onPressed})
       : super(key: key);
   final String title;
   final Function() onPressed;

@@ -1,6 +1,8 @@
+import 'dart:io';
 import 'dart:typed_data';
 import 'dart:ui' as ui;
 import 'package:d_bam/models/category_data.dart';
+import 'package:d_bam/models/evident.dart';
 import 'package:d_bam/providers/disposable_providers.dart';
 import 'package:d_bam/api/pdf_api.dart';
 import 'package:d_bam/models/choose_data.dart';
@@ -29,7 +31,7 @@ class SignatureScreen extends StatefulWidget {
 
 class _SignatureScreenState extends State<SignatureScreen> {
   final pdfAPI = PdfAPI();
-  final pdf = pw.Document();
+  // final pdf = pw.Document();
   final CategoryData categoryData = CategoryData();
   final ChooseData chooseData = ChooseData();
 
@@ -68,47 +70,43 @@ class _SignatureScreenState extends State<SignatureScreen> {
           top: kPadding,
           bottom: kVerPadding,
         ),
-        child: SingleChildScrollView(
-          child: Column(
-            // mainAxisAlignment: MainAxisAlignment.spaceAround,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Text(
-                AppLocalizations.of(context)!.customerSignature,
-                style: kTextStyle16Bold,
-              ),
-              SizedBox(
-                height: kPadding,
-              ),
-              customerSignature(),
-              const SizedBox(
-                height: kPadding,
-              ),
-              Text(
-                AppLocalizations.of(context)!.technicianSignature,
-                style: kTextStyle16Bold,
-              ),
-              const SizedBox(
-                height: kPadding,
-              ),
-              technicianSignature(),
-              const SizedBox(
-                height: kPadding,
-              ),
-              // Spacer(),
-              BottonRounded(
-                title: AppLocalizations.of(context)!.submitButton,
-                onPressed: () async {
-                  onSubmit();
-                  // reset filterchip
-                  for (int i = 0; i < categoryData.categoryCount; i++) {
-                    context.read<CategoryData>().categories[i].isSelected =
-                        false;
-                  }
-                },
-              ),
-            ],
-          ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Text(
+              AppLocalizations.of(context)!.customerSignature,
+              style: kTextStyle16Bold,
+            ),
+            SizedBox(
+              height: kPadding,
+            ),
+            customerSignature(),
+            const SizedBox(
+              height: kPadding,
+            ),
+            Text(
+              AppLocalizations.of(context)!.technicianSignature,
+              style: kTextStyle16Bold,
+            ),
+            const SizedBox(
+              height: kPadding,
+            ),
+            technicianSignature(),
+            const SizedBox(
+              height: kPadding,
+            ),
+            // Spacer(),
+            ButtonRounded(
+              title: AppLocalizations.of(context)!.submitButton,
+              onPressed: () async {
+                onSubmit();
+                // reset filterchip
+                for (int i = 0; i < categoryData.categoryCount; i++) {
+                  context.read<CategoryData>().categories[i].isSelected = false;
+                }
+              },
+            ),
+          ],
         ),
       ),
     );
@@ -153,7 +151,7 @@ class _SignatureScreenState extends State<SignatureScreen> {
           );
         },
       );
-      
+      final List<File> imagesPDF = context.read<Evident>().evidents;
       final imageCus =
           await customerControl.toImage(format: ui.ImageByteFormat.png);
       final imageSignCus = imageCus!.buffer.asUint8List();
@@ -207,6 +205,7 @@ class _SignatureScreenState extends State<SignatureScreen> {
       final String? splitter8PDF = provCounter.splitter8.toString();
 
       await pdfAPI.getPDF(
+        images: imagesPDF,
         signCus: imageSignCus,
         signTech: imageSignTech,
         date: datePDF ?? '-',
@@ -256,12 +255,6 @@ class _SignatureScreenState extends State<SignatureScreen> {
           MaterialPageRoute(builder: (context) => HomeScreen()),
         );
       });
-      // context.read<ChooseData>().takeChip = null;
-      // await Navigator.pushAndRemoveUntil(
-      //   context,
-      //   MaterialPageRoute(builder: (context) => HomeScreen()),
-      //   (Route<dynamic> route) => false,
-      // );
     }
   }
 

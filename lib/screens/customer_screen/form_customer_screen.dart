@@ -237,12 +237,10 @@ class _FormCustomerState extends State<FormCustomer> {
               const SizedBox(
                 height: kPadding,
               ),
-              BottonRounded(
+              ButtonRounded(
                 title: AppLocalizations.of(context)!.buttonNext,
                 onPressed: () {
                   _sendDataToNextScreen(context);
-                  // print(context.read<ChooseData>().selected == 'Provisioning' ? 'Pasang Baru' : 'Gangguan');
-                  // print('tap');
                 },
               ),
             ],
@@ -318,8 +316,6 @@ class _FormCustomerState extends State<FormCustomer> {
       formKeys[8].currentState!.save();
       formKeys[9].currentState!.save();
 
-      // await Navigator.push(
-      //     context, MaterialPageRoute(builder: (context) => FormMaterial()));
       if (context.read<ChooseData>().selected.isEmpty) {
         await showDialog(
           context: context,

@@ -39,5 +39,9 @@
     "oldSTB": "STB Lama",
     "newSTB": "STB Baru",
     "oldOTHER": "Lainnya",
-    "newOTHER": "Lainnya"
+    "newOTHER": "Lainnya",
+    "evident": "Silahkan pilih Gambar dari Galeri kamu",
+    "optinal": "Silahkan lanjut jika kamu ingin melewati ini",
+    "alertTitle": "Foto akan di hapus !",
+    "alertContent": "Apakah anda yakin ?"
 }

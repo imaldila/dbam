@@ -1,3 +1,4 @@
+import 'package:d_bam/screens/evident_screen/evident_screen.dart';
 import 'package:d_bam/screens/material_screen/components/my_datek_form.dart';
 import 'package:d_bam/screens/signature_screen.dart';
 import 'package:d_bam/widgets/my_button_rounded.dart';
@@ -56,7 +57,7 @@ class FormMaterial extends StatelessWidget {
             ),
             Divider(),
             MyCategoriesForm(),
-            BottonRounded(
+            ButtonRounded(
               title: AppLocalizations.of(context)!.buttonNext,
               onPressed: () {
                 // Navigator.push(
@@ -69,7 +70,7 @@ class FormMaterial extends StatelessWidget {
                 Navigator.push(
                   context,
                   PageTransition(
-                      child: SignatureScreen(),
+                      child: EvidentScreen(),
                       type: PageTransitionType.rightToLeftWithFade),
                 );
               },
