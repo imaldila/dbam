@@ -13,12 +13,12 @@ class Evident extends DisposableProviders {
   chooseImages() async {
     final pickedFile = await imagePick.pickImage(
       source: ImageSource.gallery,
-      imageQuality: 1,
+      imageQuality: 10,
     );
     if (pickedFile != null) {
       evidents.add(File(pickedFile.path));
+      notifyListeners();
     }
-    notifyListeners();
   }
 
   void clearImage(int i) {

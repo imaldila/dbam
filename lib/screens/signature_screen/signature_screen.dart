@@ -18,9 +18,8 @@ import 'package:hand_signature/signature.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'package:provider/provider.dart';
-import 'package:pdf/widgets.dart' as pw;
 
-import '../constants.dart';
+import '../../constants.dart';
 
 class SignatureScreen extends StatefulWidget {
   SignatureScreen({Key? key}) : super(key: key);
@@ -31,7 +30,7 @@ class SignatureScreen extends StatefulWidget {
 
 class _SignatureScreenState extends State<SignatureScreen> {
   final pdfAPI = PdfAPI();
-  // final pdf = pw.Document();
+
   final CategoryData categoryData = CategoryData();
   final ChooseData chooseData = ChooseData();
 
@@ -305,7 +304,6 @@ class _SignatureScreenState extends State<SignatureScreen> {
                   onPressed: () async {
                     rawImageFit.value = await customerControl.toImage(
                         color: Colors.red, background: Colors.white);
-                    // print(customerControl.isFilled);
                   },
                   icon: const Icon(Icons.check),
                   color: kIcColour,

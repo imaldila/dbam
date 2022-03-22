@@ -6,7 +6,7 @@ import 'package:page_transition/page_transition.dart';
 
 import '../../constants.dart';
 
-import '../signature_screen.dart';
+import '../signature_screen/signature_screen.dart';
 import 'components/evident_images.dart';
 
 class EvidentScreen extends StatelessWidget {
@@ -20,7 +20,6 @@ class EvidentScreen extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(kPadding),
           child: Column(
-            // mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Text(

@@ -204,9 +204,9 @@
       "description": "OTHER"
     },
 
-    "evident": "Please select an image from your Galery !",
+    "evident": "Please select an image from your Gallery !",
     "@evident": {
-      "description": "Please select an image from your Galery !"
+      "description": "Please select an image from your Gallery !"
     },
 
     "optinal": "Click next if you want to skip this !",

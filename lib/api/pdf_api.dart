@@ -175,7 +175,7 @@ class PdfAPI {
             return pw.Column(
               crossAxisAlignment: pw.CrossAxisAlignment.start,
               children: [
-                headerPDF(myImageTA, myImageTelkom, myFontBold),
+                headerEvident(myFontBold),
                 pw.Divider(),
                 evidentImages(images)
               ],
@@ -227,6 +227,16 @@ class PdfAPI {
           ),
         )
       ],
+    );
+  }
+
+  headerEvident(pw.Font myFontBold) {
+    return pw.Center(
+      child: pw.Container(
+        padding: pw.EdgeInsets.symmetric(vertical: 8),
+        child: pw.Text('EVIDENT BERITA ACARA INSTALASI',
+            style: pw.TextStyle(font: myFontBold, fontSize: 14)),
+      ),
     );
   }
 
@@ -463,23 +473,16 @@ class PdfAPI {
   evidentImages(List<File> images) {
     return pw.Center(
       child: pw.GridView(
-        childAspectRatio: 1,
+        childAspectRatio: 1.4,
         crossAxisCount: 3,
-        crossAxisSpacing: 8,
-        mainAxisSpacing: 8,
+        crossAxisSpacing: 2,
+        mainAxisSpacing: 2,
         children: [
           for (var img in images)
             pw.Container(
               decoration: pw.BoxDecoration(
                 borderRadius: pw.BorderRadius.circular(16),
                 color: PdfColors.white,
-                // boxShadow: [
-                //   pw.BoxShadow(
-                //     color: PdfColors.black,
-                //     offset: PdfPoint(3, 3),
-                //     blurRadius: 6,
-                //   )
-                // ],
               ),
               child: pw.Image(
                 pw.MemoryImage(
