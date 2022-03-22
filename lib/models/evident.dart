@@ -13,7 +13,9 @@ class Evident extends DisposableProviders {
   chooseImages() async {
     final pickedFile = await imagePick.pickImage(
       source: ImageSource.gallery,
-      imageQuality: 10,
+      imageQuality: 20,
+      maxHeight: 1920,
+      maxWidth: 1080,
     );
     if (pickedFile != null) {
       evidents.add(File(pickedFile.path));

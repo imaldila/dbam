@@ -47,6 +47,7 @@ class EvidentImages extends StatelessWidget {
               return InkWell(
                 onTap: (() {
                   print(providerEvident.evidentCount);
+                  print(providerEvident.evidents[index].lengthSync());
                   showDialog(
                     context: context,
                     builder: (BuildContext context) => AlertDialog(
