@@ -7,6 +7,8 @@ import 'package:d_bam/api/components/pw_material.dart';
 import 'package:d_bam/api/components/pw_nte_label.dart';
 import 'package:d_bam/api/components/pw_pic_label.dart';
 import 'package:d_bam/constants.dart';
+import 'package:flutter_image_compress/flutter_image_compress.dart';
+
 import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:printing/printing.dart';
@@ -25,6 +27,7 @@ class PdfAPI {
   getPDF({
     required Uint8List signCus,
     required Uint8List signTech,
+    logoTA,
     required String date,
     typeOS,
     package,
@@ -67,7 +70,21 @@ class PdfAPI {
     List<File>? images,
   }) async {
     var dataImageTA = await rootBundle.load('assets/images/logo_ta.png');
+    Future<Uint8List> testComporessList(Uint8List list) async {
+      var result = await FlutterImageCompress.compressWithList(
+        list,
+        minHeight: 1920,
+        minWidth: 1080,
+        quality: 96,
+        rotate: 135,
+      );
+      print(list.length);
+      print(result.length);
+      return result;
+    }
+
     var myImageTA = dataImageTA.buffer.asUint8List();
+    var resultTA = await testComporessList(myImageTA);
 
     var dataImageTelkom =
         await rootBundle.load('assets/images/logo_telkom.png');
@@ -89,7 +106,7 @@ class PdfAPI {
           return pw.Column(
             crossAxisAlignment: pw.CrossAxisAlignment.start,
             children: [
-              headerPDF(myImageTA, myImageTelkom, myFontBold),
+              headerPDF(resultTA, myImageTelkom, myFontBold),
               pw.Divider(),
               pw.SizedBox(height: kPadding / 1.5),
               CustomerLabel(
@@ -204,7 +221,7 @@ class PdfAPI {
     await OpenFile.open(file.path);
   }
 
-  headerPDF(Uint8List myImageTA, myImageTelkom, pw.Font myFontBold) {
+  headerPDF(Uint8List resultTA, myImageTelkom, pw.Font myFontBold) {
     return pw.Row(
       mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
       children: [
@@ -212,7 +229,7 @@ class PdfAPI {
           width: 60,
           height: 40,
           child: pw.Image(
-            pw.MemoryImage(myImageTA),
+            pw.MemoryImage(resultTA),
           ),
         ),
         pw.Container(

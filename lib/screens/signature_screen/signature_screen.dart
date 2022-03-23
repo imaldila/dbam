@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:typed_data';
 import 'dart:ui' as ui;
+import 'package:d_bam/api/models/compress_image.dart';
 import 'package:d_bam/models/category_data.dart';
 import 'package:d_bam/models/evident.dart';
 import 'package:d_bam/providers/disposable_providers.dart';
@@ -30,6 +31,7 @@ class SignatureScreen extends StatefulWidget {
 
 class _SignatureScreenState extends State<SignatureScreen> {
   final pdfAPI = PdfAPI();
+  final compressImage = CompressImage();
 
   final CategoryData categoryData = CategoryData();
   final ChooseData chooseData = ChooseData();
@@ -150,6 +152,8 @@ class _SignatureScreenState extends State<SignatureScreen> {
           );
         },
       );
+
+      final logoTAPDF = compressImage.getFileImage;
       final List<File> imagesPDF = context.read<Evident>().evidents;
       final imageCus =
           await customerControl.toImage(format: ui.ImageByteFormat.png);
@@ -204,6 +208,7 @@ class _SignatureScreenState extends State<SignatureScreen> {
       final String? splitter8PDF = provCounter.splitter8.toString();
 
       await pdfAPI.getPDF(
+        logoTA: logoTAPDF,
         images: imagesPDF,
         signCus: imageSignCus,
         signTech: imageSignTech,
