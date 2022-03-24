@@ -210,17 +210,22 @@
     },
 
     "optinal": "Click next if you want to skip this !",
-    "@evident": {
+    "@optinal": {
       "description": "Click next if you want to skip this !"
     },
 
     "alertTitle": "Image will be erase!",
-    "@evident": {
+    "@alertTitle": {
       "description": "Image will be erase!"
     },
 
     "alertContent": "Are you sure ?",
-    "@evident": {
+    "@alertContent": {
       "description": "Are you sure ?"
+    },
+    
+    "desc": "Fill this with description or Datek Metro",
+    "@desc": {
+      "description": "Fill this with SN & Mac AP | POE or description or Datek Metro"
     }
 }

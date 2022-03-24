@@ -9,7 +9,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../constants.dart';
 import 'components/my_categories_filter.dart';
 import 'components/my_categories_form.dart';
-import 'components/my_metro_form.dart';
+
 
 class FormMaterial extends StatelessWidget {
   FormMaterial({Key? key}) : super(key: key);
@@ -32,13 +32,9 @@ class FormMaterial extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             SizedBox(
-              height: kPadding,
+              height: kPadding / 2,
             ),
             MyDatekForm(),
-            SizedBox(
-              height: kPadding,
-            ),
-            MyMetroForm(),
             SizedBox(
               height: kPadding,
             ),
@@ -54,18 +50,13 @@ class FormMaterial extends StatelessWidget {
             SizedBox(
               height: kPadding,
             ),
+            // MyDescForm(),
             Divider(),
             MyCategoriesForm(),
             ButtonRounded(
               title: AppLocalizations.of(context)!.buttonNext,
               onPressed: () {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(
-                //     builder: (context) => SignatureScreen(),
-                //   ),
-                // );
-
+              
                 Navigator.push(
                   context,
                   PageTransition(

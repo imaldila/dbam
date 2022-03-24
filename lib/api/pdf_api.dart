@@ -3,11 +3,11 @@ import 'dart:io';
 import 'dart:typed_data';
 import 'package:d_bam/api/components/pw_address_label.dart';
 import 'package:d_bam/api/components/pw_datek.dart';
+import 'package:d_bam/api/components/pw_desc.dart';
 import 'package:d_bam/api/components/pw_material.dart';
 import 'package:d_bam/api/components/pw_nte_label.dart';
 import 'package:d_bam/api/components/pw_pic_label.dart';
 import 'package:d_bam/constants.dart';
-import 'package:flutter_image_compress/flutter_image_compress.dart';
 
 import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
@@ -41,13 +41,11 @@ class PdfAPI {
     odc,
     odp,
     port,
-    metro,
     newONT,
     oldONT,
     newSTB,
     oldSTB,
-    oldOTHER,
-    newOTHER,
+    description,
     dropcore,
     soc,
     preconn50,
@@ -70,21 +68,21 @@ class PdfAPI {
     List<File>? images,
   }) async {
     var dataImageTA = await rootBundle.load('assets/images/logo_ta.png');
-    Future<Uint8List> testComporessList(Uint8List list) async {
-      var result = await FlutterImageCompress.compressWithList(
-        list,
-        minHeight: 1920,
-        minWidth: 1080,
-        quality: 96,
-        rotate: 135,
-      );
-      print(list.length);
-      print(result.length);
-      return result;
-    }
+    // Future<Uint8List> testComporessList(Uint8List list) async {
+    //   var result = await FlutterImageCompress.compressWithList(
+    //     list,
+    //     minHeight: 1920,
+    //     minWidth: 1080,
+    //     quality: 96,
+    //     // rotate: 135,
+    //   );
+    //   print(list.length);
+    //   print(result.length);
+    //   return result;
+    // }
 
     var myImageTA = dataImageTA.buffer.asUint8List();
-    var resultTA = await testComporessList(myImageTA);
+    // var resultTA = await testComporessList(myImageTA);
 
     var dataImageTelkom =
         await rootBundle.load('assets/images/logo_telkom.png');
@@ -106,7 +104,7 @@ class PdfAPI {
           return pw.Column(
             crossAxisAlignment: pw.CrossAxisAlignment.start,
             children: [
-              headerPDF(resultTA, myImageTelkom, myFontBold),
+              headerPDF(myImageTA, myImageTelkom, myFontBold),
               pw.Divider(),
               pw.SizedBox(height: kPadding / 1.5),
               CustomerLabel(
@@ -139,15 +137,22 @@ class PdfAPI {
                 style: pw.TextStyle(font: myFontBold, fontSize: 10),
               ),
               pw.SizedBox(height: kPadding / 3),
-              datekPDF(myFontBold, sto, odc, odp, port, metro),
+              datekPDF(myFontBold, sto, odc, odp, port),
               pw.SizedBox(height: kPadding / 3),
               pw.Text(
                 'Detail Material :',
                 style: pw.TextStyle(font: myFontBold, fontSize: 10),
               ),
               pw.SizedBox(height: kPadding / 3),
-              ntePDF(myFontBold, newONT, oldONT, newSTB, oldSTB, newOTHER,
-                  oldOTHER),
+              ntePDF(
+                myFontBold,
+                newONT,
+                oldONT,
+                newSTB,
+                oldSTB,
+              ),
+              pw.SizedBox(height: kPadding / 3),
+              DescLabel(label: 'Keterangan', value: description),
               pw.SizedBox(height: kPadding / 3),
               pw.Divider(thickness: 0.1, color: PdfColors.grey),
               materialPDF(
@@ -221,7 +226,7 @@ class PdfAPI {
     await OpenFile.open(file.path);
   }
 
-  headerPDF(Uint8List resultTA, myImageTelkom, pw.Font myFontBold) {
+  headerPDF(Uint8List myImageTA, myImageTelkom, pw.Font myFontBold) {
     return pw.Row(
       mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
       children: [
@@ -229,7 +234,7 @@ class PdfAPI {
           width: 60,
           height: 40,
           child: pw.Image(
-            pw.MemoryImage(resultTA),
+            pw.MemoryImage(myImageTA),
           ),
         ),
         pw.Container(
@@ -270,14 +275,6 @@ class PdfAPI {
   ) {
     return pw.Column(
       children: [
-        // pw.Row(
-        //   mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
-        //   children: [
-        //     CustomerLabel(label: 'Tanggal', value: date),
-        //     CustomerLabel(label: 'Jenis Layanan', value: typeOS),
-        //   ],
-        // ),
-        // pw.SizedBox(height: kPadding / 2),
         pw.Row(
           mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
           children: [
@@ -302,7 +299,7 @@ class PdfAPI {
     );
   }
 
-  datekPDF(pw.Font myFontBold, String sto, odc, odp, port, metro) {
+  datekPDF(pw.Font myFontBold, String sto, odc, odp, port) {
     return pw.Row(
       children: [
         PWDatek(font: myFontBold, label: 'STO :', value: sto),
@@ -313,13 +310,17 @@ class PdfAPI {
         pw.SizedBox(width: kPadding),
         PWDatek(font: myFontBold, label: 'Port : ', value: port),
         pw.SizedBox(width: kPadding),
-        PWDatek(font: myFontBold, label: 'Metro : ', value: metro),
       ],
     );
   }
 
-  ntePDF(pw.Font myFontBold, String newONT, oldONT, newSTB, oldSTB, oldOTHER,
-      newOTHER) {
+  ntePDF(
+    pw.Font myFontBold,
+    String newONT,
+    oldONT,
+    newSTB,
+    oldSTB,
+  ) {
     return pw.Column(
       children: [
         NTELabel(font: myFontBold),
@@ -337,11 +338,6 @@ class PdfAPI {
                 oldNTE: oldSTB,
               )
             : pw.Container(),
-        NTE(
-          oldNTE: oldOTHER,
-          newNTE: newOTHER,
-          labelNTE: 'KETERANGAN',
-        ),
       ],
     );
   }

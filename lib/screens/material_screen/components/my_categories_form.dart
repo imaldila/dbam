@@ -1,6 +1,7 @@
 import 'package:d_bam/models/category_data.dart';
 import 'package:d_bam/models/counter.dart';
 import 'package:d_bam/models/text_data.dart';
+import 'package:d_bam/screens/material_screen/components/my_desc_form.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -106,15 +107,16 @@ class _MyCategoriesFormState extends State<MyCategoriesForm> {
                   newController: newSTBController,
                 )
               else if (categoryData.categories[i].isSelected &&
-                  categoryData.categories[i].label == 'OTHER')
-                MyNTEForm(
-                  oldTitle: AppLocalizations.of(context)!.oldOTHER,
-                  newTitle: AppLocalizations.of(context)!.newOTHER,
-                  oldChanged: textData.getOldOTHER,
-                  newChanged: textData.getNewOTHER,
-                  oldController: oldOTHERController,
-                  newController: newOTHERController,
-                )
+                  categoryData.categories[i].label == 'Description')
+                MyDescForm()
+              // MyNTEForm(
+              //   oldTitle: AppLocalizations.of(context)!.oldOTHER,
+              //   newTitle: AppLocalizations.of(context)!.newOTHER,
+              //   oldChanged: textData.getOldOTHER,
+              //   newChanged: textData.getNewOTHER,
+              //   oldController: oldOTHERController,
+              //   newController: newOTHERController,
+              // )
               else if (categoryData.categories[i].isSelected &&
                   categoryData.categories[i].label == 'Dropcore')
                 MyLabelForm(
@@ -215,7 +217,7 @@ class _MyCategoriesFormState extends State<MyCategoriesForm> {
                 )
               else if (categoryData.categories[i].isSelected &&
                   categoryData.categories[i].label == 'Prekso')
-               MyLabelForm(
+                MyLabelForm(
                   label: 'Prekso',
                   controller: preksoController,
                   onChanged: textData.getPrekso,

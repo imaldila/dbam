@@ -78,7 +78,7 @@ class EvidentScreen extends StatelessWidget {
       ),
       centerTitle: true,
       title: Text(
-        'Evident',
+        'Upload Evident',
         style: kTextStyle20Bold,
       ),
       actions: [

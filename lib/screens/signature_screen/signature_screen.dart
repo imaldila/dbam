@@ -180,13 +180,11 @@ class _SignatureScreenState extends State<SignatureScreen> {
       final String? odcPDF = provTextData.odc;
       final String? odpPDF = provTextData.odp;
       final String? portPDF = provTextData.port;
-      final String? metroPDF = provTextData.metro;
       final String? newONTPDF = provTextData.newONT;
       final String? oldONTPDF = provTextData.oldONT;
       final String? newSTBPDF = provTextData.newSTB;
       final String? oldSTBPDF = provTextData.oldSTB;
-      final String? oldOTHERPDF = provTextData.oldOTHER;
-      final String? newOTHERPDF = provTextData.newOTHER;
+      final String? descPDF = provTextData.description;
       final String? techNamePDF = provTextData.techName;
       final String? nikPDF = provTextData.nik;
       final String? dropcorePDF = provTextData.dropcore;
@@ -225,13 +223,11 @@ class _SignatureScreenState extends State<SignatureScreen> {
         odc: odcPDF ?? '-',
         odp: odpPDF ?? '-',
         port: portPDF ?? '-',
-        metro: metroPDF ?? '-',
+        description: descPDF ?? '-',
         newONT: newONTPDF ?? '-',
         oldONT: oldONTPDF ?? '-',
         newSTB: newSTBPDF ?? '-',
         oldSTB: oldSTBPDF ?? '-',
-        newOTHER: newOTHERPDF ?? '-',
-        oldOTHER: oldOTHERPDF ?? '-',
         techName: techNamePDF ?? '-',
         nik: nikPDF ?? '-',
         dropcore: dropcorePDF ?? '-',

@@ -16,7 +16,7 @@ class CompressImage {
     final ByteData data = await key.bundle.load(key.name);
     final dir = await path_provider.getTemporaryDirectory();
     print('dir = $dir');
-    
+
     File file = createFile('${dir.absolute.path}/logo_ta.png');
     file.writeAsBytesSync(data.buffer.asUint8List());
 
@@ -43,7 +43,7 @@ class CompressImage {
       minWidth: 2300,
       minHeight: 1500,
       quality: 94,
-      rotate: 180,
+      // rotate: 180,
     );
     print(file.lengthSync());
     print(result?.length);

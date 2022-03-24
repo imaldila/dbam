@@ -43,5 +43,6 @@
     "evident": "Silahkan pilih Gambar dari Galeri kamu",
     "optinal": "Silahkan lanjut jika kamu ingin melewati ini",
     "alertTitle": "Foto akan di hapus !",
-    "alertContent": "Apakah anda yakin ?"
+    "alertContent": "Apakah anda yakin ?",
+    "desc": "Isi dengan SN & Mac AP | POE / Keterangan / Datek Metro"
 }
