@@ -152,7 +152,7 @@ class PdfAPI {
                 oldSTB,
               ),
               pw.SizedBox(height: kPadding / 3),
-              DescLabel(label: 'Keterangan', value: description),
+              DescLabel(label: 'Keterangan', value: description, font: myFontBold),
               pw.SizedBox(height: kPadding / 3),
               pw.Divider(thickness: 0.1, color: PdfColors.grey),
               materialPDF(
