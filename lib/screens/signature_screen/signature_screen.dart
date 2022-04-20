@@ -113,58 +113,58 @@ class _SignatureScreenState extends State<SignatureScreen> {
               child: ButtonRounded(
                 title: AppLocalizations.of(context)!.submitButton,
                 onPressed: () async {
-                  showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return AlertDialog(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(16),
-                          ),
-                          title: Text(
-                            AppLocalizations.of(context)!.confirm,
-                            style: kTextStyle20Bold,
-                          ),
-                          content: Text(
-                            AppLocalizations.of(context)!.confirm1,
-                            style: kTextStyle14,
-                          ),
-                          elevation: 8,
-                          actions: [
-                            TextButton(
-                              onPressed: () => Navigator.pop(context, 'Cancel'),
-                              child: Text(
-                                'Cancel',
-                                style: kTextStyle14Blue,
-                              ),
-                            ),
-                            TextButton(
-                              onPressed: () {
-                                Navigator.pop(context, 'OK');
-                                onSubmit();
-                                // reset filterchip
-                                for (int i = 0;
-                                    i < categoryData.categoryCount;
-                                    i++) {
-                                  context
-                                      .read<CategoryData>()
-                                      .categories[i]
-                                      .isSelected = false;
-                                }
-                              },
-                              child: Text(
-                                'OK',
-                                style: kTextStyle14Blue,
-                              ),
-                            ),
-                          ],
-                        );
-                      });
+                  confirmDialog(context);
                 },
               ),
             ),
           ],
         ),
       ),
+    );
+  }
+
+  Future<dynamic> confirmDialog(BuildContext context) {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
+          title: Text(
+            AppLocalizations.of(context)!.confirm,
+            style: kTextStyle20Bold,
+          ),
+          content: Text(
+            AppLocalizations.of(context)!.confirm1,
+            style: kTextStyle14,
+          ),
+          elevation: 8,
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context, 'Cancel'),
+              child: Text(
+                'Cancel',
+                style: kTextStyle14Blue,
+              ),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context, 'OK');
+                onSubmit();
+                // reset filterchip
+                for (int i = 0; i < categoryData.categoryCount; i++) {
+                  context.read<CategoryData>().categories[i].isSelected = false;
+                }
+              },
+              child: Text(
+                'OK',
+                style: kTextStyle14Blue,
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 
