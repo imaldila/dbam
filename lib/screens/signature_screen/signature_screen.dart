@@ -172,10 +172,12 @@ class _SignatureScreenState extends State<SignatureScreen> {
       final String? datePDF = context.read<DatePicker>().selected.toString();
       final provTextData = context.read<TextData>();
       final provCounter = context.read<Counter>();
+      // final String? typeOSPDF =
+      //     context.read<ChooseData>().selected == 'Provisioning'
+      //         ? 'Pasang Baru'
+      //         : 'Gangguan';
       final String? typeOSPDF =
-          context.read<ChooseData>().selected == 'Provisioning'
-              ? 'Pasang Baru'
-              : 'Gangguan';
+          context.read<ChooseData>().selected;
       final String? packagePDF = context.read<PackageData>().selected;
       final String? orderPDF = provTextData.order;
       final String? servicePDF = provTextData.service;
