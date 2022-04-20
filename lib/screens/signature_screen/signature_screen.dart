@@ -81,7 +81,9 @@ class _SignatureScreenState extends State<SignatureScreen> {
             SizedBox(
               height: kPadding,
             ),
-            customerSignature(),
+            Flexible(
+              flex: 3,
+              child: customerSignature()),
             const SizedBox(
               height: kPadding,
             ),
@@ -92,20 +94,25 @@ class _SignatureScreenState extends State<SignatureScreen> {
             const SizedBox(
               height: kPadding,
             ),
-            technicianSignature(),
+            Flexible(
+              flex: 3,
+              child: technicianSignature()),
             const SizedBox(
               height: kPadding,
             ),
             // Spacer(),
-            ButtonRounded(
-              title: AppLocalizations.of(context)!.submitButton,
-              onPressed: () async {
-                onSubmit();
-                // reset filterchip
-                for (int i = 0; i < categoryData.categoryCount; i++) {
-                  context.read<CategoryData>().categories[i].isSelected = false;
-                }
-              },
+            Flexible(
+              flex: 1,
+              child: ButtonRounded(
+                title: AppLocalizations.of(context)!.submitButton,
+                onPressed: () async {
+                  onSubmit();
+                  // reset filterchip
+                  for (int i = 0; i < categoryData.categoryCount; i++) {
+                    context.read<CategoryData>().categories[i].isSelected = false;
+                  }
+                },
+              ),
             ),
           ],
         ),
@@ -261,8 +268,10 @@ class _SignatureScreenState extends State<SignatureScreen> {
   AspectRatio customerSignature() {
     // print(customerControl.isFilled);
     Size size = MediaQuery.of(context).size;
+    print(size.height * 0.3);
     return AspectRatio(
-      aspectRatio: 1.65,
+      aspectRatio: size.aspectRatio * 2,
+      // height: size.height * 0.3,
       child: Stack(
         children: [
           Material(
@@ -328,7 +337,8 @@ class _SignatureScreenState extends State<SignatureScreen> {
     // print(technicianControl.isFilled);
     Size size = MediaQuery.of(context).size;
     return AspectRatio(
-      aspectRatio: 1.65,
+      aspectRatio: size.aspectRatio * 2,
+      // height: size.height * 0.3,
       child: Stack(
         children: [
           Material(

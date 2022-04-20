@@ -27,6 +27,10 @@ class ChooseData extends DisposableProviders {
     Choose(
         label: 'Assurance',
         images: 'assets/images/img_ggn.svg',
+        isSelected: false),
+    Choose(
+        label: 'Dismantle',
+        images: '',
         isSelected: false)
   ];
 

@@ -1,5 +1,6 @@
 import 'package:d_bam/screens/evident_screen/evident_screen.dart';
 import 'package:d_bam/screens/material_screen/components/my_datek_form.dart';
+import 'package:d_bam/screens/signature_screen/signature_screen.dart';
 import 'package:d_bam/widgets/my_button_rounded.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -60,7 +61,7 @@ class FormMaterial extends StatelessWidget {
                 Navigator.push(
                   context,
                   PageTransition(
-                      child: EvidentScreen(),
+                      child: SignatureScreen(),
                       type: PageTransitionType.rightToLeftWithFade),
                 );
               },

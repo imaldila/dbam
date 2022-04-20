@@ -14,6 +14,7 @@ class MyCategoriesFilter extends StatelessWidget {
     return Consumer<CategoryData>(
       builder: (context, categoryData, child) => Wrap(
         spacing: 8,
+        runSpacing: 8,
         children: [
           for (int i = 0; i < categoryData.categoryCount; i++)
             FilterChip(

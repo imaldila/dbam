@@ -14,6 +14,7 @@ class MyChoices extends StatelessWidget {
           padding: const EdgeInsets.only(top: kPadding / 2, bottom: kPadding),
           child: Wrap(
             crossAxisAlignment: WrapCrossAlignment.center,
+            runSpacing: kPadding,
             spacing: kPadding,
             children: List<Widget>.generate(
               choose.chooseCount,
