@@ -44,5 +44,9 @@
     "optinal": "Silahkan lanjut jika kamu ingin melewati ini",
     "alertTitle": "Foto akan di hapus !",
     "alertContent": "Apakah anda yakin ?",
-    "desc": "Isi dengan SN & Mac AP | POE / Keterangan / Datek Metro"
+    "desc": "Isi dengan SN & Mac AP | POE / Keterangan / Datek Metro",
+    "confirm": "Konfirmasi",
+    "confirm1": "Apakah Anda Yakin ?",
+    "alertInfo": "Harap Tunggu, Jangan Tutup Aplikasi ini Yaa 😎",
+    "snackBarPDF": "Ketuk disini, untuk membuka PDF"
 }

@@ -45,6 +45,21 @@ final kTextStyle14 = GoogleFonts.poppins(
   ),
 );
 
+final kTextStyle14Blue = GoogleFonts.poppins(
+  textStyle: TextStyle(
+    fontSize: 14,
+    color: Colors.blue,
+    fontWeight: FontWeight.bold,
+  ),
+);
+final kTextStyle18Blue = GoogleFonts.poppins(
+  textStyle: TextStyle(
+    fontSize: 18,
+    color: Colors.blue,
+    fontWeight: FontWeight.bold,
+  ),
+);
+
 final kTextStyle14Bold = GoogleFonts.poppins(
   textStyle: TextStyle(
     fontSize: 14,

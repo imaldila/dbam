@@ -18,13 +18,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hand_signature/signature.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:lottie/lottie.dart';
 
 import 'package:provider/provider.dart';
 
 import '../../constants.dart';
 import 'components/tech_signature.dart';
-
-late Widget _dialogContent;
 
 class SignatureScreen extends StatefulWidget {
   SignatureScreen({Key? key}) : super(key: key);
@@ -114,12 +113,52 @@ class _SignatureScreenState extends State<SignatureScreen> {
               child: ButtonRounded(
                 title: AppLocalizations.of(context)!.submitButton,
                 onPressed: () async {
-                  onSubmit();
-                  // reset filterchip
-                  for (int i = 0; i < categoryData.categoryCount; i++) {
-                    context.read<CategoryData>().categories[i].isSelected =
-                        false;
-                  }
+                  showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          title: Text(
+                            AppLocalizations.of(context)!.confirm,
+                            style: kTextStyle20Bold,
+                          ),
+                          content: Text(
+                            AppLocalizations.of(context)!.confirm1,
+                            style: kTextStyle14,
+                          ),
+                          elevation: 8,
+                          actions: [
+                            TextButton(
+                              onPressed: () => Navigator.pop(context, 'Cancel'),
+                              child: Text(
+                                'Cancel',
+                                style: kTextStyle14Blue,
+                              ),
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                Navigator.pop(context, 'OK');
+                                onSubmit();
+                                // reset filterchip
+                                for (int i = 0;
+                                    i < categoryData.categoryCount;
+                                    i++) {
+                                  context
+                                      .read<CategoryData>()
+                                      .categories[i]
+                                      .isSelected = false;
+                                }
+                              },
+                              child: Text(
+                                'OK',
+                                style: kTextStyle14Blue,
+                              ),
+                            ),
+                          ],
+                        );
+                      });
                 },
               ),
             ),
@@ -142,11 +181,6 @@ class _SignatureScreenState extends State<SignatureScreen> {
 
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
     } else {
-      _dialogContent = CircularProgressIndicator(
-        color: Colors.grey,
-        backgroundColor: Colors.red,
-      );
-
       showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -156,9 +190,7 @@ class _SignatureScreenState extends State<SignatureScreen> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  // _dialogContent,
                   CircularProgressIndicator(
-                    // strokeWidth: 2,
                     color: Colors.grey,
                     backgroundColor: Colors.red,
                   ),
@@ -166,7 +198,7 @@ class _SignatureScreenState extends State<SignatureScreen> {
                     height: kPadding,
                   ),
                   Text(
-                    'Please wait, don\'t close the app.',
+                    AppLocalizations.of(context)!.alertInfo,
                     style: kTextStyle14White,
                   )
                 ],
@@ -175,7 +207,7 @@ class _SignatureScreenState extends State<SignatureScreen> {
           );
         },
       );
-      Future.delayed(Duration(seconds: 5), () {
+      Future.delayed(Duration(seconds: 3), () {
         return Navigator.pop(context);
       });
 
@@ -275,14 +307,14 @@ class _SignatureScreenState extends State<SignatureScreen> {
         splitter4: splitter4PDF ?? '-',
         splitter8: splitter8PDF ?? '-',
       );
-      Future.delayed(Duration(seconds: 5), () {
+      Future.delayed(Duration(seconds: 4), () {
         final snackOpenPDF = SnackBar(
           elevation: kPadding,
           content: Text(
-            'Click Open to See the PDF',
+            AppLocalizations.of(context)!.snackBarPDF,
             style: kTextStyle14White,
           ),
-          duration: const Duration(seconds: 10),
+          duration: const Duration(seconds: 15),
           action: SnackBarAction(
             label: 'Open',
             onPressed: () async {
@@ -297,79 +329,43 @@ class _SignatureScreenState extends State<SignatureScreen> {
           ),
         );
         ScaffoldMessenger.of(context).showSnackBar(snackOpenPDF);
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            actionsAlignment: MainAxisAlignment.center,
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+            alignment: Alignment.center,
+            contentPadding: EdgeInsets.all(kPadding * 2),
+            elevation: 8,
+            actions: [
+              Lottie.asset('assets/lotties/check.json'),
+              Center(
+                child: TextButton(
+                  onPressed: () async {
+                    pdfAPI.pdfOpen(orderPDF!);
+                    await Future.delayed(Duration(seconds: 3), () async {
+                      await Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => HomeScreen()),
+                      );
+                    });
+                  },
+                  child: Text(
+                    AppLocalizations.of(context)!.snackBarPDF,
+                    style: kTextStyle18Blue,
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              )
+            ],
+          ),
+        );
       });
 
       AppProviders.disposeAllDisposableProviders(context);
     }
   }
-
-  // AspectRatio customerSignature() {
-  //   // print(customerControl.isFilled);
-  //   Size size = MediaQuery.of(context).size;
-  //   // print(size.height * 0.3);
-  //   return AspectRatio(
-  //     aspectRatio: size.aspectRatio * 2,
-  //     // height: size.height * 0.3,
-  //     child: Stack(
-  //       children: [
-  //         Material(
-  //           elevation: 8,
-  //           shadowColor: Colors.white,
-  //           borderRadius: BorderRadius.all(
-  //             Radius.circular(16),
-  //           ),
-  //           child: Container(
-  //             height: size.height / 4,
-  //             constraints: BoxConstraints.expand(),
-  //             decoration: BoxDecoration(
-  //               color: Colors.white,
-  //               borderRadius: BorderRadius.all(
-  //                 Radius.circular(16),
-  //               ),
-  //             ),
-  //             child: HandSignaturePainterView(
-  //                 control: customerControl,
-  //                 type: SignatureDrawType.shape,
-  //                 color: Colors.blue.shade600),
-  //           ),
-  //         ),
-  //         CustomPaint(
-  //           painter: DebugSignaturePainterCP(
-  //             control: customerControl,
-  //             cp: false,
-  //             cpStart: false,
-  //             cpEnd: false,
-  //           ),
-  //         ),
-  //         Positioned(
-  //           bottom: 0,
-  //           right: 15,
-  //           left: 15,
-  //           child: Row(
-  //             mainAxisAlignment: MainAxisAlignment.spaceAround,
-  //             children: [
-  //               IconButton(
-  //                 onPressed: () async {
-  //                   rawImageFit.value = await customerControl.toImage(
-  //                       color: Colors.red, background: Colors.white);
-  //                 },
-  //                 icon: const Icon(Icons.check),
-  //                 color: kIcColour,
-  //               ),
-  //               IconButton(
-  //                 icon: const Icon(Icons.clear),
-  //                 color: kIcColour,
-  //                 onPressed: () {
-  //                   customerControl.clear();
-  //                 },
-  //               ),
-  //             ],
-  //           ),
-  //         ),
-  //       ],
-  //     ),
-  //   );
-  // }
 
   AppBar buildAppBar(BuildContext context) {
     return AppBar(

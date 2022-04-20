@@ -227,5 +227,25 @@
     "desc": "Fill this with description or Datek Metro",
     "@desc": {
       "description": "Fill this with SN & Mac AP | POE or description or Datek Metro"
+    },
+
+    "confirm": "Confirm",
+    "@confirm": {
+      "description": "Confirm"
+    },
+
+    "confirm1": "Are You Sure ?",
+    "@confirm1": {
+      "description": "Are You Sure ?"
+    },
+
+    "alertInfo": "Please wait, don't close the app.",
+    "@alertInfo": {
+      "description": "Please wait, don't close the app."
+    },
+
+    "snackBarPDF": "Tap Here to See the PDF.",
+    "@snackBarPDF": {
+      "description": "Tap Here to See the PDF."
     }
 }
