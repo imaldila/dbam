@@ -23,6 +23,7 @@ class MyDropDownList extends StatelessWidget {
           key: formKey,
           autovalidateMode: AutovalidateMode.onUserInteraction,
           child: DropdownButtonFormField<String>(
+            elevation: 8,
             validator: (value) {
               if (value == null || value.isEmpty) {
                 return AppLocalizations.of(context)!.valPackage;
