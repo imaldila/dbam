@@ -104,7 +104,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   Navigator.push(
                     context,
                     PageTransition(
-                        child: FormCustomer(),
+                        child: SignatureScreen(),
                         type: PageTransitionType.rightToLeft),
                   );
                 },

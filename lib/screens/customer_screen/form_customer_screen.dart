@@ -240,8 +240,6 @@ class _FormCustomerState extends State<FormCustomer> {
               ButtonRounded(
                 title: AppLocalizations.of(context)!.buttonNext,
                 onPressed: () {
-                  print(context.read<ChooseData>().selected);
-
                   _sendDataToNextScreen(context);
                 },
               ),

@@ -12,6 +12,7 @@ import 'package:d_bam/models/datepicker.dart';
 import 'package:d_bam/models/package_data.dart';
 import 'package:d_bam/models/text_data.dart';
 import 'package:d_bam/screens/home_screen/home_screen.dart';
+import 'package:d_bam/screens/signature_screen/components/customer_signature.dart';
 import 'package:d_bam/widgets/my_button_rounded.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -21,6 +22,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
 import '../../constants.dart';
+import 'components/tech_signature.dart';
 
 class SignatureScreen extends StatefulWidget {
   SignatureScreen({Key? key}) : super(key: key);
@@ -83,7 +85,10 @@ class _SignatureScreenState extends State<SignatureScreen> {
             ),
             Flexible(
               flex: 3,
-              child: customerSignature()),
+              child: CustomerSignature(
+                customerControl: customerControl,
+              ),
+            ),
             const SizedBox(
               height: kPadding,
             ),
@@ -95,8 +100,10 @@ class _SignatureScreenState extends State<SignatureScreen> {
               height: kPadding,
             ),
             Flexible(
-              flex: 3,
-              child: technicianSignature()),
+                flex: 3,
+                child: TechnicianSignature(
+                  technicianControl: technicianControl,
+                )),
             const SizedBox(
               height: kPadding,
             ),
@@ -109,7 +116,8 @@ class _SignatureScreenState extends State<SignatureScreen> {
                   onSubmit();
                   // reset filterchip
                   for (int i = 0; i < categoryData.categoryCount; i++) {
-                    context.read<CategoryData>().categories[i].isSelected = false;
+                    context.read<CategoryData>().categories[i].isSelected =
+                        false;
                   }
                 },
               ),
@@ -176,8 +184,7 @@ class _SignatureScreenState extends State<SignatureScreen> {
       //     context.read<ChooseData>().selected == 'Provisioning'
       //         ? 'Pasang Baru'
       //         : 'Gangguan';
-      final String? typeOSPDF =
-          context.read<ChooseData>().selected;
+      final String? typeOSPDF = context.read<ChooseData>().selected;
       final String? packagePDF = context.read<PackageData>().selected;
       final String? orderPDF = provTextData.order;
       final String? servicePDF = provTextData.service;
@@ -267,141 +274,73 @@ class _SignatureScreenState extends State<SignatureScreen> {
     }
   }
 
-  AspectRatio customerSignature() {
-    // print(customerControl.isFilled);
-    Size size = MediaQuery.of(context).size;
-    print(size.height * 0.3);
-    return AspectRatio(
-      aspectRatio: size.aspectRatio * 2,
-      // height: size.height * 0.3,
-      child: Stack(
-        children: [
-          Material(
-            elevation: 8,
-            shadowColor: Colors.white,
-            borderRadius: BorderRadius.all(
-              Radius.circular(16),
-            ),
-            child: Container(
-              height: size.height / 4,
-              constraints: BoxConstraints.expand(),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.all(
-                  Radius.circular(16),
-                ),
-              ),
-              child: HandSignaturePainterView(
-                  control: customerControl,
-                  type: SignatureDrawType.shape,
-                  color: Colors.blue.shade600),
-            ),
-          ),
-          CustomPaint(
-            painter: DebugSignaturePainterCP(
-              control: customerControl,
-              cp: false,
-              cpStart: false,
-              cpEnd: false,
-            ),
-          ),
-          Positioned(
-            bottom: 0,
-            right: 15,
-            left: 15,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                IconButton(
-                  onPressed: () async {
-                    rawImageFit.value = await customerControl.toImage(
-                        color: Colors.red, background: Colors.white);
-                  },
-                  icon: const Icon(Icons.check),
-                  color: kIcColour,
-                ),
-                IconButton(
-                  icon: const Icon(Icons.clear),
-                  color: kIcColour,
-                  onPressed: () {
-                    customerControl.clear();
-                  },
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  AspectRatio technicianSignature() {
-    // print(technicianControl.isFilled);
-    Size size = MediaQuery.of(context).size;
-    return AspectRatio(
-      aspectRatio: size.aspectRatio * 2,
-      // height: size.height * 0.3,
-      child: Stack(
-        children: [
-          Material(
-            elevation: 8,
-            shadowColor: Colors.white,
-            borderRadius: BorderRadius.all(
-              Radius.circular(16),
-            ),
-            child: Container(
-              height: size.height / 4,
-              constraints: BoxConstraints.expand(),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.all(
-                  Radius.circular(16),
-                ),
-              ),
-              child: HandSignaturePainterView(
-                  control: technicianControl,
-                  type: SignatureDrawType.shape,
-                  color: Colors.blue.shade600),
-            ),
-          ),
-          CustomPaint(
-            painter: DebugSignaturePainterCP(
-              control: technicianControl,
-              cp: false,
-              cpStart: false,
-              cpEnd: false,
-            ),
-          ),
-          Positioned(
-            bottom: 0,
-            right: 15,
-            left: 15,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                IconButton(
-                  onPressed: () async {
-                    rawImageFit.value = await technicianControl.toImage(
-                        color: Colors.red, background: Colors.white);
-                    // print(technicianControl.isFilled);
-                  },
-                  icon: const Icon(Icons.check),
-                  color: kIcColour,
-                ),
-                IconButton(
-                  icon: const Icon(Icons.clear),
-                  color: kIcColour,
-                  onPressed: () {
-                    technicianControl.clear();
-                  },
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+  // AspectRatio customerSignature() {
+  //   // print(customerControl.isFilled);
+  //   Size size = MediaQuery.of(context).size;
+  //   // print(size.height * 0.3);
+  //   return AspectRatio(
+  //     aspectRatio: size.aspectRatio * 2,
+  //     // height: size.height * 0.3,
+  //     child: Stack(
+  //       children: [
+  //         Material(
+  //           elevation: 8,
+  //           shadowColor: Colors.white,
+  //           borderRadius: BorderRadius.all(
+  //             Radius.circular(16),
+  //           ),
+  //           child: Container(
+  //             height: size.height / 4,
+  //             constraints: BoxConstraints.expand(),
+  //             decoration: BoxDecoration(
+  //               color: Colors.white,
+  //               borderRadius: BorderRadius.all(
+  //                 Radius.circular(16),
+  //               ),
+  //             ),
+  //             child: HandSignaturePainterView(
+  //                 control: customerControl,
+  //                 type: SignatureDrawType.shape,
+  //                 color: Colors.blue.shade600),
+  //           ),
+  //         ),
+  //         CustomPaint(
+  //           painter: DebugSignaturePainterCP(
+  //             control: customerControl,
+  //             cp: false,
+  //             cpStart: false,
+  //             cpEnd: false,
+  //           ),
+  //         ),
+  //         Positioned(
+  //           bottom: 0,
+  //           right: 15,
+  //           left: 15,
+  //           child: Row(
+  //             mainAxisAlignment: MainAxisAlignment.spaceAround,
+  //             children: [
+  //               IconButton(
+  //                 onPressed: () async {
+  //                   rawImageFit.value = await customerControl.toImage(
+  //                       color: Colors.red, background: Colors.white);
+  //                 },
+  //                 icon: const Icon(Icons.check),
+  //                 color: kIcColour,
+  //               ),
+  //               IconButton(
+  //                 icon: const Icon(Icons.clear),
+  //                 color: kIcColour,
+  //                 onPressed: () {
+  //                   customerControl.clear();
+  //                 },
+  //               ),
+  //             ],
+  //           ),
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
 
   AppBar buildAppBar(BuildContext context) {
     return AppBar(
