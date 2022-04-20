@@ -24,6 +24,8 @@ import 'package:provider/provider.dart';
 import '../../constants.dart';
 import 'components/tech_signature.dart';
 
+late Widget _dialogContent;
+
 class SignatureScreen extends StatefulWidget {
   SignatureScreen({Key? key}) : super(key: key);
 
@@ -66,7 +68,6 @@ class _SignatureScreenState extends State<SignatureScreen> {
     return Scaffold(
       appBar: buildAppBar(context),
       body: Padding(
-        // scrollDirection: Axis.vertical,
         padding: const EdgeInsets.only(
           left: kPadding,
           right: kPadding,
@@ -80,7 +81,7 @@ class _SignatureScreenState extends State<SignatureScreen> {
               AppLocalizations.of(context)!.customerSignature,
               style: kTextStyle16Bold,
             ),
-            SizedBox(
+            const SizedBox(
               height: kPadding,
             ),
             Flexible(
@@ -141,6 +142,11 @@ class _SignatureScreenState extends State<SignatureScreen> {
 
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
     } else {
+      _dialogContent = CircularProgressIndicator(
+        color: Colors.grey,
+        backgroundColor: Colors.red,
+      );
+
       showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -150,7 +156,9 @@ class _SignatureScreenState extends State<SignatureScreen> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  // _dialogContent,
                   CircularProgressIndicator(
+                    // strokeWidth: 2,
                     color: Colors.grey,
                     backgroundColor: Colors.red,
                   ),
@@ -167,6 +175,9 @@ class _SignatureScreenState extends State<SignatureScreen> {
           );
         },
       );
+      Future.delayed(Duration(seconds: 5), () {
+        return Navigator.pop(context);
+      });
 
       final logoTAPDF = compressImage.getFileImage;
       final List<File> imagesPDF = context.read<Evident>().evidents;
@@ -264,13 +275,31 @@ class _SignatureScreenState extends State<SignatureScreen> {
         splitter4: splitter4PDF ?? '-',
         splitter8: splitter8PDF ?? '-',
       );
-      AppProviders.disposeAllDisposableProviders(context);
-      await Future.delayed(Duration(seconds: 3), () async {
-        await Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => HomeScreen()),
+      Future.delayed(Duration(seconds: 5), () {
+        final snackOpenPDF = SnackBar(
+          elevation: kPadding,
+          content: Text(
+            'Click Open to See the PDF',
+            style: kTextStyle14White,
+          ),
+          duration: const Duration(seconds: 10),
+          action: SnackBarAction(
+            label: 'Open',
+            onPressed: () async {
+              pdfAPI.pdfOpen(orderPDF!);
+              await Future.delayed(Duration(seconds: 3), () async {
+                await Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomeScreen()),
+                );
+              });
+            },
+          ),
         );
+        ScaffoldMessenger.of(context).showSnackBar(snackOpenPDF);
       });
+
+      AppProviders.disposeAllDisposableProviders(context);
     }
   }
 

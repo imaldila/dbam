@@ -54,7 +54,10 @@ final kTextStyle14Bold = GoogleFonts.poppins(
 );
 
 final kTextStyle14White = GoogleFonts.poppins(
-  textStyle: TextStyle(fontSize: 14, color: Colors.white),
+  textStyle: TextStyle(
+    fontSize: 14,
+    color: Colors.white,
+  ),
 );
 
 final kTextStyle24 = GoogleFonts.poppins(
